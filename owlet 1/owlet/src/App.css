@@ -1,0 +1,19 @@
+/*.const-styles {*/
+    .page{
+      display: flex ;
+      min-height: 100vh ;
+      background-color: #f8f9fa ;
+    }
+
+    main {
+      flex: 1;
+      padding: 20px ;
+    }
+
+    .bottom-sections {
+      display: flex ;
+      justify-content: space-between ;
+      margin-top: 20px ;
+    }
+  
+    

@@ -1,0 +1,28 @@
+/* MainDashboard.css */
+/*.breadcrumb {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .cards {
+    display: flex;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-right: 20px;
+    width: 200px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .card span {
+    font-weight: bold;
+  }
+  
+  .card p {
+    font-size: 20px;
+    margin: 5px 0;
+  }
+  

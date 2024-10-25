@@ -1,0 +1,41 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d3d3d3;
+    padding: 10px 50px;
+  }
+  
+  .navbar-logo img {
+    height: 78px; /* Half of original to keep the aspect ratio */
+  }
+  
+  .navbar-links {
+    display: flex;
+    gap: 30px;
+  }
+  
+  .navbar-links a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 18px; /* Responsive font size */
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .navbar-button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 18px; /* Responsive font size */
+    color: #fffdfd;
+    background-color: #3e2723; /* Brownish color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 22px; /* Half of button height for full rounding */
+    cursor: pointer;
+  }
+  
+  .navbar-button:hover {
+    background-color: #2e1d1a;
+  }
+  
