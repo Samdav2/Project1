@@ -27,7 +27,7 @@ const MainPage = () => {
           <h2>Upcoming Event</h2>
           <input type="text" placeholder="Search for events" className="event-search" />
           <button className="search-button">Search</button>
-          
+
           <div className="event-info">
             <img src={owlParty} alt="Owl Party" className="event-image" />
             <div className="event-details">
@@ -60,7 +60,7 @@ const MainPage = () => {
             <a href="#twitter">X (Twitter)</a>
           </div>
           <p>
-            Tix is an event ticketing platform for memorable experiences in Africa. 
+            Tix is an event ticketing platform for memorable experiences in Africa.
             Sign up to our newsletter to receive information about upcoming events.
           </p>
           <button className="subscribe-button">Subscribe</button>
@@ -71,6 +71,3 @@ const MainPage = () => {
 };
 
 export default MainPage;
-
-
-
