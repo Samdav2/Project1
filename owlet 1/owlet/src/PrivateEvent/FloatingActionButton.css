@@ -1,0 +1,20 @@
+.fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 74px;
+    height: 48px;
+    background-color: #ffa500;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
+  .fab-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
