@@ -1,0 +1,47 @@
+.header {
+    width: 649.04px;
+    height: 46.49px;
+    padding: 10px;
+    background-color: #fff;
+  }
+  
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .time-text {
+    font-family: SF Pro Text;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+    color: #120d26;
+    line-height: 17.9px;
+  }
+  
+  .icons {
+    display: flex;
+    gap: 5px;
+  }
+  
+  .icon {
+    display: block;
+  }
+  
+  .back-button {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .back-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  .back-text {
+    font-size: 16px;
+  }
+  

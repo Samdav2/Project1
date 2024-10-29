@@ -1,0 +1,21 @@
+.date-time-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.time-field {
+    width: 48%;
+}
+
+.time-label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.time-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}

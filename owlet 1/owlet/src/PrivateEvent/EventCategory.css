@@ -1,0 +1,16 @@
+.event-category {
+    background-color: #ff9900;
+    width: 181.35px;
+    height: 38.54px;
+    border-radius: 15px;
+    border: 2px solid #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    cursor: pointer;
+  }
+  
