@@ -1,0 +1,141 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .main-page {
+    width: 100%;
+    background-color: #ffffff;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d3d3d3;
+    padding: 20px 50px;
+  }
+  
+  .header-logo {
+    height: 78px; /* Adjust based on actual image size */
+  }
+  
+  .header-nav a {
+    margin: 0 15px;
+    font-weight: 300;
+    font-size: 18px;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .header-button {
+    font-weight: 600;
+    font-size: 18px;
+    color: #fffdfd;
+    background-color: #3e2723;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 22px;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    text-align: center;
+    padding: 50px;
+    background-color: #f0f0f0;
+  }
+  
+  .main-title {
+    color: #7b6c6c;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 50px;
+  }
+  
+  .event-section {
+    background-color: #ffffff;
+    padding: 30px 50px;
+    margin: 20px auto;
+    width: 90%;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  .event-search {
+    padding: 10px;
+    margin: 20px 0;
+    width: 300px;
+  }
+  
+  .search-button {
+    background-color: #5a3030;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .event-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .event-image {
+    width: 300px;
+    height: auto;
+  }
+  
+  .event-details {
+    max-width: 600px;
+    text-align: left;
+  }
+  
+  .ticket-button, .contact-button {
+    margin: 10px;
+    padding: 10px 15px;
+    background-color: #3e2723;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .footer {
+    background-color: #cccccc;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .footer-column {
+    margin: 0 20px;
+  }
+  
+  .footer-column p {
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  
+  .footer-column a {
+    display: block;
+    margin: 5px 0;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .subscribe-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #5a3030;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

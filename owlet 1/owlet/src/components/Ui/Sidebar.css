@@ -1,0 +1,44 @@
+/* Sidebar.css */
+.logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    margin-right: 10px;
+  }
+  
+  .menu {
+    margin-top: 20px;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #A0AEC0FF;
+    font-weight: bold;
+  }
+  
+  .menu-item.active {
+    background-color: #E2E8F0FF;
+    border-radius: 8px;
+  }
+  
+  .menu-item img {
+    margin-right: 10px;
+  }
+  
+  .help {
+    margin-top: 40px;
+    color: #fff;
+    background-color: #2d3748;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .help span {
+    font-weight: bold;
+  }
+  
+  
