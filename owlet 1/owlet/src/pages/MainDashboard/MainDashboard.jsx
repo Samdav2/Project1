@@ -1,6 +1,6 @@
 //components/MainDashboard.js
 import React from "react";
-import "../MainDashboard.css";
+import "./MainDashboard.css";
 
 function MainDashboard() {
   return (

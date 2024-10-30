@@ -1,5 +1,5 @@
 import React from 'react';
-import "../OrdersOverview.css"
+import "./OrdersOverview.css"
 
 function OrdersOverview() {
   const orders = [

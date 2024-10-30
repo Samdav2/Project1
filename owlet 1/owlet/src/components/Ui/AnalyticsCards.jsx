@@ -1,5 +1,5 @@
 import React from 'react';
-import "../AnalyticsCards.css";
+import "./AnalyticsCards.css";
 
 function AnalyticsCards() {
   const cards = [

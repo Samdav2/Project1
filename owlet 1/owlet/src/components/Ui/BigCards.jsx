@@ -1,5 +1,5 @@
 import React from 'react';
-import "../BigCards.css";
+import "./BigCards.css";
 
 function BigCards() {
   return (
