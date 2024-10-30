@@ -14,29 +14,8 @@ import './App.css';
 
 
 function App() {
-  return(
-    {/* <Router> */}
-     {/* <div style={styles.page}> */}
-     <div>
-        <Sidebar />
-      </div>
-       {/*  <MainDashboard /> */}
-      {/*   <main style={styles.main}> */}
-          {/* <Header /> */}
-          {/* <Routes> */}
-            {/* <Route path="/" element={<AnalyticsCards />} /> */}
-            {/* <Route path="/big-cards" element={<BigCards />} /> */}
-            {/* <Route path="/statistics" element={<Statistics />} /> */}
-          {/* </Routes> */}
-         {/*  <div style={styles.bottomSections}> */}
-           {/*  <ProjectList /> */}
-           {/*  <OrdersOverview /> */}
-         {/*  </div> */}
-         {/*  <Footer /> */}
-       {/*  </main> */}
-      {/* </div> */}
-    {/* </Router> */}
-
+  return (
+    <Sidebar />
   );
 }
 
