@@ -1,8 +1,37 @@
-  //components/sidebar
 import React from "react";
 import "./Sidebar.css";
 
-function sidebar() {
+const styles = {
+  sidebar: {
+    width: "250px",
+    background: "#f8f9fa",
+    padding: "20px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  logo: {
+    fontSize: "18px",
+    fontWeight: "bold",
+    marginBottom: "20px",
+  },
+  nav: {
+    width: "100%",
+  },
+  navLink: {
+    display: "block",
+    padding: "10px",
+    color: "#333",
+    textDecoration: "none",
+  },
+  navSection: {
+    fontSize: "14px",
+    fontWeight: "bold",
+    marginTop: "20px",
+  },
+};
+
+function Sidebar() {
   return (
     <aside style={styles.sidebar}>
       <div style={styles.logo}>PURITY UI DASHBOARD</div>
@@ -20,4 +49,4 @@ function sidebar() {
   );
 }
 
-export default sidebar;
+export default Sidebar;
