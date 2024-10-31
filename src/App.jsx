@@ -18,8 +18,10 @@ function App() {
     <div>
       <Sidebar /> 
        <MainDashboard /> 
-       <Header />
+       {/* <Header /> */}
      <BigCards />
+     <OrdersOverview />
+     {/*<Footer />*/}
     </div>
   );
 }
