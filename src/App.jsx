@@ -15,8 +15,14 @@ import './App.css';
 
 function App() {
   return (
-    <Sidebar />
+    <div>
+      <Sidebar /> 
+       <MainDashboard /> 
+       <Header />
+     <BigCards />
+    </div>
   );
 }
+
 
 export default App;
