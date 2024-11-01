@@ -15,8 +15,16 @@ import './App.css';
 
 function App() {
   return (
-    <Sidebar />
+    <div>
+      <Sidebar /> 
+       <MainDashboard /> 
+       {/* <Header /> */}
+     <BigCards />
+     <OrdersOverview />
+     {/*<Footer />*/}
+    </div>
   );
 }
+
 
 export default App;
