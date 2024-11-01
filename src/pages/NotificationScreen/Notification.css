@@ -1,0 +1,96 @@
+body {
+    font-family: 'Airbnb Cereal App', sans-serif;
+    background-color: #ffffff;
+}
+
+.notification-screen {
+    width: 375px;
+    margin: auto;
+    background-color: #fff;
+}
+
+.status-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+}
+
+.action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    height: 80px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.back-arrow,
+.more-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #120d26;
+}
+
+.notification-list {
+    padding: 10px;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.notification-text {
+    flex-grow: 1;
+}
+
+.notification-content {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #060518;
+}
+
+.notification-time {
+    font-size: 12px;
+    color: #3c3e56;
+    margin-top: 5px;
+}
+
+.notification-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.reject-button,
+.accept-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.reject-button {
+    background-color: #f0f0f0;
+    color: #706d6d;
+}
+
+.accept-button {
+    background-color: #0056b3;
+    color: #ffffff;
+}
