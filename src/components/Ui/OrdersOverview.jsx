@@ -23,7 +23,7 @@ function OrdersOverview() {
     </div>
   );
 }
-const styles = {
+/*const styles = {
     card: {
       width: '32%',
       padding: '20px',
@@ -44,7 +44,7 @@ const styles = {
       padding: '5px 0',
       borderBottom: '1px solid #e2e8f0',
     },
-}
+}*/
 
 
 export default OrdersOverview;
