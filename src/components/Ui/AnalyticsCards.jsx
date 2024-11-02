@@ -1,5 +1,5 @@
 import React from 'react';
-import "./AnalyticsCards.css";
+import  "./AnalyticsCards.css";
 
 function AnalyticsCards() {
   const cards = [
@@ -23,6 +23,5 @@ function AnalyticsCards() {
     </div>
   );
 }
-
 
 export default AnalyticsCards;

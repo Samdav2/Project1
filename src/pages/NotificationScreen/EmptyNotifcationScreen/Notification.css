@@ -1,0 +1,97 @@
+.container {
+    width: 100%;
+    max-width: 617px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    color: #344b67;
+    background-color: #fff;
+}
+
+.actionBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.icon {
+    width: 36.2px;
+    height: 22px;
+}
+
+.title {
+    font-size: 24px;
+    color: #120d26;
+}
+
+.statusBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+}
+
+.timeStyle {
+    font-size: 15px;
+    color: #120d26;
+    padding: 0 10px;
+}
+
+.smallIcon {
+    margin-right: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 234px;
+    padding: 0 20px;
+}
+
+.artwork {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.artImage {
+    width: 191.22px;
+    height: 218.93px;
+    opacity: 1;
+}
+
+.bubble {
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    width: 43.17px;
+    height: 45.54px;
+    background-color: #007BFF;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bubbleText {
+    color: #fff;
+    font-size: 17.6px;
+    font-weight: 600;
+}
+
+.titleText {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 34px;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    text-align: center;
+    opacity: 0.7;
+}

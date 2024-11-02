@@ -15,7 +15,18 @@ import './App.css';
 
 function App() {
   return (
-    <Sidebar />
+    <div className="app">
+      <Sidebar />
+      <MainDashboard />
+      <Header />
+      <OrdersOverview />
+      <AnalyticsCards />
+      <BigCards />
+      <Statistics />
+      <ProjectList />
+      <Footer />
+    </div>
+    
   );
 }
 
