@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Sidebar from "./components/Ui/Sidebar";
 import MainDashboard from "./pages/MainDashboard/MainDashboard";
 import Header from './components/Ui/Header';
@@ -11,23 +11,26 @@ import OrdersOverview from './components/Ui/OrdersOverview';
 import Footer from './components/Ui/Footer';
 import './App.css';
 
-
-
 function App() {
   return (
     <div className="app">
       <Sidebar />
-      <MainDashboard />
       <Header />
-      <OrdersOverview />
-      <AnalyticsCards />
-      <BigCards />
-      <Statistics />
-      <ProjectList />
+
+      <div className="main-content">
+        <Routes>
+          <Route path="/" element={<MainDashboard />} />
+          <Route path="/analytics" element={<AnalyticsCards />} />
+          <Route path="/big-cards" element={<BigCards />} />
+          <Route path="/statistics" element={<Statistics />} />
+          <Route path="/projects" element={<ProjectList />} />
+          <Route path="/orders" element={<OrdersOverview />} />
+        </Routes>
+      </div>
+
       <Footer />
     </div>
-
   );
 }
 
-export default App
+export default App;
