@@ -1,9 +1,9 @@
 import React from 'react';
 import './ResetPassword.css';
-import messageIcon from './assets/iconly-light-message.svg';
-import arrowIcon from './assets/arrow-left.svg';
+import MessageIcon from '../assets/iconly-light-message.svg';
+import arrowIcon from '../assets/arrow-left.svg';
 
-const ResetPassword = () => {
+export const ResetPassword = () => {
   return (
     <div className="reset-password">
       <header className="header">
@@ -23,7 +23,7 @@ const ResetPassword = () => {
         </p>
 
         <div className="input-container">
-          <img src={messageIcon} alt="Email Icon" />
+          <img src={MessageIcon} alt="Email Icon" />
           <input type="email" placeholder="abc@email.com" />
         </div>
 
