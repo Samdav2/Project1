@@ -1,5 +1,36 @@
 import React from 'react';
-import "./AnalyticsCards.css";
+
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '20px'
+  },
+  card: {
+    padding: '20px',
+    width: '23%',
+    backgroundColor: '#ffffff',
+    borderRadius: '8px',
+    boxShadow: '0 1px 2px rgba(0,0,0,0.1)'
+  },
+  cardText: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  cardTitle: {
+    fontSize: '12px',
+    color: '#a0aec0'
+  },
+  amount: {
+    fontSize: '18px',
+    fontWeight: 'bold',
+    color: '#2d3748'
+  },
+  change: {
+    fontSize: '14px',
+    fontWeight: 'bold'
+  }
+};
 
 function AnalyticsCards() {
   const cards = [
@@ -23,6 +54,5 @@ function AnalyticsCards() {
     </div>
   );
 }
-
 
 export default AnalyticsCards;
