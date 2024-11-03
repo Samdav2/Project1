@@ -1,21 +1,21 @@
-import React from 'react'
-import "./Statistics.css";
+import React from 'react';
+import './Statistics.css';
 
 const Statistics = () => {
   return (
-    <div style={styles.container}>
-      <div style={styles.card}>
-        <h3 style={styles.cardTitle}>Active Users</h3>
-        <p style={styles.cardContent}>(+23) than last week</p>
-        <div style={styles.graphPlaceholder}>Graph Here</div>
+    <div className="container">
+      <div className="card">
+        <h3 className="cardTitle">Active Users</h3>
+        <p className="cardContent">(+23) than last week</p>
+        <div className="graphPlaceholder">Graph Here</div>
       </div>
-      <div style={styles.card}>
-        <h3 style={styles.cardTitle}>Sales Overview</h3>
-        <p style={styles.cardContent}>(+5) more in 2021</p>
-        <div style={styles.graphPlaceholder}>Graph Here</div>
+      <div className="card">
+        <h3 className="cardTitle">Sales Overview</h3>
+        <p className="cardContent">(+5) more in 2021</p>
+        <div className="graphPlaceholder">Graph Here</div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Statistics
+export default Statistics;

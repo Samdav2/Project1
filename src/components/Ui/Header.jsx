@@ -1,5 +1,34 @@
 import React from 'react';
-import "./Header.css";
+
+const styles = {
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: '20px'
+  },
+  breadcrumb: {
+    fontSize: '24px',
+    color: '#2d3748'
+  },
+  actions: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  search: {
+    padding: '10px',
+    border: '1px solid #e2e8f0',
+    borderRadius: '15px'
+  },
+  button: {
+    marginLeft: '10px',
+    backgroundColor: '#2d3748',
+    color: '#ffffff',
+    border: 'none',
+    borderRadius: '5px',
+    padding: '10px',
+    cursor: 'pointer'
+  }
+};
 
 function Header() {
   return (
