@@ -1,5 +1,28 @@
 import React from 'react';
-import "./OrdersOverview.css"
+//import "./OrdersOverview.css"
+
+const styles = {
+    card: {
+      width: '32%',
+      padding: '20px',
+      backgroundColor: '#ffffff',
+      borderRadius: '8px',
+      boxShadow: '0 1px 2px rgba(0,0,0,0.1)',
+    },
+    cardTitle: {
+      fontSize: '18px',
+      fontWeight: 'bold',
+      color: '#2d3748',
+      marginBottom: '10px',
+    },
+    orderItem: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: '5px',
+      padding: '5px 0',
+      borderBottom: '1px solid #e2e8f0',
+    },
+}
 
 function OrdersOverview() {
   const orders = [
