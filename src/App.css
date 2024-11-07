@@ -2,7 +2,7 @@
     .page{
       display: flex ;
       min-height: 100vh ;
-      background-color: #f8f9fa ;
+      background-color: whitesmoke ;
     }
 
     main {
@@ -15,5 +15,9 @@
       justify-content: space-between ;
       margin-top: 20px ;
     }
-  
-    
+
+    .content {
+      margin-left: 250px;
+      padding: 20px;
+
+    }

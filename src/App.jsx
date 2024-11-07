@@ -17,14 +17,14 @@ function App() {
       <Sidebar />
       <Header />
 
-      <div className="main-content">
+      <div className="content">
         <Routes>
           <Route path="/" element={<MainDashboard />} />
-          <Route path="/analytics" element={<AnalyticsCards />} />
+         {/* <Route path="/analytics" element={<AnalyticsCards />} />
           <Route path="/big-cards" element={<BigCards />} />
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/projects" element={<ProjectList />} />
-          <Route path="/orders" element={<OrdersOverview />} />
+          <Route path="/orders" element={<OrdersOverview />} /> */}
         </Routes>
       </div>
 
