@@ -7,6 +7,10 @@
   .cards {
     display: flex;
   }
+.cards1 {
+  display: flex;
+  margin-top: 10px;
+}
 
   .card {
     background-color: #fff;
@@ -35,3 +39,29 @@
     color: red;
 
   }
+.iconcard {
+  display: flex;
+  justify-content: space-around;
+  vertical-align: middle;
+}
+.icontext {
+  font-size: 12px;
+  align-content: center;
+  align-self: center;
+  vertical-align: middle;
+}
+.innercard {
+  display: flex;
+  vertical-align: middle;
+  margin-bottom: -10px;
+}
+
+.upperdiv {
+
+}
+
+.upperdivspan {
+  font-size: 15px;
+  text-align: justify;
+  margin-left: 10%;
+}
