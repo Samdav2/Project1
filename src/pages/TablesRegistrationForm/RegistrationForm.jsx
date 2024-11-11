@@ -1,5 +1,5 @@
 import React from 'react';
-import './RegistrationForm.css'; // Import the corresponding CSS file
+import './Registrationform.css'; // Import the corresponding CSS file
 
 /*interface RegistrationFormProps { (Using  React.FC FUNCTION tSX)
     // Define any props here if needed
