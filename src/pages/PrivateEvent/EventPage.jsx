@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './components/Header';
+import Header from '../components/Header';
 import EventCategory from './components/EventCategory';
 import EventCard from './components/EventCard';
 import NavigationDots from './components/NavigationDots';
