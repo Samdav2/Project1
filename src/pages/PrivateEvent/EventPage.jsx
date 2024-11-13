@@ -1,11 +1,11 @@
 import React from 'react';
-import Header from '../components/Header';
-import EventCategory from './components/EventCategory';
-import EventCard from './components/EventCard';
-import NavigationDots from './components/NavigationDots';
-import FloatingActionButton from './components/FloatingActionButton';
+import Header from '../../components/Header';
+import EventCategory from '../../components/EventCategory';
+import EventCard from '../../components/EventCard';
+import NavigationDots from '../../components/NavigationDots';
+import FloatingActionButton from '../../components/FloatingActionButton';
 
-const EventPage = () => {
+export const EventPage = () => {
   const eventCategories = ['Parties', 'Birthday', 'Hangouts'];
   const events = [
     { title: 'Party 1', date: 'Jan 1', description: 'Description 1', imageUrl: 'https://placeholder.pics/svg/300x150' },

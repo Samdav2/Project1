@@ -1,8 +1,8 @@
 import React from 'react';
-<<<<<<< HEAD
-import './Notification.css';
+ /*HEAD*/
+import './NotificationPage.css';
 
-const Notification = () => {
+export const NotificationPage = () => {
     return (
         <div className="notification-screen">
             <div className="status-bar">
@@ -44,9 +44,8 @@ const notifications = [
     { content: "Eric G. Prickett Started following you", time: "Wed, 3:30 pm", showActions: false },
 ];
 
-export default Notification;
-=======
-import './App.css';
+
+/*import './App.css';*/
 
 function ActionBarTitle() {
   return (
@@ -153,6 +152,6 @@ function App() {
   );
 }
 
-export default App;
+ export default /*App*/ NotificationPage ;
 
->>>>>>> 3c3a971602a2c3523305f49034fa66f3d0ea8d47
+/*>>>>>>> 3c3a971602a2c3523305f49034fa66f3d0ea8d47*/

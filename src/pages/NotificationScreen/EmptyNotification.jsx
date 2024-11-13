@@ -1,7 +1,7 @@
 import React from 'react';
-import './NotificationComponent.css';
+import './EmptyNotification.css';
 
-const NotificationComponent = () => {
+export const EmptyNotification = () => {
     return (
         <div className="notification-container">
             <div className="notification-action-bar">
@@ -25,4 +25,4 @@ const NotificationComponent = () => {
     );
 };
 
-export default NotificationComponent;
+export default EmptyNotification;
