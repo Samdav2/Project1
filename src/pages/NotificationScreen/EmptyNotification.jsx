@@ -10,7 +10,7 @@ export const EmptyNotification = () => {
                     <div className="notification-title-bar">Notification</div>
                 </div>
                 <div className="notification-icons">
-                    <img src="https://placeholder.pics/svg/22x22" alt="More Options" />
+                    <img src="images/moreoption-icon.png" alt="More Options" />
                 </div>
             </div>
             <div className="artwork">

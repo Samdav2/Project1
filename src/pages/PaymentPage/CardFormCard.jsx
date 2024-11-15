@@ -10,15 +10,15 @@ export const CardFormCard = () => {
             <div className="payment-method">
                 <p>Payment Method</p>
                 <div className="card-icons">
-                    <img src="https://via.placeholder.com/32x32?text=Mastercard" alt="Mastercard" />
-                    <img src="https://placeholder.pics/svg/32x32" alt="Visa" />
-                    <img src="https://placeholder.pics/svg/32x32" alt="American Express" />
-                    <img src="https://placeholder.pics/svg/32x32" alt="Discover" />
+                    <img src="images/master.png" alt="Mastercard" />
+                    <img src="images/visa.png" alt="Visa" />
+                    <img src="images/america.png" alt="American Express" />
+                    <img src="images/discover.png" alt="Discover" />
                 </div>
             </div>
             <div className="form-group">
                 <label htmlFor="card-name"> Name on card</label>
-                <input type="text" id="card-name" placeholder="Meet Patel" />
+                <input type="text" id="card-name" placeholder="Jacobs Patel" />
         
             </div>
             <div className="form-group">

@@ -46,6 +46,9 @@ body {
 .notification-icons {
     display: flex;
     align-items: center;
+    font-size: 400;
+    width: 2px;
+    height: 5px;
 }
 
 .artwork {
