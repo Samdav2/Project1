@@ -54,215 +54,102 @@ const options = {
 function MainDashboard() {
   return (
     <div className="Main-dashboard">
-      <div className="breadcrumb">
-        <span>Pages / Dashboard</span>
-      </div>
-      <div className="cards">
-        <div className="card">
-          <span>Today's Money</span>
-          <p>$53,000 <span className="percent">+55%</span> </p>
+      <div className="card" style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', width: '97%', }}>
+        <div>
+            <img src={sales} />
         </div>
-        <div className="card">
-          <span>Today's Users</span>
-          <p>2,300 <span className="percent" >+5%</span> </p>
-        </div>
-        <div className="card">
-          <span> New Clients</span>
-          <p>+3,052 <span className="percent-n"> -14%</span> </p>
-        </div>
-        <div className="card">
-          <span> Total Sales Clients</span>
-          <p>$173,000 <span className="percent"> +8%</span> </p>
-        </div>
-      </div>
-      <div className="cards1" >
-        <div className="card" style={{width: '40%'}}>
+        <div style={{width: '50%'}}>
           <div>
+                <p> Client Name</p>
+          </div>
+          <div>
+                <p> Client Email</p>
+          </div>
+        </div>
+        <div style={{width: '25%'}}>
+
+        </div>
+        <div>
+                <button> Click here </button>
+        </div>
+
+      </div>
+      <div className="card" style={{justifyContent:'space-between', width:'97%', marginTop:'10px', }}>
+        <div>
+          <p> My Summary</p>
+        </div>
+
+
+        <div style={{display:'flex', justifyContent:'space-between', marginTop:'10px'}}>
+          <div style={{width: '48%'}}>
+           <div className="card" style={{display:'flex', justifyContent:'space-between', width: '100%', alignItems: 'center', backgroundColor:'blue', color: 'white'}}>
+             <div>
+                <p> Blance</p>
+                <p> NGN 0.00</p>
+                <p> Last Activity</p>
+             </div>
+             <div>
+              <img src={sales} />
+             </div>
+           </div >
+           <div className="card" style={{display:'flex', justifyContent:'space-between', width: '100%', alignItems: 'center', backgroundColor:'black', color: 'white'}}>
+              <div>
+                <p> Active Events</p>
+                <p> 0</p>
+                <p> Next Event</p>
+             </div>
+             <div>
+              <img src={sales} />
+             </div>
+           </div>
+          </div>
+          <div style={{width: '48%', marginLeft:'10px'}} >
+            <div className="card" style={{display:'flex', justifyContent:'space-between', width: '95%', alignItems: 'center', backgroundColor:'red', color: 'white'}} >
+            <div>
+                <p> Orders</p>
+                <p> 0</p>
+                <p> Next Pay By</p>
+             </div>
+             <div>
+              <img src={sales} />
+             </div>
+            </div>
+            <div className="card" style={{display:'flex', justifyContent:'space-between', width: '95%', alignItems: 'center', backgroundColor:'orange', color: 'white'}} >
+            <div>
+                <p>Ticket Sales</p>
+             </div>
+             <div>
+              <img src={sales} />
+             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="card" style={{justifyContent:'space-between', width:'97%', marginTop:'10px'}}>
+        <div style={{display: 'flex', justifyContent:'space-between'}}>
+          <div>
+            <div>
+                <button> Button </button>
+            </div>
+
+            <div>
+              <p> See the graphical representation Below</p>
+            </div>
+          </div>
+
+          <div>
+              <button> Button </button>
+          </div>
+
+        </div>
+
+        <div>
           <Line data={data} options={options} />
-          </div>
-          <div>
-            <p> Active Users</p> <br/>
-            <p> <span className="percent">(+23)</span> <span className="icontext"> than last week </span></p>
-          </div>
-          <div className="iconcard">
-            <div className="upperdiv">
-              <div className="innercard">
-                <img src ={walletImage} />
-                <p> <span className="icontext"> Users </span></p>
-              </div>
-              <p> <span className="upperdivspan">32,948 </span></p>
-              <img src={progress4} />
-            </div>
-            <div className="upperdiv">
-              <div className="innercard">
-                <img src ={clicks} />
-                <p> <span className="icontext"> Clicks </span></p>
-              </div>
-              <p> <span className="upperdivspan"> 2,42m </span></p>
-              <img src={progress3} />
-            </div>
-            <div className="upperdiv">
-              <div className="innercard">
-                <img src ={sales} />
-                <p> <span className="icontext"> Sales </span> </p>
-              </div>
-              <p> <span className="upperdivspan">$2,400 </span></p>
-              <img src={progress2} />
-            </div>
-            <div className="upperdiv">
-              <div className="innercard">
-                <img src ={items} />
-                <p> <span className="icontext">Items </span></p>
-              </div>
-              <p> <span className="upperdivspan"> 320 </span></p>
-              <img src={progress} />
-            </div>
+        </div>
 
-          </div>
-        </div>
-        <div className="card" style={{width: '60%'}}>
-          <div>
-            <p> <span>Sales Overview </span> </p>
-            <p> <span className="percent"> (+5) more </span> <span className="icontext"> in 2021</span></p>
-          </div>
-          <div>
-          <Line data={data} options={options} />
-          </div>
-        </div>
       </div>
-      <div className="cards" style={{marginTop: '20px'}}>
-        <div className="card" style={{width: '70%'}}>
-          <div>
-            <p> <span> Projects </span></p>
-              <div className="cards">
-                <img src={success} style={{marginRight: '2px'}} />
-                <p> <span className="icontext"> 30% done this month</span></p>
-              </div>
-              <div>
-                  <div className="cards" style={{justifyContent: "space-between"}}>
-                    <div>
-                      <p> Names</p>
-                    </div>
-                    <div>
-                      <p> Members</p>
-                    </div>
-                    <div>
-                      <p> Budget</p>
-                    </div>
-                    <div>
-                      <p> Completion</p>
-                    </div>
 
-                  </div>
-                  <hr />
-              </div>
-              <div>
-                  <div className="cards" style={{justifyContent: "space-between"}}>
-                  <div className="cards" style={{justifyContent: "space-between", verticalAlign: "middle", alignItems: "center", marginRight: "-10%"}}>
-                      <div>
-                            <img src={xd}/>
-                      </div>
-                      <div>
-                        <p>
-                         <span className="icontext" style={{marginLeft: "5px"}}>  Chakra Soft UI Version </span>
-                        </p>
-                      </div>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> <span className="icontext"> $14,000 </span></p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-
-                  </div>
-                  <hr />
-              </div>
-              <div>
-                  <div className="cards" style={{justifyContent: "space-between"}}>
-                    <div>
-                      <p> Name</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-
-                  </div>
-                  <hr />
-              </div>
-              <div>
-                  <div className="cards" style={{justifyContent: "space-between"}}>
-                    <div>
-                      <p> Name</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-
-                  </div>
-                  <hr />
-              </div>
-              <div>
-                  <div className="cards" style={{justifyContent: "space-between"}}>
-                    <div>
-                      <p> Name</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-
-                  </div>
-                  <hr />
-              </div>
-              <div>
-                  <div className="cards" style={{justifyContent: "space-between"}}>
-                    <div>
-                      <p> Name</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-                    <div>
-                      <p> Label</p>
-                    </div>
-
-                  </div>
-              </div>
-
-          </div>
-
-        </div>
-        <div className="card" style={{width: '30%'}}>
-          <div>
-          <p> <span> Orders Overview </span></p>
-          </div>
-
-        </div>
-      </div>
     </div>
   );
 }

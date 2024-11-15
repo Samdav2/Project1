@@ -6,6 +6,7 @@
 
   .cards {
     display: flex;
+    justify-content: sp;
   }
 .cards1 {
   display: flex;
@@ -17,8 +18,9 @@
     border-radius: 8px;
     padding: 20px;
     margin-right: 20px;
-    width: 200px;
+    width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
   }
 
   .card span {
