@@ -54,7 +54,7 @@ const options = {
 function MainDashboard() {
   return (
     <div className="Main-dashboard">
-      <div className="card" style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', width: '97%', }}>
+      <div className="card" style={{justifyContent: 'space-between', alignItems: 'center', display: 'flex', width: '97%'}}>
         <div>
             <img src={sales} />
         </div>
@@ -80,7 +80,7 @@ function MainDashboard() {
         </div>
 
 
-        <div style={{display:'flex', justifyContent:'space-between', marginTop:'10px'}}>
+        <div style={{display:'flex', justifyContent:'space-between', marginTop:'10px', flexWrap:'wrap', flex: '1 1 100%',}}>
           <div style={{width: '48%'}}>
            <div className="card" style={{display:'flex', justifyContent:'space-between', width: '100%', alignItems: 'center', backgroundColor:'blue', color: 'white'}}>
              <div>

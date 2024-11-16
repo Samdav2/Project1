@@ -9,6 +9,14 @@
   padding: 20px;
 }
 
+/* Hide the sidebar for tablet and mobile views */
+@media (max-width: 1024px) { /* For screens 1024px or smaller */
+  .sidebar {
+    display: none;
+  }
+}
+
+
 .logo {
     display: flex;
     align-items: center;

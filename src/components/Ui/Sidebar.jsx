@@ -4,7 +4,7 @@ import "./Sidebar.css";
 
 function Sidebar() {
   return (
-    <aside className="sidebar">
+    <div className="sidebar">
       <div className="logo">PURITY UI DASHBOARD</div>
       <nav className="item">
         <a href="#" className="menu-item">Dashboard</a>
@@ -16,7 +16,7 @@ function Sidebar() {
         <a href="#" className="menu-item">Sign In</a>
         <a href="#" className="menu-item">Sign Up</a>
       </nav>
-    </aside>
+    </div>
   );
 }
 
