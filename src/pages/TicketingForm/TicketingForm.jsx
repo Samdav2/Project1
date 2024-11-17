@@ -5,12 +5,12 @@ export const TicketingForm = () => {
     return (
         <div className="container">
             <div className="status-bar">
-                <img src="https://placeholder.pics/svg/23.61x20.72" alt="Back" className="icon" />
+                <img src="images/arrowback-icon.png" alt="Back" className="icon" />
                 <span className="time">9:41</span>
                 <div className="status-icons">
-                    <img src="https://placeholder.pics/svg/28.55x10.05" alt="Cellular" />
-                    <img src="https://placeholder.pics/svg/25.75x10.36" alt="Wifi" />
-                    <img src="https://placeholder.pics/svg/24.33x11.33" alt="Battery" />
+                    <img src="images/cellular-connection.svg" alt="Cellular" />
+                    <img src="assets/wifi.svg" alt="Wifi" />
+                    <img src="images/battery.svg" alt="Battery"  /> 
                 </div>
             </div>
             <h1 className="form-title">Event Registration Form</h1>
@@ -63,6 +63,7 @@ export const TicketingForm = () => {
                 </div>
             </div>
             <button className="submit-button">SUBMIT</button>
+            
         </div>
     );
 };

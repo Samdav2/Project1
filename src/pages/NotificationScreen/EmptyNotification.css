@@ -33,7 +33,7 @@ body {
     width: 22px;
     height: 22px;
     margin-right: 8px;
-    background: url('https://placeholder.pics/svg/22x22') no-repeat center center;
+    background: url('https://placeholder.pics/svg/20x20') no-repeat center center;
 }
 
 .notification-title-bar {
@@ -46,9 +46,6 @@ body {
 .notification-icons {
     display: flex;
     align-items: center;
-    font-size: 400;
-    width: 2px;
-    height: 5px;
 }
 
 .artwork {
