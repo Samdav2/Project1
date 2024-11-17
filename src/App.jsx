@@ -7,7 +7,7 @@ import {EventPage} from "./pages/PrivateEvent/EventPage"
 import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"
 /*import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification"*/
 /*import {CardFormCard} from "./pages/PaymentPage/CardFormCard"*/
-import {TicketingForm} from "./pages/TicketingForm/TicketingForm"
+/*import {TicketingForm} from "./pages/TicketingForm/TicketingForm"*/
 
 import './App.css'
 
@@ -24,7 +24,7 @@ function App() {
          {/*<Route path='/' element={<NotificationPage />} /> */}
          {/*<Route path='/' element={<EmptyNotification />} /> */}
           {/*<Route path='/' element={<CardFormCard />} /> */}
-          <Route path='/' element={<TicketingForm />} />
+         {/*} <Route path='/' element={<TicketingForm />} /> */}
       </Routes>
 
 

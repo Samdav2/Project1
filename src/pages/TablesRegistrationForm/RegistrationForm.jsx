@@ -19,7 +19,7 @@ import './Registrationform.css'; // Import the corresponding CSS file
                 <img src="https://placeholder.pics/svg/650x46" alt="Status Bar" />
             </div>
             <div className="form-header">
-                <img src="https://placeholder.pics/svg/36x23" alt="Back Arrow" />
+                <img src="images/arrowback-icon.png" alt="Back Arrow" />
                 <span className="form-title">Form Registration / Tables</span>
             </div>
             <div className="form-body">
