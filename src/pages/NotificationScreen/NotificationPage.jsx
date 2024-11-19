@@ -1,14 +1,15 @@
 import React from 'react';
-<<<<<<< HEAD
-import './Notification.css';
+ /*HEAD*/
+import './NotificationPage.css';
 
-const Notification = () => {
+/*export const NotificationPage = () => {}
     return (
-        <div className="notification-screen">
-            <div className="status-bar">
+        <div className="notification-screen"> 
+        <div className="status-bar">
                 <img src="https://placeholder.pics/svg/375x44" alt="Status Bar" />
-            </div>
-            <div className="action-bar">
+             </div>
+            
+            <div className="action-bar"> 
                 <img src="https://placeholder.pics/svg/22x22" alt="Back Arrow" className="back-arrow" />
                 <span className="title">Notification</span>
                 <img src="https://placeholder.pics/svg/22x22" alt="More" className="more-icon" />
@@ -30,9 +31,9 @@ const Notification = () => {
                     </div>
                 ))}
             </div>
-        </div>
+         </div>
     );
-};
+  
 
 const notifications = [
     { content: "David Silbia Invite Jo Malone London’s Mother’s", time: "Just now", showActions: true },
@@ -42,32 +43,31 @@ const notifications = [
     { content: "Clara Tolson Join your Event Gala Music Festival", time: "9 hr ago", showActions: false },
     { content: "Jennifer Fritz Invite you International Kids Safe", time: "Tue, 5:10 pm", showActions: true },
     { content: "Eric G. Prickett Started following you", time: "Wed, 3:30 pm", showActions: false },
-];
+];*/
 
-export default Notification;
-=======
-import './App.css';
 
-function ActionBarTitle() {
+
+
+ function ActionBarTitle() {
   return (
     <div className="action-bar">
       <div className="status-bar">
         <span className="time">9:41</span>
         <div className="icons">
           <img
-            src="https://placeholder.pics/svg/17x11"
+            src="images/cellular-connection.svg"
             alt="Cellular"
             width="17"
             height="11"
           />
           <img
-            src="https://placeholder.pics/svg/15x11"
+            src="assets/wifi.svg"
             alt="Wifi"
             width="15"
             height="11"
           />
           <img
-            src="https://placeholder.pics/svg/24x12"
+            src="images/battery.svg"
             alt="Battery"
             width="24"
             height="12"
@@ -76,13 +76,13 @@ function ActionBarTitle() {
       </div>
       <div className="title-bar">
         <img
-          src="https://placeholder.pics/svg/22x22"
+          src="images/arrowback-icon.png"
           alt="Back arrow"
           className="icon"
         />
         <span className="title">Notification</span>
         <img
-          src="https://placeholder.pics/svg/22x22"
+          src="images/moreoption-icon.png"
           alt="More options"
           className="icon"
         />
@@ -95,7 +95,7 @@ function NotificationItem({ name, action, time }) {
   return (
     <div className="notification-item">
       <img 
-        src="https://placeholder.pics/svg/40x40" 
+        src= "images/female.png"
         alt="User Avatar" 
         className="avatar"
       />
@@ -125,7 +125,7 @@ function ActionButtons({ hasButtons }) {
   );
 }
 
-function App() {
+export const NotificationPage = () => {
   const notifications = [
     { name: 'David Silbia', action: 'Invite Jo Malone London’s Mother’s', time: 'Just now', hasButtons: true },
     { name: 'Adnan Safi', action: 'Started following you', time: '5 min ago', hasButtons: false },
@@ -151,8 +151,8 @@ function App() {
       ))}
     </div>
   );
-}
+};
 
-export default App;
+ export default NotificationPage ;
 
->>>>>>> 3c3a971602a2c3523305f49034fa66f3d0ea8d47
+/*>>>>>>> 3c3a971602a2c3523305f49034fa66f3d0ea8d47*/
