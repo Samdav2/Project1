@@ -51,29 +51,7 @@ const notifications = [
  function ActionBarTitle() {
   return (
     <div className="action-bar">
-      <div className="status-bar">
-        <span className="time">9:41</span>
-        <div className="icons">
-          <img
-            src="images/cellular-connection.svg"
-            alt="Cellular"
-            width="17"
-            height="11"
-          />
-          <img
-            src="assets/wifi.svg"
-            alt="Wifi"
-            width="15"
-            height="11"
-          />
-          <img
-            src="images/battery.svg"
-            alt="Battery"
-            width="24"
-            height="12"
-          />
-        </div>
-      </div>
+     
       <div className="title-bar">
         <img
           src="images/arrowback-icon.png"
