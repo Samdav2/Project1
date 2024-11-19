@@ -17,13 +17,12 @@ function App() {
 
       <Routes>
          {/*<Route path='/' element={<ResetPassword/>} /> */}
-          {/*<Route path='/' element={<EventForm/>} /> /> */}
+         {/*<Route path='/' element={<EventForm/>} /> /> */}
          {/*<Route path='/' element={<RegistrationForm />} /> */}
-         {/*<Route path='/' element={<EventPage />} /> */}
+         <Route path='/' element={<EventPage />} /> 
          {/*<Route path='/' element={<NotificationPage />} />  */}
-         <Route path='/' element={<EmptyNotification />} /> 
-          
-          {/*<Route path='/' element={<TicketingForm />} />  */}
+         {/*<Route path='/' element={<EmptyNotification />} /> */}
+         {/*<Route path='/' element={<TicketingForm />} />  */}
       </Routes>
 
 
