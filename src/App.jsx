@@ -1,23 +1,22 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Sidebar from "./components/Ui/Sidebar";
-import MainDashboard from "./pages/MainDashboard/MainDashboard";
-import Header from './components/Ui/Header';
-import AnalyticsCards from './components/Ui/AnalyticsCards';
-import BigCards from './components/Ui/BigCards';
-import Statistics from './components/Ui/Statistics';
-import ProjectList from './components/Ui/ProjectList';
-import OrdersOverview from './components/Ui/OrdersOverview';
-import Footer from './components/Ui/Footer';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+ /*import {ResetPassword} from "./pages/ResetPassword"*/
+ /*import EventForm from "./pages/TicketingForm/TicketingForm"*/
+/*import RegistrationForm from "./pages/TablesRegistrationForm/RegistrationForm"*/
+import {EventPage} from "./pages/PrivateEvent/EventPage"
+/*import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"*/
+import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification"
+import {CardFormCard} from "./pages/PaymentPage/CardFormCard"
+
+
+import './App.css'
+
+
 
 function App() {
   return (
-    <div className="app">
-      <Sidebar />
-      <Header />
 
-      <div className="content">
+      <div className="main-content">
         <Routes>
           <Route path="/" element={<MainDashboard />} />
          {/* <Route path="/analytics" element={<AnalyticsCards />} />
@@ -28,8 +27,6 @@ function App() {
         </Routes>
       </div>
 
-      <Footer />
-    </div>
   );
 }
 

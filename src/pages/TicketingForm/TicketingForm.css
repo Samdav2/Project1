@@ -1,3 +1,7 @@
+body{
+    font-family: Arial, sans-serif;
+     background-color: white;
+}
 .container {
     max-width: 678px;
     margin: 0 auto;
@@ -10,7 +14,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 20px;
+    padding-bottom: 10px 20px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .icon {
@@ -25,6 +30,8 @@
 
 .status-icons img {
     margin-left: 10px;
+    height: 20px;
+    margin-left: 8px ;
 }
 
 .form-title {
@@ -41,8 +48,9 @@
 }
 
 .instruction {
-    text-align: center;
+    text-align: left;
     margin: 10px 0;
+    font-size: 14px;
 }
 
 .form-section {
@@ -50,7 +58,8 @@
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    
 }
 
 .form-group label {
@@ -66,36 +75,78 @@
 }
 
 .form-group input[type="checkbox"] {
-    margin: 0 10px;
+    margin: 10px 14px;
+    
+    align-items: right ;
 }
 
-.select-input {
+/*.select-input {
     display: inline-flex;
     align-items: center;
     padding: 5px 10px;
-    border: 1px solid #000000;
+    border: 1px solid #000000; //the html was deleted//
     border-radius: 10px;
-    width: 186px;
+    width: 180px;
     justify-content: space-between;
+}*/
+
+.select-input select{
+    align-items: center;
+    width: 180% ;
+    position: relative ;
+    padding: 8px 5px 8px 60px ; 
+    padding-left: 15px;
+    border-radius: 20px ;
+    font: 400 22px arial ;
+    -webkit-appearance: none ;
+    appearance: none ;
+    color: #ff1dd2 ;
+    border: 1px solid #616161 ;
+    
+}
+.select-input select::ms-expand{
+      display: none;
+}
+
+.select-input select:focus{ 
+    outline: none ;
+    box-shadow: 0 0 1opx -1px #ff1dd2 ;
+}
+
+.select-input .label{
+    position: absolute ;
+    z-index: 1 ;
+    display: inline-block;
+    font: 600 22px Arial ;
+    padding-left: 20px ;
+    padding-top: 6px ;
+    
+    
 }
 
 .note {
     font-size: 12px;
     color: #808080;
     margin-top: 5px;
-    text-align: right;
+    text-align: center;
+    padding: right;
+    padding-right: 50px;
 }
 
 .submit-button {
     display: block;
-    width: 208px;
+    width: 200px;
     margin: 20px auto;
     padding: 10px 0;
     background-color: #FFA500;
     border: none;
     border-radius: 5px;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 500;
     color: #ffffff;
     cursor: pointer;
 }
+
+.submit-button:hover {
+    background-color: rgba(255, 166, 0, 0.825);
+  }

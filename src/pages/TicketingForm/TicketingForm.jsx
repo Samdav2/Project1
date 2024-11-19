@@ -1,7 +1,7 @@
 import React from 'react';
-import './EventForm.css';
+import './TicketingForm.css';
 
-const EventForm = () => {
+export const TicketingForm = () => {
     return (
         <div className="container">
             <div className="status-bar">
@@ -18,32 +18,37 @@ const EventForm = () => {
             <p className="instruction">Please fill in the correct information</p>
             <div className="form-section">
                 <div className="form-group">
-                    <label>Full Name:-</label>
+                    <label>Full Name :-</label>
                     <input type="text" placeholder="First Name" />
                     <input type="text" placeholder="Last Name" />
                 </div>
                 <div className="form-group">
-                    <label>Gender:-</label>
+                    <label>Gender :-</label>
                     <span>M</span>
                     <input type="checkbox" />
                     <span>F</span>
                     <input type="checkbox" />
                 </div>
                 <div className="form-group">
-                    <label>Email Address</label>
-                    <input type="text" placeholder="example@example.com" />
+                    <label>Email Address :-</label>
+                    <input type="text" placeholder="enter your email here" />
                 </div>
                 <div className="form-group">
-                    <label>Phone Number</label>
+                    <label>Phone Number :- </label>
                     <input type="text" placeholder="(+234) 000 000" />
                     <p className="note">please enter a valid phone number</p>
                 </div>
                 <div className="form-group">
-                    <label>Tickets:-</label>
-                    <div className="select-input">
-                        <span>select</span>
-                        <span>&#9660;</span>
-                    </div>
+                  <label>Tickets :- </label>
+                        <span className="label"></span> 
+                        <select name="" id="">
+                            <option value=""> Select type</option>
+                            <option value=""> Regular  </option>
+                            <option value=""> VIP </option>
+                            <option value="">VVIP</option>
+                        </select>
+                           
+                    
                 </div>
                 <div className="form-group">
                     <p>Would you like to be updated about upcoming events?</p>
@@ -62,4 +67,4 @@ const EventForm = () => {
     );
 };
 
-export default EventForm;
+export default TicketingForm;

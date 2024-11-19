@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/NavigationDots.css';
+import './NavigationDots.css';
 
 const NavigationDots = ({ total, currentIndex }) => {
   return (
