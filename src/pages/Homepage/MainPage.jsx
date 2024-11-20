@@ -1,10 +1,9 @@
-import React from 'react'
 import React from 'react';
-import './MainPage.css';
+import './HomePage.css';
 import owlLogo from './assets/owl-1.svg';
 import owlParty from './assets/owl-party.svg';
 
-const MainPage = () => {
+export const HomePage = () => {
   return (
     <div className="main-page">
       {/* Header Section */}
@@ -70,4 +69,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default HomePage;
