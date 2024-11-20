@@ -18,8 +18,8 @@ function App() {
 
       <div className="main-content">
         <Routes>
-          <Route path="/" element={<MainDashboard />} />
-         {/* <Route path="/analytics" element={<AnalyticsCards />} />
+         {/*} <Route path="/" element={<MainDashboard />} />
+          <Route path="/analytics" element={<AnalyticsCards />} />
           <Route path="/big-cards" element={<BigCards />} />
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/projects" element={<ProjectList />} />
