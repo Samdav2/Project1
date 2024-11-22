@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+  }
+  
+  .app {
+    text-align: center;
+  }
+  
+  .header {
+    background-color: black;
+    color: gold;
+    padding: 20px;
+  }
+  
+  .logo {
+    margin: 0;
+    font-size: 2.5em;
+  }
+  
+  .nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .nav ul li {
+    display: inline;
+    margin: 0 15px;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  .hero {
+    background-color: gold;
+    color: black;
+    padding: 50px 20px;
+  }
+  
+  .cta-button {
+    background-color: black;
+    color: gold;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .events {
+    margin-top: 20px;
+  }
+  
+  .event-card {
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    width: calc(33% - 40px);
+  }
+  
+  .event-card h3 {
+    margin: 0;
+  }
+  
+  .footer {
+    background-color: black;
+    color: gold;
+    padding: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .event-card {
+      width: calc(50% - 40px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .nav ul li {
+      display: block;
+      margin: 10px 0;
+    }
+    .event-card {
+      width: calc(100% - 40px);
+    }
+  }

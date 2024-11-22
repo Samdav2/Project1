@@ -9,6 +9,8 @@ import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification"
 /*import {TicketingForm} from "./pages/TicketingForm/TicketingForm" */
 import {Mapview} from "./pages/Mapview/MapView"
 import{TitleBar} from "./pages/Calender/TitleBar"
+import {LandingPage} from "./pages/LandingPage/LandingPage"
+import {UserProfile} from "./pages/User/UserProfile"
 
 import './App.css'
 
@@ -27,9 +29,12 @@ function App() {
          {/*<Route path='/' element={<EmptyNotification />} /> */}
          {/*<Route path='/' element={<TicketingForm />} />  */}
          {/*<Route path='/' element={<Mapview />} /> */}
-         <Route path='/' element={<TitleBar />} /> 
+         <Route path='/' element={<LandingPage />} /> 
+         {/*<Route path='/' element={<UserProfile />} /> /> */}
       </Routes>
-  
+
+
+
 
 
   );
