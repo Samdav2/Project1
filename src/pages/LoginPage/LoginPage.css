@@ -4,47 +4,48 @@ body, html {
     font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
   }
-  
+
   .login-page {
     display: flex;
     height: 100vh;
   }
-  
+
   .login-form {
-    width: 50%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 100%;
+    flex-grow: inherit;
     margin: auto;
     padding: 40px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
+
   h1 {
     font-size: 32px;
     font-weight: 700;
     color: #000;
     text-align: center;
   }
-  
+
   .subtitle {
     text-align: center;
     font-size: 14px;
     color: #a0aec0;
     margin-bottom: 40px;
   }
-  
+
   .input-group {
     margin-bottom: 30px;
   }
-  
+
   .input-group label {
     display: block;
     margin-bottom: 8px;
     font-size: 14px;
     color: #2d3748;
   }
-  
+
   .input-group input {
     width: 100%;
     padding: 15px;
@@ -52,17 +53,17 @@ body, html {
     border-radius: 8px;
     font-size: 14px;
   }
-  
+
   .remember-me {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
   }
-  
+
   .remember-me img {
     margin-right: 10px;
   }
-  
+
   .signin-button {
     width: 100%;
     padding: 15px;
@@ -75,28 +76,27 @@ body, html {
     color: #000;
     cursor: pointer;
   }
-  
+
   .signup-link {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
     color: #a0aec0;
   }
-  
+
   .signup-link a {
     color: #2b6cb0;
     text-decoration: none;
   }
-  
+
   .sidebar {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #000;
-    width: 50%;
+    width: 0%
   }
-  
+
   .sidebar img {
-    max-width: 80%;
+    max-width: 0%;
   }
-  

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 import "./MainDashboard.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import sales from "/src/assets/icon-15.svg";
+import { useLocation } from "react-router-dom";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -25,14 +26,20 @@ const options = {
   },
 };
 
-function MainDashboard() {
+const MainDashboard = () => {
+
+  const location = useLocation();
+  console.log(location.state)
+  const { name, email, id } = location.state || {}
+
   return (
     <div className="Main-dashboard">
       <div className="top">
         <img src={sales} alt="Sales Icon" />
         <div>
-          <p>Client Name</p>
-          <p>Client Email</p>
+          <p>{name || "Failed Fecthing Name"}</p>
+          <p>{email || "No Email Provided"}</p>
+          <p></p>
         </div>
         <button>Click here</button>
       </div>
