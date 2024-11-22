@@ -7,7 +7,8 @@ import {EventPage} from "./pages/PrivateEvent/EventPage"
 import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"
 import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification" 
 /*import {TicketingForm} from "./pages/TicketingForm/TicketingForm" */
-
+import {Mapview} from "./pages/Mapview/MapView"
+import{TitleBar} from "./pages/Calender/TitleBar"
 
 import './App.css'
 
@@ -25,6 +26,8 @@ function App() {
          {/*<Route path='/' element={<NotificationPage />} />  */}
          {/*<Route path='/' element={<EmptyNotification />} /> */}
          {/*<Route path='/' element={<TicketingForm />} />  */}
+         {/*<Route path='/' element={<Mapview />} /> */}
+         <Route path='/' element={<TitleBar />} /> 
       </Routes>
   
 
