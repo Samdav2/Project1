@@ -29,8 +29,8 @@ function App() {
          {/*<Route path='/' element={<EmptyNotification />} /> */}
          {/*<Route path='/' element={<TicketingForm />} />  */}
          {/*<Route path='/' element={<Mapview />} /> */}
-         <Route path='/' element={<LandingPage />} /> 
-         {/*<Route path='/' element={<UserProfile />} /> /> */}
+         {/*<Route path='/' element={<LandingPage />} /> */}
+         <Route path='/' element={<UserProfile />} /> 
       </Routes>
 
 

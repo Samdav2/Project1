@@ -1,63 +1,95 @@
-import React, { useState } from 'react';
+import React from 'react'; 
 import './UserProfile.css';
 
 export const UserProfile = () => {
-  const [userInfo, setUserInfo] = useState({
-    name: "Samuel David",
-    email: "Samdav@example.com",
-    profilePicture: "/images/profile.jpg",
-    events: [
-      {
-        title: "Annual Conference",
-        date: "2024-12-15",
-        time: "9:00 AM",
-        image: "/images/event1.jpg", // Example image URL
-      },
-      {
-        title: "Networking Meetup",
-        date: "2024-11-25",
-        time: "6:00 PM",
-        image: "/images/event2.jpg", // Example image URL
-      }
-    ]
-  });
+    const user = {
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        profilePicture: 'https://via.placeholder.com/100' // Placeholder image
+    };
 
-  return (
-    <div className="profile-container">
-      <div className="sidebar">
-        <div className="profile-header">
-          <img src={userInfo.profilePicture} alt="Profile" className="profile-picture" />
-          <h2>{userInfo.name}</h2>
-          <p>{userInfo.email}</p>
-        </div>
-        <ul className="profile-nav">
-          <li><a href="#events">My Events</a></li>
-          <li><a href="#calender">My Calender</a></li>
-          <li><a href="#Messages">Messages</a></li>
-          <li><a href="#Settings">Settings</a></li>
-          <li><a href="#help">Help</a></li>
-        </ul>
-      </div>
+    const upcomingEvents = [
+        { id: 1, title: 'Music Concert', date: '2023-12-15', location: 'City Hall', image: '/images/concert.jpeg' },
+        { id: 2, title: 'Art Exhibition', date: '2023-11-20', location: 'Art Gallery', image: 'https://via.placeholder.com/200' }
+    ];
 
-      <div className="main-content">
-        <h3>Upcoming Events</h3>
-        <div className="events-container">
-          {userInfo.events.map((event, index) => (
-            <div key={index} className="event-card">
-              <img src={event.image} alt={event.title} className="event-image" />
-              <div className="event-info">
-                <h4 className="event-title">{event.title}</h4>
-                <p className="event-date-time">
-                  <span className="event-date">{event.date}</span> | 
-                  <span className="event-time">{event.time}</span>
-                </p>
-              </div>
-            </div>
-          ))}
+    const pastEvents = [
+        { id: 3, title: 'Tech Conference', date: '2023-10-10', location: 'Convention Center', image: 'https://via.placeholder.com/200' },
+        { id: 4, title: 'Food Festival', date: '2023-09-05', location: 'Downtown Park', image: 'https://via.placeholder.com/200' }
+    ];
+
+    return (
+        <div className="dashboard">
+            {/* Sidebar */}
+            <aside className="menubar">
+                <div className="profile-info">
+                    <img src={user.profilePicture} alt="Profile" className="profile-pic" />
+                    <h3>{user.name}</h3>
+                    <p>{user.email}</p>
+                </div>
+                <ul>
+                    <li><a href="#events">My Events</a></li>
+                    <li><a href="#calender">Calender</a></li>
+                    <li><a href="#notifications">Notifications</a></li>
+                    <li><a href="#settings">Settings</a></li>
+                    <li><button className="logout-btn">Logout</button></li>
+                </ul>
+            </aside>
+            
+            {/* Main Content */}
+            <main className="content">
+                <h1>Event Management Dashboard</h1>
+                
+                {/* Upcoming Events */}
+                <section id="upcoming-events" className="events upcoming-events">
+                    <h2>Upcoming Events</h2>
+                    {upcomingEvents.length > 0 ? (
+                        <ul>
+                            {upcomingEvents.map(event => (
+                                <li key={event.id}>
+                                    <img src={event.image} alt={event.title} className="event-image" />
+                                    <h3>{event.title}</h3>
+                                    <p>Date: {new Date(event.date).toLocaleDateString()}</p>
+                                    <p>Location: {event.location}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No upcoming events.</p>
+                    )}
+                </section>
+                
+                {/* Past Events */}
+                <section id="past-events" className="events past-events">
+                    <h2>Past Events</h2>
+                    {pastEvents.length > 0 ? (
+                        <ul>
+                            {pastEvents.map(event => (
+                                <li key={event.id}>
+                                    <img src={event.image} alt={event.title} className="event-image" />
+                                    <h3>{event.title}</h3>
+                                    <p>Date: {new Date(event.date).toLocaleDateString()}</p>
+                                    <p>Location: {event.location}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No past events.</p>
+                    )}
+                </section>
+            </main>
+
+            {/* Footer */}
+            <footer className="footer">
+                <p>&copy; 2024 TheOwl Initiators. All rights reserved.</p>
+                <ul>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </footer>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default UserProfile;
