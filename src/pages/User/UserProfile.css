@@ -122,7 +122,7 @@ body {
 }
 
 .event-image {
-  width: 70px;
+  width: 100px;
   height: 80px;
   object-fit: cover;
   border-radius: 8px;
@@ -197,6 +197,10 @@ body {
   .events {
       grid-template-columns: 1fr; /* Stack events in a single column for medium screens */
   }
+  .footer .social-links a {
+    font-size: 1rem;
+    margin: 0 10px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -211,5 +215,58 @@ body {
 
   .events {
       grid-template-columns: 1fr; /* Stack events in a single column for smaller screens */
+  }
+}
+@media (max-width: 480px) {
+  /* For very small screens like phones */
+  .dashboard {
+    padding: 5px;
+  }
+
+  .menubar {
+    padding: 10px;
+    align-items: center;
+  }
+
+  .profile-info h3 {
+    font-size: 1rem;
+  }
+
+  .profile-info p {
+    font-size: 0.8rem;
+  }
+
+  .content h1 {
+    font-size: 1.4rem;
+  }
+
+  .events h2 {
+    font-size: 1.3rem;
+  }
+
+  .events li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .event-image {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    margin: 10px 0;
+  }
+
+  .footer ul li {
+    margin: 0 10px;
+  }
+
+  .footer ul li a {
+    font-size: 12px;
+  }
+
+  .logout-btn {
+    font-size: 0.9rem;
+    padding: 12px;
   }
 }
