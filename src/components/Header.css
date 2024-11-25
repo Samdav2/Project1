@@ -3,6 +3,7 @@
       display: flex ;
       justify-content: 'space-between';
       margin-bottom: '20px';
+      font-size: 12px;
     }
     .breadcrumb {
       font-size: 24px ;

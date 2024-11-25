@@ -4,7 +4,7 @@ import EventCategory from '../../components/EventCategory';
 import EventCard from '../../components/EventCard';
 import NavigationDots from '../../components/NavigationDots';
 import FloatingActionButton from '../../components/FloatingActionButton';
-import image from '/src/assets/imagetest1.png';
+import './EventPage.css'; // Importing CSS
 
 export const EventPage = () => {
   const eventCategories = ['Parties', 'Birthday', 'Hangouts'];
@@ -20,7 +20,7 @@ export const EventPage = () => {
       {eventCategories.map((category, index) => (
         <div key={index}>
           <EventCategory category={category} />
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+          <div className="event-card-container">
             {events.map((event, idx) => (
               <EventCard
                 key={idx}
@@ -31,7 +31,7 @@ export const EventPage = () => {
               />
             ))}
           </div>
-          <NavigationDots total={3} currentIndex={index} />
+          <NavigationDots total={eventCategories.length} currentIndex={index} />
         </div>
       ))}
       <FloatingActionButton />

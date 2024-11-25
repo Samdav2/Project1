@@ -63,6 +63,15 @@
     color: #b8b8b8;
 }
 
+.select-input .arrow {
+    width: 16px; /* Size of the arrow */
+    height: 8px;
+    font: 2px ;
+    /*position: absolute;*/
+    /*right: 10px;  Align the arrow to the right */
+    pointer-events: none; /* So the arrow doesn't interfere with clicking on the input */
+  }
+
 .expiry-group {
     display: flex;
     justify-content: space-between;
@@ -86,4 +95,8 @@
     cursor: pointer;
     font-weight: 400;
     text-align: center;
+}
+
+.continue-button:hover {
+    background-color:green;
 }
