@@ -6,8 +6,8 @@ export const UserProfile = () => {
     const location = useLocation();
     const {name, email } = location.state || {};
     const user = {
-        name: {name},
-        email: {email},
+        name: name,
+        email: email,
         profilePicture: 'https://via.placeholder.com/100' // Placeholder image
     };
 
