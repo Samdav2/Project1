@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-body {
-=======
 /*body {
->>>>>>> pullowlet
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,11 +33,7 @@ body {
     width: 22px;
     height: 22px;
     margin-right: 8px;
-<<<<<<< HEAD
-    background: url('https://placeholder.pics/svg/22x22') no-repeat center center;
-=======
     background: url('https://placeholder.pics/svg/20x20') no-repeat center center;
->>>>>>> pullowlet
 }
 
 .notification-title-bar {
@@ -54,12 +46,6 @@ body {
 .notification-icons {
     display: flex;
     align-items: center;
-<<<<<<< HEAD
-    font-size: 400;
-    width: 2px;
-    height: 5px;
-=======
->>>>>>> pullowlet
 }
 
 .artwork {
@@ -104,9 +90,6 @@ body {
     line-height: 28px;
     margin-top: 16px;
     opacity: 0.7;
-<<<<<<< HEAD
-}
-=======
 }*/
 
 
@@ -199,4 +182,3 @@ body {
         font-size: 0.9em; /* Smaller description on mobile */
     }
 }
->>>>>>> pullowlet
