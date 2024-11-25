@@ -2,7 +2,7 @@ import React from 'react';
 import './ResetPassword.css';
 import MessageIcon from '../assets/iconly-light-message.svg';
 
-export const ResetPassword = () => {
+const ResetPassword = () => {
   // Handle form submit logic
   const handleSubmit = (e) => {
     e.preventDefault();
