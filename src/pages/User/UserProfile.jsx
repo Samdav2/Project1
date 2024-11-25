@@ -1,10 +1,13 @@
-import React from 'react'; 
+import React from 'react';
 import './UserProfile.css';
+import { useLocation } from 'react-router-dom';
 
 export const UserProfile = () => {
+    const location = useLocation();
+    const {name, email } = location.state || {};
     const user = {
-        name: 'John Doe',
-        email: 'john.doe@example.com',
+        name: {name},
+        email: {email},
         profilePicture: 'https://via.placeholder.com/100' // Placeholder image
     };
 
@@ -15,10 +18,12 @@ export const UserProfile = () => {
 
     const pastEvents = [
         { id: 3, title: 'Tech Conference', date: '2023-10-10', location: 'Convention Center', image: 'https://via.placeholder.com/200' },
-        { id: 4, title: 'Food Festival', date: '2023-09-05', location: 'Downtown Park', image: 'https://via.placeholder.com/200' }
+    { id: 4, title: 'Food Festival', date: '2023-09-05', location: 'Downtown Park', image: 'https://via.placeholder.com/200' }
     ];
 
     return (
+
+
         <div className="dashboard">
             {/* Sidebar */}
             <aside className="menubar">
@@ -35,11 +40,11 @@ export const UserProfile = () => {
                     <li><button className="logout-btn">Logout</button></li>
                 </ul>
             </aside>
-            
+
             {/* Main Content */}
             <main className="content">
                 <h1>Event Management Dashboard</h1>
-                
+
                 {/* Upcoming Events */}
                 <section id="upcoming-events" className="events upcoming-events">
                     <h2>Upcoming Events</h2>
@@ -58,7 +63,7 @@ export const UserProfile = () => {
                         <p>No upcoming events.</p>
                     )}
                 </section>
-                
+
                 {/* Past Events */}
                 <section id="past-events" className="events past-events">
                     <h2>Past Events</h2>
