@@ -101,37 +101,13 @@ export default TitleBar;*/
 
 
 
-import React, { useState } from 'react';
+import React from 'react';
 import "./TitleBar.css"; // Ensure this line is included to link the CSS file
 
 export const TitleBar = () => {
   return (
     <div className="container">
       <div className="statusBar">
-        <span className="time">9:41</span>
-        <img 
-          src="https://placeholder.pics/svg/17x11" 
-          alt="Cellular Connection" 
-          className="icon"
-        />
-        <img 
-          src="https://placeholder.pics/svg/15x11" 
-          alt="Wifi" 
-          className="icon"
-        />
-        <img 
-          src="https://placeholder.pics/svg/24x11" 
-          alt="Battery" 
-          className="icon"
-        />
-      </div>
-      <div className="navBar">
-        <img 
-          src="https://placeholder.pics/svg/22x22" 
-          alt="Back Arrow" 
-          className="icon"
-          style={{ marginRight: '12px' }}
-        />
         <h1 className="title">Events</h1>
         <img 
           src="https://placeholder.pics/svg/22x22" 
