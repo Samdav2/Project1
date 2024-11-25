@@ -12,7 +12,7 @@ import{TitleBar} from "./pages/Calender/TitleBar"
 import {LandingPage} from "./pages/LandingPage/LandingPage"
 import {UserProfile} from "./pages/User/UserProfile"
 import LoginPage from "./pages/LoginPage/LoginPage";
-
+import {CreateEvent} from "./pages/createEvent/CreateEvent"
 
 import './App.css'
 
@@ -35,6 +35,7 @@ function App() {
          <Route path='/user-dashboard' element={<UserProfile />} />
          <Route path='/map-view' element={<TitleBar />} />
          <Route path='/login' element={<LoginPage />} />
+         <Route path='/add-event' element={<CreateEvent />} />
       </Routes>
 
 
