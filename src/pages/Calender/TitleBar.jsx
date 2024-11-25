@@ -7,32 +7,32 @@ export const TitleBar = () => {
     <div style={stylesTitleBar.container}>
       <div style={stylesTitleBar.statusBar}>
         <span style={stylesTitleBar.time}>9:41</span>
-        <img 
-          src="https://placeholder.pics/svg/17x11" 
-          alt="Cellular Connection" 
+        <img
+          src="https://placeholder.pics/svg/17x11"
+          alt="Cellular Connection"
           style={stylesTitleBar.icon}
         />
-        <img 
-          src="https://placeholder.pics/svg/15x11" 
-          alt="Wifi" 
+        <img
+          src="https://placeholder.pics/svg/15x11"
+          alt="Wifi"
           style={stylesTitleBar.icon}
         />
-        <img 
-          src="https://placeholder.pics/svg/24x11" 
-          alt="Battery" 
+        <img
+          src="https://placeholder.pics/svg/24x11"
+          alt="Battery"
           style={stylesTitleBar.icon}
         />
       </div>
       <div style={stylesTitleBar.navBar}>
-        <img 
-          src="https://placeholder.pics/svg/22x22" 
-          alt="Back Arrow" 
+        <img
+          src="https://placeholder.pics/svg/22x22"
+          alt="Back Arrow"
           style={{...stylesTitleBar.icon, marginRight: '12px'}}
         />
         <h1 style={stylesTitleBar.title}>Events</h1>
-        <img 
-          src="https://placeholder.pics/svg/22x22" 
-          alt="More Options" 
+        <img
+          src="https://placeholder.pics/svg/22x22"
+          alt="More Options"
           style={{...stylesTitleBar.icon, marginLeft: 'auto'}}
         />
       </div>
@@ -45,14 +45,14 @@ const EventTabs = () => {
 
   return (
     <div className="event-tabs">
-      <div 
-        className={`tab ${activeTab === 'UPCOMING' ? 'active' : ''}`} 
+      <div
+        className={`tab ${activeTab === 'UPCOMING' ? 'active' : ''}`}
         onClick={() => setActiveTab('UPCOMING')}
       >
         UPCOMING
       </div>
-      <div 
-        className={`tab ${activeTab === 'PAST' ? 'active' : ''}`} 
+      <div
+        className={`tab ${activeTab === 'PAST' ? 'active' : ''}`}
         onClick={() => setActiveTab('PAST')}
       >
         PAST EVENTS
@@ -64,8 +64,8 @@ const EventTabs = () => {
 const EventInfo = () => {
   return (
     <div className="event-info">
-      <img 
-        src="https://placeholder.pics/svg/202x202" 
+      <img
+        src="https://placeholder.pics/svg/202x202"
         alt="Calendar Illustration"
         className="event-info-image"
       />
@@ -109,33 +109,33 @@ export const TitleBar = () => {
     <div className="container">
       <div className="statusBar">
         <span className="time">9:41</span>
-        <img 
-          src="https://placeholder.pics/svg/17x11" 
-          alt="Cellular Connection" 
+        <img
+          src="https://placeholder.pics/svg/17x11"
+          alt="Cellular Connection"
           className="icon"
         />
-        <img 
-          src="https://placeholder.pics/svg/15x11" 
-          alt="Wifi" 
+        <img
+          src="https://placeholder.pics/svg/15x11"
+          alt="Wifi"
           className="icon"
         />
-        <img 
-          src="https://placeholder.pics/svg/24x11" 
-          alt="Battery" 
+        <img
+          src="https://placeholder.pics/svg/24x11"
+          alt="Battery"
           className="icon"
         />
       </div>
       <div className="navBar">
-        <img 
-          src="https://placeholder.pics/svg/22x22" 
-          alt="Back Arrow" 
+        <img
+          src="https://placeholder.pics/svg/22x22"
+          alt="Back Arrow"
           className="icon"
           style={{ marginRight: '12px' }}
         />
         <h1 className="title">Events</h1>
-        <img 
-          src="https://placeholder.pics/svg/22x22" 
-          alt="More Options" 
+        <img
+          src="https://placeholder.pics/svg/22x22"
+          alt="More Options"
           className="icon"
           style={{ marginLeft: 'auto' }}
         />
@@ -147,14 +147,14 @@ export const TitleBar = () => {
 const EventTabs = ({ activeTab, setActiveTab }) => {
   return (
     <div className="event-tabs">
-      <div 
-        className={`tab ${activeTab === 'UPCOMING' ? 'active' : ''}`} 
+      <div
+        className={`tab ${activeTab === 'UPCOMING' ? 'active' : ''}`}
         onClick={() => setActiveTab('UPCOMING')}
       >
         UPCOMING
       </div>
-      <div 
-        className={`tab ${activeTab === 'PAST' ? 'active' : ''}`} 
+      <div
+        className={`tab ${activeTab === 'PAST' ? 'active' : ''}`}
         onClick={() => setActiveTab('PAST')}
       >
         PAST EVENTS
@@ -163,15 +163,15 @@ const EventTabs = ({ activeTab, setActiveTab }) => {
   );
 };
 
-const EventInfo = ({ activeTab }) => {
-  const eventInfo = activeTab === 'UPCOMING' 
+const EventInfo = () => {
+  const eventInfo = activeTab === 'UPCOMING'
     ? { title: 'No Upcoming Event', description: 'Lorem ipsum dolor sit amet, consectetur' }
     : { title: 'Past Event', description: 'Description of a past event.' };
 
   return (
     <div className="event-info">
-      <img 
-        src="https://placeholder.pics/svg/202x202" 
+      <img
+        src="https://placeholder.pics/svg/202x202"
         alt="Calendar Illustration"
         className="event-info-image"
       />
@@ -192,17 +192,17 @@ const ExploreButton = () => {
   );
 };
 
-export const App = () => {
+const Display = () => {
   const [activeTab, setActiveTab] = useState('UPCOMING');
 
   return (
     <div>
       <TitleBar />
-      <EventTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-      <EventInfo activeTab={activeTab} />
+      <EventTabs />
+      <EventInfo />
       <ExploreButton />
     </div>
   );
 };
 
-export default App;
+export default Display;
