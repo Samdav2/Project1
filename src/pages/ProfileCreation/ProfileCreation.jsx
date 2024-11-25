@@ -88,6 +88,7 @@ const ProfileCreation = () => {
       if (response.data) {
         console.log('Creator Profile Created Successfully');
         navigate("/creator-dashboard", {state: {email: creator.email, name: creator.name, id: creator.id}})
+    
         console.log(response.data)
 
       } else {
