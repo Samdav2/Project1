@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
- /*import {ResetPassword} from "./pages/ResetPassword"*/
+import ResetPassword from "./pages/ResetPassword"
  /*import EventForm from "./pages/TicketingForm/TicketingForm"*/
-/*import RegistrationForm from "./pages/TablesRegistrationForm/RegistrationForm"*/
+import RegistrationForm from "./pages/TablesRegistrationForm/RegistrationForm"
 import {EventPage} from "./pages/PrivateEvent/EventPage"
 /*import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"*/
 import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification"
