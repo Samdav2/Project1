@@ -9,11 +9,7 @@ export const EmptyNotification = () => {
                     <div className="notification-title-bar">Notification</div>
                 </div>
                 <div className="notification-icons">
-<<<<<<< HEAD
-                    <img src="images/moreoption-icon.png" alt="More Options" />
-=======
-                    
->>>>>>> pullowlet
+
                 </div>
             </div>
             <div className="artwork">
