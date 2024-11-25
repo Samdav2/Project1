@@ -10,7 +10,6 @@ import Sidebar from './components/Ui/Sidebar';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <Sidebar />
     <div className='appdiv'>
       <App />
     </div>

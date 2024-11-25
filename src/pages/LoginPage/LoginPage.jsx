@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+
+  const location = useLocation();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email:"",
     password:""
@@ -29,8 +34,10 @@ const LoginPage = () => {
       const response = await axios.post("https://tick-dzls.onrender.com/auth/login", user);
       console.log('Login response:', response.data);
 
-      if (response.data.success) {
+      if (response.data) {
         setMessage("Login Successful");
+          navigate("/user-dashboard");
+
       } else {
         setMessage(response.data.message || "Invalid Credential. Wrong Email Or Password");
       }
