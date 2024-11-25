@@ -1,0 +1,187 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #222;
+    color: /*#222*/ white;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Create Event Form Container */
+  .create-event-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .create-event-container h2 {
+    text-align: center;
+    color: gold;
+    margin-bottom: 20px;
+  }
+  
+  /* Form Styling */
+  .create-event-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .create-event-form label {
+    color: white;
+    font-size: 1.1rem;
+  }
+  
+  .create-event-form input,
+  .create-event-form textarea {
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color:  white;
+    color: #222;
+    font-size: 1rem;
+    width: 100%;
+  }
+  
+  .create-event-form input:focus,
+  .create-event-form textarea:focus {
+    border-color: gold;
+    outline: none;
+  }
+  
+  .create-event-form textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .image-preview img {
+    max-width: 200px;
+    max-height: 200px;
+    margin-top: 10px;
+  }
+  
+  
+  /* Submit Button */
+  .submit-btn {
+    padding: 12px;
+    background-color: gold;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #e0b000;
+  }
+  
+  /* Responsive Design for Smaller Screens */
+  @media (max-width: 600px) {
+    .create-event-container {
+      width: 90%;
+      padding: 15px;
+    }
+  
+    .create-event-form label {
+      font-size: 1rem;
+    }
+  
+    .create-event-form input,
+    .create-event-form textarea {
+      font-size: 0.9rem;
+    }
+  
+    .submit-btn {
+      font-size: 1rem;
+      padding: 10px;
+    }
+  }
+  /* Medium Screens (601px to 768px) */
+@media (max-width: 768px) {
+    .create-event-container {
+      width: 80%;
+      padding: 20px;
+    }
+  
+    .create-event-form input,
+    .create-event-form textarea {
+      font-size: 1rem;
+    }
+  
+    .submit-btn {
+      font-size: 1.1rem;
+      padding: 11px;
+    }
+  }
+  
+  /* Tablets (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .create-event-container {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .create-event-form label {
+    font-size: 1.1rem;
+  }
+
+  .create-event-form input,
+  .create-event-form textarea {
+    font-size: 1rem;
+  }
+
+  .submit-btn {
+    font-size: 1.1rem;
+    padding: 11px;
+  }
+}
+
+/* Laptops (1025px to 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .create-event-container {
+    width: 60%;
+    padding: 25px;
+  }
+
+  .create-event-form label {
+    font-size: 1.2rem;
+  }
+
+  .create-event-form input,
+  .create-event-form textarea {
+    font-size: 1.1rem;
+  }
+
+  .submit-btn {
+    font-size: 1.2rem;
+    padding: 12px;
+  }
+}
+
+/* Larger Screens (1441px and above) */
+@media (min-width: 1441px) {
+  .create-event-container {
+    width: 50%;
+    padding: 30px;
+  }
+
+  .create-event-form label {
+    font-size: 1.3rem;
+  }
+
+  .create-event-form input,
+  .create-event-form textarea {
+    font-size: 1.2rem;
+  }
+
+  .submit-btn {
+    font-size: 1.3rem;
+    padding: 14px;
+  }
+}
