@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
@@ -65,27 +62,30 @@ const LoginPage = () => {
             <label>Password</label>
             <input type="password" placeholder="Your password" name='password' value={user.password} onChange={handleChange} />
           </div>
+        </form>
 
           <div className="remember-me">
             {/* <img src={switchBase} alt="Switch" /> */}
             <label>Remember me</label>
           </div>
 
-          <button className="signin-button" type='submit' disabled={isSubmitting}>
-            {isSubmitting ? "Signing in..." : "SIGN IN"}
-          </button>
-        </form>
+        <div className="remember-me">
+          <img src='/assets/switch-base.svg' alt="Switch" />
+          <label>Remember me</label>
+        </div>
+
+        <button className="signin-button">SIGN IN</button>
 
         <p className="signup-link">
           Don't have an account? <a href="#signup">Sign up</a>
         </p>
       </div>
 
-      <div className="1sidebar">
-        {/* <img src={owlImage} alt="Owl" /> */}
+      <div className="sidebar">
+        <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
     </div>
-  );
+  )
 };
 
 export default LoginPage;

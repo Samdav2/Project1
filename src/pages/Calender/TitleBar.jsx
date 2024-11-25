@@ -101,7 +101,7 @@ export default TitleBar;*/
 
 
 
-import React, { useState } from 'react';
+import React from 'react';
 import "./TitleBar.css"; // Ensure this line is included to link the CSS file
 
 export const TitleBar = () => {

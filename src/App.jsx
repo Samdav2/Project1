@@ -16,7 +16,7 @@ import {Mapview} from "./pages/Mapview/MapView"
 import{TitleBar} from "./pages/Calender/TitleBar"
 import {LandingPage} from "./pages/LandingPage/LandingPage"
 import {UserProfile} from "./pages/User/UserProfile"
-
+import {CreateEvent} from "./pages/createEvent/CreateEvent"
 
 import './App.css'
 
@@ -42,14 +42,11 @@ function App() {
           <Route path='/reset-password' element={<ResetPassword/>} />
           <Route path='/user-dashboard' element={<UserProfile />} />
          <Route path='/map-view' element={<TitleBar />} />
-         <Route path='/buy-ticket-table' element={<RegistrationForm />} />
-
-
-
-        </Routes>
+         <Route path='/login' element={<LoginPage />} />
+         <Route path='/add-event' element={<CreateEvent />} />
+      </Routes>
       </div>
-
-  );
+      )
 }
 
-export default App;
+export default App

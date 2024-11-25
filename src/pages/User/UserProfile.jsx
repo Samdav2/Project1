@@ -1,6 +1,7 @@
 import React from 'react';
 import './UserProfile.css';
 import { useLocation } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 export const UserProfile = () => {
     const location = useLocation();
@@ -13,12 +14,12 @@ export const UserProfile = () => {
 
     const upcomingEvents = [
         { id: 1, title: 'Music Concert', date: '2023-12-15', location: 'City Hall', image: '/images/concert.jpeg' },
-        { id: 2, title: 'Art Exhibition', date: '2023-11-20', location: 'Art Gallery', image: 'https://via.placeholder.com/200' }
+        { id: 2, title: 'Art Exhibition', date: '2023-11-20', location: 'Art Gallery', image: '/images/art.png' }
     ];
 
     const pastEvents = [
-        { id: 3, title: 'Tech Conference', date: '2023-10-10', location: 'Convention Center', image: 'https://via.placeholder.com/200' },
-    { id: 4, title: 'Food Festival', date: '2023-09-05', location: 'Downtown Park', image: 'https://via.placeholder.com/200' }
+        { id: 3, title: 'Tech Conference', date: '2023-10-10', location: 'Convention Center', image: '/images/tech.png' },
+        { id: 4, title: 'Food Festival', date: '2023-09-05', location: 'Downtown Park', image: '/images/food.png' }
     ];
 
     return (
@@ -36,6 +37,7 @@ export const UserProfile = () => {
                     <li><a href="#events">My Events</a></li>
                     <li><a href="#calender">Calender</a></li>
                     <li><a href="#notifications">Notifications</a></li>
+                    <li><a href="#help">Help</a></li>
                     <li><a href="#settings">Settings</a></li>
                     <li><button className="logout-btn">Logout</button></li>
                 </ul>
@@ -43,7 +45,7 @@ export const UserProfile = () => {
 
             {/* Main Content */}
             <main className="content">
-                <h1>Event Management Dashboard</h1>
+                <h1>My Profile</h1>
 
                 {/* Upcoming Events */}
                 <section id="upcoming-events" className="events upcoming-events">
