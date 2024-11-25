@@ -13,6 +13,12 @@ import EmailVerify from "./components/Ui/emailVerify";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import MainDashboard from "./pages/MainDashboard/MainDashboard";
 import Sidebar from "./components/Ui/Sidebar"
+import {Mapview} from "./pages/Mapview/MapView"
+import{TitleBar} from "./pages/Calender/TitleBar"
+import {LandingPage} from "./pages/LandingPage/LandingPage"
+import {UserProfile} from "./pages/User/UserProfile"
+
+
 import './App.css'
 
 
@@ -34,6 +40,11 @@ function App() {
           <Route path="/email" element={<EmailVerify/>} />
           <Route path="/create-profile" element={<ProfileCreation />} />
           <Route path="/creator-dashboard" element={<MainDashboard />} />
+          <Route path='/reset-password' element={<ResetPassword/>} />
+          <Route path='/user-dashboard' element={<UserProfile />} />
+         <Route path='/map-view' element={<TitleBar />} />
+         <Route path='/buy-ticket-table' element={<RegistrationForm />} />
+
 
 
         </Routes>

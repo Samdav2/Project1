@@ -30,7 +30,11 @@ export const CardFormCard = () => {
                     <label>Card expiration</label>
                     <div className="select-input">
                         <span>Month</span>
+<<<<<<< HEAD
                         <img src="https://placeholder.pics/svg/20x20" alt="arrow" />
+=======
+                       <img src="assets/arrow.svg" alt="arrow" />
+>>>>>>> pullowlet
                     </div>
                 </div>
                 <div>
@@ -42,8 +46,13 @@ export const CardFormCard = () => {
             </div>
             <div className="form-group">
                 <label>Card Security Code</label>
+<<<<<<< HEAD
                 <input type="text" placeholder="Code" />
                 <img src="https://placeholder.pics/svg/20x20" alt="Info" className="info-icon" />
+=======
+                <input type="text" placeholder="CVV" />
+                <img src="assets/icons8-info.svg" alt="Info" className="info-icon" />
+>>>>>>> pullowlet
             </div>
             <button className="continue-button">Continue</button>
         </div>

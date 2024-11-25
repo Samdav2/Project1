@@ -51,6 +51,7 @@ const notifications = [
  function ActionBarTitle() {
   return (
     <div className="action-bar">
+<<<<<<< HEAD
       <div className="status-bar">
         <span className="time">9:41</span>
         <div className="icons">
@@ -74,6 +75,9 @@ const notifications = [
           />
         </div>
       </div>
+=======
+     
+>>>>>>> pullowlet
       <div className="title-bar">
         <img
           src="images/arrowback-icon.png"

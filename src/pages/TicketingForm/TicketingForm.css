@@ -10,6 +10,7 @@ body{
     color: #000000;
 }
 
+<<<<<<< HEAD
 .status-bar {
     display: flex;
     align-items: center;
@@ -28,6 +29,8 @@ body{
     font-weight: 600;
 }
 
+=======
+>>>>>>> pullowlet
 .status-icons img {
     margin-left: 10px;
     height: 20px;
@@ -59,23 +62,44 @@ body{
 
 .form-group {
     margin-bottom: 15px;
+<<<<<<< HEAD
+=======
+
+>>>>>>> pullowlet
     
 }
 
 .form-group label {
     display: inline-block;
+<<<<<<< HEAD
     width: 100px;
     font-size: 16px;
+=======
+    width: 100%;
+    font-size: 16px;
+    gap: 10px;
+    font-family: 'Nunito Sans', sans-serif;
+>>>>>>> pullowlet
 }
 
 .form-group input[type="text"] {
     width: calc(50% - 110px);
     margin-left: 10px;
     padding: 5px;
+<<<<<<< HEAD
+=======
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.check{
+    
+>>>>>>> pullowlet
 }
 
 .form-group input[type="checkbox"] {
     margin: 10px 14px;
+<<<<<<< HEAD
     
     align-items: right ;
 }
@@ -104,6 +128,22 @@ body{
     border: 1px solid #616161 ;
     
 }
+=======
+    align-items: right ;
+    padding-right: 5%;
+}
+
+.select-input {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #000000; 
+    border-radius: 10px;
+    width: 180px;
+    justify-content: space-between;
+}
+
+>>>>>>> pullowlet
 .select-input select::ms-expand{
       display: none;
 }
@@ -119,18 +159,29 @@ body{
     display: inline-block;
     font: 600 22px Arial ;
     padding-left: 20px ;
+<<<<<<< HEAD
     padding-top: 6px ;
     
     
+=======
+    padding-top: 6px ;    
+>>>>>>> pullowlet
 }
 
 .note {
     font-size: 12px;
     color: #808080;
     margin-top: 5px;
+<<<<<<< HEAD
     text-align: center;
     padding: right;
     padding-right: 50px;
+=======
+    text-align: start;
+    padding: right;
+    padding-right: 50px;
+    margin-left: 16%;
+>>>>>>> pullowlet
 }
 
 .submit-button {
@@ -150,3 +201,99 @@ body{
 .submit-button:hover {
     background-color: rgba(255, 166, 0, 0.825);
   }
+<<<<<<< HEAD
+=======
+
+
+/* Responsive Styles */
+
+/* Tablet devices (portrait and landscape) */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .form-group label {
+        width: 80px;
+        font-size: 14px;
+        flex-wrap: nowrap;
+        width: auto;
+        flex-shrink: initial;
+        padding-right: 5%;
+        padding-left: 2%;
+    }
+
+    .form-group input[type="text"] {
+        width: calc(100% - 90px);
+    }
+
+    .select-input {
+        width: 150px;
+    }
+
+    .submit-button {
+        width: 180px;
+        font-size: 14px;
+    }
+
+    .note {
+        font-size: 10px;
+        padding-right: 20px;
+        margin: 2% ;
+    }
+}
+
+/* Mobile devices (portrait) */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 2px;
+        width: 100%;
+    }
+
+    .form-group input[type="text"] {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .select-input {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .submit-button {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .note {
+        font-size: 10px;
+        padding-right: 0;
+        text-align: start;
+        margin-left: 0%;
+    }
+}
+
+>>>>>>> pullowlet
