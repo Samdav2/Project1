@@ -11,7 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Sidebar />
-    <App />
+    <div className='appdiv'>
+      <App />
+    </div>
   </BrowserRouter>
 );
 
