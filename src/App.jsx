@@ -20,13 +20,14 @@ import './App.css'
 function App() {
   return (
 
-      <div className="main-content">
+      <div className="page">
         <Routes>
          {/* <Route path="/" element={<MainDashboard />} /> */}
          {/* <Route path="/analytics" element={<AnalyticsCards />} />
           <Route path="/big-cards" element={<BigCards />} />
           <Route path="/statistics" element={<Statistics />} />
-          <Route path="/projects" element={<ProjectList />} />
+          <Route path="/projects" element={<ProjectList
+}/>} />
           <Route path="/orders" element={<OrdersOverview />} /> */}
           <Route path="/" element={ <SignUpPage />} />
           <Route path="/login" element={ <LoginPage />} />

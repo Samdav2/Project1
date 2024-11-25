@@ -26,14 +26,16 @@ const options = {
   },
 };
 
-const MainDashboard = () => {
+function MainDashboard(){
 
-  const location = useLocation();
+   const location = useLocation();
   console.log(location.state)
-  const { name, email, id } = location.state || {}
+  const { name, email, id } = location.state || {};
 
   return (
+    <div className="upperdiv">
     <div className="Main-dashboard">
+      <div className="divl">
       <div className="top">
         <img src={sales} alt="Sales Icon" />
         <div>
@@ -45,6 +47,7 @@ const MainDashboard = () => {
       </div>
 
       <div className="summary-container">
+        <div className="divtest">
         <div className="card blue">
           <div>
             <p>Balance</p>
@@ -62,6 +65,9 @@ const MainDashboard = () => {
           </div>
           <img src={sales} alt="Sales Icon" />
         </div>
+        </div>
+
+        <div className="divtest">
 
         <div className="card red">
           <div>
@@ -77,6 +83,7 @@ const MainDashboard = () => {
           <img src={sales} alt="Sales Icon" />
         </div>
       </div>
+      </div>
 
       <div className="graph-container">
         <div className="graph-header">
@@ -85,6 +92,8 @@ const MainDashboard = () => {
         </div>
         <Line data={data} options={options} />
       </div>
+      </div>
+    </div>
     </div>
   );
 }
