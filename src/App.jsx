@@ -11,6 +11,7 @@ import {Mapview} from "./pages/Mapview/MapView"
 import{TitleBar} from "./pages/Calender/TitleBar"
 import {LandingPage} from "./pages/LandingPage/LandingPage"
 import {UserProfile} from "./pages/User/UserProfile"
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 
 import './App.css'
@@ -33,6 +34,7 @@ function App() {
          {/* <Route path='/' element={<LandingPage />} /> */}
          <Route path='/user-dashboard' element={<UserProfile />} />
          <Route path='/map-view' element={<TitleBar />} />
+         <Route path='/login' element={<LoginPage />} />
       </Routes>
 
 
