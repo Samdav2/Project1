@@ -1,7 +1,5 @@
 import React from 'react';
 import './LoginPage.css';
-import owlImage from './assets/teeth-8770514-1280.svg';
-import switchBase from './assets/switch-base.svg';
 
 const LoginPage = () => {
   return (
@@ -21,7 +19,7 @@ const LoginPage = () => {
         </div>
 
         <div className="remember-me">
-          <img src={switchBase} alt="Switch" />
+          <img src='/assets/switch-base.svg' alt="Switch" />
           <label>Remember me</label>
         </div>
 
@@ -33,7 +31,7 @@ const LoginPage = () => {
       </div>
 
       <div className="sidebar">
-        <img src={owlImage} alt="Owl" />
+        <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
     </div>
   );
