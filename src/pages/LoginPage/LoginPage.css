@@ -1,17 +1,19 @@
-body, html {
+/* body, html {
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif;
     background-color: #f8f9fa;
   }
-  
+
   .login-page {
     display: flex;
     height: 100vh;
+    align-items: center;
   }
-  
+
+
   .login-form {
-    width: 50%;
+    width: 60%;
     max-width: 600px;
     margin: auto;
     padding: 40px;
@@ -19,32 +21,34 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-  
+
+
+
   h1 {
     font-size: 32px;
     font-weight: 700;
     color: #000;
     text-align: center;
   }
-  
+
   .subtitle {
     text-align: center;
     font-size: 14px;
     color: #a0aec0;
     margin-bottom: 40px;
   }
-  
+
   .input-group {
     margin-bottom: 30px;
   }
-  
+
   .input-group label {
     display: block;
     margin-bottom: 8px;
     font-size: 14px;
     color: #2d3748;
   }
-  
+
   .input-group input {
     width: 100%;
     padding: 15px;
@@ -52,17 +56,17 @@ body, html {
     border-radius: 8px;
     font-size: 14px;
   }
-  
+
   .remember-me {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
   }
-  
+
   .remember-me img {
     margin-right: 10px;
   }
-  
+
   .signin-button {
     width: 100%;
     padding: 15px;
@@ -75,28 +79,253 @@ body, html {
     color: #000;
     cursor: pointer;
   }
-  
+
   .signup-link {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
     color: #a0aec0;
   }
-  
+
   .signup-link a {
     color: #2b6cb0;
     text-decoration: none;
   }
-  
+
   .sidebar {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #000;
-    width: 50%;
+    width: 40%;
+    border-radius: 25px;
+    height: 500px;
+    align-items: center;
   }
-  
+
   .sidebar img {
-    max-width: 80%;
+    max-width: 50%;
   }
-  
+  */
+
+  /* Global Styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* Login Page Layout */
+.login-page {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  flex-direction: row; /* Default layout: sidebar on the left, form on the right */
+}
+
+/* Login Form Styles */
+.login-form {
+  width: 60%;
+  max-width: 600px;
+  margin: auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+}
+
+/* Subtitle */
+.subtitle {
+  text-align: center;
+  font-size: 14px;
+  color: #a0aec0;
+  margin-bottom: 40px;
+}
+
+/* Input Group */
+.input-group {
+  margin-bottom: 30px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Remember Me Section */
+.remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.remember-me img {
+  margin-right: 10px;
+}
+
+/* Sign In Button */
+.signin-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #f2ca46;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+  cursor: pointer;
+}
+
+/* Signup Link */
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #a0aec0;
+}
+
+.signup-link a {
+  color: #2b6cb0;
+  text-decoration: none;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #000;
+  width: 40%;
+  border-radius: 25px;
+  height: 500px;
+  align-items: center;
+}
+
+.sidebar img {
+  max-width: 50%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Adjust the layout for mobile */
+  .login-page {
+    flex-direction: column; /* Stack the form and sidebar */
+    justify-content: center;
+    flex-direction: column-reverse;
+  }
+
+  /* Make sidebar take full width on mobile */
+  .sidebar {
+    width: 100%;
+    height: auto; /* Adjust height to fit the content */
+    border-radius: 0; /* Remove border radius for a simpler look */
+    margin-bottom: 20px; /* Add space below sidebar */
+  }
+
+  @media (max-width: 768px) {
+    /* Adjust the layout for mobile */
+    .sidebar {
+    width: 100%;
+    height: auto; /* Adjust height to fit the content */
+    border-radius: 0; /* Remove border radius for a simpler look */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    }
+  }
+
+  /* Ensure the logo in the sidebar is displayed at the top on mobile */
+  .sidebar img {
+    width: 100%; /* Allow the image to take full width */
+    margin-bottom: 20px; /* Add margin at the bottom of the image */
+  }
+
+  /* Adjust login form width and margins */
+  .login-form {
+    width: 80%; /* Make form take up more space on smaller screens */
+    padding: 20px; /* Adjust padding */
+  }
+
+  h1 {
+    font-size: 28px; /* Smaller heading on mobile */
+  }
+
+  .input-group input {
+    font-size: 16px; /* Larger input text on mobile */
+  }
+
+  .signin-button {
+    font-size: 16px; /* Larger button text on mobile */
+  }
+
+  .subtitle {
+    font-size: 12px; /* Smaller subtitle on mobile */
+  }
+}
+/* Tablet-Specific Styles */
+@media (max-width: 1024px) and (min-width: 768px) {
+  /* Adjust the layout for tablets */
+  .login-page {
+    flex-direction: row; /* Keep side-by-side layout for tablets */
+    justify-content: center;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 45%; /* Make the sidebar a little smaller */
+    height: 400px; /* Adjust the height of the sidebar for tablets */
+    border-radius: 20px; /* Slightly round corners */
+    margin-right: 20px; /* Space between sidebar and form */
+  }
+
+  /* Image inside sidebar */
+  .sidebar img {
+    width: 80%; /* Make image smaller to fit well */
+    margin-bottom: 20px; /* Add spacing below the image */
+  }
+
+  /* Login Form */
+  .login-form {
+    width: 55%; /* Adjust form width to accommodate sidebar */
+    padding: 30px; /* Reduce padding on tablet */
+  }
+
+  /* Heading */
+  h1 {
+    font-size: 28px; /* Slightly smaller heading */
+  }
+
+  /* Input Fields */
+  .input-group input {
+    font-size: 16px; /* Increase font size for readability */
+  }
+
+  /* Button */
+  .signin-button {
+    font-size: 16px; /* Larger button text */
+  }
+
+  /* Subtitle */
+  .subtitle {
+    font-size: 12px; /* Smaller subtitle text */
+  }
+}
