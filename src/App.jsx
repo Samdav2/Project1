@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import {EventPage} from "./pages/PrivateEvent/EventPage"
 /*import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"*/
 import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification"
-import {CardFormCard} from "./pages/PaymentPage/CardFormCard"
 import SignUpPage from "./pages/SignUp/signUp";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import EmailVerify from "./components/Ui/emailVerify";
