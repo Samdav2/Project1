@@ -10,24 +10,6 @@ body{
     color: #000000;
 }
 
-.status-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 10px 20px;
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.icon {
-    width: 23.61px;
-    height: 20.72px;
-}
-
-.time {
-    font-size: 15px;
-    font-weight: 600;
-}
-
 .status-icons img {
     margin-left: 10px;
     height: 20px;
@@ -59,51 +41,46 @@ body{
 
 .form-group {
     margin-bottom: 15px;
+
     
 }
 
 .form-group label {
     display: inline-block;
-    width: 100px;
+    width: 100%;
     font-size: 16px;
+    gap: 10px;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 .form-group input[type="text"] {
     width: calc(50% - 110px);
     margin-left: 10px;
     padding: 5px;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.check{
+    
 }
 
 .form-group input[type="checkbox"] {
     margin: 10px 14px;
-    
     align-items: right ;
+    padding-right: 5%;
 }
 
-/*.select-input {
+.select-input {
     display: inline-flex;
     align-items: center;
     padding: 5px 10px;
-    border: 1px solid #000000; //the html was deleted//
+    border: 1px solid #000000; 
     border-radius: 10px;
     width: 180px;
     justify-content: space-between;
-}*/
-
-.select-input select{
-    align-items: center;
-    width: 180% ;
-    position: relative ;
-    padding: 8px 5px 8px 60px ; 
-    padding-left: 15px;
-    border-radius: 20px ;
-    font: 400 22px arial ;
-    -webkit-appearance: none ;
-    appearance: none ;
-    color: #ff1dd2 ;
-    border: 1px solid #616161 ;
-    
 }
+
 .select-input select::ms-expand{
       display: none;
 }
@@ -119,18 +96,17 @@ body{
     display: inline-block;
     font: 600 22px Arial ;
     padding-left: 20px ;
-    padding-top: 6px ;
-    
-    
+    padding-top: 6px ;    
 }
 
 .note {
     font-size: 12px;
     color: #808080;
     margin-top: 5px;
-    text-align: center;
+    text-align: start;
     padding: right;
     padding-right: 50px;
+    margin-left: 16%;
 }
 
 .submit-button {
@@ -150,3 +126,96 @@ body{
 .submit-button:hover {
     background-color: rgba(255, 166, 0, 0.825);
   }
+
+
+/* Responsive Styles */
+
+/* Tablet devices (portrait and landscape) */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .form-group label {
+        width: 80px;
+        font-size: 14px;
+        flex-wrap: nowrap;
+        width: auto;
+        flex-shrink: initial;
+        padding-right: 5%;
+        padding-left: 2%;
+    }
+
+    .form-group input[type="text"] {
+        width: calc(100% - 90px);
+    }
+
+    .select-input {
+        width: 150px;
+    }
+
+    .submit-button {
+        width: 180px;
+        font-size: 14px;
+    }
+
+    .note {
+        font-size: 10px;
+        padding-right: 20px;
+        margin: 2% ;
+    }
+}
+
+/* Mobile devices (portrait) */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    .form-group label {
+        font-size: 12px;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 2px;
+        width: 100%;
+    }
+
+    .form-group input[type="text"] {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .select-input {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .submit-button {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .note {
+        font-size: 10px;
+        padding-right: 0;
+        text-align: start;
+        margin-left: 0%;
+    }
+}
+

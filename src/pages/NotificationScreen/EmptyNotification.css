@@ -1,4 +1,4 @@
-body {
+/*body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +33,7 @@ body {
     width: 22px;
     height: 22px;
     margin-right: 8px;
-    background: url('https://placeholder.pics/svg/22x22') no-repeat center center;
+    background: url('https://placeholder.pics/svg/20x20') no-repeat center center;
 }
 
 .notification-title-bar {
@@ -46,9 +46,6 @@ body {
 .notification-icons {
     display: flex;
     align-items: center;
-    font-size: 400;
-    width: 2px;
-    height: 5px;
 }
 
 .artwork {
@@ -93,4 +90,95 @@ body {
     line-height: 28px;
     margin-top: 16px;
     opacity: 0.7;
+}*/
+
+
+/* EmptyNotification.css */
+
+.notification-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    padding-right: 10% ;
+}
+
+.notification-action-bar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px; /* Limit maximum width for larger screens */
+    margin-bottom: 20px;
+}
+
+.notification-status {
+    flex-grow: 1; /* Allows the title to take available space */
+}
+
+.notification-title-bar {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.notification-icons img {
+    width: 20px; /* Set icon width */
+    height: 20px; /* Set icon height */
+    cursor: pointer;
+}
+
+.artwork {
+    position: relative;
+    margin: 20px 0;
+}
+
+.bell-icon {
+    width: 100px; /* Set the size of the notification icon */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.notification-count {
+    position: absolute;
+    top: -10px; /* Position the count above the icon */
+    right: -10px; /* Adjust the position */
+    background-color: red; /* Notification count background */
+    color: white; /* Notification count text color */
+    border-radius: 50%;
+    padding: 3px 6px; /* Padding around the count */
+    font-size: 0.8em; /* Font size for the count */
+    min-width: 20px; /* Minimum width for the count bubble */
+    text-align: center;
+}
+
+.notification-title {
+    font-size: 1.8em; /* Title size */
+    margin: 10px 0;
+}
+
+.notification-description {
+    font-size: 1em; /* Description size */
+    color: #666; /* Description text color */
+    max-width: 400px; /* Limit width for description */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .notification-title-bar {
+        font-size: 1.2em; /* Smaller title on mobile */
+    }
+
+    .bell-icon {
+        width: 80px; /* Smaller icon on mobile */
+    }
+
+    .notification-title {
+        font-size: 1.5em; /* Smaller title on mobile */
+    }
+
+    .notification-description {
+        font-size: 0.9em; /* Smaller description on mobile */
+    }
 }
