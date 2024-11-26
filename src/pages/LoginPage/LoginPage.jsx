@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const LoginPage = () => {
 
@@ -7,7 +10,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email:"",
-    password:""
+    password:"",
   });
 
   const [message, setMessage] = useState("");
@@ -33,7 +36,7 @@ const LoginPage = () => {
 
       if (response.data) {
         setMessage("Login Successful");
-          navigate("/user-dashboard");
+          navigate("/user-dashboard", {state: {name: response.data.profile.name, email: response.data.profile.email}});
 
       } else {
         setMessage(response.data.message || "Invalid Credential. Wrong Email Or Password");
@@ -62,7 +65,7 @@ const LoginPage = () => {
             <label>Password</label>
             <input type="password" placeholder="Your password" name='password' value={user.password} onChange={handleChange} />
           </div>
-        </form>
+
 
           <div className="remember-me">
             {/* <img src={switchBase} alt="Switch" /> */}
@@ -74,7 +77,10 @@ const LoginPage = () => {
           <label>Remember me</label>
         </div>
 
-        <button className="signin-button">SIGN IN</button>
+        <button type="submit" disabled={isSubmitting} className="button">
+                    {isSubmitting ? "Signing in..." : "Sign in"}
+                </button>
+      </form>
 
         <p className="signup-link">
           Don't have an account? <a href="#signup">Sign up</a>
