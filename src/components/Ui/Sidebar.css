@@ -1,34 +1,54 @@
 /* Sidebar.css */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100vh;
+  background-color: white;
+  padding: 20px;
+}
+
+/* Hide the sidebar for tablet and mobile views */
+@media (max-width: 1024px) { /* For screens 1024px or smaller */
+  .sidebar {
+    display: none;
+  }
+}
+
+
 .logo {
     display: flex;
     align-items: center;
   }
-  
+
   .logo img {
     margin-right: 10px;
   }
-  
+
   .menu {
     margin-top: 20px;
   }
-  
+
   .menu-item {
     display: flex;
     align-items: center;
     padding: 10px 0;
     color: #A0AEC0FF;
     font-weight: bold;
+    text-decoration: none;
+    text-align: center;
   }
-  
+
   .menu-item.active {
     background-color: #E2E8F0FF;
     border-radius: 8px;
   }
-  
+
   .menu-item img {
     margin-right: 10px;
   }
-  
+
   .help {
     margin-top: 40px;
     color: #fff;
@@ -36,9 +56,7 @@
     padding: 10px;
     border-radius: 8px;
   }
-  
+
   .help span {
     font-weight: bold;
   }
-  
-  
