@@ -40,12 +40,12 @@ const ProfileCreation = () => {
       ...prevUser,
       [name]: value
     }));
+  };
 
     setCreator((prevCreator) => ({
       ...prevCreator,
       [name]: value
     }));
-  };
 
   const handleSubmitUser = async (e) => {
     e.preventDefault();
