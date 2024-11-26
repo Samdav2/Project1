@@ -12,23 +12,23 @@ export const ResetPassword = () => {
 
   return (
     <div className="reset-password">
-       <div className="wrapper">
-      <form action=""  onSubmit={handleSubmit}></form>
-      <div className="content">
-        <h1>Reset Password</h1>
-        <p className="description">
-          Please enter your email address to request a password reset
-        </p>
+      <div className="wrapper">
+        <form action=""  onSubmit={handleSubmit}></form>
+       <div className="content">
+         <h1>Reset Password</h1>
+          <p className="description">
+           Please enter your email address to request a password reset
+          </p>
 
-        <div className="input-container">
-          <img src={MessageIcon} alt="Email Icon" />
-          <input type="email" placeholder="Enter your email" />
-        </div>
+          <div className="input-container">
+           <img src={MessageIcon} alt="Email Icon" />
+           <input type="email" placeholder="Enter your email" />
+          </div>
 
-        <button type="submit" className="send-button">
-          SEND
-          <span className="send-icon"></span>
-        </button>
+          <button type="submit" className="send-button">
+            SEND
+             <span className="send-icon"></span>
+          </button>
         </div>
       </div>
       
