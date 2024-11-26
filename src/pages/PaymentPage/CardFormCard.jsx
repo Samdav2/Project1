@@ -31,6 +31,7 @@ export const CardFormCard = () => {
                     <div className="select-input">
                         <span>Month</span>
                        <img src="assets/arrow.svg" alt="arrow" />
+                        <img src="https://placeholder.pics/svg/20x20" alt="arrow" />
                     </div>
                 </div>
                 <div>
@@ -44,6 +45,8 @@ export const CardFormCard = () => {
                 <label>Card Security Code</label>
                 <input type="text" placeholder="CVV" />
                 <img src="assets/icons8-info.svg" alt="Info" className="info-icon" />
+                <input type="text" placeholder="Code" />
+                <img src="https://placeholder.pics/svg/20x20" alt="Info" className="info-icon" />
             </div>
             <button className="continue-button">Continue</button>
         </div>
