@@ -17,6 +17,8 @@ import{TitleBar} from "./pages/Calender/TitleBar"
 import {LandingPage} from "./pages/LandingPage/LandingPage"
 import {UserProfile} from "./pages/User/UserProfile"
 import {CreateEvent} from "./pages/createEvent/CreateEvent"
+import Success from "./components/Ui/Success";
+import Error from "./components/Ui/Error";
 
 import './App.css'
 
@@ -44,6 +46,8 @@ function App() {
          <Route path='/map-view' element={<TitleBar />} />
          <Route path='/login' element={<LoginPage />} />
          <Route path='/add-event' element={<CreateEvent />} />
+         <Route path='/success' element={<Success />} />
+         <Route path='/error' element={<Error />} />
       </Routes>
       </div>
       )
