@@ -8,7 +8,7 @@ import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"
 import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification"
 /*import {TicketingForm} from "./pages/TicketingForm/TicketingForm" */
 import {Mapview} from "./pages/Mapview/MapView"
-import{TitleBar} from "./pages/Calender/TitleBar"
+import {Calendar} from "./pages/Calender/Calendar"
 import {LandingPage} from "./pages/LandingPage/LandingPage"
 import {UserProfile} from "./pages/User/UserProfile"
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -33,7 +33,7 @@ function App() {
          {/*<Route path='/' element={<Mapview />} /> */}
          {/* <Route path='/' element={<LandingPage />} /> */}
          <Route path='/user-dashboard' element={<UserProfile />} />
-         <Route path='/map-view' element={<TitleBar />} />
+         <Route path='/map-view' element={<Calendar />} />
          <Route path='/login' element={<LoginPage />} />
          <Route path='/add-event' element={<CreateEvent />} />
       </Routes>
