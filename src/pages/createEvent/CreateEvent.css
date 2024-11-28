@@ -1,12 +1,10 @@
 /* Global Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #222;
-    color: /*#222*/ white;
     margin: 0;
     padding: 0;
   }
-  
+
   /* Create Event Form Container */
   .create-event-container {
     width: 100%;
@@ -17,25 +15,25 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
-  
+
   .create-event-container h2 {
     text-align: center;
     color: gold;
     margin-bottom: 20px;
   }
-  
+
   /* Form Styling */
   .create-event-form {
     display: flex;
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .create-event-form label {
     color: white;
     font-size: 1.1rem;
   }
-  
+
   .create-event-form input,
   .create-event-form textarea {
     padding: 10px;
@@ -46,13 +44,13 @@ body {
     font-size: 1rem;
     width: 100%;
   }
-  
+
   .create-event-form input:focus,
   .create-event-form textarea:focus {
     border-color: gold;
     outline: none;
   }
-  
+
   .create-event-form textarea {
     resize: vertical;
     min-height: 100px;
@@ -63,8 +61,8 @@ body {
     max-height: 200px;
     margin-top: 10px;
   }
-  
-  
+
+
   /* Submit Button */
   .submit-btn {
     padding: 12px;
@@ -76,27 +74,27 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+
   .submit-btn:hover {
     background-color: #e0b000;
   }
-  
+
   /* Responsive Design for Smaller Screens */
   @media (max-width: 600px) {
     .create-event-container {
       width: 90%;
       padding: 15px;
     }
-  
+
     .create-event-form label {
       font-size: 1rem;
     }
-  
+
     .create-event-form input,
     .create-event-form textarea {
       font-size: 0.9rem;
     }
-  
+
     .submit-btn {
       font-size: 1rem;
       padding: 10px;
@@ -108,18 +106,18 @@ body {
       width: 80%;
       padding: 20px;
     }
-  
+
     .create-event-form input,
     .create-event-form textarea {
       font-size: 1rem;
     }
-  
+
     .submit-btn {
       font-size: 1.1rem;
       padding: 11px;
     }
   }
-  
+
   /* Tablets (601px to 1024px) */
 @media (min-width: 601px) and (max-width: 1024px) {
   .create-event-container {

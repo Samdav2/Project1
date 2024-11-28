@@ -9,8 +9,8 @@ const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    email:"",
-    password:"",
+    email: "",
+    password: "",
   });
 
   const [message, setMessage] = useState("");
@@ -36,7 +36,30 @@ const LoginPage = () => {
 
       if (response.data) {
         setMessage("Login Successful");
-          navigate("/user-dashboard", {state: {name: response.data.profile.name, email: response.data.profile.email}});
+
+        // Check if brandName exists and is not null
+        const { brandName, profile } = response.data;
+
+        if (brandName && brandName !== null) {
+          // Navigate to /creator-dashboard if brandName exists and is not null
+          navigate("/creator-dashboard", {
+            state: {
+              name: profile.name,
+              email: profile.email,
+              user_id: profile.user_id,
+              brandName: brandName
+            }
+          });
+        } else {
+          // Navigate to /home if brandName is null or doesn't exist
+          navigate("/home", {
+            state: {
+              name: profile.name,
+              email: profile.email,
+              user_id: profile.user_id
+            }
+          });
+        }
 
       } else {
         setMessage(response.data.message || "Invalid Credential. Wrong Email Or Password");
@@ -66,21 +89,19 @@ const LoginPage = () => {
             <input type="password" placeholder="Your password" name='password' value={user.password} onChange={handleChange} />
           </div>
 
-
           <div className="remember-me">
-            {/* <img src={switchBase} alt="Switch" /> */}
             <label>Remember me</label>
           </div>
 
-        <div className="remember-me">
-          <img src='/assets/switch-base.svg' alt="Switch" />
-          <label>Remember me</label>
-        </div>
+          <div className="remember-me">
+            <img src='/assets/switch-base.svg' alt="Switch" />
+            <label>Remember me</label>
+          </div>
 
-        <button type="submit" disabled={isSubmitting} className="button">
-                    {isSubmitting ? "Signing in..." : "Sign in"}
-                </button>
-      </form>
+          <button type="submit" disabled={isSubmitting} className="button">
+            {isSubmitting ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
 
         <p className="signup-link">
           Don't have an account? <a href="#signup">Sign up</a>
@@ -91,7 +112,7 @@ const LoginPage = () => {
         <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
     </div>
-  )
+  );
 };
 
 export default LoginPage;

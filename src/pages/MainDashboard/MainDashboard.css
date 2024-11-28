@@ -97,6 +97,7 @@
   padding: 50px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
 }
 @media (max-width: 500px) {
   .summary-container {
@@ -131,6 +132,11 @@
   gap: 10px;
   box-sizing: border-box;
   width: auto;
+  margin-top: 10px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 50px;
 
 }
 
@@ -148,6 +154,7 @@
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
+  width: auto;
 }
 
 /* Top Card Styling */
@@ -162,6 +169,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
   margin-bottom: 10px;
+  color: black;
 }
 
 .divtest{
@@ -186,4 +194,44 @@
     flex-wrap: initial;
     justify-content: space-around;
   }
+}
+
+.top img {
+  max-width: 50px;
+}
+
+.top button {
+  width: auto;
+  flex-wrap: nowrap;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10pX;
+}
+
+.graphtext {
+ text-align: center;
+ justify-content: center;
+}
+
+.upperquickaction {
+  margin-top: 10px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+
+}
+
+.quickactionbutton {
+  width: auto;
+  flex-wrap: wrap;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 10pX;
+  border-color: aliceblue;
 }

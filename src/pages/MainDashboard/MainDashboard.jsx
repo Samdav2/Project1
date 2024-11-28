@@ -43,7 +43,7 @@ function MainDashboard(){
           <p>{email || "No Email Provided"}</p>
           <p></p>
         </div>
-        <button>Click here</button>
+        <button>Settings</button>
       </div>
 
       <div className="summary-container">
@@ -85,10 +85,50 @@ function MainDashboard(){
       </div>
       </div>
 
+{/* Quick Action Section */}
+
+      <div className="upperquickaction" >
+        <h1> Quick Actions </h1>
+      <div className="summary-container">
+        <div className="divtest">
+        <div className="card blue">
+          <div>
+            <p>Create Event</p>
+          </div>
+          <button className="quickactionbutton"> Create New Event </button>
+        </div>
+
+        <div className="card black">
+          <div>
+            <p>Verify Ticket </p>
+
+          </div>
+          <button className="quickactionbutton"> Verify Ticket </button>
+        </div>
+        </div>
+
+        <div className="divtest">
+
+        <div className="card red">
+          <div>
+            <p>Download Data</p>
+          </div>
+          <button className="quickactionbutton"> Download Data </button>
+
+        </div>
+
+        <div className="card orange">
+          <p>Withdraw</p>
+          <button className="quickactionbutton"> Withdraw </button>
+        </div>
+      </div>
+      </div>
+    </div>
+
       <div className="graph-container">
         <div className="graph-header">
           <button className="graph-button">Button</button>
-          <p>See the graphical representation below</p>
+          <p><span className="graphtext"> See the graphical representation below </span></p>
         </div>
         <Line data={data} options={options} />
       </div>

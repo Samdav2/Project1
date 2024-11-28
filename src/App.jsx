@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import ResetPassword from "./pages/ResetPassword"
- /*import EventForm from "./pages/TicketingForm/TicketingForm"*/
+import EventForm, { TicketingForm } from "./pages/TicketingForm/TicketingForm"
 import RegistrationForm from "./pages/TablesRegistrationForm/RegistrationForm"
 import {EventPage} from "./pages/PrivateEvent/EventPage"
 /*import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"*/
@@ -19,6 +19,9 @@ import {UserProfile} from "./pages/User/UserProfile"
 import {CreateEvent} from "./pages/createEvent/CreateEvent"
 import Success from "./components/Ui/Success";
 import Error from "./components/Ui/Error";
+import UpdateUserProfile from "./components/Ui/updateUserProfile";
+import UpdateCreatorProfile from "./components/Ui/updateCreatorProfile";
+import TicketGenerator from "./pages/TicketGeneration/TicketGeneration";
 
 import './App.css'
 
@@ -48,6 +51,12 @@ function App() {
          <Route path='/add-event' element={<CreateEvent />} />
          <Route path='/success' element={<Success />} />
          <Route path='/error' element={<Error />} />
+         <Route path='/update-user-profile' element={<UpdateUserProfile />} />
+         <Route path='/update-creator-profile' element={<UpdateCreatorProfile />} />
+         <Route path='/home' element={<LandingPage />} />
+         <Route path='/get-ticket' element={<TicketingForm />} />
+         <Route path='/ticket' element={<TicketGenerator/>} />
+
       </Routes>
       </div>
       )

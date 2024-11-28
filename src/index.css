@@ -2,7 +2,7 @@
 * {
     box-sizing: border-box;
     height: auto;
-    width: auto;
+    width: 100%;
     max-width: 100%;
 }
 
