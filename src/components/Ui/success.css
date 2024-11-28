@@ -1,23 +1,25 @@
-*{
-    background-color: white;
-    width: 100%;
-    max-width: 100%;
-    flex-wrap: nowrap;
-}
+
 
 .div1 {
+    display: flex;
     justify-content: center;
-    flex-wrap: nowrap;
-    background-color: white;
+    align-items: center;
+    height: 100vh; /* Centers the content vertically and horizontally */
 }
 
-.div1 img {
-    width: 50px;
+.h1 {
+    display: flex;
+    align-items: center; /* Vertically aligns the text and image */
+    width: auto;
 }
 
 .h2 {
     color: green;
     font-size: 20px;
-    width: 100%;
-    text-align: center;
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+.h1 img {
+    width: 50px;
+    height: auto;
 }

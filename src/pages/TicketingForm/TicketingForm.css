@@ -1,42 +1,319 @@
-body{
-    font-family: Arial, sans-serif;
-     background-color: white;
+/* Basic reset and styling */
+.body {
+    background-color: white;
 }
+
 .container {
     max-width: 678px;
-    margin: 0 auto;
+    margin: 0 auto;body{
+        font-family: Arial, sans-serif;
+         background-color: white;
+         justify-content: center;
+    }
+    .container {
+        max-width: 678px;
+        margin: 0 auto;
+        padding: 20px;
+        font-family: 'Inter', sans-serif;
+        color: #000000;
+    }
+
+    .status-icons img {
+        margin-left: 10px;
+        height: 20px;
+        margin-left: 8px ;
+    }
+
+    .form-title {
+        font-weight: 300;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .section-title {
+        font-weight: 500;
+        font-size: 20px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .instruction {
+        text-align: left;
+        margin: 10px 0;
+        font-size: 14px;
+    }
+
+    .form-section {
+        margin-top: 40px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        background-color: white;
+
+    }
+
+    .form-group label {
+        display: inline-block;
+        width: 100%;
+        font-size: 16px;
+        gap: 10px;
+        font-family: 'Nunito Sans', sans-serif;
+    }
+
+    .form-group input[type="text"] {
+        width: calc(50% - 110px);
+        margin-left: 10px;
+        padding: 5px;
+        box-sizing: border-box;
+        margin-top: 10px;
+    }
+
+    .check{
+
+    }
+
+    .form-group input[type="checkbox"] {
+        margin: 10px 14px;
+        align-items: right ;
+        padding-right: 5%;
+    }
+
+    .select-input {
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        border: 1px solid #000000;
+        border-radius: 10px;
+        width: 180px;
+        justify-content: space-between;
+    }
+
+    .select-input select::ms-expand{
+          display: none;
+    }
+
+    .select-input select:focus{
+        outline: none ;
+        box-shadow: 0 0 1opx -1px #ff1dd2 ;
+    }
+
+    .select-input .label{
+        position: absolute ;
+        z-index: 1 ;
+        display: inline-block;
+        font: 600 22px Arial ;
+        padding-left: 20px ;
+        padding-top: 6px ;
+    }
+
+    .note {
+        font-size: 12px;
+        color: #808080;
+        margin-top: 5px;
+        text-align: start;
+        padding: right;
+        padding-right: 50px;
+        margin-left: 16%;
+    }
+
+    .submit-button {
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+        padding: 10px 0;
+        background-color: #FFA500;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    .submit-button:hover {
+        background-color: rgba(255, 166, 0, 0.825);
+      }
+
+
+    /* Responsive Styles */
+
+    /* Tablet devices (portrait and landscape) */
+    @media screen and (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+
+        .form-title {
+            font-size: 22px;
+        }
+
+        .section-title {
+            font-size: 18px;
+        }
+
+        .form-group label {
+            width: 80px;
+            font-size: 14px;
+            flex-wrap: nowrap;
+            width: auto;
+            flex-shrink: initial;
+            padding-right: 5%;
+            padding-left: 2%;
+        }
+
+        .form-group input[type="text"] {
+            width: calc(100% - 90px);
+        }
+
+        .select-input {
+            width: 150px;
+        }
+
+        .submit-button {
+            width: 180px;
+            font-size: 14px;
+        }
+
+        .note {
+            font-size: 10px;
+            padding-right: 20px;
+            margin: 2% ;
+        }
+    }
+
+    /* Mobile devices (portrait) */
+    @media screen and (max-width: 480px) {
+        .container {
+            padding: 10px;
+        }
+
+        .form-title {
+            font-size: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            display: inline-block;
+            font-size: 16px;
+            margin-bottom: 2px;
+            width: 100%;
+        }
+
+        .form-group input[type="text"] {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        .select-input {
+            width: 100%;
+            padding: 5px;
+        }
+
+        .submit-button {
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .note {
+            font-size: 10px;
+            padding-right: 0;
+            text-align: start;
+            margin-left: 0%;
+        }
+    }
+
+    .event-section {
+    justify-content: center;
+    align-self: center;
+    }
+
     padding: 20px;
     font-family: 'Inter', sans-serif;
     color: #000000;
+    margin-top: 40px; /* Some space after the event card */
 }
 
-<<<<<<< HEAD
-.status-bar {
+/* Event card styling */
+.event- {
+    width: 100%;
     display: flex;
+    justify-content: center;
+    margin-bottom: 40px; /* Space between event card and form */
+}
+
+.event-section {
+    display: flex;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.event-card {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    width: 300px; /* Fixed width for the event card */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.event-image {
+    width: 100px; /* Adjust size of the image */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px 0 0 8px; /* Rounded corners for image */
+}
+
+.event-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 10px 20px;
-    border-bottom: 1px solid #e0e0e0;
+    flex-grow: 1;
 }
 
-.icon {
-    width: 23.61px;
-    height: 20.72px;
+.event-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
 }
 
-.time {
-    font-size: 15px;
+.event-address {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+.event-summary {
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.event-price {
+    font-size: 14px;
     font-weight: 600;
+    color: #333;
 }
 
-=======
->>>>>>> pullowlet
-.status-icons img {
-    margin-left: 10px;
-    height: 20px;
-    margin-left: 8px ;
+.event-date-time {
+    font-size: 12px;
+    color: #888;
+    display: flex;
+    justify-content: space-between;
 }
 
+.event-date,
+.event-time {
+    font-size: 12px;
+}
+
+/* Styling the form section */
 .form-title {
     font-weight: 300;
     font-size: 24px;
@@ -60,76 +337,32 @@ body{
     margin-top: 40px;
 }
 
+/* Form group styles */
 .form-group {
     margin-bottom: 15px;
-<<<<<<< HEAD
-=======
-
->>>>>>> pullowlet
-    
 }
 
 .form-group label {
     display: inline-block;
-<<<<<<< HEAD
-    width: 100px;
-    font-size: 16px;
-=======
     width: 100%;
     font-size: 16px;
     gap: 10px;
     font-family: 'Nunito Sans', sans-serif;
->>>>>>> pullowlet
 }
 
 .form-group input[type="text"] {
     width: calc(50% - 110px);
     margin-left: 10px;
     padding: 5px;
-<<<<<<< HEAD
-=======
     box-sizing: border-box;
     margin-top: 10px;
 }
 
-.check{
-    
->>>>>>> pullowlet
-}
+.check {}
 
 .form-group input[type="checkbox"] {
     margin: 10px 14px;
-<<<<<<< HEAD
-    
-    align-items: right ;
-}
-
-/*.select-input {
-    display: inline-flex;
-    align-items: center;
-    padding: 5px 10px;
-    border: 1px solid #000000; //the html was deleted//
-    border-radius: 10px;
-    width: 180px;
-    justify-content: space-between;
-}*/
-
-.select-input select{
-    align-items: center;
-    width: 180% ;
-    position: relative ;
-    padding: 8px 5px 8px 60px ; 
-    padding-left: 15px;
-    border-radius: 20px ;
-    font: 400 22px arial ;
-    -webkit-appearance: none ;
-    appearance: none ;
-    color: #ff1dd2 ;
-    border: 1px solid #616161 ;
-    
-}
-=======
-    align-items: right ;
+    align-items: right;
     padding-right: 5%;
 }
 
@@ -137,51 +370,38 @@ body{
     display: inline-flex;
     align-items: center;
     padding: 5px 10px;
-    border: 1px solid #000000; 
+    border: 1px solid #000000;
     border-radius: 10px;
     width: 180px;
     justify-content: space-between;
 }
 
->>>>>>> pullowlet
-.select-input select::ms-expand{
-      display: none;
+.select-input select::ms-expand {
+    display: none;
 }
 
-.select-input select:focus{ 
-    outline: none ;
-    box-shadow: 0 0 1opx -1px #ff1dd2 ;
+.select-input select:focus {
+    outline: none;
+    box-shadow: 0 0 1px -1px #ff1dd2;
 }
 
-.select-input .label{
-    position: absolute ;
-    z-index: 1 ;
+.select-input .label {
+    position: absolute;
+    z-index: 1;
     display: inline-block;
-    font: 600 22px Arial ;
-    padding-left: 20px ;
-<<<<<<< HEAD
-    padding-top: 6px ;
-    
-    
-=======
-    padding-top: 6px ;    
->>>>>>> pullowlet
+    font: 600 22px Arial;
+    padding-left: 20px;
+    padding-top: 6px;
 }
 
 .note {
     font-size: 12px;
     color: #808080;
     margin-top: 5px;
-<<<<<<< HEAD
-    text-align: center;
-    padding: right;
-    padding-right: 50px;
-=======
     text-align: start;
     padding: right;
     padding-right: 50px;
     margin-left: 16%;
->>>>>>> pullowlet
 }
 
 .submit-button {
@@ -200,10 +420,7 @@ body{
 
 .submit-button:hover {
     background-color: rgba(255, 166, 0, 0.825);
-  }
-<<<<<<< HEAD
-=======
-
+}
 
 /* Responsive Styles */
 
@@ -247,7 +464,7 @@ body{
     .note {
         font-size: 10px;
         padding-right: 20px;
-        margin: 2% ;
+        margin: 2%;
     }
 }
 
@@ -295,5 +512,3 @@ body{
         margin-left: 0%;
     }
 }
-
->>>>>>> pullowlet

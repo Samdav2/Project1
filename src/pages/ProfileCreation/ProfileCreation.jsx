@@ -19,7 +19,7 @@ const ProfileCreation = () => {
     address: "",
     phoneNo: "",
     user_id: location.state.id,
-  });m
+  });
 
   const [creator, setCreator] = useState({
     name: location.state.name,
@@ -34,18 +34,23 @@ const ProfileCreation = () => {
     setSelectedForm(e.target.value);
   };
 
+  // Generic handleChange for both User and Creator forms
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser((prevUser) => ({
-      ...prevUser,
-      [name]: value
-    }));
-  };
 
-    setCreator((prevCreator) => ({
-      ...prevCreator,
-      [name]: value
-    }));
+    // Update the state based on which form (user or creator) is being filled
+    if (selectedForm === 'user') {
+      setUser((prevUser) => ({
+        ...prevUser,
+        [name]: value
+      }));
+    } else if (selectedForm === 'creator') {
+      setCreator((prevCreator) => ({
+        ...prevCreator,
+        [name]: value
+      }));
+    }
+  };
 
   const handleSubmitUser = async (e) => {
     e.preventDefault();
@@ -62,9 +67,8 @@ const ProfileCreation = () => {
       console.log(response.data);
       if (response.data) {
         console.log('User Profile Created Successfully');
-        navigate("/user-dashboard", {state: {email: location.state.email, name: user.name, id: user.id}})
-        console.log(response.data)
-
+        navigate("/user-dashboard", {state: {email: location.state.email, name: user.name, id: user.user_id}});
+        console.log(response.data);
       } else {
         console.log('Error Creating Profile');
       }
@@ -84,13 +88,11 @@ const ProfileCreation = () => {
           'Content-Type': 'application/json',
         }
       });
-       console.log(response.data);
+      console.log(response.data);
       if (response.data) {
         console.log('Creator Profile Created Successfully');
-        navigate("/creator-dashboard", {state: {email: creator.email, name: creator.name, id: creator.id}})
-
-        console.log(response.data)
-
+        navigate("/creator-dashboard", {state: {email: creator.email, name: creator.name, id: creator.user_id}});
+        console.log(response.data);
       } else {
         console.log('Error Creating Profile');
       }
@@ -115,7 +117,7 @@ const ProfileCreation = () => {
           />
           <label>Phone No</label>
           <input
-            type="number"
+            type="text"  // Change from type="number" to type="text" to allow typing more freely
             placeholder="Enter your phone Number"
             value={user.phoneNo}
             onChange={handleChange}
@@ -160,7 +162,7 @@ const ProfileCreation = () => {
           />
           <label>Phone No</label>
           <input
-            type="number"
+            type="text"  // Change from type="number" to type="text" to allow typing more freely
             placeholder="Enter your phone Number"
             value={creator.phoneNo}
             onChange={handleChange}
