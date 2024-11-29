@@ -12,7 +12,5 @@ body{
 .appdiv {
     width: 100%;
     flex-wrap: wrap;
-    padding: 10px;
     justify-content: center;
-    padding-left: 1%;
 }
