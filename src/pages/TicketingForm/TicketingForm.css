@@ -1,256 +1,253 @@
 /* Basic reset and styling */
-.body {
+body {
+    font-family: Arial, sans-serif;
     background-color: white;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    height: auto;
 }
 
 .container {
+    width: 100%;
     max-width: 678px;
-    margin: 0 auto;body{
-        font-family: Arial, sans-serif;
-         background-color: white;
-         justify-content: center;
-    }
-    .container {
-        max-width: 678px;
-        margin: 0 auto;
-        padding: 20px;
-        font-family: 'Inter', sans-serif;
-        color: #000000;
-    }
-
-    .status-icons img {
-        margin-left: 10px;
-        height: 20px;
-        margin-left: 8px ;
-    }
-
-    .form-title {
-        font-weight: 300;
-        font-size: 24px;
-        text-align: center;
-    }
-
-    .section-title {
-        font-weight: 500;
-        font-size: 20px;
-        text-align: center;
-        margin-top: 20px;
-    }
-
-    .instruction {
-        text-align: left;
-        margin: 10px 0;
-        font-size: 14px;
-    }
-
-    .form-section {
-        margin-top: 40px;
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-        background-color: white;
-
-    }
-
-    .form-group label {
-        display: inline-block;
-        width: 100%;
-        font-size: 16px;
-        gap: 10px;
-        font-family: 'Nunito Sans', sans-serif;
-    }
-
-    .form-group input[type="text"] {
-        width: calc(50% - 110px);
-        margin-left: 10px;
-        padding: 5px;
-        box-sizing: border-box;
-        margin-top: 10px;
-    }
-
-    .check{
-
-    }
-
-    .form-group input[type="checkbox"] {
-        margin: 10px 14px;
-        align-items: right ;
-        padding-right: 5%;
-    }
-
-    .select-input {
-        display: inline-flex;
-        align-items: center;
-        padding: 5px 10px;
-        border: 1px solid #000000;
-        border-radius: 10px;
-        width: 180px;
-        justify-content: space-between;
-    }
-
-    .select-input select::ms-expand{
-          display: none;
-    }
-
-    .select-input select:focus{
-        outline: none ;
-        box-shadow: 0 0 1opx -1px #ff1dd2 ;
-    }
-
-    .select-input .label{
-        position: absolute ;
-        z-index: 1 ;
-        display: inline-block;
-        font: 600 22px Arial ;
-        padding-left: 20px ;
-        padding-top: 6px ;
-    }
-
-    .note {
-        font-size: 12px;
-        color: #808080;
-        margin-top: 5px;
-        text-align: start;
-        padding: right;
-        padding-right: 50px;
-        margin-left: 16%;
-    }
-
-    .submit-button {
-        display: block;
-        width: 200px;
-        margin: 20px auto;
-        padding: 10px 0;
-        background-color: #FFA500;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        font-weight: 500;
-        color: #ffffff;
-        cursor: pointer;
-    }
-
-    .submit-button:hover {
-        background-color: rgba(255, 166, 0, 0.825);
-      }
-
-
-    /* Responsive Styles */
-
-    /* Tablet devices (portrait and landscape) */
-    @media screen and (max-width: 768px) {
-        .container {
-            padding: 15px;
-        }
-
-        .form-title {
-            font-size: 22px;
-        }
-
-        .section-title {
-            font-size: 18px;
-        }
-
-        .form-group label {
-            width: 80px;
-            font-size: 14px;
-            flex-wrap: nowrap;
-            width: auto;
-            flex-shrink: initial;
-            padding-right: 5%;
-            padding-left: 2%;
-        }
-
-        .form-group input[type="text"] {
-            width: calc(100% - 90px);
-        }
-
-        .select-input {
-            width: 150px;
-        }
-
-        .submit-button {
-            width: 180px;
-            font-size: 14px;
-        }
-
-        .note {
-            font-size: 10px;
-            padding-right: 20px;
-            margin: 2% ;
-        }
-    }
-
-    /* Mobile devices (portrait) */
-    @media screen and (max-width: 480px) {
-        .container {
-            padding: 10px;
-        }
-
-        .form-title {
-            font-size: 20px;
-        }
-
-        .section-title {
-            font-size: 16px;
-        }
-
-        .form-group label {
-            font-size: 12px;
-            display: inline-block;
-            font-size: 16px;
-            margin-bottom: 2px;
-            width: 100%;
-        }
-
-        .form-group input[type="text"] {
-            width: 100%;
-            margin-left: 0;
-        }
-
-        .select-input {
-            width: 100%;
-            padding: 5px;
-        }
-
-        .submit-button {
-            width: 100%;
-            font-size: 14px;
-        }
-
-        .note {
-            font-size: 10px;
-            padding-right: 0;
-            text-align: start;
-            margin-left: 0%;
-        }
-    }
-
-    .event-section {
-    justify-content: center;
-    align-self: center;
-    }
-
+    margin: 0 auto;
     padding: 20px;
     font-family: 'Inter', sans-serif;
     color: #000000;
-    margin-top: 40px; /* Some space after the event card */
+}
+
+.status-icons img {
+    margin-left: 8px;
+    height: 20px;
+}
+
+.form-title {
+    font-weight: 300;
+    font-size: 24px;
+    text-align: center;
+}
+
+.section-title {
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.instruction {
+    text-align: left;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.form-section {
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fix radio button alignment */
+./* Fix radio button alignment */
+.form-group .radio-group {
+    display: flex;
+    align-items: center; /* Align vertically */
+    gap: 10px;  /* Reduced spacing between the radio buttons */
+}
+
+.form-group input[type="radio"] {
+    margin-right: 5px;  /* Reduce space between radio button and label */
+    width: 20%;
+    margin-top: 15px;
+    height: auto;
+}
+
+.form-group label {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    margin-right: 15px; /* Reduced margin between radio button groups */
+}
+
+/* Optional: To make sure the radio buttons and their labels are perfectly aligned */
+.form-group label input[type="radio"] {
+    vertical-align: middle; /* Ensures the radio buttons align with the label text */
+}
+
+/* Style for the form group containing the checkboxes */
+.form-group .check {
+    display: flex;
+    align-items: center; /* Align checkboxes and text vertically */
+    gap: 10px;  /* Space between the elements */
+}
+
+/* Style the label */
+.form-group .check label {
+    font-size: 16px;
+    margin-right: 10px; /* Space between the label and the checkboxes */
+    width: auto;
+}
+
+/* Style the checkboxes and the span text */
+.form-group .check input[type="checkbox"] {
+    margin: 0 5px;  /* Space between the checkboxes and the text */
+    width: auto;
+}
+
+/* Style the span elements (M and F) */
+.form-group .check span {
+    font-size: 16px;  /* Same font size as the label */
+    margin-right: 5px; /* Space between text and checkbox */
+    width: auto;
+}
+
+
+
+/* Input fields */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.select-input {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 300px;
+    justify-content: space-between;
+}
+
+.select-input select::ms-expand {
+    display: none;
+}
+
+.select-input select:focus {
+    outline: none;
+    box-shadow: 0 0 1px -1px #ff1dd2;
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 20px auto;
+    padding: 10px 0;
+    background-color: #FFA500;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: rgba(255, 166, 0, 0.825);
+}
+
+/* Responsive Styles */
+
+/* Tablet devices (portrait and landscape) */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    .form-title {
+        font-size: 22px;
+    }
+
+    .section-title {
+        font-size: 18px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"],
+    .form-group select {
+        width: 100%;
+    }
+
+    .submit-button {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .note {
+        font-size: 10px;
+        padding-right: 20px;
+    }
+}
+
+/* Mobile devices (portrait) */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+        padding-bottom: 10%;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"],
+    .form-group select {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .select-input {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .submit-button {
+        width: 100%;
+        font-size: 14px;
+        margin-bottom: 10%;
+    }
+
+    .note {
+        font-size: 10px;
+        padding-right: 0;
+    }
 }
 
 /* Event card styling */
-.event- {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px; /* Space between event card and form */
-}
-
 .event-section {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: 5px; /* Space between event card and form */
 }
 
 .event-card {
@@ -258,23 +255,24 @@
     border-radius: 8px;
     overflow: hidden;
     display: flex;
-    width: 300px; /* Fixed width for the event card */
+    flex-direction: column;
+    width: 100%; /* Full width on smaller screens */
+    max-width: 400px; /* Max width on larger screens */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .event-image {
-    width: 100px; /* Adjust size of the image */
-    height: 100px;
+    width: 100%;
+    height: 200px;
     object-fit: cover;
-    border-radius: 8px 0 0 8px; /* Rounded corners for image */
+    border-radius: 8px 8px 0 0; /* Rounded corners for image */
 }
 
 .event-info {
-    padding: 10px;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1;
 }
 
 .event-title {
@@ -313,202 +311,7 @@
     font-size: 12px;
 }
 
-/* Styling the form section */
-.form-title {
-    font-weight: 300;
-    font-size: 24px;
-    text-align: center;
+.form-group span {
+    color: #000000;
 }
 
-.section-title {
-    font-weight: 500;
-    font-size: 20px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.instruction {
-    text-align: left;
-    margin: 10px 0;
-    font-size: 14px;
-}
-
-.form-section {
-    margin-top: 40px;
-}
-
-/* Form group styles */
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: inline-block;
-    width: 100%;
-    font-size: 16px;
-    gap: 10px;
-    font-family: 'Nunito Sans', sans-serif;
-}
-
-.form-group input[type="text"] {
-    width: calc(50% - 110px);
-    margin-left: 10px;
-    padding: 5px;
-    box-sizing: border-box;
-    margin-top: 10px;
-}
-
-.check {}
-
-.form-group input[type="checkbox"] {
-    margin: 10px 14px;
-    align-items: right;
-    padding-right: 5%;
-}
-
-.select-input {
-    display: inline-flex;
-    align-items: center;
-    padding: 5px 10px;
-    border: 1px solid #000000;
-    border-radius: 10px;
-    width: 180px;
-    justify-content: space-between;
-}
-
-.select-input select::ms-expand {
-    display: none;
-}
-
-.select-input select:focus {
-    outline: none;
-    box-shadow: 0 0 1px -1px #ff1dd2;
-}
-
-.select-input .label {
-    position: absolute;
-    z-index: 1;
-    display: inline-block;
-    font: 600 22px Arial;
-    padding-left: 20px;
-    padding-top: 6px;
-}
-
-.note {
-    font-size: 12px;
-    color: #808080;
-    margin-top: 5px;
-    text-align: start;
-    padding: right;
-    padding-right: 50px;
-    margin-left: 16%;
-}
-
-.submit-button {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    padding: 10px 0;
-    background-color: #FFA500;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #ffffff;
-    cursor: pointer;
-}
-
-.submit-button:hover {
-    background-color: rgba(255, 166, 0, 0.825);
-}
-
-/* Responsive Styles */
-
-/* Tablet devices (portrait and landscape) */
-@media screen and (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
-
-    .form-title {
-        font-size: 22px;
-    }
-
-    .section-title {
-        font-size: 18px;
-    }
-
-    .form-group label {
-        width: 80px;
-        font-size: 14px;
-        flex-wrap: nowrap;
-        width: auto;
-        flex-shrink: initial;
-        padding-right: 5%;
-        padding-left: 2%;
-    }
-
-    .form-group input[type="text"] {
-        width: calc(100% - 90px);
-    }
-
-    .select-input {
-        width: 150px;
-    }
-
-    .submit-button {
-        width: 180px;
-        font-size: 14px;
-    }
-
-    .note {
-        font-size: 10px;
-        padding-right: 20px;
-        margin: 2%;
-    }
-}
-
-/* Mobile devices (portrait) */
-@media screen and (max-width: 480px) {
-    .container {
-        padding: 10px;
-    }
-
-    .form-title {
-        font-size: 20px;
-    }
-
-    .section-title {
-        font-size: 16px;
-    }
-
-    .form-group label {
-        font-size: 12px;
-        display: inline-block;
-        font-size: 16px;
-        margin-bottom: 2px;
-        width: 100%;
-    }
-
-    .form-group input[type="text"] {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .select-input {
-        width: 100%;
-        padding: 5px;
-    }
-
-    .submit-button {
-        width: 100%;
-        font-size: 14px;
-    }
-
-    .note {
-        font-size: 10px;
-        padding-right: 0;
-        text-align: start;
-        margin-left: 0%;
-    }
-}

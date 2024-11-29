@@ -38,16 +38,16 @@ const LoginPage = () => {
         setMessage("Login Successful");
 
         // Check if brandName exists and is not null
-        const { brandName, profile } = response.data;
+        const { brandname, profile } = response.data;
 
-        if (brandName && brandName !== null) {
+        if (response.data.profile.brandname) {
           // Navigate to /creator-dashboard if brandName exists and is not null
           navigate("/creator-dashboard", {
             state: {
               name: profile.name,
               email: profile.email,
               user_id: profile.user_id,
-              brandName: brandName
+              brandName: brandname
             }
           });
         } else {
