@@ -1,4 +1,7 @@
 /* Page Layout */
+body{
+  background-color: white ;
+}
 .page {
   display: flex;
   flex-direction: column;

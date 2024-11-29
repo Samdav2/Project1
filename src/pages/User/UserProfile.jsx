@@ -60,7 +60,7 @@ export const UserProfile = () => {
                     <li><a href="#notifications">Notifications</a></li>
                     <li><a href="#help">Help</a></li>
                     <li>
-                        <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
+                    <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
                             Settings
                         </Link>
                     </li>

@@ -4,6 +4,7 @@ import "./MainDashboard.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import sales from "/src/assets/icon-15.svg";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -95,7 +96,8 @@ function MainDashboard(){
           <div>
             <p>Create Event</p>
           </div>
-          <button className="quickactionbutton"> Create New Event </button>
+          <Link to="/add-event" state={{}}> <button className="quickactionbutton">Create Event </button>
+          </Link>
         </div>
 
         <div className="card black">
@@ -103,7 +105,8 @@ function MainDashboard(){
             <p>Verify Ticket </p>
 
           </div>
-          <button className="quickactionbutton"> Verify Ticket </button>
+          <Link to="/verify-ticket" state={{}}> <button className="quickactionbutton">Verify Ticket </button>
+          </Link>
         </div>
         </div>
 

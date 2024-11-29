@@ -22,6 +22,7 @@ import Error from "./components/Ui/Error";
 import UpdateUserProfile from "./components/Ui/updateUserProfile";
 import UpdateCreatorProfile from "./components/Ui/updateCreatorProfile";
 import TicketGenerator from "./pages/TicketGeneration/TicketGeneration";
+import VerifyTicket from "./pages/VerifyTicket/VeryfyTicket";
 
 import './App.css'
 
@@ -56,6 +57,7 @@ function App() {
          <Route path='/home' element={<LandingPage />} />
          <Route path='/get-ticket' element={<TicketingForm />} />
          <Route path='/ticket' element={<TicketGenerator/>} />
+         <Route path='/verify-ticket' element={<VerifyTicket/>} />
 
       </Routes>
       </div>
