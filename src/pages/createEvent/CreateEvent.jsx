@@ -1,23 +1,34 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./CreateEvent.css";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 export const CreateEvent = () => {
   const [eventDetails, setEventDetails] = useState({
-    eventName: "",
-    eventDate: "",
-    eventLocation: "",
-    eventDescription: "",
-    eventImage: "",
-    ticketPrice: "",
-    discountPrice: "",
+    brand_name: "",
+    eventName:"",
+    date: "",
+    timeIn: "",
+    timeOut: "",
+    eventAddress: "",
+    summary: "",
+    picture: "",
+    price: "",
+    category: "",
   });
+
+  const navigate = useNavigate();
+
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEventDetails({
+    setEventDetails((prevEventDetails) => ({
       ...eventDetails,
       [name]: value,
-    });
+    }));
   };
 
   const handleImageChange = (e) => {
@@ -30,16 +41,47 @@ export const CreateEvent = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true)
     console.log("Event Created: ", eventDetails);
     // Handle form submission, like sending the data to an API
-  };
+
+
+  try {
+    const response = await axios.post("https://tick-dzls.onrender.com/event/event", eventDetails);
+    console.log('Event Response',response.data);
+
+    if(response.data) {
+      setMessage("Event Created Successfully");
+      navigate('/success');
+    } else {
+      setMessage(response.data.message || "Unable To Create Event")
+    }
+  } catch (error) {
+    console.error('Unable to create Event', error)
+    setMessage('Unable To Create Event')
+  } finally {
+    setIsSubmitting(false);
+  }
+
+};
 
   return (
     <div className="create-event-container">
       <h2>Create Event</h2>
       <form className="create-event-form" onSubmit={handleSubmit}>
+        <label>
+          Brand Name
+          <input
+            type="text"
+            name="brand_name"
+            value={eventDetails.brand_name}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
         <label>
           Event Name
           <input
@@ -55,8 +97,30 @@ export const CreateEvent = () => {
           Event Date
           <input
             type="date"
-            name="eventDate"
-            value={eventDetails.eventDate}
+            name="date"
+            value={eventDetails.date}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
+        <label>
+          Time In
+          <input
+            type="time"
+            name="timeIn"
+            value={eventDetails.timeIn}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
+        <label>
+          Time Out
+          <input
+            type="time"
+            name="timeOut"
+            value={eventDetails.timeOut}
             onChange={handleChange}
             required
           />
@@ -66,21 +130,38 @@ export const CreateEvent = () => {
           Event Location
           <input
             type="text"
-            name="eventLocation"
-            value={eventDetails.eventLocation}
+            name="eventAddress"
+            value={eventDetails.eventAddress}
             onChange={handleChange}
             required
           />
         </label>
 
         <label>
-          Event Description
+          Event Summary
           <textarea
-            name="eventDescription"
-            value={eventDetails.eventDescription}
+            name="summary"
+            value={eventDetails.summary}
             onChange={handleChange}
             required
           />
+        </label>
+
+        <label>
+          Category
+          <select
+            name="category"
+            value={eventDetails.category}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select a category</option>
+            <option value="Music">Music</option>
+            <option value="Sports">Sports</option>
+            <option value="Tech">Tech</option>
+            <option value="Art">Art</option>
+            <option value="Other">Other</option>
+          </select>
         </label>
 
         {/* Pricing Section */}
@@ -88,22 +169,10 @@ export const CreateEvent = () => {
           Ticket Price
           <input
             type="number"
-            name="ticketPrice"
-            value={eventDetails.ticketPrice}
+            name="price"
+            value={eventDetails.price}
             onChange={handleChange}
             required
-            min="0"
-            step="0.01"
-          />
-        </label>
-
-        <label>
-          Discount Price (optional)
-          <input
-            type="number"
-            name="discountPrice"
-            value={eventDetails.discountPrice}
-            onChange={handleChange}
             min="0"
             step="0.01"
           />
@@ -119,14 +188,16 @@ export const CreateEvent = () => {
           />
         </label>
 
-        {eventDetails.eventImage && (
+        {eventDetails.picture && (
           <div className="image-preview">
-            <img src={eventDetails.eventImage} alt="Event Preview" />
+            <img src={eventDetails.picture} alt="Event Preview" />
           </div>
         )}
 
-        <button type="submit" className="submit-btn">Create Event</button>
-      </form>
+            <button type="submit" disabled={isSubmitting} className="button">
+                    {isSubmitting ? "Creating Event..." : "Create Event"}
+                </button>
+            </form>
     </div>
   );
 };

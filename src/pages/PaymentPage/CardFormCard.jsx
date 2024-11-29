@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import './CardFormCard.css';
 
@@ -54,3 +55,5 @@ export const CardFormCard = () => {
 };
 
 export default CardFormCard;
+=======
+>>>>>>> main
