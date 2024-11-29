@@ -1,0 +1,16 @@
+
+* {
+    box-sizing: border-box;
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+}
+body{
+    background-color: white;
+}
+
+.appdiv {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}

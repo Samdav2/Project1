@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 import "./MainDashboard.css";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import sales from "/src/assets/icon-15.svg";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -25,19 +27,28 @@ const options = {
   },
 };
 
-function MainDashboard() {
+function MainDashboard(){
+
+   const location = useLocation();
+  console.log(location.state)
+  const { name, email, id } = location.state || {};
+
   return (
+    <div className="upperdiv">
     <div className="Main-dashboard">
+      <div className="divl">
       <div className="top">
         <img src={sales} alt="Sales Icon" />
         <div>
-          <p>Client Name</p>
-          <p>Client Email</p>
+          <p>{name || "Failed Fecthing Name"}</p>
+          <p>{email || "No Email Provided"}</p>
+          <p></p>
         </div>
-        <button>Click here</button>
+        <button>Settings</button>
       </div>
 
       <div className="summary-container">
+        <div className="divtest">
         <div className="card blue">
           <div>
             <p>Balance</p>
@@ -55,6 +66,9 @@ function MainDashboard() {
           </div>
           <img src={sales} alt="Sales Icon" />
         </div>
+        </div>
+
+        <div className="divtest">
 
         <div className="card red">
           <div>
@@ -70,15 +84,71 @@ function MainDashboard() {
           <img src={sales} alt="Sales Icon" />
         </div>
       </div>
+      </div>
+
+{/* Quick Action Section */}
+
+      <div className="upperquickaction" >
+        <h1> Quick Actions </h1>
+      <div className="summary-container">
+        <div className="divtest">
+        <div className="card blue">
+          <div>
+            <p>Create Event</p>
+          </div>
+          <Link to="/add-event" state={{}}> <button className="quickactionbutton">Create Event </button>
+          </Link>
+        </div>
+
+        <div className="card black">
+          <div>
+            <p>Verify Ticket </p>
+
+          </div>
+          <Link to="/verify-ticket" state={{}}> <button className="quickactionbutton">Verify Ticket </button>
+          </Link>
+        </div>
+        </div>
+
+        <div className="divtest">
+
+        <div className="card red">
+          <div>
+            <p>Download Data</p>
+          </div>
+          <button className="quickactionbutton"> Download Data </button>
+
+        </div>
+
+        <div className="card orange">
+          <p>Withdraw</p>
+          <button className="quickactionbutton"> Withdraw </button>
+        </div>
+      </div>
+      </div>
+    </div>
 
       <div className="graph-container">
         <div className="graph-header">
           <button className="graph-button">Button</button>
-          <p>See the graphical representation below</p>
+          <p><span className="graphtext"> See the graphical representation below </span></p>
         </div>
         <Line data={data} options={options} />
       </div>
+      <footer className="footer">
+        <div className="social-links">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a>
+        </div>
+        <p>&copy; 2024 TheOwl_Initiators. All Rights Reserved.</p>
+      </footer>
+      </div>
     </div>
+
+    </div>
+
   );
 }
 
