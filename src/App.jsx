@@ -27,7 +27,7 @@ function App() {
          {/*<Route path='/' element={<EventForm/>} /> /> */}
          <Route path='/buy-ticket-table' element={<RegistrationForm />} />
          {/*<Route path='/' element={<EventPage />} /> */}
-         {/*<Route path='/' element={<NotificationPage />} />  */}
+         <Route path='/message' element={<NotificationPage />} />  
          {/*<Route path='/' element={<EmptyNotification />} /> */}
          {/*<Route path='/' element={<TicketingForm />} />  */}
          {/*<Route path='/' element={<Mapview />} /> */}

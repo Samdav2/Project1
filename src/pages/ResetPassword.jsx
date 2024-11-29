@@ -7,7 +7,7 @@ export const ResetPassword = () => {
   return (
     <div className="reset-password">
       <div className="content">
-        <h1>Resset Password</h1>
+        <h1>Reset Password</h1>
         <p className="description">
           Please enter your email address to request a password reset
         </p>
