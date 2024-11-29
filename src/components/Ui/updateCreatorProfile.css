@@ -1,0 +1,137 @@
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9fb;
+    color: #333;
+  }
+
+  /* Main container */
+  .dynamic-forms {
+    justify-content: center;
+    width: auto;
+    flex-grow: inherit;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Heading */
+  .dynamic-forms h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  /* Select wrapper */
+  .select-wrapper {
+    margin-bottom: 30px;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #555;
+  }
+
+  .select {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 16px;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .select:focus {
+    border-color: #f78c1a;
+    box-shadow: 0 0 6px rgba(247, 140, 26, 0.5);
+    outline: none;
+  }
+
+  /* Form container */
+  .form-container {
+    flex-grow: inherit;
+    margin-top: 20px;
+    width: auto;
+    padding: 70px;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    background: #fdfdfd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Form group */
+  .form-group {
+    margin-bottom: 30px;
+    text-align: left;
+  }
+
+  label {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+    transition: all 0.3s ease-in-out;
+  }
+
+  textarea {
+    resize: none;
+    height: 100px;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #f78c1a;
+    box-shadow: 0 0 6px rgba(247, 140, 26, 0.5);
+    outline: none;
+  }
+
+  /* Button */
+  .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #f78c1a;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .btn:hover {
+    background-color: #e67a15;
+  }

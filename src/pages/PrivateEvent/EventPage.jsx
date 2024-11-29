@@ -1,16 +1,18 @@
 import React from 'react';
-import Header from './components/Header';
-import EventCategory from './components/EventCategory';
-import EventCard from './components/EventCard';
-import NavigationDots from './components/NavigationDots';
-import FloatingActionButton from './components/FloatingActionButton';
+import Header from '../../components/Header';
+import EventCategory from '../../components/EventCategory';
+import EventCard from '../../components/EventCard';
+import NavigationDots from '../../components/NavigationDots';
+import FloatingActionButton from '../../components/FloatingActionButton';
+import image from '/src/assets/imagetest1.png';
+import './EventPage.css'; // Importing CSS
 
-const EventPage = () => {
+export const EventPage = () => {
   const eventCategories = ['Parties', 'Birthday', 'Hangouts'];
   const events = [
-    { title: 'Party 1', date: 'Jan 1', description: 'Description 1', imageUrl: 'https://placeholder.pics/svg/300x150' },
-    { title: 'Party 2', date: 'Jan 2', description: 'Description 2', imageUrl: 'https://placeholder.pics/svg/300x150' },
-    { title: 'Party 3', date: 'Jan 3', description: 'Description 3', imageUrl: 'https://placeholder.pics/svg/300x150' },
+    { title: 'Party 1', date: 'Jan 1', description: 'Description 1', imageUrl: '/src/assets/imagetest1.png' },
+    { title: 'Party 2', date: 'Jan 2', description: 'Description 2', imageUrl: '/src/assets/imagetest1.png'},
+    { title: 'Party 3', date: 'Jan 3', description: 'Description 3', imageUrl: '/src/assets/imagetest1.png'},
   ];
 
   return (
@@ -19,9 +21,9 @@ const EventPage = () => {
       {eventCategories.map((category, index) => (
         <div key={index}>
           <EventCategory category={category} />
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+          <div className="event-card-container">
             {events.map((event, idx) => (
-              <EventCard 
+              <EventCard
                 key={idx}
                 title={event.title}
                 date={event.date}
@@ -30,7 +32,7 @@ const EventPage = () => {
               />
             ))}
           </div>
-          <NavigationDots total={3} currentIndex={index} />
+          <NavigationDots total={eventCategories.length} currentIndex={index} />
         </div>
       ))}
       <FloatingActionButton />

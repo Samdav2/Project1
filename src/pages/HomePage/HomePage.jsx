@@ -1,10 +1,10 @@
-import React from 'react'
 import React from 'react';
-import './MainPage.css';
-import owlLogo from './assets/owl-1.svg';
-import owlParty from './assets/owl-party.svg';
+import './MainPage';
+import owlLogo from './owl-1.svg';
+import owlParty from './owl-party.svg';
+import './HomePage.css';
 
-const MainPage = () => {
+ const MainPage = () => {
   return (
     <div className="main-page">
       {/* Header Section */}
@@ -60,7 +60,7 @@ const MainPage = () => {
             <a href="#twitter">X (Twitter)</a>
           </div>
           <p>
-            Tix is an event ticketing platform for memorable experiences in Africa.
+            Owl is an event ticketing platform for memorable experiences in Africa.
             Sign up to our newsletter to receive information about upcoming events.
           </p>
           <button className="subscribe-button">Subscribe</button>
