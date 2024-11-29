@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../signup/signUp.css';
+import '../SignUp/signUp.css';
 import { redirect } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 
@@ -66,13 +66,13 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="1signup-page">
-      <div className="1signup-form">
-        <h2>Register with</h2>
-        <p className="or-divider">or</p>
+    <div className="1signup-page login-page">
+      <div className="1signup-form login-form">
+
 
         <form className="form" onSubmit={handleSignUp}>
-          <div className="input-group">
+        <h2 className='signupHeader'>Create Account</h2>
+          <div className="input-groups">
             <label>Name</label>
             <input
               type="text"
@@ -83,7 +83,7 @@ const SignUpPage = () => {
             />
           </div>
 
-          <div className="input-group">
+          <div className="input-groups">
             <label>Email</label>
             <input
               type="email"
@@ -94,7 +94,7 @@ const SignUpPage = () => {
             />
           </div>
 
-          <div className="input-group">
+          <div className="input-groups">
             <label>Password</label>
             <input
               type="password"
@@ -106,12 +106,14 @@ const SignUpPage = () => {
           </div>
 
           <div className="remember-me">
-            <input type="checkbox" id="remember" />
-            <label htmlFor="remember">Remember me</label>
+            <span className="rememberMeBtn" id='rememberMeBtn'>
+              <span className="rememberToggle" id='rememberToggle'></span>
+            </span>
+            <label className='label'>Remember me?</label>
           </div>
 
           <button
-            className="signup-button"
+            className="signin-button"
             type="submit"
             disabled={isSubmitting}>
             {isSubmitting ? "Signing up..." : "SIGN UP"}
@@ -120,9 +122,13 @@ const SignUpPage = () => {
           {message && <p className="message">{message}</p>}
         </form>
 
-        <p className="login-link">
+        <p className="signup-link">
           Already have an account? <a href="#signin">Sign in</a>
         </p>
+      </div>
+
+      <div className="sidebar1">
+        <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
     </div>
   );

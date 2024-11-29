@@ -374,7 +374,7 @@ h1 {
   }
 
   .login-page{
-    background: url('../../assets/owl-logo5.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%), url('../../assets/owl-logo5.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -456,6 +456,7 @@ h1 {
 
   /* Subtitle */
   .subtitle {
+    text-wrap: nowrap;
     font-size: 12px; /* Smaller subtitle text */
   }
 }

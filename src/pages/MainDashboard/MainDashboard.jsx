@@ -135,9 +135,20 @@ function MainDashboard(){
         </div>
         <Line data={data} options={options} />
       </div>
+      <footer className="footer">
+        <div className="social-links">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a>
+        </div>
+        <p>&copy; 2024 TheOwl_Initiators. All Rights Reserved.</p>
+      </footer>
       </div>
     </div>
+
     </div>
+
   );
 }
 
