@@ -79,23 +79,21 @@ const LoginPage = () => {
         <h1>Welcome Back</h1>
         <p className="subtitle">Enter your email and password to sign in</p>
         <form onSubmit={handleLogin}>
-          <div className="input-group">
+          <div className="input-groups">
             <label>Email</label>
             <input type="email" placeholder="Your email address" name='email' value={user.email} onChange={handleChange} />
           </div>
 
-          <div className="input-group">
+          <div className="input-groups">
             <label>Password</label>
             <input type="password" placeholder="Your password" name='password' value={user.password} onChange={handleChange} />
           </div>
 
           <div className="remember-me">
-            <label>Remember me</label>
-          </div>
-
-          <div className="remember-me">
-            <img src='/assets/switch-base.svg' alt="Switch" />
-            <label>Remember me</label>
+            <span className="rememberMeBtn" id='rememberMeBtn'>
+              <span className="rememberToggle" id='rememberToggle'></span>
+            </span>
+            <label className='label'>Remember me?</label>
           </div>
 
           <button type="submit" disabled={isSubmitting} className="button">
@@ -108,7 +106,10 @@ const LoginPage = () => {
         </p>
       </div>
 
-      <div className="sidebar">
+      <div className="sidebar1">
+        <img src='/assets/owl-logo.svg' alt="Owl" />
+      </div>
+      <div className="sidebarMobile">
         <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
     </div>
