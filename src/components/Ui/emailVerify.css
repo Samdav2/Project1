@@ -1,0 +1,51 @@
+.Formdiv{
+    padding: 10%;
+    width: 200%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+}
+.input-group {
+    margin-bottom: 20px;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #2d3748;
+  }
+
+  .input-group input {
+    width: 100%; /* Ensure input spans the full width of its container */
+    padding: 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #4a5568;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+  }
+
+  .input-group label{
+    text-align: center;
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    box-sizing: border-box;
+
+  }
+
+  .button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f2ca46;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #000;
+    cursor: pointer;
+  }

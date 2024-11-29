@@ -1,33 +1,154 @@
-//components/MainDashboard.js
-import React from "react";
+import React, { useState } from "react";
+import { Line } from "react-chartjs-2";
 import "./MainDashboard.css";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import sales from "/src/assets/icon-15.svg";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function MainDashboard() {
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+const data = {
+  labels: ["January", "February", "March", "April", "May", "June", "July"],
+  datasets: [
+    {
+      label: "Dataset 1",
+      backgroundColor: "rgba(75,192,192,0.4)",
+      borderColor: "rgba(75,192,192,1)",
+      data: [65, 59, 80, 81, 56, 55, 40],
+    },
+  ],
+};
+
+const options = {
+  scales: {
+    x: { type: "category" },
+    y: { beginAtZero: true },
+  },
+};
+
+function MainDashboard(){
+
+   const location = useLocation();
+  console.log(location.state)
+  const { name, email, id } = location.state || {};
+
   return (
+    <div className="upperdiv">
     <div className="Main-dashboard">
-      <div className="breadcrumb">
-        <span>Pages / Dashboard</span>
+      <div className="divl">
+      <div className="top">
+        <img src={sales} alt="Sales Icon" />
+        <div>
+          <p>{name || "Failed Fecthing Name"}</p>
+          <p>{email || "No Email Provided"}</p>
+          <p></p>
+        </div>
+        <button>Settings</button>
       </div>
-      <div className="cards">
-        <div className="card">
-          <span>Today's Money</span>
-          <p>$53,000 <span className="percent">+55%</span> </p>
+
+      <div className="summary-container">
+        <div className="divtest">
+        <div className="card blue">
+          <div>
+            <p>Balance</p>
+            <p>NGN 0.00</p>
+            <p>Last Activity</p>
+          </div>
+          <img src={sales} alt="Sales Icon" />
         </div>
-        <div className="card">
-          <span>Today's Users</span>
-          <p>2,300 <span className="percent" >+5%</span> </p>
+
+        <div className="card black">
+          <div>
+            <p>Active Events</p>
+            <p>0</p>
+            <p>Next Event</p>
+          </div>
+          <img src={sales} alt="Sales Icon" />
         </div>
-        <div className="card">
-          <span> New Clients</span>
-          <p>+3,052 <span className="percent-n"> -14%</span> </p>
         </div>
-        <div className="card">
-          <span> Total Sales Clients</span>
-          <p>$173,000 <span className="percent"> +8%</span> </p>
+
+        <div className="divtest">
+
+        <div className="card red">
+          <div>
+            <p>Orders</p>
+            <p>0</p>
+            <p>Next Pay By</p>
+          </div>
+          <img src={sales} alt="Sales Icon" />
+        </div>
+
+        <div className="card orange">
+          <p>Ticket Sales</p>
+          <img src={sales} alt="Sales Icon" />
         </div>
       </div>
-      {/* Add more sections such as graphs, detailed cards here */}
+      </div>
+
+{/* Quick Action Section */}
+
+      <div className="upperquickaction" >
+        <h1> Quick Actions </h1>
+      <div className="summary-container">
+        <div className="divtest">
+        <div className="card blue">
+          <div>
+            <p>Create Event</p>
+          </div>
+          <Link to="/add-event" state={{}}> <button className="quickactionbutton">Create Event </button>
+          </Link>
+        </div>
+
+        <div className="card black">
+          <div>
+            <p>Verify Ticket </p>
+
+          </div>
+          <Link to="/verify-ticket" state={{}}> <button className="quickactionbutton">Verify Ticket </button>
+          </Link>
+        </div>
+        </div>
+
+        <div className="divtest">
+
+        <div className="card red">
+          <div>
+            <p>Download Data</p>
+          </div>
+          <button className="quickactionbutton"> Download Data </button>
+
+        </div>
+
+        <div className="card orange">
+          <p>Withdraw</p>
+          <button className="quickactionbutton"> Withdraw </button>
+        </div>
+      </div>
+      </div>
     </div>
+
+      <div className="graph-container">
+        <div className="graph-header">
+          <button className="graph-button">Button</button>
+          <p><span className="graphtext"> See the graphical representation below </span></p>
+        </div>
+        <Line data={data} options={options} />
+      </div>
+      <footer className="footer">
+        <div className="social-links">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a>
+        </div>
+        <p>&copy; 2024 TheOwl_Initiators. All Rights Reserved.</p>
+      </footer>
+      </div>
+    </div>
+
+    </div>
+
   );
 }
 

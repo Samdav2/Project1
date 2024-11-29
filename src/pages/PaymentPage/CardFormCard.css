@@ -1,0 +1,108 @@
+.card-container {
+    width: 328px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.payment-method {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.payment-method p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.card-icons img {
+    margin-left: 5px;
+    height: 24px ;
+    width: 38px ;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #b8b8b8;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #000;
+}
+
+.select-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #b8b8b8;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #b8b8b8;
+}
+
+<<<<<<< HEAD
+=======
+.select-input .arrow {
+    width: 16px; /* Size of the arrow */
+    height: 8px;
+    font: 2px ;
+    /*position: absolute;*/
+    /*right: 10px;  Align the arrow to the right */
+    pointer-events: none; /* So the arrow doesn't interfere with clicking on the input */
+  }
+
+>>>>>>> pullowlet
+.expiry-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.continue-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 400;
+    text-align: center;
+}
+<<<<<<< HEAD
+=======
+
+.continue-button:hover {
+    background-color:green;
+}
+>>>>>>> pullowlet

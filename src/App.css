@@ -1,23 +1,53 @@
-/*.const-styles {*/
-    .page{
-      display: flex ;
-      min-height: 100vh ;
-      background-color: whitesmoke ;
-    }
+/* Page Layout */
+body{
+  background-color: white ;
+}
+.page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  flex-grow: inherit;
+  box-sizing: border-box;
+  background-color: #fff;
+}
 
-    main {
-      flex: 1;
-      padding: 20px ;
-    }
+/* Sidebar */
+.sidebar {
+  width: 250px; /* Fixed width for the sidebar */
+  background-color: #fff;
+  display: block;
+}
 
-    .bottom-sections {
-      display: flex ;
-      justify-content: space-between ;
-      margin-top: 20px ;
-    }
+Main Content Area
+.main-content {
+  padding: 20px;
+  width: auto;
+  flex-wrap: wrap;
+}
 
-    .content {
-      margin-left: 250px;
-      padding: 20px;
+.content {
+  margin-left: 250px; /* Reserves space for the sidebar */
+  padding: 20px;
+  transition: margin-left 0.3s ease; /* Smooth transition for responsiveness */
+}
 
-    }
+/* Bottom Sections */
+.bottom-sections {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Hide Sidebar for Tablet and Mobile */
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    margin-left: 0; /* Reset margin when sidebar is hidden */
+    width: 100%; /* Make content full-width */
+  }
+}
