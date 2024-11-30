@@ -4,10 +4,7 @@ import EventCategory from '../../components/EventCategory';
 import EventCard from '../../components/EventCard';
 import NavigationDots from '../../components/NavigationDots';
 import FloatingActionButton from '../../components/FloatingActionButton';
-<<<<<<< HEAD
-=======
 import image from '/src/assets/imagetest1.png';
->>>>>>> main
 import './EventPage.css'; // Importing CSS
 
 export const EventPage = () => {
