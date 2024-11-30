@@ -47,7 +47,7 @@ function App() {
           <Route path="/creator-dashboard" element={<MainDashboard />} />
           <Route path='/reset-password' element={<ResetPassword/>} />
           <Route path='/user-dashboard' element={<UserProfile />} />
-         <Route path='/map-view' element={<TitleBar />} />
+         {/*<Route path='/map-view' element={<TitleBar />} /> */}
          <Route path='/login' element={<LoginPage />} />
          <Route path='/add-event' element={<CreateEvent />} />
          <Route path='/success' element={<Success />} />

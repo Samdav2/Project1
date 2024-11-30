@@ -197,7 +197,7 @@ body {
 }
 
 /* About Us Section */
-.about {
+.about-us {
   background-color: #222;
   color: #fff;
   padding: 60px 20px;
@@ -216,7 +216,7 @@ body {
 }
 
 /* Contact Section */
-.contact {
+.contact-us {
   padding: 60px 20px;
   text-align: center;
 }
@@ -226,19 +226,36 @@ body {
   margin-bottom: 20px;
 }
 
-.contact p {
+.contact-us p {
   font-size: 18px;
   margin-bottom: 20px;
 }
+/* Contact Us Section */
+.contact-us {
+  padding: 50px;
+  background-color: #f4f4f4;
+}
 
-.contact-form {
+.contact-us h3 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.contact-us p {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.contact-us form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.contact-form input,
-.contact-form textarea {
+.contact-us form input,
+.contact-us form textarea {
   width: 300px;
   padding: 10px;
   margin-bottom: 20px;
@@ -247,8 +264,9 @@ body {
   font-size: 16px;
 }
 
-.contact-form button {
+.contact-us form button {
   background-color: gold;
+  width: 200px;
   color: black;
   padding: 10px 20px;
   border: none;
@@ -257,7 +275,7 @@ body {
   border-radius: 5px;
 }
 
-.contact-form button:hover {
+.contact-us form button:hover {
   background-color: #ffcc00;
 }
 

@@ -47,42 +47,12 @@ body {
 
 .form-group {
     margin-bottom: 15px;
-<<<<<<< HEAD
-
-    
-}
-
-.form-group label {
-    display: inline-block;
-    width: 100%;
-    font-size: 16px;
-    gap: 10px;
-    font-family: 'Nunito Sans', sans-serif;
-}
-
-.form-group input[type="text"] {
-    width: calc(50% - 110px);
-    margin-left: 10px;
-    padding: 5px;
-    box-sizing: border-box;
-    margin-top: 10px;
-}
-
-.check{
-    
-}
-
-.form-group input[type="checkbox"] {
-    margin: 10px 14px;
-    align-items: right ;
-    padding-right: 5%;
-=======
     display: flex;
     flex-direction: column;
 }
 
 /* Fix radio button alignment */
-./* Fix radio button alignment */
+/* Fix radio button alignment */
 .form-group .radio-group {
     display: flex;
     align-items: center; /* Align vertically */
@@ -147,7 +117,6 @@ body {
     margin-top: 10px;
     padding: 8px;
     box-sizing: border-box;
->>>>>>> main
 }
 
 .select-input {
@@ -161,34 +130,6 @@ body {
     justify-content: space-between;
 }
 
-<<<<<<< HEAD
-.select-input select::ms-expand{
-      display: none;
-}
-
-.select-input select:focus{ 
-    outline: none ;
-    box-shadow: 0 0 1opx -1px #ff1dd2 ;
-}
-
-.select-input .label{
-    position: absolute ;
-    z-index: 1 ;
-    display: inline-block;
-    font: 600 22px Arial ;
-    padding-left: 20px ;
-    padding-top: 6px ;    
-}
-
-.note {
-    font-size: 12px;
-    color: #808080;
-    margin-top: 5px;
-    text-align: start;
-    padding: right;
-    padding-right: 50px;
-    margin-left: 16%;
-=======
 .select-input select::ms-expand {
     display: none;
 }
@@ -196,7 +137,6 @@ body {
 .select-input select:focus {
     outline: none;
     box-shadow: 0 0 1px -1px #ff1dd2;
->>>>>>> main
 }
 
 .submit-button {
@@ -216,12 +156,7 @@ body {
 
 .submit-button:hover {
     background-color: rgba(255, 166, 0, 0.825);
-<<<<<<< HEAD
-  }
-
-=======
 }
->>>>>>> main
 
 /* Responsive Styles */
 
@@ -306,8 +241,6 @@ body {
     }
 }
 
-<<<<<<< HEAD
-=======
 /* Event card styling */
 .event-section {
     display: flex;
@@ -382,4 +315,3 @@ body {
     color: #000000;
 }
 
->>>>>>> main
