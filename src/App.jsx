@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
-import ResetPassword from "./pages/ResetPassword"
 import EventForm, { TicketingForm } from "./pages/TicketingForm/TicketingForm"
 import RegistrationForm from "./pages/TablesRegistrationForm/RegistrationForm"
 import {EventPage} from "./pages/PrivateEvent/EventPage"
@@ -23,6 +22,7 @@ import UpdateUserProfile from "./components/Ui/updateUserProfile";
 import UpdateCreatorProfile from "./components/Ui/updateCreatorProfile";
 import TicketGenerator from "./pages/TicketGeneration/TicketGeneration";
 import VerifyTicket from "./pages/VerifyTicket/VeryfyTicket";
+import ResetPassword from "./pages/ResetPassword";
 
 import './App.css'
 
@@ -56,6 +56,7 @@ function App() {
          <Route path='/get-ticket' element={<TicketingForm />} />
          <Route path='/ticket' element={<TicketGenerator/>} />
          <Route path='/verify-ticket' element={<VerifyTicket/>} />
+         <Route path='/reset-pass' element={<ResetPassword/>} />
 
       </Routes>
       </div>
