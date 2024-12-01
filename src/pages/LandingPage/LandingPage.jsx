@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './LandingPage.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 export const LandingPage = () => {
   const [events, setEvents] = useState([]);
@@ -79,13 +79,23 @@ export const LandingPage = () => {
   const displayEvents = events.length > 0 ? events : [];
 
   // Handle event card click
-  const handleEventClick = (eventId) => {
+  const handleEventClick = (eventId, price) => {
     console.log("Clicked eventId:", eventId); // Log eventId for debugging
+    console.log("Clicked price:", price); // Log price for debugging
 
     if (user.user_id === null) {
       navigate('/login');
     } else {
-      navigate("/get-ticket", { state: { eventId: eventId, user_id: user.user_id, name: user.name, email: user.email, phoneNo: user.phoneNo} });
+      navigate("/get-ticket", {
+        state: {
+          eventId: eventId,
+          user_id: user.user_id,
+          name: user.name,
+          email: user.email,
+          phoneNo: user.phoneNo,
+          price: price
+        }
+      });
     }
   };
 
@@ -106,9 +116,9 @@ export const LandingPage = () => {
             {user.user_id ? (
               <div>
                 <li>
-                <a href="#dashboard" onClick={() => navigate('/user-dashboard', {
-                    state: { name: user.name, user_id: user.user_id, email: user.email }
-                  })}>
+                  <a href="#dashboard" onClick={() => navigate('/user-dashboard', {
+                      state: { name: user.name, user_id: user.user_id, email: user.email }
+                    })}>
                     Dashboard
                   </a>
                 </li>
@@ -145,7 +155,7 @@ export const LandingPage = () => {
               <div
                 key={index}
                 className="event-card"
-                onClick={() => handleEventClick(id)} // Use 'id' here instead of 'event_id'
+                onClick={() => handleEventClick(id, price)} // Pass both id and price to the handler
               >
                 <img src={`https://tick-dzls.onrender.com/${picture}`} alt={event_name} className="event-image" />
                 <div className="event-info">
