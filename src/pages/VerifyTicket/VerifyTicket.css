@@ -114,6 +114,7 @@
     color: red;
   }
 
+
   /* Responsive design */
   @media (max-width: 480px) {
     .form-container {

@@ -115,9 +115,13 @@
 
   /* Responsive Styles */
   @media (max-width: 768px) {
+    .page{
+      display: flex;
+      align-items: center;
+    }
     .ticket-generator-container {
       padding: 15px;
-      margin: 20px;
+      width: 90%;
     }
 
     .ticket-form input,
