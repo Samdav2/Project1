@@ -197,7 +197,7 @@ function MainDashboard(){
           <div>
             <p>Download Data</p>
           </div>
-          <button className="quickactionbutton"> Download Data </button>
+          <button className="quickactionbutton"> Download </button>
 
         </div>
 

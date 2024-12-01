@@ -46,71 +46,73 @@ export const UserProfile = () => {
     }
 
     return (
-        <div className="dashboard">
-            {/* Sidebar */}
-            <aside className="menubar">
-                <div className="profile-info">
-                    <img src={user.profilePicture} alt="Profile" className="profile-pic" />
-                    <h3>{user.name}</h3>
-                    <p>{user.email}</p>
-                </div>
-                <ul>
-                    <li><a href="#events">My Events</a></li>
-                    <li><a href="#calender">Calender</a></li>
-                    <li><a href="#notifications">Notifications</a></li>
-                    <li><a href="#help">Help</a></li>
-                    <li>
-                    <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
-                            Settings
-                        </Link>
-                    </li>
-                    <li><button className="logout-btn">Logout</button></li>
-                </ul>
-            </aside>
+        <>
+            <div className="dashboard">
+                {/* Sidebar */}
+                <aside className="menubar">
+                    <div className="profile-info">
+                        <img src={user.profilePicture} alt="Profile" className="profile-pic" />
+                        <h3>{user.name}</h3>
+                        <p>{user.email}</p>
+                    </div>
+                    <ul>
+                        <li><a href="#events">My Events</a></li>
+                        <li><a href="#calender">Calender</a></li>
+                        <li><a href="#notifications">Notifications</a></li>
+                        <li><a href="#help">Help</a></li>
+                        <li>
+                        <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
+                                Settings
+                            </Link>
+                        </li>
+                        <li><button className="logout-btn">Logout</button></li>
+                    </ul>
+                </aside>
 
-            {/* Main Content */}
-            <main className="content">
-                <h1>My Profile</h1>
+                {/* Main Content */}
+                <main className="content-board">
+                    <h1 className='main-header'>My Profile</h1>
 
-                {/* Upcoming Events */}
-                <section id="upcoming-events" className="events upcoming-events">
-                    <h2>Upcoming Events</h2>
-                    {upcomingEvents.length > 0 ? (
-                        <ul>
-                            {upcomingEvents.map(event => (
-                                <li key={event.id}>
-                                    <img src={event.image} alt={event.title} className="event-image" />
-                                    <h3>{event.title}</h3>
-                                    <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-                                    <p>Location: {event.location}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>No upcoming events.</p>
-                    )}
-                </section>
+                    {/* Upcoming Events */}
+                    <section id="upcoming-events" className="events upcoming-events">
+                        <h2>Upcoming Events: </h2>
+                        {upcomingEvents.length > 0 ? (
+                            <ul>
+                                {upcomingEvents.map(event => (
+                                    <li key={event.id}>
+                                        <img src={event.image} alt={event.title} className="event-image" />
+                                        <h3>{event.title}</h3>
+                                        <p>Date: {new Date(event.date).toLocaleDateString()}</p>
+                                        <p>Location: {event.location}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No upcoming events.</p>
+                        )}
+                    </section>
 
-                {/* Past Events */}
-                <section id="past-events" className="events past-events">
-                    <h2>Past Events</h2>
-                    {pastEvents.length > 0 ? (
-                        <ul>
-                            {pastEvents.map(event => (
-                                <li key={event.id}>
-                                    <img src={event.image} alt={event.title} className="event-image" />
-                                    <h3>{event.title}</h3>
-                                    <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-                                    <p>Location: {event.location}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    ) : (
-                        <p>No past events.</p>
-                    )}
-                </section>
-            </main>
-
+                    {/* Past Events */}
+                    <section id="past-events" className="events past-events">
+                        <h2>Past Events: </h2>
+                        {pastEvents.length > 0 ? (
+                            <ul>
+                                {pastEvents.map(event => (
+                                    <li key={event.id}>
+                                        <img src={event.image} alt={event.title} className="event-image" />
+                                        <h3>{event.title}</h3>
+                                        <p>Date: {new Date(event.date).toLocaleDateString()}</p>
+                                        <p>Location: {event.location}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No past events.</p>
+                        )}
+                    </section>
+                </main>
+            </div>
+            
             {/* Footer */}
             <footer className="footer">
                 <p>&copy; 2024 TheOwl Initiators. All rights reserved.</p>
@@ -120,7 +122,9 @@ export const UserProfile = () => {
                     <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </footer>
-        </div>
+
+        </>
+    
     );
 };
 
