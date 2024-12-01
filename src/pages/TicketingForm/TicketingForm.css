@@ -52,7 +52,7 @@ body {
 }
 
 /* Fix radio button alignment */
-./* Fix radio button alignment */
+/* Fix radio button alignment */
 .form-group .radio-group {
     display: flex;
     align-items: center; /* Align vertically */

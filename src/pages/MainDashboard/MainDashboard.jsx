@@ -31,7 +31,7 @@ function MainDashboard(){
 
    const location = useLocation();
   console.log(location.state)
-  const { name, email, id } = location.state || {};
+  const { name, email, user_id, brandName, phoneNo } = location.state || {};
 
   return (
     <div className="upperdiv">
@@ -44,7 +44,9 @@ function MainDashboard(){
           <p>{email || "No Email Provided"}</p>
           <p></p>
         </div>
+        <Link to="/update-creator-profile" state={{name, email, user_id, brandName, phoneNo}}>
         <button>Settings</button>
+        </Link>
       </div>
 
       <div className="summary-container">

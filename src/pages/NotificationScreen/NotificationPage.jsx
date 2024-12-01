@@ -1,40 +1,37 @@
 import React from 'react';
- /*HEAD*/
 import './NotificationPage.css';
 
-/*export const NotificationPage = () => {}
+export const NotificationPage = () => {
+  function ActionBarTitle() {
     return (
-        <div className="notification-screen"> 
-        <div className="status-bar">
-                <img src="https://placeholder.pics/svg/375x44" alt="Status Bar" />
-             </div>
-            
-            <div className="action-bar"> 
-                <img src="https://placeholder.pics/svg/22x22" alt="Back Arrow" className="back-arrow" />
-                <span className="title">Notification</span>
-                <img src="https://placeholder.pics/svg/22x22" alt="More" className="more-icon" />
-            </div>
-            <div className="notification-list">
-                {notifications.map((notification, index) => (
-                    <div key={index} className="notification-item">
-                        <img src={`https://placeholder.pics/svg/45x45?text=Avatar+${index+1}`} alt="Avatar" className="avatar" />
-                        <div className="notification-text">
-                            <span className="notification-content">{notification.content}</span>
-                            <span className="notification-time">{notification.time}</span>
-                        </div>
-                        {notification.showActions && (
-                            <div className="notification-actions">
-                                <button className="reject-button">Reject</button>
-                                <button className="accept-button">Accept</button>
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
+      <div className="action-bar">
+          <div className="title-bar">
+            <span className="title">Notification</span>
          </div>
+      </div>
     );
-  
+  }
 
+<<<<<<< HEAD
+  function NotificationItem({ name, action, time }) {
+    return (
+      <div className="notification-item">
+        <img
+          src="images/female.png"
+          alt="User Avatar"
+          className="avatar"
+        />
+        <div className="notification-content">
+          <div className="notification-header">
+            <span className="user-name">{name}</span>
+            <span className="action-text">{action}</span>
+          </div>
+          <div className="time">{time}</div>
+        </div>
+      </div>
+    );
+  }
+=======
 const notifications = [
     { content: "David Silbia Invite Jo Malone London’s Mother’s", time: "Just now", showActions: true },
     { content: "Adnan Safi Started following you", time: "5 min ago", showActions: false },
@@ -94,29 +91,10 @@ const notifications = [
     </div>
   );
 }
+>>>>>>> main
 
-function NotificationItem({ name, action, time }) {
-  return (
-    <div className="notification-item">
-      <img 
-        src= "images/female.png"
-        alt="User Avatar" 
-        className="avatar"
-      />
-      <div className="notification-content">
-        <div className="notification-header">
-          <span className="user-name">{name}</span>
-          <span className="action-text">{action}</span>
-        </div>
-        <div className="time">{time}</div>
-      </div>
-    </div>
-  );
-}
-
-function ActionButtons({ hasButtons }) {
-  return (
-    hasButtons ? (
+  function ActionButtons({ hasButtons }) {
+    return hasButtons ? (
       <div className="group-container">
         <div className="reject-group">
           <span className="reject-text">Reject</span>
@@ -125,11 +103,9 @@ function ActionButtons({ hasButtons }) {
           <span className="accept-text">Accept</span>
         </div>
       </div>
-    ) : null
-  );
-}
+    ) : null;
+  }
 
-export const NotificationPage = () => {
   const notifications = [
     { name: 'David Silbia', action: 'Invite Jo Malone London’s Mother’s', time: 'Just now', hasButtons: true },
     { name: 'Adnan Safi', action: 'Started following you', time: '5 min ago', hasButtons: false },
@@ -139,16 +115,16 @@ export const NotificationPage = () => {
     { name: 'Jennifer Fritz', action: 'Invite you International Kids Safe', time: 'Tue, 5:10 pm', hasButtons: true },
     { name: 'Eric G. Prickett', action: 'Started following you', time: 'Wed, 3:30 pm', hasButtons: false }
   ];
-  
+
   return (
     <div className="app">
       <ActionBarTitle />
       {notifications.map((notification, index) => (
         <div key={index} className="notification-item-container">
-          <NotificationItem 
-            name={notification.name} 
-            action={notification.action} 
-            time={notification.time} 
+          <NotificationItem
+            name={notification.name}
+            action={notification.action}
+            time={notification.time}
           />
           <ActionButtons hasButtons={notification.hasButtons} />
         </div>
@@ -157,6 +133,6 @@ export const NotificationPage = () => {
   );
 };
 
- export default NotificationPage ;
+export default NotificationPage;
 
-/*>>>>>>> 3c3a971602a2c3523305f49034fa66f3d0ea8d47*/
+

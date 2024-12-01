@@ -65,6 +65,9 @@
 
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> main
 .select-input .arrow {
     width: 16px; /* Size of the arrow */
     height: 8px;
@@ -74,7 +77,10 @@
     pointer-events: none; /* So the arrow doesn't interfere with clicking on the input */
   }
 
+<<<<<<< HEAD
+=======
 >>>>>>> pullowlet
+>>>>>>> main
 .expiry-group {
     display: flex;
     justify-content: space-between;
@@ -101,8 +107,14 @@
 }
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> main
 
 .continue-button:hover {
     background-color:green;
 }
+<<<<<<< HEAD
+=======
 >>>>>>> pullowlet
+>>>>>>> main

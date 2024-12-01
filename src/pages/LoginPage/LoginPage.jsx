@@ -47,7 +47,8 @@ const LoginPage = () => {
               name: profile.name,
               email: profile.email,
               user_id: profile.user_id,
-              brandName: brandname
+              brandName: brandname,
+              phoneNo: profile.phoneNo
             }
           });
         } else {
@@ -103,7 +104,7 @@ const LoginPage = () => {
         </form>
 
         <p className="signup-link">
-          Don't have an account? <a href="#signup">Sign up</a>
+          Don't have an account? <a href='/sign-up'>Sign up</a>
         </p>
       </div>
 
