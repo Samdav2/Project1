@@ -4,7 +4,7 @@ import { BrowserMultiFormatReader } from '@zxing/library';
 import axios from 'axios';
 
 const VerifyTicket = () => {
-  const [ticketCode, setTicketCode] = useState('');
+  const [token, setToken] = useState('');
   const [isValid, setIsValid] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [scanning, setScanning] = useState(false);
@@ -14,36 +14,43 @@ const VerifyTicket = () => {
 
   // Function to handle ticket code input change
   const handleTicketCodeChange = (e) => {
-    setTicketCode(e.target.value);
+    setToken(e.target.value);
   };
 
   // Function to handle the submit event (manual input)
   const handleSubmit = async () => {
-    if (!ticketCode) {
+    if (!token) {
       setErrorMessage('Please enter a ticket code.');
       return;
     }
 
     try {
-      const response = await axios.post('https://your-api-endpoint.com/validate', { ticketCode });
-      if (response.data.valid) {
+      // Send DELETE request to the backend to validate and delete the ticket
+      const response = await axios.delete('https://tick-dzls.onrender.com/event/deleteticket/', {token})
+
+      // Handle the response message from the backend (check the message)
+      if (response.data) {
         setIsValid(true);
+        console.log(response.data)
+        console.log(token)
         setErrorMessage('');
       } else {
+        // If the message does not match, set invalid status and show error
         setIsValid(false);
-        setErrorMessage('Invalid ticket code.');
+        setErrorMessage('Invalid ticket code or ticket already deleted.');
       }
     } catch (error) {
-      setErrorMessage('Error connecting to the API.');
+      // Handle errors from the backend or network issues
       setIsValid(false);
+      setErrorMessage(error.response?.data?.message || 'Error connecting to the API');
     }
   };
 
   // Handle the QR code scan result
   const handleScan = (result) => {
-    if (result) {
-      setScannedText(result.getText()); // Update live scanning text
-      setTicketCode(result.getText());  // Set ticket code
+    if (result && !scannedText) { // Prevent setting multiple scans
+      setScannedText(result.getText());
+      setToken(result.getText());  // Corrected to use setToken
     }
   };
 
@@ -85,7 +92,7 @@ const VerifyTicket = () => {
           <input
             type="text"
             placeholder="Enter ticket code"
-            value={ticketCode}
+            value={token}
             onChange={handleTicketCodeChange}
             className="input-field"
           />

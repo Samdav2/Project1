@@ -1,43 +1,123 @@
 import React, { useState, useEffect } from 'react';
-import QRCode from 'qrcode';
 import axios from 'axios';
+import { PaystackButton } from 'react-paystack';  // Using react-paystack for easier integration
 import './TicketGeneration.css';
 import { useLocation } from 'react-router-dom';
+import { jsPDF } from "jspdf"; // Ensure jsPDF is installed
 
 const TicketGenerator = () => {
   const [ticketToken, setTicketToken] = useState('');
   const [qrCodeUrl, setQrCodeUrl] = useState('');
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
   const [error, setError] = useState(null);
   const [message, setMessage] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [phoneNo, setPhoneNo] = useState('');
+  const [amount, setAmount] = useState(0); // Default to 0 instead of empty string
+  const [publicKey] = useState('pk_live_9810a53b63cfa27714d35df2aa9049591825d065'); // Your Paystack public key
 
   const location = useLocation();
+  const { name: locationName, email: locationEmail, user_id, eventName, phoneNo: locationPhoneNo, eventId, price } = location.state || {};
+  console.log(location.state.price);
 
-  // Destructure values from location.state
-  const { name, email: userEmail, eventName } = location.state || {};
+  const defaultQrCodeUrl = 'https://yourserver.com/default-qr-code.png';
 
   useEffect(() => {
-    // If email is not provided through location.state, use input field
-    if (!userEmail) {
-      setEmail('');
+    if (!locationEmail || !locationName) {
+      setError('Email and name are required');
+      return;
     }
-  }, [userEmail]);
 
-  // Generate a unique ticket token based on the user's name and event name
+    setEmail(locationEmail);
+    setName(locationName);
+    setPhoneNo(locationPhoneNo);
+
+    // Append "00" to the price to convert Naira to Kobo
+    if (price) {
+      // Convert price to integer and multiply by 100 to convert to Kobo
+      const convertedAmount = Math.round(parseFloat(price) * 100); // Ensure it's a valid number and converted to integer
+      if (isNaN(convertedAmount)) {
+        setError('Invalid price format');
+        return;
+      }
+      setAmount(convertedAmount); // Ensure it's set as a number
+    }
+  }, [locationEmail, locationName, locationPhoneNo, price]);
+
+
+  // Step 1: Initialize the Payment Transaction on the Backend
+  const initiatePayment = async () => {
+    try {
+      setLoading(true);
+      // Call your backend to initialize the payment and get the access_code
+      const response = await axios.post('https://owipay-1.onrender.com/paystack/transaction/initialize', {
+        email: email,
+        amount: amount, // Use updated amount in Kobo
+
+      });
+      const { access_code } = response.data;
+      setAccessCode(access_code);
+    } catch (error) {
+      setError('Error initializing Paystack: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Step 2: Handle successful payment and generate ticket
+  const handleSuccessfulPayment = async (reference) => {
+    try {
+      // Step 3: Verify the payment status on the backend
+      const verificationResponse = await axios.get(`https://owipay-1.onrender.com/paystack/transaction/verify/${reference}`);
+
+      if (verificationResponse.data.status === 'success') {
+        const generatedToken = generateTicketToken();
+        if (!generatedToken) {
+          setError('Invalid ticket token');
+          return;
+        }
+
+        setTicketToken(generatedToken);
+        await generateQRCode(generatedToken);
+
+        const formData = {
+          token: generatedToken,
+          qrcodeURL: qrCodeUrl,
+          userId: user_id,
+          email,
+          eventId,
+        };
+
+        await axios.post('https://tick-dzls.onrender.com/event/attendevent', formData);
+        setMessage('Ticket has been sent to your email!');
+
+        createPDF(); // Automatically generate the PDF
+      } else {
+        setError('Payment verification failed.');
+      }
+    } catch (error) {
+      setError('Error verifying payment: ' + error.message);
+    }
+  };
+
+  // Step 4: Generate a unique ticket token
   const generateTicketToken = () => {
-    if (!name || !eventName) {
-      setError('Invalid name or event name');
+    if (!name) {
+      setError('Invalid name');
       return '';
     }
 
-    const firstLetter = name.charAt(0).toUpperCase();
-    const brandPrefix = eventName.substring(0, 5).toUpperCase();
+    const nameParts = name.split(' ');
+    const firstLetterFirstName = nameParts[0].charAt(0).toUpperCase();
+    const firstLetterLastName = nameParts.length > 1 ? nameParts[1].charAt(0).toUpperCase() : 'X'; // Default 'X' if no last name
+
+    const brandPrefix = eventName ? eventName.substring(0, 5).toUpperCase() : 'EVNT';
     const randomNumbers = Math.floor(100 + Math.random() * 900); // Generates a 3-digit random number
-    return firstLetter + brandPrefix + randomNumbers;
+    return firstLetterFirstName + firstLetterLastName + brandPrefix + randomNumbers;
   };
 
-  // Generate a QR code for the ticket token
+  // Step 5: Generate QR code for the ticket
   const generateQRCode = async (ticketToken) => {
     if (!ticketToken) {
       setError('Ticket token is invalid');
@@ -45,94 +125,68 @@ const TicketGenerator = () => {
     }
 
     try {
-      const url = await QRCode.toDataURL(ticketToken);
-      setQrCodeUrl(url);
+      const qrCodeApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketToken}`;
+      setQrCodeUrl(qrCodeApiUrl);
     } catch (error) {
       setError('Error generating QR code: ' + error.message);
-      console.error('Error generating QR code:', error);
+      setQrCodeUrl(defaultQrCodeUrl);
     }
   };
 
-  // Handle form submission to generate the ticket and send it via email
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage('');
-    setError(null);  // Reset any previous error
+  // Step 6: Generate the PDF ticket
+  const createPDF = () => {
+    const doc = new jsPDF();
+    doc.text('Ticket Token: ' + ticketToken, 10, 20);
+    doc.text('Event: ' + eventName, 10, 30);
 
-    try {
-      // If the email is not provided via location, use the input field
-      const userEmailToUse = email || userEmail;
-
-      if (!userEmailToUse) {
-        setError('Email is required');
-        return;
-      }
-
-      const generatedToken = generateTicketToken();
-      if (!generatedToken) {
-        setError('Invalid ticket token');
-        return;
-      }
-
-      setTicketToken(generatedToken);
-      await generateQRCode(generatedToken);
-
-      // Send the ticket data to the backend API for email processing
-      const formData = {
-        email: userEmailToUse,
-        ticketToken: generatedToken,
-        qrCodeUrl,
-      };
-
-      const response = await axios.post('https://your-backend-api.com/send-ticket', formData);
-      setMessage('Ticket has been sent to your email!');
-    } catch (error) {
-      setError('Error sending ticket: ' + error.message);
-      console.error('Error:', error);
-    } finally {
-      setLoading(false);
+    if (qrCodeUrl && qrCodeUrl.startsWith('https://api.qrserver.com/v1/create-qr-code/')) {
+      doc.addImage(qrCodeUrl, 'PNG', 10, 40, 50, 50);
+    } else {
+      setError('Invalid QR code URL');
+      return;
     }
+
+    doc.save(`${ticketToken}-ticket.pdf`);
+  };
+
+  const componentProps = {
+    email,
+    amount, // Ensure this is passed as a number (in Kobo)
+    metadata: {
+      name,
+      phone: phoneNo,
+    },
+    publicKey,
+    text: 'Pay Now',
+    onSuccess: ({ reference }) => {
+      handleSuccessfulPayment(reference);
+    },
+    onClose: () => setError("Payment was cancelled, please try again."),
   };
 
   return (
     <div className="ticket-generator-container">
       <h2>Generate Event Ticket</h2>
+      {error && <div className="error">{error}</div>}
+      {loading && <div>Processing Payment...</div>}
 
-      {/* Form for entering email if not passed through location */}
-      <form className="ticket-form" onSubmit={handleSubmit}>
-        {!userEmail && (
-          <input
-            type="email"
-            placeholder="Your Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        )}
+      {/* Use PaystackButton from react-paystack */}
+      <PaystackButton className="paystack-button" {...componentProps} />
 
-        <button type="submit" disabled={loading}>
-          {loading ? 'Generating Ticket...' : 'Generate Ticket'}
-        </button>
-      </form>
-
-      {/* Display Ticket Information */}
       {ticketToken && (
         <div className="ticket-token-container">
           <p><strong>Your Ticket Token: {ticketToken}</strong></p>
-          {qrCodeUrl && (
-            <div className="qr-code-container">
-              <img src={qrCodeUrl} alt="QR Code" />
-            </div>
-          )}
         </div>
       )}
 
-      {/* Display Messages */}
+      {qrCodeUrl && (
+        <div className="qr-code-container">
+          <img src={qrCodeUrl} alt="QR Code" />
+        </div>
+      )}
+
       {message && <div className="message">{message}</div>}
-      {error && <div className="error">{error}</div>}
     </div>
   );
 };
-
 export default TicketGenerator;
