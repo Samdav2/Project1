@@ -11,15 +11,13 @@ export const TicketingForm = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    // Event data from location.state
+    // Extract event and user data from location.state
     const eventId = location.state?.eventId || null;
     const [userData, setUserData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        ticketType: '',
-        receiveUpdates: '',
+        firstName: location.state.name,
+        email: location.state.email,
+        user_id: location.state.user_id,
+       //ticketType: '',  // Ticket type will be selected in the form
     });
 
     // Fetch events from the API with retry mechanism
@@ -40,7 +38,6 @@ export const TicketingForm = () => {
                 setError(err);
                 console.error(`Attempt ${attempt} failed:`, err.message);
 
-                // Handle retries on network issues
                 if (err.code === 'ECONNABORTED' || err.message === 'Network Error') {
                     console.log('Network issue detected. Retrying...');
                 } else if (err.response) {
@@ -51,7 +48,6 @@ export const TicketingForm = () => {
                     console.error('Unknown error:', err.message);
                 }
 
-                // Delay between retries with exponential backoff
                 if (attempt < maxRetries) {
                     const delay = retryDelay * Math.pow(2, attempt);
                     console.log(`Retrying in ${delay}ms...`);
@@ -82,19 +78,18 @@ export const TicketingForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Retrieve data from form fields
-        const { firstName, lastName, email, ticketType } = userData;
+        // Ensure that the ticket type is selected
+        const { firstName, email, user_id} = userData;
 
-        // Make sure all required fields are filled
-        if (firstName && lastName && email && ticketType) {
-            // Navigate to the /ticket page with form data and event data
+        if (firstName && email) {
+            // Send the form data and event data to the /ticket page
             navigate('/ticket', {
                 state: {
-                    eventId: eventId,          // Pass the event ID
-                    eventName: displayEvents[0]?.event_name, // Get event name from the first event in the list
-                    name: `${firstName} ${lastName}`,        // Full name from form
-                    email,                      // Email from form
-                    ticketType                  // Ticket type from form
+                    eventId: eventId,               // Pass the event ID
+                    eventName: displayEvents[0]?.event_name, // Event name
+                    name: firstName,                 // Full name from userData
+                    email,
+                    user_id                          // Email from userData
                 }
             });
         } else {
@@ -113,8 +108,8 @@ export const TicketingForm = () => {
 
     return (
         <div className="body">
-          {/* Event Display Section */}
-          <div>
+            {/* Event Display Section */}
+            <div>
                 {displayEvents.map((event, index) => {
                     const { event_name, event_address, time_in, summary, picture, price, date } = event;
                     const formattedDate = new Date(date).toLocaleDateString();
@@ -147,38 +142,16 @@ export const TicketingForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className="form-section">
                     <div className="form-group">
-                        <label>First Name</label>
+                        <label>Full Name</label>
                         <input
                             type="text"
-                            placeholder="First Name"
+                            placeholder="Full Name"
                             name="firstName"
                             value={userData.firstName}
                             onChange={handleInputChange}
                             required
                         />
                     </div>
-
-                    <div className="form-group">
-                        <label>Last Name</label>
-                        <input
-                            type="text"
-                            placeholder="Last Name"
-                            name="lastName"
-                            value={userData.lastName}
-                            onChange={handleInputChange}
-                            required
-                        />
-                    </div>
-
-                        <div className="form-group">
-                            <div className="check">
-                                <label>Gender :-</label>
-                                <span>   M</span>
-                                <input type="checkbox" />
-                                <span>  F</span>
-                                <input type="checkbox" />
-                            </div>
-                        </div>
 
                     <div className="form-group">
                         <label>Email Address</label>
@@ -192,18 +165,7 @@ export const TicketingForm = () => {
                         />
                     </div>
 
-                    <div className="form-group">
-                        <label>Phone Number</label>
-                        <input
-                            type="text"
-                            placeholder="(+234) 000 000"
-                            name="phone"
-                            value={userData.phone}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-
-                    <div className="form-group">
+                   {/* <div className="form-group">
                         <label>Ticket Type</label>
                         <select
                             name="ticketType"
@@ -216,33 +178,7 @@ export const TicketingForm = () => {
                             <option value="VIP">VIP</option>
                             <option value="VVIP">VVIP</option>
                         </select>
-                    </div>
-
-                    <div className="form-group">
-                        <p> <span>Would you like to be updated about upcoming events?</span></p>
-                        <div className="radio-group">
-                            <label>
-                                Yes
-                                <input
-                                    type="radio"
-                                    name="receiveUpdates"
-                                    value="Yes"
-                                    checked={userData.receiveUpdates === 'Yes'}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                            <label>
-                                No
-                                <input
-                                    type="radio"
-                                    name="receiveUpdates"
-                                    value="No"
-                                    checked={userData.receiveUpdates === 'No'}
-                                    onChange={handleInputChange}
-                                />
-                            </label>
-                        </div>
-                    </div>
+                    </div> */}
 
                     <button type="submit" className="submit-button">Submit</button>
                 </div>

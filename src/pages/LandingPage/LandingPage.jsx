@@ -15,10 +15,12 @@ export const LandingPage = () => {
   const userId = location.state?.user_id || null; // If id is not in location.state, fallback to null
   const userName = location.state?.name || '';  // Get user name if available
   const userEmail = location.state?.email || '';
+  const phoneNo = location.state?.phoneNo || '';
   const [user, setUser] = useState({
     user_id: userId,
     name: userName,
-    email: userEmail
+    email: userEmail,
+    phoneNo: phoneNo
   });
 
   // Fetch events from the API
@@ -83,7 +85,7 @@ export const LandingPage = () => {
     if (user.user_id === null) {
       navigate('/login');
     } else {
-      navigate("/get-ticket", { state: { eventId: eventId, user_id: user.user_id } });
+      navigate("/get-ticket", { state: { eventId: eventId, user_id: user.user_id, name: user.name, email: user.email, phoneNo: user.phoneNo} });
     }
   };
 
