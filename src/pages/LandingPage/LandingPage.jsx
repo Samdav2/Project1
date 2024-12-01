@@ -125,7 +125,8 @@ export const LandingPage = () => {
               </div>
             ) : (
               <>
-                <li><a href="#signUp">Sign Up</a></li>
+                <li><a href='/sign-up'>Sign Up</a></li>
+                <li><a href='/login'>Log in</a></li>
               </>
             )}
 
@@ -139,7 +140,7 @@ export const LandingPage = () => {
       <section className="hero">
         <h2>Welcome to TheOwl_Initiators</h2>
         <p>Your trusted partner in innovation and event management</p>
-        <button className="cta-button">Get Started</button>
+       <a href='/sign-up'> <button className="cta-button">Get Started</button> </a>
       </section>
 
       {/* Upcoming Events Section */}
@@ -171,6 +172,58 @@ export const LandingPage = () => {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about" className="about-us">
+        <h3>About Us</h3>
+        <p> TheOwl_Initiators is an Online Ticketing And Event Managing Platform leading In event management specializing in corporate events, weddings, concerts, and more. We pride ourselves on delivering exceptional and personalized services that cater to all types of events. Our experienced team ensures every detail is executed perfectly to create memorable experiences for our clients.</p>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="services">
+        <h3>Our Services</h3>
+        <div className="service-cards">
+          <div className="service-card">
+            <h4>Corporate Events</h4>
+            <p>Create Free And Seamless planning for conferences, seminars, and team-building activities.</p>
+          </div>
+          <div className="service-card">
+            <h4>Birthday Parties</h4>
+            <p>Exciting themes and unique celebrations for all ages.</p>
+          </div>
+          <div className="service-card free-service">
+            <h4>Free Event Service</h4>
+            <p>Enjoy a complimentary event service for eligible community events.</p>
+          </div>
+          <div className="service-card">
+            <h4>Concerts and Shows</h4>
+            <p>Expert management for concerts, live shows, and theatrical events.</p>
+          </div>
+        </div>
+      </section>
+
+       {/* Contact Us Section */}
+      <section id="contact" className="contact-us">
+        <h3>Contact Us</h3>
+        <p>If you have any questions or would like to learn more about our services, feel free to reach out. We'd love to hear from you!</p>
+        <div className="contact-us form">
+          <form>
+            <div>
+              <label htmlFor="name">Name</label>
+              <input type="text" id="name" placeholder="Your Name" required />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input type="email" id="email" placeholder="Your Email" required />
+            </div>
+            <div>
+              <label htmlFor="message">Message</label>
+              <textarea id="message" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" className="cta-button">Send Message</button>
+          </form>
         </div>
       </section>
 

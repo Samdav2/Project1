@@ -38,7 +38,7 @@
 
 /* Specific Card Color Styles */
 .card.blue {
-  background-color: blue;
+  background-color: black;
   color: white;
   margin-bottom: 10px;
   box-sizing: border-box;
@@ -51,7 +51,7 @@
 }
 
 .card.red {
-  background-color: red;
+  background-color: black;
   color: white;
   box-sizing: border-box;
   margin-bottom: 10px;
@@ -59,7 +59,7 @@
 
 
 .card.orange {
-  background-color: orange;
+  background-color: black;
   color: white;
   margin-bottom: 10px;
   box-sizing: border-box;
