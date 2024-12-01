@@ -29,7 +29,7 @@ import './App.css'
 
 
 function App() {
-  r
+  return(
       <div className="page">
         <Routes>
          {/* <Route path="/" element={<MainDashboard />} /> */}
