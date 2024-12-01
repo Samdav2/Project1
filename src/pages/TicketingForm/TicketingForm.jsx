@@ -89,7 +89,8 @@ export const TicketingForm = () => {
                     eventName: displayEvents[0]?.event_name, // Event name
                     name: firstName,                 // Full name from userData
                     email,
-                    user_id                          // Email from userData
+                    user_id,
+                    price: location.state.price                     // Email from userData
                 }
             });
         } else {

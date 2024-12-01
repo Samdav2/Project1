@@ -14,11 +14,12 @@ const TicketGenerator = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [phoneNo, setPhoneNo] = useState('');
-  const [amount, setAmount] = useState(50000); // Example amount (50000 kobo = 500 NGN)
+  const [amount, setAmount] = useState(0); // Default to 0 instead of empty string
   const [publicKey] = useState('pk_live_9810a53b63cfa27714d35df2aa9049591825d065'); // Your Paystack public key
 
   const location = useLocation();
-  const { name: locationName, email: locationEmail, user_id, eventName, phoneNo: locationPhoneNo, eventId } = location.state || {};
+  const { name: locationName, email: locationEmail, user_id, eventName, phoneNo: locationPhoneNo, eventId, price } = location.state || {};
+  console.log(location.state.price);
 
   const defaultQrCodeUrl = 'https://yourserver.com/default-qr-code.png';
 
@@ -31,7 +32,19 @@ const TicketGenerator = () => {
     setEmail(locationEmail);
     setName(locationName);
     setPhoneNo(locationPhoneNo);
-  }, [locationEmail, locationName, locationPhoneNo]);
+
+    // Append "00" to the price to convert Naira to Kobo
+    if (price) {
+      // Convert price to integer and multiply by 100 to convert to Kobo
+      const convertedAmount = Math.round(parseFloat(price) * 100); // Ensure it's a valid number and converted to integer
+      if (isNaN(convertedAmount)) {
+        setError('Invalid price format');
+        return;
+      }
+      setAmount(convertedAmount); // Ensure it's set as a number
+    }
+  }, [locationEmail, locationName, locationPhoneNo, price]);
+
 
   // Step 1: Initialize the Payment Transaction on the Backend
   const initiatePayment = async () => {
@@ -40,9 +53,9 @@ const TicketGenerator = () => {
       // Call your backend to initialize the payment and get the access_code
       const response = await axios.post('https://owipay-1.onrender.com/paystack/transaction/initialize', {
         email: email,
-        amount: amount, // Amount in kobo (50000 kobo = 500 NGN)
-      });
+        amount: amount, // Use updated amount in Kobo
 
+      });
       const { access_code } = response.data;
       setAccessCode(access_code);
     } catch (error) {
@@ -138,7 +151,7 @@ const TicketGenerator = () => {
 
   const componentProps = {
     email,
-    amount,
+    amount, // Ensure this is passed as a number (in Kobo)
     metadata: {
       name,
       phone: phoneNo,
