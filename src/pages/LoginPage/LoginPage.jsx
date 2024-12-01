@@ -56,7 +56,8 @@ const LoginPage = () => {
             state: {
               name: profile.name,
               email: profile.email,
-              user_id: profile.user_id
+              user_id: profile.user_id,
+              phoneNo: response.data.profile.phoneno
             }
           });
         }
