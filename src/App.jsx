@@ -41,7 +41,6 @@ function App() {
 }/>} />
           <Route path="/orders" element={<OrdersOverview />} /> */}
           <Route path="/" element={ <SignUpPage />} />
-          <Route path="/login" element={ <LoginPage />} />
           <Route path="/email" element={<EmailVerify/>} />
           <Route path="/create-profile" element={<ProfileCreation />} />
           <Route path="/creator-dashboard" element={<MainDashboard />} />
