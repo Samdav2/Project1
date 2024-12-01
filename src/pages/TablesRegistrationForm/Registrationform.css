@@ -33,6 +33,7 @@
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 5px;
+    color: black ;
 }
 
 .form-input,
@@ -143,4 +144,3 @@
         padding: 15px 30px;
     }
 }
-

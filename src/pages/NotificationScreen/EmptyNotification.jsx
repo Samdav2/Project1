@@ -9,7 +9,6 @@ export const EmptyNotification = () => {
                     <div className="notification-title-bar">Notification</div>
                 </div>
                 <div className="notification-icons">
-                    
                 </div>
             </div>
             <div className="artwork">
