@@ -224,7 +224,7 @@ export const LandingPage = () => {
             </div>
             <button type="submit" className="cta-button">Send Message</button>
           </form>
-        </div>
+3        </div>
       </section>
 
       {/* Footer */}
