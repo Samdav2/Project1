@@ -15,11 +15,8 @@ import './Registrationform.css'; // Import the corresponding CSS file
  export const RegistrationForm = () => {
     return (
         <div className="registration-form">
-            <div className="status-bar">
-                <img src="https://placeholder.pics/svg/650x46" alt="Status Bar" />
-            </div>
+            
             <div className="form-header">
-                <img src="https://placeholder.pics/svg/36x23" alt="Back Arrow" />
                 <span className="form-title">Form Registration / Tables</span>
             </div>
             <div className="form-body">

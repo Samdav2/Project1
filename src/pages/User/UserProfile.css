@@ -1,0 +1,305 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.dashboard {
+  display: flex;
+  min-height: 80vh;
+  max-width: 100vw;
+}
+
+/* Sidebar / Menu Bar */
+.menubar {
+  width: 250px;
+  background-color: #111;
+  padding: 20px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-info {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-info h3 {
+  color: gold;
+  font-size: 1.2rem;
+}
+
+.profile-info p {
+  color: #bbb;
+  font-size: 1rem;
+}
+
+.menubar h2 {
+  color: gold;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.menubar ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.menubar ul li {
+  margin: 15px 0;
+}
+
+.menubar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.menubar ul li a:hover {
+  color: gold;
+}
+
+.logout-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Main Content */
+.content-board {
+  width: 80%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  gap: 30px;
+}
+
+.content-board h1 {
+  color: gold;
+  font-size: 2rem;
+}
+
+.main-header{
+  text-decoration: underline;
+}
+
+/* Grid for Upcoming and Past Events */
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.events h2 {
+  display: flex;
+  align-self: flex-start;
+  color: gold;
+  font-size: 1.5rem;
+  width: 100%;
+}
+
+.events ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.events li {
+  margin-bottom: 20px;
+  background-color: #333;
+  padding: 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.event-image {
+  width: 100px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.events h3 {
+  color: white;
+  font-size: 18px;
+  margin: 0;
+}
+
+.events p {
+  margin: 5px 0;
+  text-wrap: nowrap;
+  color: #bbb;
+}
+
+.upcoming-events {
+  background-color: #444;
+}
+
+.past-events {
+  background-color: #555;
+}
+
+/* Footer */
+.footer {
+  background-color: #111;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  margin-top: auto;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.footer p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.footer ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.footer ul li a {
+  color: gold;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.footer ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .dashboard {
+      flex-direction: column;
+  }
+
+  .content-board {
+    width: 100%;
+  }
+
+  .menubar {
+      width: 100%;
+      height: auto;
+  }
+
+  .content {
+      margin-top: 20px;
+  }
+
+  .events {
+      grid-template-columns: 1fr; /* Stack events in a single column for medium screens */
+  }
+
+  .events p {
+    text-wrap: wrap;
+  }
+
+  .footer .social-links a {
+    font-size: 1rem;
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .menubar {
+      width: 100%;
+      padding: 15px;
+  }
+
+  .content {
+      margin-left: 0;
+  }
+
+  .events {
+      grid-template-columns: 1fr; /* Stack events in a single column for smaller screens */
+  }
+
+  .events li {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .event-image {
+    width: 80%;
+    height: 30%;
+  }
+}
+@media (max-width: 480px) {
+  /* For very small screens like phones */
+  .dashboard {
+    padding: 5px;
+  }
+
+  .menubar {
+    padding: 10px;
+    align-items: center;
+  }
+
+  .profile-info h3 {
+    font-size: 1rem;
+  }
+
+  .profile-info p {
+    font-size: 0.8rem;
+  }
+
+  .content h1 {
+    font-size: 1.4rem;
+  }
+
+  .events h2 {
+    font-size: 1.3rem;
+  }
+
+  .events li {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+
+  .event-image {
+    width: 100%;
+    height: 20%;
+    object-fit: cover;
+    margin: 10px 0;
+  }
+
+  .footer ul li {
+    margin: 0 10px;
+  }
+
+  .footer ul li a {
+    font-size: 12px;
+  }
+
+  .logout-btn {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+}
