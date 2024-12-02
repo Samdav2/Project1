@@ -53,7 +53,7 @@ const LoginPage = () => {
           });
         } else {
           // Navigate to /home if brandName is null or doesn't exist
-          navigate("/home", {
+          navigate("/", {
             state: {
               name: profile.name,
               email: profile.email,
