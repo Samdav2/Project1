@@ -1,0 +1,160 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Black background for a sleek look */
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+  }
+
+  h2, h3, h4 {
+    color: #FFD700; /* Gold text for headings */
+  }
+
+  /* Main container */
+  .ticket-generator-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #111; /* Dark background for the form container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Form container */
+  .ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ticket-form input,
+  .ticket-form button {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #555;
+    background-color: #222; /* Dark background for inputs */
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .ticket-form input:focus,
+  .ticket-form button:hover {
+    border-color: #FFD700;
+    background-color: #333;
+  }
+
+  .ticket-form input::placeholder {
+    color: #bbb;
+  }
+
+  /* Button Styling */
+  button {
+    background-color: #FFD700;
+    color: #000;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+  }
+
+  button:disabled {
+    background-color: #666;
+    cursor: not-allowed;
+  }
+
+  /* Ticket Token Display */
+  .ticket-token-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #333; /* Dark background for token */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .ticket-token-container p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700;
+  }
+
+  /* QR Code Styling */
+  .qr-code-container {
+    margin-top: 20px;
+  }
+
+  .qr-code-container img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Message and Error */
+  .message, .error {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  .message {
+    color: #28a745; /* Green for success messages */
+  }
+
+  .error {
+    color: #dc3545; /* Red for error messages */
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .page{
+      display: flex;
+      align-items: center;
+    }
+    .ticket-generator-container {
+      padding: 15px;
+      width: 90%;
+    }
+
+    .ticket-form input,
+    .ticket-form button {
+      font-size: 14px;
+      padding: 12px;
+    }
+
+    .ticket-token-container p {
+      font-size: 20px;
+    }
+
+    .qr-code-container img {
+      max-width: 150px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      font-size: 14px;
+    }
+
+    .ticket-form input,
+    .ticket-form button {
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    .ticket-token-container p {
+      font-size: 18px;
+    }
+
+    .qr-code-container img {
+      max-width: 120px;
+    }
+  }

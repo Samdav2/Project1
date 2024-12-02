@@ -1,12 +1,8 @@
 import React from 'react';
 import './ResetPassword.css';
 import MessageIcon from '../assets/iconly-light-message.svg';
-import arrowIcon from '../assets/arrow-left.svg';
-import cellularConnection from '../assets/cellular-connection.svg';
-import wifi from '../assets/wifi.svg';
-import battery from '../assets/battery.svg';
 
-export const ResetPassword = () => {
+const ResetPassword = () => {
   // Handle form submit logic
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,35 +11,25 @@ export const ResetPassword = () => {
 
   return (
     <div className="reset-password">
-      <header className="header">
-        <img src={arrowIcon} alt="Back" className="back-icon" />
-        <div className="status-bar">
-          <span className="time">9:41</span>
-          <img src={cellularConnection} alt="Cellular" className="status-icon" />
-          <img src={wifi} alt="WiFi" className="status-icon" />
-          <img src={battery} alt="Battery" className="status-icon" />
-        </div>
-      </header>
        <div className="wrapper">
-      <form action=""  onSubmit={handleSubmit}></form>
-      <div className="content">
-        <h1>Reset Password</h1>
-        <p className="description">
-          Please enter your email address to request a password reset
-        </p>
+         <form action=""  onSubmit={handleSubmit}></form>
+         <div className="content">
+           <h1>Reset Password</h1>
+           <p className="description">
+            Please enter your email address to request a password reset
+            </p>
 
-        <div className="input-container">
-          <img src={MessageIcon} alt="Email Icon" />
-          <input type="email" placeholder="Enter your email" />
-        </div>
+         <div className="input-container">
+           <img src={MessageIcon} alt="Email Icon" />
+           <input type="email" placeholder="abc@email.com" />
+         </div>
 
-        <button type="submit" className="send-button">
-          SEND
-          <span className="send-icon"></span>
-        </button>
-        </div>
-      </div>
-      
+          <button className="send-button">
+            SEND
+           <span className="send-icon">→</span>
+          </button>
+       </div>
+     </div>
     </div>
   );
 };

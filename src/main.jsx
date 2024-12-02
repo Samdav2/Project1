@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './ReportWebVitals'; // Adjust the path as necessary
+import Sidebar from './components/Ui/Sidebar';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App />
+    <div className='appdiv'>
+      <App />
+    </div>
   </BrowserRouter>
 );
 
