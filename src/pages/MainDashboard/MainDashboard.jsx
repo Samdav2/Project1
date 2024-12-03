@@ -35,27 +35,30 @@ function MainDashboard(){
 
   return (
     <div className="upperdiv">
-    <div className="Main-dashboard">
-      <div className="divl">
-      <div className="top">
-        <img src={sales} alt="Sales Icon" />
-        <div>
-          <p>{name || "Failed Fecthing Name"}</p>
-          <p>{email || "No Email Provided"}</p>
-          <p></p>
-        </div>
-        <Link to="/update-creator-profile" state={{name, email, user_id, brandName, phoneNo}}>
-        <button>Settings</button>
-        </Link>
-      </div>
+      <div className="Main-dashboard">
+        <h1>Creator Dashboard</h1>
+        <div className="divl">
 
-      <div className="summary-container">
-        <div className="divtest">
-          <div className="card blue">
-            <div>
-              <div className="cardTitle">Balance (NGN): <span className="orderValue">0</span></div>
-              <p style={{padding:'10px', backgroundColor: 'white', borderRadius: '10px', color: 'black', fontWeight: '600', cursor: 'pointer', fontSize: '15px', fontFamily: 'sans-serif'}}>Last Activity</p>
-          </div>
+          <div className="top">
+             <div>
+               <img src="assets/user.png" alt="user-icon"  />
+                <p>{name || "Failed Fecthing Name"}</p>
+                <p>{email || "No Email Provided"}</p>
+               <p></p>
+             </div>
+           </div>
+
+             <Link to="/update-creator-profile" state={{name, email, user_id, brandName, phoneNo}}>
+              <button>Settings</button>
+             </Link>
+
+              <div className="summary-container">
+                <div className="divtest">
+             <div className="card blue">
+              <div>
+               <div className="cardTitle">Balance (NGN): <span className="orderValue">0</span></div>
+               <p style={{padding:'10px', backgroundColor: 'White', borderRadius: '10px', color: 'black', fontWeight: '600', cursor: 'pointer', fontSize: '15px', fontFamily: 'sans-serif'}}>Last Activity</p>
+             </div>
             <span className="cartIcon">
               <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g filter="url(#filter0_d_341_1920)">
