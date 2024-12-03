@@ -174,7 +174,7 @@ function MainDashboard(){
 
 {/* Quick Action Section */}
 
-      <div className="upperquickaction" >
+    <div className="upperquickaction" >
         <h1> Quick Actions </h1>
       <div className="summary-container">
         <div className="divtest">
@@ -198,39 +198,39 @@ function MainDashboard(){
 
         <div className="divtest">
 
-        <div className="card red">
-          <div>
-            <p>Download Data</p>
+           <div className="card red">
+               <div>
+                  <p>Download Data</p>
+                </div>
+                <button className="quickactionbutton"> Download </button>
+            </div>
+
+            <div className="card orange">
+               <p>Withdraw</p>
+                <button className="quickactionbutton"> Withdraw </button>
+           </div>
           </div>
-          <button className="quickactionbutton"> Download </button>
+            </div>
+             </div>
 
-        </div>
+         <div className="graph-container">
+           <div className="graph-header">
+             <button className="graph-button">Button</button>
+             <p><span className="graphtext"> See the graphical representation below </span></p>
+            </div>
+              <Line data={data} options={options} />
+         </div>
 
-        <div className="card orange">
-          <p>Withdraw</p>
-          <button className="quickactionbutton"> Withdraw </button>
-        </div>
-      </div>
-      </div>
-    </div>
-
-      <div className="graph-container">
-        <div className="graph-header">
-          <button className="graph-button">Button</button>
-          <p><span className="graphtext"> See the graphical representation below </span></p>
-        </div>
-        <Line data={data} options={options} />
-      </div>
-      <footer className="footer">
-        <div className="social-links">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a>
-        </div>
-        <p>&copy; 2024 TheOwl_Initiators. All Rights Reserved.</p>
-      </footer>
-      </div>
+         <footer className="footer">
+           <div className="social-links">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a>
+           </div>
+              <p>&copy; 2024 TheOwl_Initiators. All Rights Reserved.</p>
+          </footer>
+       </div>
     </div>
 
     </div>
