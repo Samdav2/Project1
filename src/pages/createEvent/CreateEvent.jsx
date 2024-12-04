@@ -3,30 +3,30 @@ import axios from "axios";
 import "./CreateEvent.css";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
 export const CreateEvent = () => {
   const [eventDetails, setEventDetails] = useState({
     brand_name: "",
-    eventName:"",
+    eventName: "",
     date: "",
     timeIn: "",
     timeOut: "",
     eventAddress: "",
     summary: "",
     picture: "",
-    price: "",
+    vipPrice: "",
+    vvipPrice: "",
+    generalPrice: "",
     category: "",
   });
 
   const navigate = useNavigate();
-
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEventDetails((prevEventDetails) => ({
-      ...eventDetails,
+      ...prevEventDetails,
       [name]: value,
     }));
   };
@@ -36,36 +36,34 @@ export const CreateEvent = () => {
     if (file) {
       setEventDetails({
         ...eventDetails,
-        eventImage: URL.createObjectURL(file), // Create an object URL for the image
+        picture: URL.createObjectURL(file), // Create an object URL for the image
       });
     }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     console.log("Event Created: ", eventDetails);
     // Handle form submission, like sending the data to an API
 
+    try {
+      const response = await axios.post("https://tick-dzls.onrender.com/event/event", eventDetails);
+      console.log("Event Response", response.data);
 
-  try {
-    const response = await axios.post("https://tick-dzls.onrender.com/event/event", eventDetails);
-    console.log('Event Response',response.data);
-
-    if(response.data) {
-      setMessage("Event Created Successfully");
-      navigate('/success');
-    } else {
-      setMessage(response.data.message || "Unable To Create Event")
+      if (response.data) {
+        setMessage("Event Created Successfully");
+        navigate("/success");
+      } else {
+        setMessage(response.data.message || "Unable To Create Event");
+      }
+    } catch (error) {
+      console.error("Unable to create Event", error);
+      setMessage("Unable To Create Event");
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch (error) {
-    console.error('Unable to create Event', error)
-    setMessage('Unable To Create Event')
-  } finally {
-    setIsSubmitting(false);
-  }
-
-};
+  };
 
   return (
     <div className="create-event-container">
@@ -166,11 +164,37 @@ export const CreateEvent = () => {
 
         {/* Pricing Section */}
         <label>
-          Ticket Price
+          VIP Ticket Price
           <input
             type="number"
-            name="price"
-            value={eventDetails.price}
+            name="vipPrice"
+            value={eventDetails.vipPrice}
+            onChange={handleChange}
+            required
+            min="0"
+            step="0.01"
+          />
+        </label>
+
+        <label>
+          VVIP Ticket Price
+          <input
+            type="number"
+            name="vvipPrice"
+            value={eventDetails.vvipPrice}
+            onChange={handleChange}
+            required
+            min="0"
+            step="0.01"
+          />
+        </label>
+
+        <label>
+          Regular Ticket Price
+          <input
+            type="number"
+            name="generalPrice"
+            value={eventDetails.generalPrice}
             onChange={handleChange}
             required
             min="0"
@@ -181,11 +205,7 @@ export const CreateEvent = () => {
         {/* Image Upload Section */}
         <label>
           Upload Event Image
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+          <input type="file" accept="image/*" onChange={handleImageChange} />
         </label>
 
         {eventDetails.picture && (
@@ -194,10 +214,10 @@ export const CreateEvent = () => {
           </div>
         )}
 
-            <button type="submit" disabled={isSubmitting} className="button">
-                    {isSubmitting ? "Creating Event..." : "Create Event"}
-                </button>
-            </form>
+        <button type="submit" disabled={isSubmitting} className="button">
+          {isSubmitting ? "Creating Event..." : "Create Event"}
+        </button>
+      </form>
     </div>
   );
 };

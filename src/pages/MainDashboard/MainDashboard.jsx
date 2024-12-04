@@ -37,6 +37,7 @@ function MainDashboard(){
     <div className="upperdiv">
     <div className="Main-dashboard">
       <div className="divl">
+        <h1 style={{color: "black"}}> Creator Dashboard</h1>
       <div className="top">
         <img src={sales} alt="Sales Icon" />
         <div>
