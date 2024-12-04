@@ -135,13 +135,15 @@ export const TicketingForm = () => {
                 })}
             </div>
 
-            <h1 className="form-title">Event Registration Form</h1>
-            <h2 className="section-title">Attendee Information</h2>
-            <p className="instruction">Please fill in the correct information</p>
-
             {/* Registration Form */}
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='ticketForm'>
+
+
                 <div className="form-section">
+
+                    <h1 className="form-title">Event Registration Form</h1>
+                    <h2 className="section-title">Attendee Information</h2>
+                    <p className="instruction">Please fill in the correct information</p>
                     <div className="form-group">
                         <label>Full Name</label>
                         <input

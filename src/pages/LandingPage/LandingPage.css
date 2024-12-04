@@ -20,21 +20,41 @@ body {
   background-color: #111;
   color: #fff;
   padding: 20px;
+  width: 100vw;
+  margin-top: 0;
+}
+
+.navigation{
+  width: 60%;
+}
+
+.openNav, .closeNav{
+  display: none;
+  width: 30px;
+  height: 30px;
+}
+
+.logo{
+  justify-content: flex-start;
+  width: 20%;
+  align-items: center;
 }
 
 .header .logo h1 {
   font-size: 24px;
   font-weight: bold;
   color: gold;
+  margin: 0;
 }
 
 .header .navigation ul {
   list-style: none;
   display: flex;
+  gap: 10px;
 }
 
 .header .navigation li {
-  margin-right: 20px;
+  margin-right: 0;
 }
 
 .header .navigation a {
@@ -128,6 +148,7 @@ body {
   background-color: #f9f9f9;
   text-align: center;
   color: gold;
+  width: 100vw;
 }
 
 .events h3 {
@@ -137,6 +158,7 @@ body {
 }
 
 .event-cards {
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
@@ -285,6 +307,45 @@ body {
 
 /* Media Queries */
 @media (max-width: 768px) {
+  
+  .largeNav{
+    display: none;
+  }
+
+  .openNav{
+    display: flex;
+    cursor: pointer;
+  }
+
+  .closeNav{
+    display: none;
+    cursor: pointer;
+  }
+
+  .header{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 0;
+  }
+
+  .logo{
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-start;
+    width: 100vw;
+  }
+
+  .header .logo h1 {
+    width: 20%;
+    align-self: flex-start;
+  }
+
+  .navigation{
+    display: none;
+    transition: 0.3s ease-in;
+  }
+
   .header .navigation ul {
     flex-direction: column;
     align-items: center;
@@ -307,13 +368,24 @@ body {
 
 /* Responsive Styles */
 @media (max-width: 1024px) {
+
+  .header .logo h1 {
+    font-size: 15px;
+  }
+
   .navigation ul {
     display: block;
     text-align: center;
   }
 
   .navigation li {
-    margin: 10px 0;
+    margin: 0;
+  }
+
+  .header .navigation a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
   }
 
   .service-cards {
@@ -344,6 +416,7 @@ body {
 }
 
 @media (max-width: 480px) {
+  
   .hero h2 {
     font-size: 1.5rem;
   }
