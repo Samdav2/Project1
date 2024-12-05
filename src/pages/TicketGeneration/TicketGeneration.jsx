@@ -26,6 +26,7 @@ const TicketGenerator = () => {
   console.log(location.state)
 
   const PAYSTACK_SECRET_KEY = 'sk_live_9c93d96ca28e52ab128970dfd783766a58d42461'; // Replace with your secret key
+  const PAYSTACK_PUBLIC_KEY_DEMO ='pk_test_30669aac0b13ceb49859a7d1163940ee50f58b43'
 
   // Bank code mapping (same as in your code)
   const bankCodeMapping = {
@@ -270,7 +271,6 @@ const generateTicketToken = () => {
     }
   };
 
-  console.log(generateQRCode);
 
   // Generate PDF
   const createPDF = () => {
@@ -301,6 +301,9 @@ const generateTicketToken = () => {
             }
           : undefined,
       });
+
+
+
       const { access_code } = response.data;
       console.log('Access code:', access_code);
     } catch (error) {
@@ -354,17 +357,22 @@ const generateTicketToken = () => {
   }
 };
 
-
+console.log('Split Account Id', splitAccountId);
+console.log('account id', subaccountCode);
 
   const componentProps = {
-    email,
-    amount,
-    metadata: { name, phone: phoneNo },
-    publicKey,
-    text: 'Pay Now',
-    onSuccess: ({ reference }) => handleSuccessfulPayment(reference),
-    onClose: () => setError('Payment was cancelled, please try again.'),
-  };
+  email,
+  amount,
+  metadata: { name, phone: phoneNo },
+  publicKey,
+  text: 'Pay Now',
+  onSuccess: ({ reference }) => handleSuccessfulPayment(reference),
+  onClose: () => setError('Payment was cancelled, please try again.'),
+  subaccount: splitAccountId,
+};
+
+console.log(subaccountCode);
+
 
   return (
   <div className="ticket-generator-container">
