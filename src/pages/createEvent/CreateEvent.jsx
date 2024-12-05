@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./CreateEvent.css";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const CreateEvent = () => {
   const [eventDetails, setEventDetails] = useState({
@@ -13,10 +13,13 @@ export const CreateEvent = () => {
     eventAddress: "",
     summary: "",
     picture: "",
-    vipPrice: "",
-    vvipPrice: "",
-    generalPrice: "",
+    vip: "",
+    vvip: "",
+    price: "",
     category: "",
+    accoun_name: "",
+    account_number: "",
+    bank: "",
   });
 
   const navigate = useNavigate();
@@ -45,7 +48,6 @@ export const CreateEvent = () => {
     event.preventDefault();
     setIsSubmitting(true);
     console.log("Event Created: ", eventDetails);
-    // Handle form submission, like sending the data to an API
 
     try {
       const response = await axios.post("https://tick-dzls.onrender.com/event/event", eventDetails);
@@ -167,8 +169,8 @@ export const CreateEvent = () => {
           VIP Ticket Price
           <input
             type="number"
-            name="vipPrice"
-            value={eventDetails.vipPrice}
+            name="vip"
+            value={eventDetails.vip}
             onChange={handleChange}
             required
             min="0"
@@ -180,8 +182,8 @@ export const CreateEvent = () => {
           VVIP Ticket Price
           <input
             type="number"
-            name="vvipPrice"
-            value={eventDetails.vvipPrice}
+            name="vvip"
+            value={eventDetails.vvip}
             onChange={handleChange}
             required
             min="0"
@@ -193,8 +195,8 @@ export const CreateEvent = () => {
           Regular Ticket Price
           <input
             type="number"
-            name="generalPrice"
-            value={eventDetails.generalPrice}
+            name="price"
+            value={eventDetails.price}
             onChange={handleChange}
             required
             min="0"
@@ -202,7 +204,40 @@ export const CreateEvent = () => {
           />
         </label>
 
-        {/* Image Upload Section */}
+        {/* Bank Details Section */}
+        <label>
+          Account Name
+          <input
+            type="text"
+            name="account_name"
+            value={eventDetails.accountName}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
+        <label>
+          Account Number
+          <input
+            type="text"
+            name="account_number"
+            value={eventDetails.accountNumber}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
+        <label>
+          Bank
+          <input
+            type="text"
+            name="bank"
+            value={eventDetails.bank}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
         <label>
           Upload Event Image
           <input type="file" accept="image/*" onChange={handleImageChange} />
@@ -218,6 +253,7 @@ export const CreateEvent = () => {
           {isSubmitting ? "Creating Event..." : "Create Event"}
         </button>
       </form>
+      {message && <p>{message}</p>}
     </div>
   );
 };

@@ -14,26 +14,12 @@ export const Mapview = () => {
       {/* Search Bar */}
       <div className="search-bar">
         <div className="search-input">
-          <img src={searchIcon} alt="Search Icon" />
+          
           <span>Find for food or restaurant...</span>
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="filters">
-        <div className="filter-tab">
-          <img src="./assets/2476154.svg" alt="Sports Icon" />
-          <span>Sports</span>
-        </div>
-        <div className="filter-tab">
-          <img src="./assets/1381174.svg" alt="Music Icon" />
-          <span>Music</span>
-        </div>
-        <div className="filter-tab">
-          <img src="./assets/685352.svg" alt="Food Icon" />
-          <span>Food</span>
-        </div>
-      </div>
 
       {/* Map with Placeholders */}
       <div className="map">

@@ -58,6 +58,7 @@ function App() {
          <Route path='/verify-ticket' element={<VerifyTicket/>} />
          <Route path='/reset-pass' element={<ResetPassword/>} />
          <Route path='/calender' element={<Calendar/>} />
+         <Route path='/map' element={<Mapview />} />
 
       </Routes>
       </div>
