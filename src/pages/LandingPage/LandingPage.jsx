@@ -187,7 +187,7 @@ export const LandingPage = () => {
         <div className="service-cards">
           <div className="service-card">
             <h4>Corporate Events</h4>
-            <p>Create Free And Seamless planning for conferences, seminars, and team-building activities.</p>
+            <p>Seamless planning for conferences, seminars, and team-building activities.</p>
           </div>
           <div className="service-card">
             <h4>Birthday Parties</h4>
@@ -200,6 +200,10 @@ export const LandingPage = () => {
           <div className="service-card">
             <h4>Concerts and Shows</h4>
             <p>Expert management for concerts, live shows, and theatrical events.</p>
+          </div>
+          <div className="service-card">
+            <h4>Event Staffing Services For Seamless Experience</h4>
+            <p> Simplify your event planning with our reliable and skilled staffing solutions.</p>
           </div>
         </div>
       </section>
