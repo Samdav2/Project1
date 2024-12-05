@@ -17,7 +17,7 @@ export const CreateEvent = () => {
     vvip: "",
     price: "",
     category: "",
-    accoun_name: "",
+    account_name: "",
     account_number: "",
     bank: "",
   });
