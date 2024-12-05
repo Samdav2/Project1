@@ -14,16 +14,17 @@ export const TicketingForm = () => {
     // Extract event and user data from location.state
     const eventId = location.state?.eventId || null;
     const [userData, setUserData] = useState({
-        firstName: location.state.name,
-        email: location.state.email,
-        user_id: location.state.user_id,
-       //ticketType: '',  // Ticket type will be selected in the form
+        firstName: location.state.name || "",
+        email: location.state.email || "",
+        user_id: location.state.user_id || "",
+        ticketType: "", // Ticket type to be selected by the user
     });
+
+    const [selectedTicket, setSelectedTicket] = useState({ type: "", price: "" });
 
     // Fetch events from the API with retry mechanism
     const fetchData = async (maxRetries = 5, retryDelay = 2000) => {
         let attempt = 0;
-        const axiosConfig = { timeout: 5000 };
 
         while (attempt < maxRetries) {
             try {
@@ -37,16 +38,6 @@ export const TicketingForm = () => {
                 attempt += 1;
                 setError(err);
                 console.error(`Attempt ${attempt} failed:`, err.message);
-
-                if (err.code === 'ECONNABORTED' || err.message === 'Network Error') {
-                    console.log('Network issue detected. Retrying...');
-                } else if (err.response) {
-                    console.error('Server error or bad response:', err.response.status);
-                    setLoading(false);
-                    return;
-                } else {
-                    console.error('Unknown error:', err.message);
-                }
 
                 if (attempt < maxRetries) {
                     const delay = retryDelay * Math.pow(2, attempt);
@@ -62,7 +53,7 @@ export const TicketingForm = () => {
 
     useEffect(() => {
         fetchData(); // Fetch data when component mounts
-    }, []); // Empty dependency array ensures it runs once
+    }, []);
 
     if (loading) {
         return <div>Loading...</div>;
@@ -78,19 +69,21 @@ export const TicketingForm = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Ensure that the ticket type is selected
-        const { firstName, email, user_id} = userData;
+        const { firstName, email, user_id } = userData;
 
-        if (firstName && email) {
-            // Send the form data and event data to the /ticket page
+        if (firstName && email && selectedTicket.type) {
             navigate('/ticket', {
                 state: {
-                    eventId: eventId,               // Pass the event ID
-                    eventName: displayEvents[0]?.event_name, // Event name
-                    name: firstName,                 // Full name from userData
+                    eventId,
+                    eventName: displayEvents[0]?.event_name,
+                    accountName: displayEvents[0]?.account_name,
+                    accountNumber: displayEvents[0]?.account_number,
+                    bank: displayEvents[0]?.bank,
+                    name: firstName,
                     email,
                     user_id,
-                    price: location.state.price                     // Email from userData
+                    ticketType: selectedTicket.type,
+                    price: selectedTicket.price,
                 }
             });
         } else {
@@ -107,12 +100,28 @@ export const TicketingForm = () => {
         }));
     };
 
+    // Handle ticket selection
+    const handleTicketChange = (e) => {
+        const ticketType = e.target.value;
+        let ticketPrice = "";
+
+        if (ticketType === "Regular") {
+            ticketPrice = displayEvents[0]?.price;
+        } else if (ticketType === "VIP") {
+            ticketPrice = displayEvents[0]?.vip_price;
+        } else if (ticketType === "VVIP") {
+            ticketPrice = displayEvents[0]?.vvip_price;
+        }
+
+        setSelectedTicket({ type: ticketType, price: ticketPrice });
+    };
+
     return (
         <div className="body">
             {/* Event Display Section */}
             <div>
                 {displayEvents.map((event, index) => {
-                    const { event_name, event_address, time_in, summary, picture, price, date } = event;
+                    const { event_name, event_address, time_in, summary, picture, date, price, vip_price, vvip_price } = event;
                     const formattedDate = new Date(date).toLocaleDateString();
                     const formattedTime = new Date(`1970-01-01T${time_in}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                     return (
@@ -123,7 +132,9 @@ export const TicketingForm = () => {
                                     <h4 className="event-title">{event_name}</h4>
                                     <p className="event-address">{event_address}</p>
                                     <p className="event-summary">{summary}</p>
-                                    <p className="event-price">Price: ${parseFloat(price).toFixed(2)}</p>
+                                    <p>Regular Price: ${parseFloat(price).toFixed(2)}</p>
+                                    <p>VIP Price: ${parseFloat(vip_price).toFixed(2)}</p>
+                                    <p>VVIP Price: ${parseFloat(vvip_price).toFixed(2)}</p>
                                     <p className="event-date-time">
                                         <span className="event-date">{formattedDate}</span> |
                                         <span className="event-time">{formattedTime}</span>
@@ -166,12 +177,12 @@ export const TicketingForm = () => {
                         />
                     </div>
 
-                   {/* <div className="form-group">
+                    <div className="form-group">
                         <label>Ticket Type</label>
                         <select
                             name="ticketType"
-                            value={userData.ticketType}
-                            onChange={handleInputChange}
+                            value={selectedTicket.type}
+                            onChange={handleTicketChange}
                             required
                         >
                             <option value="">Select Type</option>
@@ -179,7 +190,7 @@ export const TicketingForm = () => {
                             <option value="VIP">VIP</option>
                             <option value="VVIP">VVIP</option>
                         </select>
-                    </div> */}
+                    </div>
 
                     <button type="submit" className="submit-button">Submit</button>
                 </div>
