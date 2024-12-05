@@ -5,12 +5,22 @@ import EventsList from "./EventsList";
 import ProfileSettings from "./ProfileSettings";
 import Footer from "./Footer"
 import "./Dashboard.css";
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Dashboard = () => {
-  const [organizer, setOrganizer] = useState({
-    name: "Organizer Name",
-    email: "organizer@example.com",
-  });
+
+    const [organizer, setOrganizer] = useState({
+      name: "Organizer Name",
+      email: "organizer@example.com",
+      profilePicture: "https://via.placeholder.com/100", // Placeholder image
+      lastLogin: "2024-12-03 10:30 AM",
+    });
+
+  const location = useLocation();
+  console.log(location.state)
+  const { name, email, user_id, brandName, phoneNo } = location.state || {};
+  
 
   return (
     <div className="dashboard">
@@ -32,12 +42,12 @@ const Dashboard = () => {
       </div>
 
       <div className="dashboard-actions">
-        <button className="action-button create-event">Create Event</button>
-        <button className="action-button1 verify-ticket">Verify Ticket</button>
+      <Link to="/add-event" state={{}}> <button className="action-button create-event">Create Event</button> </Link>
+         
+      <Link to="/verify-ticket" state={{}}> <button className="action-button1 verify-ticket">Verify Ticket</button> </Link> 
       </div>
      
       <div className="dashboard-content">
-        <Overview />
         <Analytics />
         <EventsList />
         <ProfileSettings />
