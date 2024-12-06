@@ -18,10 +18,17 @@ const location = useLocation();
     const [organizer, setOrganizer] = useState({
       name: name,
       email: email,
+      brandName: brandName,
       profilePicture: "https://via.placeholder.com/100", // Placeholder image
       lastLogin: "2024-12-03 10:30 AM",
     });
   
+
+   const Location = useLocation()
+
+  const brandname = organizer.brandName
+
+  console.log(brandname)
 
   return (
     <div className="dashboard">
@@ -39,18 +46,16 @@ const location = useLocation();
         </div>
         
       <div className="dashboard-content">
-        <Overview />
+        <Overview brandName={brandname} />
       </div>
 
       <div className="dashboard-actions">
-      <Link to="/add-event" state={{}}> <button className="action-button create-event">Create Event</button> </Link>
+      <Link to="/add-event" state={{brandname}}> <button className="action-button create-event">Create Event</button> </Link>
          
       <Link to="/verify-ticket" state={{}}> <button className="action-button1 verify-ticket">Verify Ticket</button> </Link> 
       </div>
      
       <div className="dashboard-content">
-        <Analytics />
-        <EventsList />
         <ProfileSettings />
         <Footer />
       </div>
