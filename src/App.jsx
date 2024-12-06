@@ -11,8 +11,8 @@ import EmailVerify from "./components/Ui/emailVerify";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import MainDashboard from "./pages/MainDashboard/MainDashboard";
 import Sidebar from "./components/Ui/Sidebar"
-import {Mapview} from "./pages/Mapview/MapView"
-import {Calendar} from "./pages/Calender/Calendar"
+import MapView from "./pages/Mapview/MapView"
+/*import {Calendar} from "./pages/Calender/Calendar"*/
 import {LandingPage} from "./pages/LandingPage/LandingPage"
 import {UserProfile} from "./pages/User/UserProfile"
 import {CreateEvent} from "./pages/createEvent/CreateEvent"
@@ -23,6 +23,7 @@ import UpdateCreatorProfile from "./components/Ui/updateCreatorProfile";
 import TicketGenerator from "./pages/TicketGeneration/TicketGeneration";
 import VerifyTicket from "./pages/VerifyTicket/VeryfyTicket";
 import ResetPassword from "./pages/ResetPassword";
+import Dashboard from "./components/Dashboard/Dashboard"
 
 import './App.css'
 
@@ -42,7 +43,7 @@ function App() {
           <Route path="/sign-up" element={ <SignUpPage />} />
           <Route path="/email" element={<EmailVerify/>} />
           <Route path="/create-profile" element={<ProfileCreation />} />
-          <Route path="/creator-dashboard" element={<MainDashboard />} />
+          {/*<Route path="/creator-dashboard" element={<MainDashboard />} />*/}
           <Route path='/reset-password' element={<ResetPassword/>} />
           <Route path='/user-dashboard' element={<UserProfile />} />
          {/*<Route path='/map-view' element={<TitleBar />} /> */}
@@ -57,8 +58,7 @@ function App() {
          <Route path='/ticket' element={<TicketGenerator/>} />
          <Route path='/verify-ticket' element={<VerifyTicket/>} />
          <Route path='/reset-pass' element={<ResetPassword/>} />
-         <Route path='/calender' element={<Calendar/>} />
-         <Route path='/map' element={<Mapview />} />
+         <Route path='/creator-dashboard' element={<Dashboard />} />
 
       </Routes>
       </div>

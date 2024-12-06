@@ -1,0 +1,60 @@
+/* Footer.css */
+.footer {
+    background-color: black; /* Background color */
+    color: gold; /* Text color */
+    padding: 20px; /* Space around the footer */
+    text-align: center; /* Center content */
+    border-top: 2px solid gold; /* Golden top border */
+  }
+  
+  .footer-content {
+    font-size: 14px; /* Text size */
+  }
+  
+  .footer p {
+    margin: 0 0 10px; /* Margin below the copyright text */
+  }
+  
+  .footer-links {
+    margin: 10px 0; /* Space around the links */
+  }
+  
+  .footer-links a {
+    color: gold; /* Link color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 10px; /* Space between links */
+    font-size: 16px; /* Font size for links */
+  }
+  
+  .footer-links a:hover {
+    color: white; /* Hover color */
+    text-decoration: underline; /* Add underline on hover */
+  }
+  
+  .contact-link {
+    margin-top: 15px; /* Space above the contact link */
+  }
+  
+  .contact-link a {
+    color: white; /* Highlight Contact Us link */
+    font-weight: bold; /* Make it bold */
+    text-decoration: none; /* Remove underline */
+  }
+  
+  .contact-link a:hover {
+    color: gold; /* Hover color for Contact Us */
+    text-decoration: underline; /* Add underline on hover */
+  }
+  
+  @media (max-width: 768px) {
+    .footer {
+      font-size: 12px; /* Smaller font size for mobile */
+      padding: 15px; /* Reduced padding */
+    }
+  
+    .footer-links a {
+      margin: 0 5px; /* Narrow space for smaller screens */
+      font-size: 14px; /* Adjust font size */
+    }
+  }
+  
