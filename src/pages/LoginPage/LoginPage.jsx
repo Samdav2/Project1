@@ -47,7 +47,7 @@ const LoginPage = () => {
               name: profile.name,
               email: profile.email,
               user_id: profile.user_id,
-              brandName: brandname,
+              brandName: profile.brandname,
               phoneNo: profile.phoneNo
             }
           });

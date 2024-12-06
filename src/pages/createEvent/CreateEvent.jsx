@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./CreateEvent.css";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom"
 
 export const CreateEvent = () => {
+  const Location = useLocation();
   const [eventDetails, setEventDetails] = useState({
-    brand_name: "",
+    brand_name: Location.state.brandname,
     eventName: "",
     date: "",
     timeIn: "",
@@ -36,12 +38,19 @@ export const CreateEvent = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
+      if (file && file.size > 5 * 1024 * 1024) { // 5MB size limit
+      setMessage('File size exceeds 5MB. Please upload a smaller file.');
+      return;
+    }
+
     if (file) {
       setEventDetails({
         ...eventDetails,
-        picture: URL.createObjectURL(file), // Create an object URL for the image
+        picture: file, 
       });
     }
+
   };
 
   const handleSubmit = async (event) => {
@@ -49,8 +58,19 @@ export const CreateEvent = () => {
     setIsSubmitting(true);
     console.log("Event Created: ", eventDetails);
 
+
+      const formDataToSend = new FormData();
+    for (const key in eventDetails) {
+      formDataToSend.append(key, eventDetails[key]);
+    }
+  
+
     try {
-      const response = await axios.post("https://tick-dzls.onrender.com/event/event", eventDetails);
+      const response = await axios.post("https://tick-dzls.onrender.com/event/event", formDataToSend,  {
+        headers: {
+          "Content-Type": "multipart/form-data", 
+        },
+      });
       console.log("Event Response", response.data);
 
       if (response.data) {
@@ -71,16 +91,6 @@ export const CreateEvent = () => {
     <div className="create-event-container">
       <h2>Create Event</h2>
       <form className="create-event-form" onSubmit={handleSubmit}>
-        <label>
-          Brand Name
-          <input
-            type="text"
-            name="brand_name"
-            value={eventDetails.brand_name}
-            onChange={handleChange}
-            required
-          />
-        </label>
 
         <label>
           Event Name
@@ -240,7 +250,7 @@ export const CreateEvent = () => {
 
         <label>
           Upload Event Image
-          <input type="file" accept="image/*" onChange={handleImageChange} />
+          <input type="file"  onChange={handleImageChange} />
         </label>
 
         {eventDetails.picture && (

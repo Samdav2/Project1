@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios"
+import { useLocation } from "react-router-dom"
 import "./Overview.css";
 
-const Overview = () => {
+const Overview = ( {brandName }) => {
   const [overview, setOverview] = useState({
     totalEvents: 0,
     upcomingEvents: 0,
@@ -10,26 +12,49 @@ const Overview = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Fetch overview data
-    const fetchOverview = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("/api/overview"); // Replace with your API endpoint
-        if (!response.ok) {
-          throw new Error("Failed to fetch overview data");
-        }
-        const data = await response.json();
-        setOverview(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+ 
 
-    fetchOverview();
-  }, []);
+  const datatoSend = {
+    brand : brandName
+  }
+
+  console.log(datatoSend)
+
+  const brand = brandName
+
+
+useEffect(() => {
+  const fetchOverview = async () => {
+    setLoading(true); // Start loading when the request is made
+    
+    try {
+      const response = await axios.get(`https://tick-dzls.onrender.com/event/getEventCreated?brand=${brand}`); 
+      
+      if(response.data) {
+        console.log(response.data.length)
+        overview.totalEvents = response.data.length;
+          const currentDate = new Date();
+
+          // Filter events that are in the future
+          const futureEventCount = response.data.filter(event => {
+            const eventDate = new Date(event.date);
+            return eventDate > currentDate;  // Check if the event is in the future
+          }).length;
+
+          overview.upcomingEvents = futureEventCount
+
+      }  
+
+    } catch (err) {
+      setError("User has not created any event"); // Handle error if there is one
+    } finally {
+      setLoading(false); // Always stop loading after the request completes (whether successful or not)
+    }
+  };
+
+  fetchOverview();
+}, [brand]); // Ensure the effect is triggered when 'brand' changes
+
 
   return (
     <div className="overview">
