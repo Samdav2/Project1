@@ -4,6 +4,10 @@ body {
     padding: 0;
     background-color: #f4f4f9;
   }
+
+  .page{
+    height: 100%;
+  }
   
   .navbar {
     background-color: gold;
@@ -107,9 +111,7 @@ body {
 /* Header Section */
 .dashboard-header {
   width: 100%;
-  max-width: 900px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background-color: gold;
   color: black;
@@ -122,18 +124,26 @@ body {
 /* Profile Section */
 .profile-section {
   display: flex;
-  align-items: center;
-  gap: 20px;
+  padding: 10px 5px;
+  justify-content: start;
+  flex-direction: column;
+  align-content: start;
+  text-align: left;
+}
+.names {
+  display: flex;
+  gap: 2px;
+}
+.wel {
+  margin-left: -138%;
 }
 
-/* Profile Picture */
-.profile-picture {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  border: 3px solid white;
-  object-fit: cover;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+.organizer-details{
+  width: auto;
+  flex-direction: column;
+  display: flex;
+  text-align: left;
+  justify-content: flex-start;
 }
 
 /* Organizer Details */
@@ -164,3 +174,77 @@ body {
   color: black;
   border-color: black;
 }
+
+.footer{
+  width: 100vw;
+  align-items: flex-end;
+}
+
+@media screen and (max-width: 1280px){ 
+  .wel {
+  margin-left: -132%;
+}
+}
+@media screen and (max-width: 1140px){ 
+  .wel {
+  margin-left: -128%;
+}
+}
+
+@media screen and (max-width: 960px){ 
+  .wel {
+  margin-left: -125%;
+}
+}
+
+
+@media screen and (max-width: 760px){ 
+  .wel {
+  margin-left: -115%;
+}
+}
+
+@media screen and (max-width: 650px){ 
+  .wel {
+  margin-left: -90%;
+}
+}
+
+
+@media screen and (max-width: 560px){
+  .profile-picture {
+    width: 80px;
+    height: 80px;
+    justify-self: flex-start;
+  }
+  .organizer-details h1 {
+    margin: 0;
+    font-size: 14px;
+    flex-wrap: nowrap;
+  }
+
+  .organizer-details p {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+   .wel {
+  margin-left: -80%;
+}
+}
+
+@media screen and (max-width: 330px){
+  .profile-section {
+    height: 180px;
+    flex-direction: column;
+  }
+
+  .overview h3 {
+    font-size: 1.2rem;
+  }
+
+  .stat-card h4 {
+    font-size: 16px;
+  }
+ 
+}
+

@@ -206,7 +206,7 @@ export const LandingPage = () => {
                   <h4 className="event-title">{event_name}</h4>
                   <p className="event-address">{event_address}</p>
                   <p className="event-summary">{summary}</p>
-                  <p className="event-price">Price: ${parseFloat(price).toFixed(2)}</p>
+                  <p className="event-price">Price: NGN{parseFloat(price).toFixed(2)}</p>
                   <p className="event-date-time">
                     <span className="event-date">{formattedDate}</span> |
                     <span className="event-time">{formattedTime}</span>
@@ -277,10 +277,10 @@ export const LandingPage = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="social-links">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a>
+          <a href="https://www.facebook.com/profile.php?id=61567055525143&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://x.com/TheOWL_life?t=Nla3mQ2usqUWhBPaSyteUQ&s=09" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://www.instagram.com/owl_initiator/profilecard/?igsh=MXcycmRzdXQ5cnNwcg==" target="_blank" rel="noopener noreferrer">Instagram</a>
+          {/* <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a> */}
         </div>
         <p>&copy; 2024 TheOwl_Initiators. All Rights Reserved.</p>
       </footer>
