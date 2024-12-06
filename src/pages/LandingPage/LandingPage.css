@@ -60,6 +60,7 @@ body {
 .hero h2 {
   font-size: 36px;
   font-weight: bold;
+  color: #ffcc00;
 }
 
 .hero p {
@@ -133,7 +134,7 @@ body {
 .events h3 {
   font-size: 32px;
   margin-bottom: 20px;
-  color: gold;
+  color: #333;
 }
 
 .event-cards {
