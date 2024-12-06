@@ -7,6 +7,9 @@ import Footer from "./Footer"
 import "./DashBoard.css";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { deepOrange, deepPurple } from '@mui/material/colors';
 
 const Dashboard = () => {
 
@@ -19,8 +22,7 @@ const location = useLocation();
       name: name,
       email: email,
       brandName: brandName,
-      profilePicture: "https://via.placeholder.com/100", // Placeholder image
-      lastLogin: "2024-12-03 10:30 AM",
+      lastLogin: "",
     });
   
 
@@ -30,37 +32,63 @@ const location = useLocation();
 
   console.log(brandname)
 
+  function getInitials(name) {
+  const nameParts = name.split(' ');
+  
+  const firstLetter = nameParts[0].charAt(0).toUpperCase();  // First letter of the first name
+  const secondLetter = nameParts[1] ? nameParts[1].charAt(0).toUpperCase(): '';  // Second letter of the last name (if it exists)
+  
+  return firstLetter + secondLetter;
+}
+
+  const initials = getInitials(organizer.name)
+
+  
+
+
   return (
-    <div className="dashboard">
-        <div className="profile-section">
-          <img
-            src={organizer.profilePicture}
-            alt={`${organizer.name}'s Profile`}
-            className="profile-picture"
-          />
-          <div className="organizer-details">
-            <h1>Welcome, {organizer.name}</h1>
-            <p>Gmail: {organizer.email}</p>
-            <p>Last Login: {organizer.lastLogin}</p>
+    <>
+      <div className="dashboard">
+      <div className="profile-section ">
+
+        <div className="names"> 
+          <p><Avatar sx={{ bgcolor: deepPurple[700] }}>{initials}</Avatar></p> 
+
+                  <h1 className="wel">Welcome, {organizer.name}</h1>
+
           </div>
-        </div>
-        
-      <div className="dashboard-content">
-        <Overview brandName={brandname} />
-      </div>
-
-      <div className="dashboard-actions">
-      <Link to="/add-event" state={{brandname}}> <button className="action-button create-event">Create Event</button> </Link>
          
-      <Link to="/verify-ticket" state={{}}> <button className="action-button1 verify-ticket">Verify Ticket</button> </Link> 
-      </div>
-     
-      <div className="dashboard-content">
-        <ProfileSettings />
-        <Footer />
-      </div>
 
-    </div>
+
+                <div className="organizer-details">
+              <p>Gmail: {organizer.email}</p>
+              <p>Last Login: {organizer.lastLogin}</p>
+            </div>
+
+
+         
+
+      </div>
+         
+          
+        <div className="dashboard-content">
+          <Overview brandName={brandname} />
+        </div>
+
+        <div className="dashboard-actions">
+        <Link to="/add-event" state={{brandname}}> <button className="action-button create-event">Create Event</button> </Link>
+           
+        <Link to="/verify-ticket" state={{}}> <button className="action-button1 verify-ticket">Verify Ticket</button> </Link> 
+        </div>
+       
+        <div className="dashboard-content">
+        <EventsList brandName={brandname}  />
+          <ProfileSettings />
+        </div>
+
+      </div>
+      <Footer />
+    </>
   );
 };
 

@@ -24,9 +24,16 @@ const VerifyTicket = () => {
       return;
     }
 
+    const tokens = {
+      token: token
+    }
+
     try {
-      // Send DELETE request to the backend to validate and delete the ticket
-      const response = await axios.delete('https://tick-dzls.onrender.com/event/deleteticket/', {token})
+      console.log(tokens);
+          const response = await axios.delete('https://tick-dzls.onrender.com/event/deleteTicket', {
+      data: tokens  
+    });
+
 
       // Handle the response message from the backend (check the message)
       if (response.data) {

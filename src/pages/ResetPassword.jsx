@@ -1,12 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './ResetPassword.css';
 import MessageIcon from '../assets/iconly-light-message.svg';
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 const ResetPassword = () => {
-  // Handle form submit logic
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add password reset logic here
+  const [ user, setUser ] = useState({
+    email: "",
+    newPassword: ""
+  })
+
+    const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUser((prevUser) => ({
+      ...prevUser,
+      [name]: value,
+    }));
+  };
+
+  const navigate = useNavigate()
+
+ const handleSubmit = async (event) => {
+  event.preventDefault()
+    console.log(user)
+
+    try {
+      const response = await axios.put("https://tick-dzls.onrender.com/auth/resetpassword", user);
+      console.log(response.data);
+      if (response.data) {
+        console.log("sent")
+        navigate("/email", {state : { email: user.email }})
+      } 
+    } catch (error) {
+      console.log(error);
+    } 
   };
 
   return (
@@ -20,14 +47,31 @@ const ResetPassword = () => {
             </p>
 
          <div className="input-container">
+         <form onSubmit={handleSubmit}>  
+         <div>
            <img src={MessageIcon} alt="Email Icon" />
-           <input type="email" placeholder="abc@email.com" />
-         </div>
+           <label>Email</label>
+           <input type="email" placeholder="abc@email.com" name="email" value={user.email} onChange={handleChange} />
+          </div>
+           <div> 
+           <label>Password</label>
+           <input type="password" placeholder="****" name="newPassword" value={user.newPassword} onChange={handleChange} />
+           </div>
 
-          <button className="send-button">
+           <button className="send-button" type="submit">
             SEND
            <span className="send-icon">→</span>
           </button>
+
+           </form>
+
+
+
+         </div>
+
+
+
+          
        </div>
      </div>
     </div>
