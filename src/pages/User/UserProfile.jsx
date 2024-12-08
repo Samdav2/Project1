@@ -45,29 +45,56 @@ export const UserProfile = () => {
         return <div>Loading...</div>;
     }
 
+    const Dashboard = ({ user }) => {
+        const [isOpen, setIsOpen] = useState(false);
+      
+
+     // Toggle sidebar visibility
+    const toggleNavbar = () => {
+    setIsOpen((prev) => !prev);
+  };
+
     return (
         <>
             <div className="dashboard">
-                {/* Sidebar */}
-                <aside className="menubar">
-                    <div className="profile-info">
-                        <img src={user.profilePicture} alt="Profile" className="profile-pic" />
-                        <h3>{user.name}</h3>
-                        <p>{user.email}</p>
-                    </div>
-                    <ul>
-                        <li><a href="#events">My Events</a></li>
-                        <li><a href="#calender">Calender</a></li>
-                        <li><a href="#notifications">Notifications</a></li>
-                        <li><a href="#help">Help</a></li>
-                        <li>
-                        <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
-                                Settings
-                            </Link>
-                        </li>
-                        <li><button className="logout-btn">Logout</button></li>
-                    </ul>
-                </aside>
+      {/* Sidebar */}
+      <aside className={`menubar ${isOpen ? "open" : ""}`}>
+        <div className="profile-info">
+          <img src={user.profilePicture} alt="Profile" className="profile-pic" />
+          <h3>{user.name}</h3>
+          <p>{user.email}</p>
+        </div>
+
+        {/* Hamburger Icon */}
+        <div className="menu-icon" onClick={toggleNavbar}>
+          &#9776; {/* Hamburger Icon */}
+        </div>
+
+        <nav className={`menu ${isOpen ? "open" : ""}`}>
+          <ul>
+            <li>
+              <a href="#events">My Events</a>
+            </li>
+            <li>
+              <a href="#calendar">Calendar</a>
+            </li>
+            <li>
+              <a href="#notifications">Notifications</a>
+            </li>
+            <li>
+              <a href="#help">Help</a>
+            </li>
+            <li>
+              <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
+                Settings
+              </Link>
+            </li>
+            <li>
+              <button className="logout-btn">Logout</button>
+            </li>
+          </ul>
+        </nav>
+      </aside>
 
                 {/* Main Content */}
                 <main className="content-board">
