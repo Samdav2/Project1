@@ -1,86 +1,96 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./CreateEvent.css";
-import { Navigate, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom"
 
 export const CreateEvent = () => {
+  const Location = useLocation();
   const [eventDetails, setEventDetails] = useState({
-    brand_name: "",
-    eventName:"",
+    brand_name: Location.state.brandname,
+    eventName: "",
     date: "",
     timeIn: "",
     timeOut: "",
     eventAddress: "",
     summary: "",
     picture: "",
+    vip: "",
+    vvip: "",
     price: "",
     category: "",
+    account_name: "",
+    account_number: "",
+    bank: "",
   });
 
   const navigate = useNavigate();
-
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEventDetails((prevEventDetails) => ({
-      ...eventDetails,
+      ...prevEventDetails,
       [name]: value,
     }));
   };
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+
+      if (file && file.size > 5 * 1024 * 1024) { // 5MB size limit
+      setMessage('File size exceeds 5MB. Please upload a smaller file.');
+      return;
+    }
+
     if (file) {
       setEventDetails({
         ...eventDetails,
-        eventImage: URL.createObjectURL(file), // Create an object URL for the image
+        picture: file, 
       });
     }
+
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setIsSubmitting(true)
+    setIsSubmitting(true);
     console.log("Event Created: ", eventDetails);
-    // Handle form submission, like sending the data to an API
 
 
-  try {
-    const response = await axios.post("https://tick-dzls.onrender.com/event/event", eventDetails);
-    console.log('Event Response',response.data);
-
-    if(response.data) {
-      setMessage("Event Created Successfully");
-      navigate('/success');
-    } else {
-      setMessage(response.data.message || "Unable To Create Event")
+      const formDataToSend = new FormData();
+    for (const key in eventDetails) {
+      formDataToSend.append(key, eventDetails[key]);
     }
-  } catch (error) {
-    console.error('Unable to create Event', error)
-    setMessage('Unable To Create Event')
-  } finally {
-    setIsSubmitting(false);
-  }
+  
 
-};
+    try {
+      const response = await axios.post("https://tick-dzls.onrender.com/event/event", formDataToSend,  {
+        headers: {
+          "Content-Type": "multipart/form-data", 
+        },
+      });
+      console.log("Event Response", response.data);
+
+      if (response.data) {
+        setMessage("Event Created Successfully");
+        navigate("/success");
+      } else {
+        setMessage(response.data.message || "Unable To Create Event");
+      }
+    } catch (error) {
+      console.error("Unable to create Event", error);
+      setMessage("Unable To Create Event");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="create-event-container">
       <h2>Create Event</h2>
       <form className="create-event-form" onSubmit={handleSubmit}>
-        <label>
-          Brand Name
-          <input
-            type="text"
-            name="brand_name"
-            value={eventDetails.brand_name}
-            onChange={handleChange}
-            required
-          />
-        </label>
 
         <label>
           Event Name
@@ -166,7 +176,33 @@ export const CreateEvent = () => {
 
         {/* Pricing Section */}
         <label>
-          Ticket Price
+          VIP Ticket Price
+          <input
+            type="number"
+            name="vip"
+            value={eventDetails.vip}
+            onChange={handleChange}
+            required
+            min="0"
+            step="0.01"
+          />
+        </label>
+
+        <label>
+          VVIP Ticket Price
+          <input
+            type="number"
+            name="vvip"
+            value={eventDetails.vvip}
+            onChange={handleChange}
+            required
+            min="0"
+            step="0.01"
+          />
+        </label>
+
+        <label>
+          Regular Ticket Price
           <input
             type="number"
             name="price"
@@ -178,14 +214,43 @@ export const CreateEvent = () => {
           />
         </label>
 
-        {/* Image Upload Section */}
+        {/* Bank Details Section */}
+        <label>
+          Account Name
+          <input
+            type="text"
+            name="account_name"
+            value={eventDetails.accountName}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
+        <label>
+          Account Number
+          <input
+            type="text"
+            name="account_number"
+            value={eventDetails.accountNumber}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
+        <label>
+          Bank
+          <input
+            type="text"
+            name="bank"
+            value={eventDetails.bank}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
         <label>
           Upload Event Image
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
+          <input type="file"  onChange={handleImageChange} />
         </label>
 
         {eventDetails.picture && (
@@ -194,10 +259,11 @@ export const CreateEvent = () => {
           </div>
         )}
 
-            <button type="submit" disabled={isSubmitting} className="button">
-                    {isSubmitting ? "Creating Event..." : "Create Event"}
-                </button>
-            </form>
+        <button type="submit" disabled={isSubmitting} className="button">
+          {isSubmitting ? "Creating Event..." : "Create Event"}
+        </button>
+      </form>
+      {message && <p>{message}</p>}
     </div>
   );
 };
