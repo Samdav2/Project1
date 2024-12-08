@@ -1,7 +1,7 @@
 {
   "name": "owlet",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://theowlinitiators.com.ng/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -11,20 +11,31 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.5",
+    "@emotion/style": "^0.8.0",
+    "@emotion/styled": "^11.13.5",
+    "@mui/icons-material": "^6.1.10",
+    "@mui/material": "^6.1.10",
+    "@mui/styled-engine-sc": "^6.1.10",
     "@paystack/inline-js": "^2.22.1",
     "@zxing/library": "^0.21.3",
     "axios": "^1.7.8",
     "chart.js": "^4.4.6",
+    "d": "^1.0.2",
+    "formik": "^2.4.6",
+    "framer-motion": "^11.13.1",
     "jspdf": "^2.5.2",
     "leaflet": "^1.9.4",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
+    "react-big-calendar": "^1.16.3",
     "react-calendar": "^5.1.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
     "react-leaflet": "^4.2.1",
     "react-paystack": "^6.0.0",
     "react-router-dom": "^6.28.0",
+    "styled-components": "^6.1.13",
     "update": "^0.7.4",
     "web-vitals": "^4.2.4"
   },
@@ -38,6 +49,6 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
     "globals": "^15.9.0",
-    "vite": "^5.4.8"
+    "vite": "^6.0.3"
   }
 }

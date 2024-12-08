@@ -8,6 +8,17 @@ export const LandingPage = () => {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openNav = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeNav = () => {
+    setIsOpen(false);
+  };
+  
+
 
   const navigate = useNavigate();  // Initialize navigate hook for routing
   const location = useLocation();
@@ -98,6 +109,7 @@ export const LandingPage = () => {
       });
     }
   };
+  
 
   return (
     <div className="homepage">
@@ -105,8 +117,39 @@ export const LandingPage = () => {
       <header className="header">
         <div className="logo">
           <h1>TheOwl_Initiators</h1>
+          <span className="openNav" id='Toggle-icon' role='button' onClick={openNav}>
+            {isOpen ?  (<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#fff" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"></path></g></svg>) : (<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="align-justify"> <g> <polygon fill="#ffffff" points="20 18 4 18 4 18 20 18 20 18" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> <polygon fill="#ffffff" points="20 14 4 14 4 14 20 14 20 14" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> <polygon fill="#ffffff" points="20 10 4 10 4 10 20 10 20 10" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> <polygon fill="#ffffff" points="20 6 4 6 4 6 20 6 20 6" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> </g> </g> </g> </g></svg>)}
+          </span>
         </div>
-        <nav className="navigation">
+
+        <nav className="largeNav navigation">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#events">Events</a></li>
+
+            {/* Conditionally render SignUp or Dashboard based on user authentication */}
+            {user.user_id ? (
+              <div>
+                <li>
+                  <a href="#dashboard" onClick={() => navigate('/user-dashboard', {
+                      state: { name: user.name, user_id: user.user_id, email: user.email }
+                    })}>
+                    Dashboard
+                  </a>
+                </li>
+              </div>
+            ) : (
+              <>
+                <li><a href="#signUp">Sign Up</a></li>
+              </>
+            )}
+
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <nav className="navigation" style={{display: isOpen ? 'flex' : 'none'}} id="navigation">
           <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#services">Services</a></li>
@@ -145,7 +188,7 @@ export const LandingPage = () => {
 
       {/* Upcoming Events Section */}
       <section className="events">
-        <h3><span className='eventh3'> Upcoming Events</span></h3>
+        <h1>Upcoming Events</h1>
         <div className="event-cards">
           {displayEvents.map((event, index) => {
             const { event_name, event_address, time_in, summary, picture, price, date, id } = event; // use 'id' here
@@ -163,7 +206,7 @@ export const LandingPage = () => {
                   <h4 className="event-title">{event_name}</h4>
                   <p className="event-address">{event_address}</p>
                   <p className="event-summary">{summary}</p>
-                  <p className="event-price">Price: ${parseFloat(price).toFixed(2)}</p>
+                  <p className="event-price">Price: NGN{parseFloat(price).toFixed(2)}</p>
                   <p className="event-date-time">
                     <span className="event-date">{formattedDate}</span> |
                     <span className="event-time">{formattedTime}</span>
@@ -177,8 +220,8 @@ export const LandingPage = () => {
 
       {/* About Us Section */}
       <section id="about" className="about-us">
-        <h3>About Us</h3>
-        <p> TheOwl_Initiators is an Online Ticketing And Event Managing Platform leading In event management specializing in corporate events, weddings, concerts, and more. We pride ourselves on delivering exceptional and personalized services that cater to all types of events. Our experienced team ensures every detail is executed perfectly to create memorable experiences for our clients.</p>
+        <h1 className="ab">About Us</h1>
+        <p className="owls"> TheOwl_Initiators is an Online Ticketing And Event Managing Platform leading In event management specializing in corporate events, weddings, concerts, and more. We pride ourselves on delivering exceptional and personalized services that cater to all types of events. Our experienced team ensures every detail is executed perfectly to create memorable experiences for our clients.</p>
       </section>
 
       {/* Services Section */}
@@ -211,12 +254,12 @@ export const LandingPage = () => {
        {/* Contact Us Section */}
       <section id="contact" className="contact-us">
         <h3>Contact Us</h3>
-        <p>If you have any questions or would like to learn more about our services, feel free to reach out. We'd love to hear from you!</p>
+        <p className="bla">If you have any questions or would like to learn more about our services, feel free to reach out. We'd love to hear from you!</p>
         <div className="contact-us form">
           <form>
             <div>
               <label htmlFor="name">Name</label>
-              <input type="text" id="name" placeholder="Your Name" required />
+              <input type="text" id="name" placeholder="Your Name" className="inputs" required />
             </div>
             <div>
               <label htmlFor="email">Email</label>
@@ -228,16 +271,16 @@ export const LandingPage = () => {
             </div>
             <button type="submit" className="cta-button">Send Message</button>
           </form>
-        </div>
+3        </div>
       </section>
 
       {/* Footer */}
       <footer className="footer">
         <div className="social-links">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a>
+          <a href="https://www.facebook.com/profile.php?id=61567055525143&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://x.com/TheOWL_life?t=Nla3mQ2usqUWhBPaSyteUQ&s=09" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <a href="https://www.instagram.com/owl_initiator/profilecard/?igsh=MXcycmRzdXQ5cnNwcg==" target="_blank" rel="noopener noreferrer">Instagram</a>
+          {/* <a href="https://WhatApp.com" target="_blank" rel="noopener noreferrer">WhatApp</a> */}
         </div>
         <p>&copy; 2024 TheOwl_Initiators. All Rights Reserved.</p>
       </footer>

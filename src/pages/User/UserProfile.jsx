@@ -3,15 +3,18 @@ import './UserProfile.css';
 import { useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Ensure axios is imported
 
 export const UserProfile = () => {
     const location = useLocation();
+    const navigate = useNavigate();
 
-    // Initialize loading state and user state
     const [isLoading, setIsLoading] = useState(true);
-    const [user, setUser] = useState(null);  // Default to null to indicate data not yet loaded
+    const [user, setUser] = useState(null);
+    const [events, setEvents] = useState([]);  // Initialize events state
+    const [error, setError] = useState(null);  // Error state for catching any errors during the fetch
 
-    // Event data (this can be fetched from an API if needed)
+    // Default upcoming and past events (they might be placeholders)
     const upcomingEvents = [
         { id: 1, title: 'Music Concert', date: '2023-12-15', location: 'City Hall', image: '/images/concert.jpeg' },
         { id: 2, title: 'Art Exhibition', date: '2023-11-20', location: 'Art Gallery', image: '/images/art.png' }
@@ -22,28 +25,97 @@ export const UserProfile = () => {
         { id: 4, title: 'Food Festival', date: '2023-09-05', location: 'Downtown Park', image: '/images/food.png' }
     ];
 
-    // useEffect to check if location.state has been passed and set user data
+    // Fetch events from the API
+    const fetchData = async (maxRetries = 5, retryDelay = 2000) => {
+        let attempt = 0;
+        const axiosConfig = { timeout: 5000 };
+
+        while (attempt < maxRetries) {
+            try {
+                console.log(`Attempt ${attempt + 1} to fetch data...`);
+                const response = await axios.get('https://tick-dzls.onrender.com/event/getAllEvent', axiosConfig);
+                console.log('Data fetched successfully:', response.data);
+                setEvents(response.data.event);  // Set events from the API response
+                setIsLoading(false);
+                return;
+            } catch (err) {
+                attempt += 1;
+                setError(err);
+                console.error(`Attempt ${attempt} failed:`, err.message);
+
+                if (err.code === 'ECONNABORTED' || err.message === 'Network Error') {
+                    console.log('Network issue detected. Retrying...');
+                } else if (err.response) {
+                    console.error('Server error or bad response:', err.response.status);
+                    setIsLoading(false);
+                    return;
+                } else {
+                    console.error('Unknown error:', err.message);
+                }
+
+                if (attempt >= maxRetries) {
+                    console.log('Max retries reached. Stopping attempts.');
+                    setIsLoading(false);
+                    return;
+                }
+
+                const delay = retryDelay * Math.pow(2, attempt);
+                console.log(`Retrying in ${delay}ms...`);
+                await new Promise((resolve) => setTimeout(resolve, delay));
+            }
+        }
+    };
+
+    // Fetch user data from location.state if it exists
     useEffect(() => {
         if (location.state) {
             const { name, email, user_id } = location.state;
-
-            // Only set user data if location.state exists
             setUser({
                 user_id,
                 name: name || 'Unknown',
                 email: email || 'Not Provided',
-                profilePicture: 'https://via.placeholder.com/100' // Placeholder image
+                profilePicture: 'https://via.placeholder.com/100'
             });
-
-            // Stop loading
             setIsLoading(false);
         }
-    }, [location.state]); // Depend on location.state to rerun when it changes
+    }, [location.state]); // This will only run when location.state changes
 
-    // If user data is still not available, show loading
+    // Use useEffect to fetch events once the component is mounted
+    useEffect(() => {
+        fetchData(); // Fetch data on component mount
+    }, []);
+
+    // If loading, show loading message
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div style={{ color: 'black' }}>Loading...</div>;
     }
+
+    // If there's an error fetching, show the error message
+    if (error) {
+        return <div>Error: {error.message}</div>;
+    }
+
+    const displayEvents = events.length > 0 ? events : []; // Ensure this is correctly defined
+
+    const handleEventClick = (eventId, price) => {
+        console.log("Clicked eventId:", eventId);
+        console.log("Clicked price:", price);
+
+        if (user.user_id === null) {
+            navigate('/login');
+        } else {
+            navigate("/get-ticket", {
+                state: {
+                    eventId: eventId,
+                    user_id: user.user_id,
+                    name: user.name,
+                    email: user.email,
+                    phoneNo: user.phoneNo,
+                    price: price
+                }
+            });
+        }
+    };
 
     return (
         <>
@@ -61,7 +133,7 @@ export const UserProfile = () => {
                         <li><a href="#notifications">Notifications</a></li>
                         <li><a href="#help">Help</a></li>
                         <li>
-                        <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
+                            <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
                                 Settings
                             </Link>
                         </li>
@@ -73,46 +145,40 @@ export const UserProfile = () => {
                 <main className="content-board">
                     <h1 className='main-header'>My Profile</h1>
 
-                    {/* Upcoming Events */}
-                    <section id="upcoming-events" className="events upcoming-events">
-                        <h2>Upcoming Events: </h2>
-                        {upcomingEvents.length > 0 ? (
-                            <ul>
-                                {upcomingEvents.map(event => (
-                                    <li key={event.id}>
-                                        <img src={event.image} alt={event.title} className="event-image" />
-                                        <h3>{event.title}</h3>
-                                        <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-                                        <p>Location: {event.location}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p>No upcoming events.</p>
-                        )}
-                    </section>
+                    {/* Events */}
+                    <section className="events">
+                        <h3><span className='eventh3'>Upcoming Events</span></h3>
+                        <div className="event-cards">
+                            {displayEvents.map((event, index) => {
+                                const { event_name, event_address, time_in, summary, picture, price, date, id } = event;
+                                const formattedDate = new Date(date).toLocaleDateString();
+                                const formattedTime = new Date(`1970-01-01T${time_in}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-                    {/* Past Events */}
-                    <section id="past-events" className="events past-events">
-                        <h2>Past Events: </h2>
-                        {pastEvents.length > 0 ? (
-                            <ul>
-                                {pastEvents.map(event => (
-                                    <li key={event.id}>
-                                        <img src={event.image} alt={event.title} className="event-image" />
-                                        <h3>{event.title}</h3>
-                                        <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-                                        <p>Location: {event.location}</p>
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p>No past events.</p>
-                        )}
+                                return (
+                                    <div
+                                        key={index}
+                                        className="event-card"
+                                        onClick={() => handleEventClick(id, price)}
+                                    >
+                                        <img src={`https://tick-dzls.onrender.com/${picture}`} alt={event_name} className="event-image" />
+                                        <div className="event-info">
+                                            <h4 className="event-title">{event_name}</h4>
+                                            <p className="event-address">{event_address}</p>
+                                            <p className="event-summary">{summary}</p>
+                                            <p className="event-price">Price: ${parseFloat(price).toFixed(2)}</p>
+                                            <p className="event-date-time">
+                                                <span className="event-date">{formattedDate}</span> |
+                                                <span className="event-time">{formattedTime}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </section>
                 </main>
             </div>
-            
+
             {/* Footer */}
             <footer className="footer">
                 <p>&copy; 2024 TheOwl Initiators. All rights reserved.</p>
@@ -122,9 +188,7 @@ export const UserProfile = () => {
                     <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </footer>
-
         </>
-    
     );
 };
 
