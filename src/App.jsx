@@ -59,6 +59,7 @@ function App() {
          <Route path='/verify-ticket' element={<VerifyTicket/>} />
          <Route path='/reset-pass' element={<ResetPassword/>} />
          <Route path='/creator-dashboard' element={<Dashboard />} />
+         <Route path='map' element={<MapView />} />
 
       </Routes>
       </div>

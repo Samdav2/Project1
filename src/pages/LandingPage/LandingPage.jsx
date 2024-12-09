@@ -141,7 +141,8 @@ export const LandingPage = () => {
               </div>
             ) : (
               <>
-                <li><a href="#signUp">Sign Up</a></li>
+                <li><a href='/sign-up'>Sign Up</a></li>
+                <li><a href='/login'>Log in</a></li>
               </>
             )}
 

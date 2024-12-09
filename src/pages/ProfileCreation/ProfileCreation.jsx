@@ -82,7 +82,11 @@ const ProfileCreation = () => {
     dispatch({ type: ACTIONS.SET_SUBMITTING, payload: true });
 
     const formData = state[state.selectedForm];
-    const url = 'https://tick-dzls.onrender.com/profile/userProfiles';
+    
+    // Conditionally set the API URL based on the selected form
+    const url = state.selectedForm === 'user' 
+      ? 'https://tick-dzls.onrender.com/profile/userProfiles'  // User API endpoint
+      : 'https://tick-dzls.onrender.com/profile/creatorProfiles'; // Creator API endpoint
 
     try {
       const response = await axios.post(url, formData, {

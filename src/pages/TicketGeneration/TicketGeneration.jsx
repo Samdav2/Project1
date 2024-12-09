@@ -129,7 +129,7 @@ const capitalizeBankName = (bankName) => {
 // Function to get the bank code by capitalizing the bank name
 const getBankCode = (bankName) => {
   const capitalizedBankName = capitalizeBankName(bankName); // Capitalize all letters in bank name
-  return bankCodeMapping[capitalizedBankName] || capitalizedBankName; // Return the bank code or the original name
+  return bankCodeMapping[capitalizedBankName] ; // Return the bank code or the original name
 };
 
 
@@ -215,7 +215,7 @@ const createSubaccount = async () => {
         business_name: location.state.accountName, // Assuming account name is correct
         settlement_bank: bankCode,
         account_number: location.state.accountNumber,  // Make sure this is the correct number
-        percentage_charge: 50, // Example percentage
+        percentage_charge: 20, // Example percentage
       }
     );
     setSubaccountCode(response.data.subaccount_code); // Save subaccount code
@@ -375,24 +375,45 @@ console.log(subaccountCode);
 
 
   return (
-  <div className="ticket-generator-container">
-    <h2>Generate Event Ticket</h2>
-    {error && <div className="error-message">{error}</div>}
-    {message && <div className="success-message">{message}</div>}
-    <div>
-      {loading ? (
-        <p>Processing...</p>
-      ) : (
-        <>
-          <PaystackButton {...componentProps} />
-          {ticketToken && <p>Generated Ticket Token: {ticketToken}</p>}
-          {qrCodeUrl && <img src={qrCodeUrl} alt="QR Code" style={{ width: '250px', height: '250px', marginTop:'10px'}} />}
-        </>
-      )}
+    <div className="ticket-generator-container">
+      <h2>Generate Event Ticket</h2>
+      {error && <div className="error-message">{error}</div>}
+      {message && <div className="success-message">{message}</div>}
+      <div>
+        {loading ? (
+          <p>Processing...</p>
+        ) : (
+          <>
+            {amount === 0 ? (
+              <button
+                onClick={() => handleSuccessfulPayment(null)}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#4caf50',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                }}
+              >
+                Generate Ticket
+              </button>
+            ) : (
+              <PaystackButton {...componentProps} />
+            )}
+            {ticketToken && <p>Generated Ticket Token: {ticketToken}</p>}
+            {qrCodeUrl && (
+              <img
+                src={qrCodeUrl}
+                alt="QR Code"
+                style={{ width: '250px', height: '250px', marginTop: '10px' }}
+              />
+            )}
+          </>
+        )}
+      </div>
     </div>
-  </div>
-);
-
-}
+  );
+};
 
 export default TicketGenerator;

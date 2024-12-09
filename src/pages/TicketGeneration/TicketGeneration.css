@@ -13,6 +13,7 @@
     line-height: 1.5;
     padding: 0;
     margin: 0;
+    align-items: center;
   }
 
   h2, h3, h4 {
@@ -23,11 +24,13 @@
   .ticket-generator-container {
     width: 100%;
     max-width: 800px;
-    margin: 50px auto;
     background-color: #111; /* Dark background for the form container */
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 50%;
+    left: 25%;
   }
 
   /* Form container */
@@ -121,7 +124,10 @@
     }
     .ticket-generator-container {
       padding: 15px;
-      width: 90%;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 0px;
     }
 
     .ticket-form input,
@@ -144,6 +150,14 @@
       font-size: 14px;
     }
 
+    .ticket-generator-container {
+      padding: 15px;
+      width: 100%;
+      position: absolute;
+      top: 35%;
+      left: 0px;
+    }
+
     .ticket-form input,
     .ticket-form button {
       font-size: 14px;
@@ -156,5 +170,19 @@
 
     .qr-code-container img {
       max-width: 120px;
+    }
+  }
+
+@media (max-width: 1024px) {
+    .page{
+      display: flex;
+      align-items: center;
+    }
+    .ticket-generator-container {
+      padding: 15px;
+      width: 100%;
+      position: absolute;
+      top: 40%;
+      left: 10%;
     }
   }

@@ -120,11 +120,12 @@ const SignUpPage = () => {
           </button>
 
           {message && <p className="message">{message}</p>}
-        </form>
 
-        <p className="signup-link">
+          <p className="signup-link2">
           Already have an account? <a href='/login'>Sign in</a>
         </p>
+
+        </form>
       </div>
 
       <div className="sidebar1">
