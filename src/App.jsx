@@ -12,7 +12,7 @@ import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import MainDashboard from "./pages/MainDashboard/MainDashboard";
 import Sidebar from "./components/Ui/Sidebar"
 import MapView from "./pages/Mapview/MapView"
-/*import {Calendar} from "./pages/Calender/Calendar"*/
+import Calender from "./pages/Calender/Calendar"
 import {LandingPage} from "./pages/LandingPage/LandingPage"
 import {UserProfile} from "./pages/User/UserProfile"
 import {CreateEvent} from "./pages/createEvent/CreateEvent"
@@ -60,6 +60,7 @@ function App() {
          <Route path='/reset-pass' element={<ResetPassword/>} />
          <Route path='/creator-dashboard' element={<Dashboard />} />
          <Route path='map' element={<MapView />} />
+         <Route path='calendar' element={<Calender />} />
 
       </Routes>
       </div>

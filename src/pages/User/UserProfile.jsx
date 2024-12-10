@@ -15,7 +15,7 @@ export const EventCard = ({ event, onClick }) => (
       <h4>{event.event_name}</h4>
       <p>{event.event_address}</p>
       <p>{event.summary}</p>
-      <p>Price: ${parseFloat(event.price).toFixed(2)}</p>
+      <p>Price: NGN{parseFloat(event.price).toFixed(2)}</p>
       <p>
         {new Date(event.date).toLocaleDateString()} |{' '}
         {new Date(`1970-01-01T${event.time_in}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -120,14 +120,13 @@ export const UserProfile = () => {
       <div className="dashboard">
         <aside className={`menubar ${menuOpen ? 'open' : ''}`}>
           <button className="menu-toggle close" onClick={toggleMenu}>✕</button>
-          <div className="profile-info">
+          <div className="profile-info1">
             <Avatar sx={{ bgcolor: deepPurple[700] }}>{initials}</Avatar>
             <h3>{user?.name}</h3>
             <p>{user?.email}</p>
-          </div>
           <ul>
             <li><a href="#events">My Events</a></li>
-            <li><a href="#calendar">Calendar</a></li>
+            <li><a href="/calendar">Calendar</a></li>
             <li><a href="#notifications">Notifications</a></li>
             <li><a href="#help">Help</a></li>
             <li>
@@ -139,6 +138,7 @@ export const UserProfile = () => {
               <button className="logout-btn" onClick={handleLogout}>Logout</button>
             </li>
           </ul>
+          </div>
         </aside>
 
         {!menuOpen && ( // Conditionally render the open button

@@ -262,17 +262,17 @@ body {
     align-items: center;
   }
 
-  .profile-info h3 {
+  .profile-info1 h3 {
     font-size: 1rem;
 
   }
 
-  .profile-info{
+  .profile-info1{
     justify-content: center;
     flex-direction: column;
   }
 
-  .profile-info p {
+  .profile-info1 p {
     font-size: 0.8rem;
     text-align: center;
   }
