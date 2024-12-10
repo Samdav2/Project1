@@ -19,7 +19,12 @@ const VerifyTicket = () => {
       return null;
     }
 
+    const tokens = {
+      token: token
+    }
+
     try {
+<<<<<<< HEAD
       console.log('Verifying token:', token);
       const response = await axios.post('https://tick-dzls.onrender.com/event/verifytoken', {
         token,
