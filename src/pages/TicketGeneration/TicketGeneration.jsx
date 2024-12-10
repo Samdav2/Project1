@@ -412,7 +412,7 @@ console.log('account id', subaccountCode);
   email,
   amount,
   metadata: { name, phone: phoneNo },
-  publicKey: PAYSTACK_PUBLIC_KEY_DEMO,
+  publicKey,
   text: 'Pay Now',
   onSuccess: ({ reference }) => handleSuccessfulPayment(reference),
   onClose: () => setError('Payment was cancelled, please try again.'),
