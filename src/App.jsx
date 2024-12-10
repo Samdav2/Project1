@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import EventForm, { TicketingForm } from "./pages/TicketingForm/TicketingForm"
-import RegistrationForm from "./pages/TablesRegistrationForm/RegistrationForm"
+import EventTablesForm from "./pages/TablesForm/EventTablesForm"
 import {EventPage} from "./pages/PrivateEvent/EventPage"
 /*import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"*/
 import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification"
@@ -59,7 +59,7 @@ function App() {
          <Route path='/verify-ticket' element={<VerifyTicket/>} />
          <Route path='/reset-pass' element={<ResetPassword/>} />
          <Route path='/creator-dashboard' element={<Dashboard />} />
-
+         <Route path='/tables' element={<EventTablesForm />} />
       </Routes>
       </div>
       )
