@@ -24,12 +24,11 @@ const VerifyTicket = () => {
     }
 
     try {
-<<<<<<< HEAD
-      console.log('Verifying token:', token);
-      const response = await axios.post('https://tick-dzls.onrender.com/event/verifytoken', {
-        token,
-      });
-      console.log("data res", response.data)
+
+      console.log(tokens);
+          const response = await axios.delete('https://tick-dzls.onrender.com/event/deleteTicket', {
+      data: tokens  
+    });
 
       if (response.data) {
         setVerifyResponse({
