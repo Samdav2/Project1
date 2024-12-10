@@ -11,7 +11,7 @@ import EmailVerify from "./components/Ui/emailVerify";
 import ProfileCreation from "./pages/ProfileCreation/ProfileCreation";
 import MainDashboard from "./pages/MainDashboard/MainDashboard";
 import Sidebar from "./components/Ui/Sidebar"
-import MapView from "./pages/Mapview/MapView"
+/* import MapView from "./pages/Mapview/MapView" */
 /*import {Calendar} from "./pages/Calender/Calendar"*/
 import {LandingPage} from "./pages/LandingPage/LandingPage"
 import {UserProfile} from "./pages/User/UserProfile"

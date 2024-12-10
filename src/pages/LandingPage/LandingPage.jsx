@@ -9,6 +9,8 @@ export const LandingPage = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const openNav = () => {
     setIsOpen(!isOpen);
@@ -31,7 +33,7 @@ export const LandingPage = () => {
     user_id: userId,
     name: userName,
     email: userEmail,
-    phoneNo: phoneNo
+    phoneNo: phoneNo,
   });
 
   // Fetch events from the API
@@ -44,7 +46,9 @@ export const LandingPage = () => {
         console.log(`Attempt ${attempt + 1} to fetch data...`);
         const response = await axios.get('https://tick-dzls.onrender.com/event/getAllEvent', axiosConfig);
         console.log('Data fetched successfully:', response.data);
+        console.log('Fetched Events:', response.data.event); // Log fetched events
         setEvents(response.data.event); // Set events from API response
+        setFilteredEvents(response.data.event); // Initialize filtered events
         setLoading(false);
         return;
       } catch (err) {
@@ -87,7 +91,22 @@ export const LandingPage = () => {
     return <div>Error: {error.message}</div>;
   }
 
-  const displayEvents = events.length > 0 ? events : [];
+  const displayEvents = searchTerm ? filteredEvents : events;
+
+
+  const handleSearchChange = (e) => {
+    const query = e.target.value.toLowerCase();
+    console.log('Search Query:', query); // Log query
+    setSearchTerm(query);
+  
+    const filteredData = events.filter((event) =>
+      event.event_name.toLowerCase().includes(query)
+    );
+  
+    console.log('Filtered Data:', filteredData); // Log filtered data
+    setFilteredEvents(filteredData);
+  };
+  
 
   // Handle event card click
   const handleEventClick = (eventId, price) => {
@@ -116,7 +135,8 @@ export const LandingPage = () => {
       {/* Header Section */}
       <header className="header">
         <div className="logo">
-          <h1>TheOwl_Initiators</h1>
+          <img src="\assets\owl-logo5.png" alt="owl logo" />
+          <span class="logo-text"><h1>TheOwl_Initiators</h1></span>
           <span className="openNav" id='Toggle-icon' role='button' onClick={openNav}>
             {isOpen ?  (<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="#fff" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"></path></g></svg>) : (<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#fff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title></title> <g id="Complete"> <g id="align-justify"> <g> <polygon fill="#ffffff" points="20 18 4 18 4 18 20 18 20 18" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> <polygon fill="#ffffff" points="20 14 4 14 4 14 20 14 20 14" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> <polygon fill="#ffffff" points="20 10 4 10 4 10 20 10 20 10" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> <polygon fill="#ffffff" points="20 6 4 6 4 6 20 6 20 6" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></polygon> </g> </g> </g> </g></svg>)}
           </span>
@@ -184,6 +204,17 @@ export const LandingPage = () => {
         <h2>Welcome to TheOwl_Initiators</h2>
         <p>Your trusted partner in innovation and event management</p>
        <a href='/sign-up'> <button className="cta-button">Get Started</button> </a>
+      </section>
+
+       {/* Search Bar Section */}
+       <section className="search-section">
+        <input
+          type="text"
+          placeholder="Search events..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className="search-input"
+        />
       </section>
 
       {/* Upcoming Events Section */}
