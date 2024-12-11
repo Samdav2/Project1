@@ -27,6 +27,12 @@ export const CreateEvent = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [tables, setTables] = useState([]);
+
+  const handleTablesChange = (updatedTables) => {
+    setTables(updatedTables);
+    console.log("Updated Tables: ", updatedTables); // Log for debugging
+  };
 
   // Bank list (Only the names)
   const bankList = [
@@ -302,6 +308,9 @@ export const CreateEvent = () => {
             step="0.01"
           />
         </label>
+
+        {/* Add the Table Form */}
+        <TableForm tables={tables} onChange={handleTablesChange} />
 
         {/* Bank Details Section */}
         <label>

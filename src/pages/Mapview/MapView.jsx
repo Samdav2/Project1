@@ -25,7 +25,7 @@ const MapView = () => {
     try {
       setLoading(true);
       const response = await axios.get(`https://tick-dzls.onrender.com/event/getEvent?eventId=${eventId}`);
-      
+
       // Debug: Check the response data
       console.log('Fetched event data:', response.data);
 

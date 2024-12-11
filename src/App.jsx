@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import EventForm, { TicketingForm } from "./pages/TicketingForm/TicketingForm"
-import RegistrationForm from "./pages/TablesRegistrationForm/RegistrationForm"
+import EventTablesForm from "./pages/TablesForm/EventTablesForm"
 import {EventPage} from "./pages/PrivateEvent/EventPage"
 /*import {NotificationPage} from "./pages/NotificationScreen/NotificationPage"*/
 import {EmptyNotification} from "./pages/NotificationScreen/EmptyNotification"
