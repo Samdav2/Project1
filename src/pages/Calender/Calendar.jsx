@@ -96,7 +96,7 @@ const Calender = () => {
 
   const handleTicketPurchase = () => {
     if (selectedEvent) {
-      navigate('/get-ticket', { state: { eventId: selectedEvent.id, user_id: user.user_id } });
+      navigate('/get-ticket', { state: { eventId: selectedEvent.id, user_id: user.user_id, name: user.name, email: user.email } });
     }
   };
 
@@ -166,8 +166,8 @@ const Calender = () => {
         <>
           <div className="backdrop" onClick={handleClosePopup}></div>
           <div className="event-popup">
-            {selectedEvent.picture && <img src={selectedEvent.picture} alt={selectedEvent.name} className="event-image" />}
-            <h3>{selectedEvent.name}</h3>
+            {selectedEvent.picture && <img src={`https://tick-dzls.onrender.com/${selectedEvent.picture}`} alt={selectedEvent.event_name} className="event-image" />}
+            <h3>{selectedEvent.event_name}</h3>
             <p><strong>Date:</strong> {formatEventDate(selectedEvent.date)}</p>
             <p><strong>Location:</strong> {selectedEvent.event_address}</p>
             <p><strong>Description:</strong> {selectedEvent.summary}</p>
