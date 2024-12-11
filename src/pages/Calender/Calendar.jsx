@@ -6,14 +6,12 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { deepPurple } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
-import PaidEvents from '../User/PaidEvents';
-import PastEvents from '../User/PastEvent';
 import { EventCard } from '../User/EventCard';
 
 const Calender = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [events, setEvents] = useState([]);
@@ -23,6 +21,7 @@ const Calender = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  // Fetching all events
   const fetchAllEvents = async () => {
     try {
       const response = await axios.get('https://tick-dzls.onrender.com/event/getAllEvent');
@@ -33,6 +32,7 @@ const Calender = () => {
     }
   };
 
+  // Fetching paid events
   const fetchPaidEvents = async () => {
     if (user?.user_id) {
       try {
@@ -83,7 +83,8 @@ const Calender = () => {
     setSelectedDate(newDate);
   };
 
-  const handleEventClick = (eventId, isPaid, eventAddress) => {
+  // Handling event click
+  const handleEventClick = (eventId) => {
     const eventDetails = events.find(event => event.id === eventId);
     setSelectedEvent(eventDetails);
     setShowPopup(true);
@@ -113,35 +114,36 @@ const Calender = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
+  // Add events to calendar tiles
+  const tileClassName = ({ date, view }) => {
+    const eventDate = date.toDateString();
+    const hasEvent = events.some(event => new Date(event.date).toDateString() === eventDate);
+    return hasEvent ? 'has-events' : null;
+  };
+
   return (
     <div className="dashboard">
-
       <main className="content-board">
         <h1 className="main-header1">My Calendar</h1>
 
         {/* Calendar Section */}
         <section id="calendar">
-         
           <Calendar
             onChange={handleDateChange}
             value={selectedDate}
-            tileClassName={({ date, view }) => {
-              const eventDate = date.toDateString();
-              const hasEvent = events.some(event => new Date(event.date).toDateString() === eventDate);
-              return hasEvent ? 'has-events' : null;
-            }}
+            tileClassName={tileClassName}
             onClickDay={(date) => {
               const event = events.find(event => new Date(event.date).toDateString() === date.toDateString());
               if (event) {
-                handleEventClick(event.id, paidEvents.some(p => p.id === event.id), event.event_address);
+                handleEventClick(event.id);
               }
             }}
           />
         </section>
-       <h3>Upcoming Events</h3>
-        {/* Display Events */}
-        <section id="events">
 
+        {/* Display Upcoming Events */}
+        <h3>Upcoming Events</h3>
+        <section id="events">
           <div className="event-cards">
             {events.length === 0 ? (
               <p>No upcoming events found.</p>
@@ -150,14 +152,13 @@ const Calender = () => {
                 <EventCard
                   key={event.id}
                   event={event}
-                  onClick={() => handleEventClick(event.id, paidEvents.some(p => p.id === event.id), event.event_address)}
+                  onClick={() => handleEventClick(event.id)}
                 />
               ))
             )}
           </div>
         </section>
 
-        
       </main>
 
       {/* Popup Dialog for Event Details */}
@@ -165,7 +166,7 @@ const Calender = () => {
         <>
           <div className="backdrop" onClick={handleClosePopup}></div>
           <div className="event-popup">
-          {selectedEvent.picture && <img src={selectedEvent.picture} alt={selectedEvent.name} className="event-image" />}
+            {selectedEvent.picture && <img src={selectedEvent.picture} alt={selectedEvent.name} className="event-image" />}
             <h3>{selectedEvent.name}</h3>
             <p><strong>Date:</strong> {formatEventDate(selectedEvent.date)}</p>
             <p><strong>Location:</strong> {selectedEvent.event_address}</p>

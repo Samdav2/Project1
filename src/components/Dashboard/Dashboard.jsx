@@ -78,7 +78,7 @@ const location = useLocation();
         <div className="dashboard-actions">
         <Link to="/add-event" state={{brandname}}> <button className="action-button create-event">Create Event</button> </Link>
            
-        <Link to="/verify-ticket" state={{}}> <button className="action-button1 verify-ticket">Verify Ticket</button> </Link> 
+        <Link to="/verify-ticket" state={{brandname}}> <button className="action-button1 verify-ticket">Verify Ticket</button> </Link> 
         </div>
        
         <div className="dashboard-content">
