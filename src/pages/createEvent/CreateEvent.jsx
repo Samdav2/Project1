@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./CreateEvent.css";
 import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom"
-import EventTablesForm from './EventTablesForm';
+import { useLocation } from "react-router-dom";
 
 export const CreateEvent = () => {
   const Location = useLocation();
@@ -22,7 +21,7 @@ export const CreateEvent = () => {
     category: "",
     account_name: "",
     account_number: "",
-    bank: "",
+    bank: "", // Bank name will now come from the select dropdown
   });
 
   const navigate = useNavigate();
@@ -35,6 +34,99 @@ export const CreateEvent = () => {
     console.log("Updated Tables: ", updatedTables); // Log for debugging
   };
 
+  // Bank list (Only the names)
+  const bankList = [
+  '9MOBILE 9PAYMENT SERVICE BANK',
+  'ABBEY MORTGAGE BANK',
+  'ABOVE ONLY MFB',
+  'ABULESORO MFB',
+  'ACCESS BANK',
+  'ACCESS BANK (DIAMOND)',
+  'AIRTEL SMARTCASH PSB',
+  'ALAT BY WEMA',
+  'AMJU UNIQUE MFB',
+  'ARAMOKO MFB',
+  'ASO SAVINGS AND LOANS',
+  'ASTRAPOLARIS MFB LTD',
+  'BAINESCREDIT MFB',
+  'BOWEN MICROFINANCE BANK',
+  'CARBON',
+  'CEMCS MICROFINANCE BANK',
+  'CHANELLE MICROFINANCE BANK LIMITED',
+  'CITIBANK NIGERIA',
+  'CORESTEP MFB',
+  'CORONATION MERCHANT BANK',
+  'CRESCENT MFB',
+  'ECOBANK NIGERIA',
+  'EKIMOGUN MFB',
+  'EKONDO MICROFINANCE BANK',
+  'EYOWO',
+  'FIDELITY BANK',
+  'FIRMUS MFB',
+  'FIRST BANK OF NIGERIA',
+  'FIRST CITY MONUMENT BANK',
+  'FSDH MERCHANT BANK LIMITED',
+  'GATEWAY MORTGAGE BANK LTD',
+  'GLOBUS BANK',
+  'GOMONEY',
+  'GUARANTY TRUST BANK',
+  'HACKMAN MICROFINANCE BANK',
+  'HASAL MICROFINANCE BANK',
+  'HERITAGE BANK',
+  'HOPEPSB',
+  'IBILE MICROFINANCE BANK',
+  'IKOYOI OSUN MFB',
+  'INFINITY MFB',
+  'JAIZ BANK',
+  'KADPOLY MFB',
+  'KEYSTONE BANK',
+  'KREDI MONEY MFB LTD',
+  'KUDA BANK',
+  'LAGOS BUILDING INVESTMENT COMPANY PLC.',
+  'LINKS MFB',
+  'LIVING TRUST MORTGAGE BANK',
+  'LOTUS BANK',
+  'MAYFAIR MFB',
+  'MINT MFB',
+  'MTN MOMO PSB',
+  'PAGA',
+  'PALMPAY',
+  'PARALLEX BANK',
+  'PARKWAY - READYCASH',
+  'PAYCOM',
+  'PETRA MIRCOFINANCE BANK PLC',
+  'POLARIS BANK',
+  'POLYUNWANA MFB',
+  'PREMIUMTRUST BANK',
+  'PROVIDUS BANK',
+  'QUICKFUND MFB',
+  'RAND MERCHANT BANK',
+  'REFUGE MORTGAGE BANK',
+  'RUBIES MFB',
+  'SAFE HAVEN MFB',
+  'SOLID ROCK MFB',
+  'SPARKLE MICROFINANCE BANK',
+  'STANBIC IBTC BANK',
+  'STANDARD CHARTERED BANK',
+  'STELLAS MFB',
+  'STERLING BANK',
+  'SUNTUST BANK',
+  'TAJ BANK',
+  'TANGERINE MONEY',
+  'TCF MFB',
+  'TITAN BANK',
+  'TITAN PAYSTACK',
+  'UNICAL MFB',
+  'UNION BANK OF NIGERIA',
+  'UNITED BANK FOR AFRICA',
+  'UNITY BANK',
+  'VFD MICROFINANCE BANK LIMITED',
+  'WEMA BANK',
+  'ZENITH BANK',
+  'OPAY'
+];
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEventDetails((prevEventDetails) => ({
@@ -46,7 +138,7 @@ export const CreateEvent = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
-      if (file && file.size > 5 * 1024 * 1024) { // 5MB size limit
+    if (file && file.size > 5 * 1024 * 1024) {
       setMessage('File size exceeds 5MB. Please upload a smaller file.');
       return;
     }
@@ -54,10 +146,9 @@ export const CreateEvent = () => {
     if (file) {
       setEventDetails({
         ...eventDetails,
-        picture: file, 
+        picture: file,
       });
     }
-
   };
 
   const handleSubmit = async (event) => {
@@ -65,17 +156,15 @@ export const CreateEvent = () => {
     setIsSubmitting(true);
     console.log("Event Created: ", eventDetails);
 
-
-      const formDataToSend = new FormData();
+    const formDataToSend = new FormData();
     for (const key in eventDetails) {
       formDataToSend.append(key, eventDetails[key]);
     }
-  
 
     try {
-      const response = await axios.post("https://tick-dzls.onrender.com/event/event", formDataToSend,  {
+      const response = await axios.post("https://tick-dzls.onrender.com/event/event", formDataToSend, {
         headers: {
-          "Content-Type": "multipart/form-data", 
+          "Content-Type": "multipart/form-data",
         },
       });
       console.log("Event Response", response.data);
@@ -98,7 +187,6 @@ export const CreateEvent = () => {
     <div className="create-event-container">
       <h2>Create Event</h2>
       <form className="create-event-form" onSubmit={handleSubmit}>
-
         <label>
           Event Name
           <input
@@ -230,7 +318,7 @@ export const CreateEvent = () => {
           <input
             type="text"
             name="account_name"
-            value={eventDetails.accountName}
+            value={eventDetails.account_name}
             onChange={handleChange}
             required
           />
@@ -241,7 +329,7 @@ export const CreateEvent = () => {
           <input
             type="text"
             name="account_number"
-            value={eventDetails.accountNumber}
+            value={eventDetails.account_number}
             onChange={handleChange}
             required
           />
@@ -249,23 +337,32 @@ export const CreateEvent = () => {
 
         <label>
           Bank
-          <input
-            type="text"
+          <select
             name="bank"
             value={eventDetails.bank}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Select your bank</option>
+            {bankList.map((bank) => (
+              <option key={bank} value={bank}>
+                {bank}
+              </option>
+            ))}
+          </select>
         </label>
 
         <label>
           Upload Event Image
-          <input type="file"  onChange={handleImageChange} />
+          <input type="file" onChange={handleImageChange} />
         </label>
 
         {eventDetails.picture && (
           <div className="image-preview">
-            <img src={eventDetails.picture} alt="Event Preview" />
+            <img
+              src={URL.createObjectURL(eventDetails.picture)}
+              alt="Event Preview"
+            />
           </div>
         )}
 

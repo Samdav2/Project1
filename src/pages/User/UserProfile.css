@@ -31,6 +31,7 @@ body {
 .profile-info {
   text-align: center;
   margin-bottom: 20px;
+  align-items: center;
 }
 
 .profile-pic {
@@ -43,10 +44,11 @@ body {
 .profile-info h3 {
   color: gold;
   font-size: 1.2rem;
+  text-decoration: none;
 }
 
 .profile-info p {
-  color: #bbb;
+  color: white;
   font-size: 1rem;
 }
 
@@ -119,10 +121,9 @@ body {
   gap: 30px;
 }
 
-.events h2 {
-  display: flex;
-  align-self: flex-start;
-  color: gold;
+.events h3 {
+  text-align: center;
+  color: black;
   font-size: 1.5rem;
   width: 100%;
 }
@@ -149,7 +150,7 @@ body {
   border-radius: 8px;
 }
 
-.events h3 {
+.events h2 {
   color: white;
   font-size: 18px;
   margin: 0;
@@ -276,12 +277,19 @@ body {
     align-items: center;
   }
 
-  .profile-info h3 {
+  .profile-info1 h3 {
     font-size: 1rem;
+
   }
 
-  .profile-info p {
+  .profile-info1{
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .profile-info1 p {
     font-size: 0.8rem;
+    text-align: center;
   }
 
   .content h1 {
@@ -318,3 +326,81 @@ body {
     padding: 12px;
   }
 }
+/* Toggle Button Styles */
+.menu-toggle {
+    position: absolute;
+    background: #111;
+    width: 50px;
+    color: gold;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.menu-toggle.open {
+    top: 20px;
+    left: 20px;
+}
+
+.menu-toggle.close {
+    top: 10px;
+    right: 10px;
+}
+
+/* Sidebar */
+.menubar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #111;
+    color: white;
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.menubar.open {
+    left: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+}
+
+/* Tabs container */
+.tabs {
+  display: flex;
+  justify-content: center; /* Center the tabs horizontally */
+  margin-bottom: 20px; /* Space below the tabs */
+}
+
+/* Individual tab buttons */
+.tabs button {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Style for active tab */
+.tabs button.active {
+  background-color: #4CAF50; /* Green background for active tab */
+  color: white; /* White text for active tab */
+  font-weight: bold;
+}
+
+/* Hover effect for tabs */
+.tabs button:hover {
+  background-color: #ddd;
+}
+

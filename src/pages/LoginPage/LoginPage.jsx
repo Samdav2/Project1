@@ -28,11 +28,8 @@ const LoginPage = () => {
     event.preventDefault();
     setIsSubmitting(true);
 
-    console.log('Sending login request:', user);
-
     try {
       const response = await axios.post("https://tick-dzls.onrender.com/auth/login", user);
-      console.log('Login response:', response.data);
 
       if (response.data) {
         setMessage("Login Successful");
@@ -105,6 +102,9 @@ const LoginPage = () => {
 
         <p className="signup-link">
           Don't have an account? <a href='/sign-up'>Sign up</a>
+        </p>
+        <p className="signup-link">
+          Forgot Password? <a href='/reset-password'>Reset it</a>
         </p>
       </div>
 

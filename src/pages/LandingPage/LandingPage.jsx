@@ -161,7 +161,8 @@ export const LandingPage = () => {
               </div>
             ) : (
               <>
-                <li><a href="#signUp">Sign Up</a></li>
+                <li><a href='/sign-up'>Sign Up</a></li>
+                <li><a href='/login'>Log in</a></li>
               </>
             )}
 
@@ -255,32 +256,7 @@ export const LandingPage = () => {
         <p className="owls"> TheOwl_Initiators is an Online Ticketing And Event Managing Platform leading In event management specializing in corporate events, weddings, concerts, and more. We pride ourselves on delivering exceptional and personalized services that cater to all types of events. Our experienced team ensures every detail is executed perfectly to create memorable experiences for our clients.</p>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="services">
-        <h3>Our Services</h3>
-        <div className="service-cards">
-          <div className="service-card">
-            <h4>Corporate Events</h4>
-            <p>Seamless planning for conferences, seminars, and team-building activities.</p>
-          </div>
-          <div className="service-card">
-            <h4>Birthday Parties</h4>
-            <p>Exciting themes and unique celebrations for all ages.</p>
-          </div>
-          <div className="service-card free-service">
-            <h4>Free Event Service</h4>
-            <p>Enjoy a complimentary event service for eligible community events.</p>
-          </div>
-          <div className="service-card">
-            <h4>Concerts and Shows</h4>
-            <p>Expert management for concerts, live shows, and theatrical events.</p>
-          </div>
-          <div className="service-card">
-            <h4>Event Staffing Services For Seamless Experience</h4>
-            <p> Simplify your event planning with our reliable and skilled staffing solutions.</p>
-          </div>
-        </div>
-      </section>
+      
 
        {/* Contact Us Section */}
       <section id="contact" className="contact-us">

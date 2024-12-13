@@ -1,0 +1,227 @@
+/* Global styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #111;
+  margin: 0;
+  padding: 0;
+  color: #f4f4f4;
+}
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+/* Sidebar styles */
+.menubar {
+  width: 250px;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: fixed;
+  height: 100%;
+}
+
+.menubar .profile-info {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.menubar .profile-info h3 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.menubar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menubar ul li {
+  margin: 15px 0;
+}
+
+.menubar ul li a,
+.menubar ul li button {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.menubar ul li a:hover,
+.menubar ul li button:hover {
+  background-color: gold;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Main content */
+.content-board {
+  margin-left: 260px;
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-header1 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: black;
+  font-weight: bold;
+}
+
+/* Calendar Section */
+#calendar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;  /* Adjust this value depending on how much space you want the calendar to occupy */
+  margin: 0 auto;
+}
+
+#calendar h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: gold;
+}
+
+.react-calendar {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.react-calendar__tile {
+  transition: background-color 0.3s ease;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.react-calendar__tile:hover {
+  background-color: #ffcc00;
+  cursor: pointer;
+}
+
+.react-calendar__tile.has-events {
+  background-color: gold;
+  color: black;
+}
+
+/* Modal / Popup Styles */
+.event-popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  max-width: 500px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event-popup h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.event-popup p {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #444;
+}
+
+.event-popup button {
+  background-color: gold;
+  color: black;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.event-popup button:hover {
+  background-color: black;
+}
+
+/* Backdrop for modal */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Event Cards */
+.event-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.event-card {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.event-card h4 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: gold;
+}
+
+.event-card p {
+  font-size: 14px;
+  color: #bbb;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: black;
+  color: gold;
+  font-size: 14px;
+}
+.event-popup img.event-image {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 10px 0;
+  border-radius: 8px;
+}
