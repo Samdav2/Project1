@@ -4,6 +4,8 @@ import { PaystackButton } from 'react-paystack';
 import { useLocation } from 'react-router-dom';
 import { jsPDF } from "jspdf";
 import './TicketGeneration.css';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
 
 const TicketGenerator = () => {
   const [ticketToken, setTicketToken] = useState('');
@@ -424,6 +426,7 @@ console.log(subaccountCode);
 
   return (
     <div className="ticket-generator-container">
+    <BackButton />
       <h2>Generate Event Ticket</h2>
       {error && <div className="error-message">{error}</div>}
       {message && <div className="success-message">{message}</div>}
@@ -460,6 +463,7 @@ console.log(subaccountCode);
           </>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

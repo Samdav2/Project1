@@ -3,6 +3,8 @@ import './ResetPassword.css';
 import MessageIcon from '../assets/iconly-light-message.svg';
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
 
 const ResetPassword = () => {
   const [ user, setUser ] = useState({
@@ -37,7 +39,10 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="reset-password">
+    <div>
+    <div>
+      <div className="reset-password">
+     <BackButton />
        <div className="wrapper">
          <form action=""  onSubmit={handleSubmit}></form>
          <div className="content">
@@ -65,15 +70,15 @@ const ResetPassword = () => {
 
            </form>
 
-
-
          </div>
-
-
-
           
        </div>
+       
      </div>
+     
+     </div>
+     </div>
+
     </div>
   );
 };

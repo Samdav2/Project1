@@ -89,7 +89,7 @@ export const UserProfile = () => {
   }, [user]); // Trigger fetchData when user is set or changed
 
   // Loading state check
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div style={{color:"black"}}>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   // Function to get user initials
@@ -114,6 +114,7 @@ export const UserProfile = () => {
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  console.log(user.name);
 
   return (
     <>
@@ -126,7 +127,9 @@ export const UserProfile = () => {
             <p>{user?.email}</p>
           <ul>
             <li><a href="#events">My Events</a></li>
-            <li><a href="/calendar">Calendar</a></li>
+
+            <li><Link to="/calendar" state={{ user_id: user?.user_id, name: user?.name }}>
+                Calendar</Link></li>
             <li><a href="#notifications">Notifications</a></li>
             <li><a href="#help">Help</a></li>
             <li>

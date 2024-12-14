@@ -2,6 +2,8 @@ import React, { useReducer, useEffect } from 'react';
 import './ProfileCreation.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
 
 // Initial state for the form
 const initialState = {
@@ -139,6 +141,7 @@ const ProfileCreation = () => {
 
   return (
     <div className="dynamic-forms">
+    <BackButton />
       <h1>Select a Profile</h1>
       <div className="select-wrapper">
         <label htmlFor="form-select">Choose a form:</label>
@@ -156,6 +159,7 @@ const ProfileCreation = () => {
       <div className="form-display">
         {state.selectedForm && renderForm()}
       </div>
+      <Footer />
     </div>
   );
 };

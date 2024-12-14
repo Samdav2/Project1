@@ -116,7 +116,7 @@ export const LandingPage = () => {
     if (user.user_id === null) {
       navigate('/login');
     } else {
-      navigate("/get-ticket", {
+      navigate(`/get-ticket/${eventId}`, {
         state: {
           eventId: eventId,
           user_id: user.user_id,

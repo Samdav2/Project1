@@ -7,13 +7,20 @@ import 'react-calendar/dist/Calendar.css';
 import { deepPurple } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
 import { EventCard } from '../User/EventCard';
+import { toast } from 'react-toastify';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
 
 const Calender = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { name, email, user_id } = location.state;
+
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    name:name
+  });
   const [events, setEvents] = useState([]);
   const [paidEvents, setPaidEvents] = useState([]);
   const [error, setError] = useState(null);
@@ -31,18 +38,41 @@ const Calender = () => {
       return [];
     }
   };
-
-  // Fetching paid events
-  const fetchPaidEvents = async () => {
-    if (user?.user_id) {
-      try {
-        const response = await axios.get(`https://tick-dzls.onrender.com/event/getAttendedEvents?userId=${user.user_id}`);
+const fetchPaidEvents = async () => {
+  if (user?.user_id) {
+    try {
+      const response = await axios.get(`https://tick-dzls.onrender.com/event/getAttendedEvents?userId=${user.user_id}`);
+      console.log("Error Message", response.data.message);
+      
+      if (response.data.message === "User has not attended any event") {
+        console.log("Error Message", response.data.message)
+        toast.error("You have not paid for any event")
+        setPaidEvents([]); 
+        setError("You have no paid active event at the moment");
+        return([]);
+      } else if (response.status === 200 && response.data.length > 0) {
         setPaidEvents(response.data || []);
-      } catch (err) {
-        setError(err);
+        setError(""); 
+      } else {
+        setError(`Unexpected response: ${response.status}`);
+        return([]);
       }
+    } catch (err) {
+      setPaidEvents([]);  
+      setError("Failed to load paid events");  
+      console.error("Error loading paid events:", err);
     }
+  } else {
+    setError("User not found or user_id is missing.");
+  }
+};
+
+const getInitials = (name = '') => {
+    const nameParts = name.split(' ');
+    return `${nameParts[0]?.[0]?.toUpperCase() || ''}${nameParts[1]?.[0]?.toUpperCase() || ''}`;
   };
+
+  const initials = user ? getInitials(user.name) : '';
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -111,7 +141,7 @@ const Calender = () => {
     return new Date(date).toLocaleDateString('en-US', options);
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div style={{color:"black"}}>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   // Add events to calendar tiles
@@ -124,6 +154,8 @@ const Calender = () => {
   return (
     <div className="dashboard">
       <main className="content-board">
+      <BackButton />
+      <Avatar sx={{ bgcolor: deepPurple[700] }}>{initials}</Avatar>
         <h1 className="main-header1">My Calendar</h1>
 
         {/* Calendar Section */}
@@ -183,6 +215,7 @@ const Calender = () => {
           </div>
         </>
       )}
+      <Footer />
     </div>
   );
 };

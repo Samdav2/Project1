@@ -3,6 +3,8 @@ import './VerifyTicket.css';
 import { BrowserMultiFormatReader } from '@zxing/library';
 import axios from 'axios';
 import { useLocation } from "react-router-dom";
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
 
 const VerifyTicket = () => {
   const [token, setToken] = useState('');
@@ -128,7 +130,9 @@ const VerifyTicket = () => {
   };
 
   return (
+    <div>
     <div className="container">
+    <BackButton />
       <div className="form-container">
         <h1 className="title">Ticket Validation</h1>
 
@@ -182,6 +186,8 @@ const VerifyTicket = () => {
           </div>
         )}
       </div>
+      </div>
+        <Footer />
     </div>
   );
 };

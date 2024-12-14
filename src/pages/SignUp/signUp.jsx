@@ -3,6 +3,8 @@ import axios from 'axios';
 import '../SignUp/signUp.css';
 import { redirect } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
 
 const SignUpPage = () => {
   const [user, setUser] = useState({
@@ -66,7 +68,9 @@ const SignUpPage = () => {
   };
 
   return (
+    <div>
     <div className="1signup-page login-page">
+    <BackButton />
       <div className="1signup-form login-form">
 
 
@@ -131,6 +135,8 @@ const SignUpPage = () => {
       <div className="sidebar1">
         <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
+      </div>
+       <Footer />
     </div>
   );
 };

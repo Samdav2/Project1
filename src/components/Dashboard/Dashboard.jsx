@@ -10,6 +10,8 @@ import { useLocation } from "react-router-dom";
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { deepOrange, deepPurple } from '@mui/material/colors';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+
 
 const Dashboard = () => {
 
@@ -48,9 +50,11 @@ const location = useLocation();
 
   return (
     <>
+      <BackButton />
       <div className="dashboard">
-      <div className="profile-section ">
 
+      <div className="profile-section ">
+      
         <div className="names"> 
           <p><Avatar sx={{ bgcolor: deepPurple[700] }}>{initials}</Avatar></p> 
 
