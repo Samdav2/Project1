@@ -6,6 +6,7 @@ import BackButton from "/src/components/Ui/BackArrow.jsx"
 import Footer from "/src/components/Dashboard/Footer.jsx"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import dotenv from "dotenv"
 
 
 
@@ -20,6 +21,8 @@ export const TicketingForm = () => {
 
 
     const eventid = useParams();
+
+    const getEvent = import.meta.env.VITE_GET_EVENT_DETAILS
 
 
     const eventid2 = eventid?.eventId;
@@ -49,9 +52,10 @@ export const TicketingForm = () => {
         while (attempt < maxRetries) {
             try {
                 console.log(`Attempt ${attempt + 1} to fetch data...`);
-                const response = await axios.get(`https://tick-dzls.onrender.com/event/getEvent?eventId=${eventId}`);
+                const response = await axios.get(`${getEvent}${eventId}`);
                 console.log('Data fetched successfully:', response.data);
                 setEvents(response.data.event);
+                setError(null);
                 setLoading(false);
                 return;
             } catch (err) {
@@ -80,7 +84,7 @@ export const TicketingForm = () => {
     }
 
     if (error) {
-        return <div>Error: {error.message}</div>;
+        return <div style={{color: 'black'}}> Network Error... Please Reload the Page </div>
     }
 
     const displayEvents = events.length > 0 ? events : [];
@@ -160,7 +164,7 @@ export const TicketingForm = () => {
                     return (
                         <div className="event-section" key={index}>
                             <div className="event-card">
-                                <img src={`https://tick-dzls.onrender.com/${picture}`} alt={event_name} className="event-image" />
+                                <img src={`http://app.swiftjobs.com.ng/${picture}`} alt={event_name} className="event-image" />
                                 <div className="event-info">
                                     <h4 className="event-title">{event_name}</h4>
                                     <p className="event-address">{event_address}</p>

@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import BackButton from "/src/components/Ui/BackArrow.jsx"
 import Footer from "/src/components/Dashboard/Footer.jsx"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import dotenv from "dotenv"
+
 
 const LoginPage = () => {
 
@@ -18,7 +22,7 @@ const LoginPage = () => {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-
+const login = import.meta.env.VITE_USER_LOGIN
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,7 +37,7 @@ const LoginPage = () => {
   setIsSubmitting(true);
 
   try {
-    const response = await axios.post("https://tick-dzls.onrender.com/auth/login", user);
+    const response = await axios.post(login, user);
 
     if (response.data) {
       setMessage("Login Successful");
@@ -76,9 +80,11 @@ const LoginPage = () => {
       }
     } else {
       setMessage(response.data.message || "Invalid Credential. Wrong Email Or Password");
+
     }
   } catch (error) {
     console.error('Login error:', error);
+    toast.error("Invalid Credential. Wrong Email Or Password");
     setMessage('Invalid Credential. Please Check Info and try again');
   } finally {
     setIsSubmitting(false);
@@ -88,6 +94,7 @@ const LoginPage = () => {
 
   return (
     <div>
+    <ToastContainer />
     <div className="login-page">
     <BackButton />
       <div className="login-form">

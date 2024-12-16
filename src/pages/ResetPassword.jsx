@@ -5,6 +5,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import BackButton from "/src/components/Ui/BackArrow.jsx"
 import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const ResetPassword = () => {
   const [ user, setUser ] = useState({
@@ -21,13 +22,14 @@ const ResetPassword = () => {
   };
 
   const navigate = useNavigate()
+  const resetPass = import.meta.env.VITE_RESET_PASS
 
  const handleSubmit = async (event) => {
   event.preventDefault()
     console.log(user)
 
     try {
-      const response = await axios.put("https://tick-dzls.onrender.com/auth/resetpassword", user);
+      const response = await axios.put(resetPass, user);
       console.log(response.data);
       if (response.data) {
         console.log("sent")

@@ -10,6 +10,7 @@ import { EventCard } from '../User/EventCard';
 import { toast } from 'react-toastify';
 import BackButton from "/src/components/Ui/BackArrow.jsx"
 import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const Calender = () => {
   const location = useLocation();
@@ -28,10 +29,12 @@ const Calender = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  const allEvent = import.meta.env.VITE_GET_ALL_EVENT
+  const userEvent = import.meta.env.VITE_GET_ATTENDED_EVENT
   // Fetching all events
   const fetchAllEvents = async () => {
     try {
-      const response = await axios.get('https://tick-dzls.onrender.com/event/getAllEvent');
+      const response = await axios.get(allEvent);
       return response.data.event || [];
     } catch (err) {
       setError(err);
@@ -41,7 +44,7 @@ const Calender = () => {
 const fetchPaidEvents = async () => {
   if (user?.user_id) {
     try {
-      const response = await axios.get(`https://tick-dzls.onrender.com/event/getAttendedEvents?userId=${user.user_id}`);
+      const response = await axios.get(`${userEvent}${user.user_id}`);
       console.log("Error Message", response.data.message);
       
       if (response.data.message === "User has not attended any event") {
@@ -126,7 +129,7 @@ const getInitials = (name = '') => {
 
   const handleTicketPurchase = () => {
     if (selectedEvent) {
-      navigate('/get-ticket', { state: { eventId: selectedEvent.id, user_id: user.user_id, name: user.name, email: user.email } });
+      navigate(`/get-ticket/${selectedEvent.id}`, { state: { eventId: selectedEvent.id, user_id: user.user_id, name: user.name, email: user.email } });
     }
   };
 
@@ -142,7 +145,7 @@ const getInitials = (name = '') => {
   };
 
   if (isLoading) return <div style={{color:"black"}}>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (error) return <div style={{color: 'black'}}> Network Error... Please Reload the Page </div>
 
   // Add events to calendar tiles
   const tileClassName = ({ date, view }) => {
@@ -198,7 +201,7 @@ const getInitials = (name = '') => {
         <>
           <div className="backdrop" onClick={handleClosePopup}></div>
           <div className="event-popup">
-            {selectedEvent.picture && <img src={`https://tick-dzls.onrender.com/${selectedEvent.picture}`} alt={selectedEvent.event_name} className="event-image" />}
+            {selectedEvent.picture && <img src={`ttp://app.swiftjobs.com.ng/${selectedEvent.picture}`} alt={selectedEvent.event_name} className="event-image" />}
             <h3>{selectedEvent.event_name}</h3>
             <p><strong>Date:</strong> {formatEventDate(selectedEvent.date)}</p>
             <p><strong>Location:</strong> {selectedEvent.event_address}</p>

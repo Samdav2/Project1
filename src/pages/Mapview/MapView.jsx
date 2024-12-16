@@ -4,6 +4,7 @@ import axios from 'axios';
 import './MapView.css'
 import BackButton from "/src/components/Ui/BackArrow.jsx"
 import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const MapView = () => {
   // Retrieve passed state using useLocation hook
@@ -16,6 +17,8 @@ const MapView = () => {
   // Debug: Check if eventId and eventAddress are passed correctly
   console.log('MapView received:', eventId, eventAddress);
 
+  const getEvent = import.meta.env.VITE_GET_EVENT_DETAILS
+
   // Fetch event details from the API
   const fetchData = async () => {
     if (!eventId) {
@@ -26,7 +29,7 @@ const MapView = () => {
 
     try {
       setLoading(true);
-      const response = await axios.get(`https://tick-dzls.onrender.com/event/getEvent?eventId=${eventId}`);
+      const response = await axios.get(`${getEvent}${eventId}`);
 
       // Debug: Check the response data
       console.log('Fetched event data:', response.data);

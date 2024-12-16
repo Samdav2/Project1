@@ -5,6 +5,7 @@ import { redirect } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import BackButton from "/src/components/Ui/BackArrow.jsx"
 import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const SignUpPage = () => {
   const [user, setUser] = useState({
@@ -17,6 +18,8 @@ const SignUpPage = () => {
 
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const signUp = import.meta.env.VITE_USER_SIGNUP;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,7 +52,7 @@ const SignUpPage = () => {
     console.log(user)
 
     try {
-      const response = await axios.post("https://tick-dzls.onrender.com/auth/signup", user);
+      const response = await axios.post(signUp, user);
       console.log(response.data);
       if (response.data) {
         setMessage(response.data.message);

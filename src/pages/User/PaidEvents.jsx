@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { EventCard } from './EventCard'; // Import EventCard
+import dotenv from "dotenv"
 
 const PaidEvents = ({ userId }) => {
   const [paidEvents, setPaidEvents] = useState([]);
@@ -9,11 +10,13 @@ const PaidEvents = ({ userId }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate(); // Hook to navigate
 
+  const userEvent = import.meta.env.VITE_GET_ATTENDED_EVENT
+
   // Fetch paid events for the user
   const fetchPaidEvents = async () => {
     if (!userId) return;
     try {
-      const response = await axios.get(`https://tick-dzls.onrender.com/event/getAttendedEvents?userId=${userId}`);
+      const response = await axios.get(`${userEvent}${userId}`);
       setPaidEvents(response.data || []);
     } catch (err) {
       setError(err);

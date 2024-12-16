@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useLocation } from "react-router-dom";
 import BackButton from "/src/components/Ui/BackArrow.jsx"
 import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const VerifyTicket = () => {
   const [token, setToken] = useState('');
@@ -17,6 +18,9 @@ const VerifyTicket = () => {
   const [videoStream, setVideoStream] = useState(null);
 
   const location = useLocation();
+
+  const verifyTicket = import.meta.env.VITE_VERIFY_TOKEN
+  const deleteTickets = import.meta.env.VITE_DELETE_TICKET
 
   const verifyToken = async () => {
 
@@ -31,7 +35,7 @@ const VerifyTicket = () => {
 
     try {
           console.log('Verifying token:', token);
-          const response = await axios.post('https://tick-dzls.onrender.com/event/verifytoken', { token });
+          const response = await axios.post(verifyTicket, { token });
           console.log("data res", response.data);
 
     // Check if the event brand name matches the current user's brand name (event owner) or if the user is an authorized official (Roman or Down)
@@ -70,7 +74,7 @@ const VerifyTicket = () => {
   const deleteTicket = async () => {
     try {
       console.log('Deleting token:', token);
-      const response = await axios.delete('https://tick-dzls.onrender.com/event/deleteTicket', {
+      const response = await axios.delete(deleteTickets, {
         data: { token },
       });
 
