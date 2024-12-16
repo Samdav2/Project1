@@ -29,7 +29,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 25%;
   }
 
@@ -145,7 +145,7 @@
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 425px) {
     body {
       font-size: 14px;
     }
@@ -154,8 +154,8 @@
       padding: 15px;
       width: 100%;
       position: absolute;
-      top: 35%;
-      left: 0px;
+      top: 20%;
+      left: 50%;
     }
 
     .ticket-form input,

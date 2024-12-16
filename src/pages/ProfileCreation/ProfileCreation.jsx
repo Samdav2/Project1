@@ -2,6 +2,9 @@ import React, { useReducer, useEffect } from 'react';
 import './ProfileCreation.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 // Initial state for the form
 const initialState = {
@@ -30,6 +33,9 @@ const ACTIONS = {
   SET_FIELD: 'set_field',
   SET_SUBMITTING: 'set_submitting',
 };
+
+ const userProfile = import.meta.env.VITE_USER_PROFILE
+ const creatorProfile = import.meta.env.VITE_CREATOR_PROFILE
 
 // Reducer function for form management
 const formReducer = (state, action) => {
@@ -85,8 +91,8 @@ const ProfileCreation = () => {
     
     // Conditionally set the API URL based on the selected form
     const url = state.selectedForm === 'user' 
-      ? 'https://tick-dzls.onrender.com/profile/userProfiles'  // User API endpoint
-      : 'https://tick-dzls.onrender.com/profile/creatorProfiles'; // Creator API endpoint
+      ? userProfile  // User API endpoint
+      : creatorProfile; // Creator API endpoint
 
     try {
       const response = await axios.post(url, formData, {
@@ -139,6 +145,7 @@ const ProfileCreation = () => {
 
   return (
     <div className="dynamic-forms">
+    <BackButton />
       <h1>Select a Profile</h1>
       <div className="select-wrapper">
         <label htmlFor="form-select">Choose a form:</label>
@@ -156,6 +163,7 @@ const ProfileCreation = () => {
       <div className="form-display">
         {state.selectedForm && renderForm()}
       </div>
+      <Footer />
     </div>
   );
 };

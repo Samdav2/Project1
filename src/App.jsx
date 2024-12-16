@@ -24,6 +24,7 @@ import TicketGenerator from "./pages/TicketGeneration/TicketGeneration";
 import VerifyTicket from "./pages/VerifyTicket/VeryfyTicket";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./components/Dashboard/Dashboard"
+import Terms from "/src/pages/Content/Terms"
 
 import './App.css'
 
@@ -54,14 +55,14 @@ function App() {
          <Route path='/update-user-profile' element={<UpdateUserProfile />} />
          <Route path='/update-creator-profile' element={<UpdateCreatorProfile />} />
          <Route path='/' element={<LandingPage />} />
-         <Route path='/get-ticket' element={<TicketingForm />} />
+         <Route path='/get-ticket/:eventId' element={<TicketingForm />} />
          <Route path='/ticket' element={<TicketGenerator/>} />
          <Route path='/verify-ticket' element={<VerifyTicket/>} />
          <Route path='/reset-pass' element={<ResetPassword/>} />
          <Route path='/creator-dashboard' element={<Dashboard />} />
-         <Route path='/tables' element={<EventTablesForm />} />
          <Route path='map' element={<MapView />} />
          <Route path='calendar' element={<Calender />} />
+         <Route path='terms' element={<Terms />} />
 
       </Routes>
       </div>

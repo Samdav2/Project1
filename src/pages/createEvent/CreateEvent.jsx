@@ -3,6 +3,9 @@ import axios from "axios";
 import "./CreateEvent.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 export const CreateEvent = () => {
   const Location = useLocation();
@@ -29,10 +32,8 @@ export const CreateEvent = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [tables, setTables] = useState([]);
 
-  const handleTablesChange = (updatedTables) => {
-    setTables(updatedTables);
-    console.log("Updated Tables: ", updatedTables); // Log for debugging
-  };
+  const addEvent = import.meta.env.VITE_CREATE_EVENT
+
 
   // Bank list (Only the names)
   const bankList = [
@@ -162,7 +163,7 @@ export const CreateEvent = () => {
     }
 
     try {
-      const response = await axios.post("https://tick-dzls.onrender.com/event/event", formDataToSend, {
+      const response = await axios.post(addEvent, formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -184,7 +185,9 @@ export const CreateEvent = () => {
   };
 
   return (
+    <div>
     <div className="create-event-container">
+    <BackButton />
       <h2>Create Event</h2>
       <form className="create-event-form" onSubmit={handleSubmit}>
         <label>
@@ -249,6 +252,7 @@ export const CreateEvent = () => {
             value={eventDetails.summary}
             onChange={handleChange}
             required
+            maxLength="300"
           />
         </label>
 
@@ -309,9 +313,6 @@ export const CreateEvent = () => {
           />
         </label>
 
-        {/* Add the Table Form */}
-        <TableForm tables={tables} onChange={handleTablesChange} />
-
         {/* Bank Details Section */}
         <label>
           Account Name
@@ -371,6 +372,8 @@ export const CreateEvent = () => {
         </button>
       </form>
       {message && <p>{message}</p>}
+      </div>
+       <Footer />
     </div>
   );
 };

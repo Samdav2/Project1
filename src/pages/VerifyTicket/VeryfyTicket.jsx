@@ -2,6 +2,10 @@ import React, { useState, useRef } from 'react';
 import './VerifyTicket.css';
 import { BrowserMultiFormatReader } from '@zxing/library';
 import axios from 'axios';
+import { useLocation } from "react-router-dom";
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const VerifyTicket = () => {
   const [token, setToken] = useState('');
@@ -13,7 +17,13 @@ const VerifyTicket = () => {
   const videoRef = useRef(null);
   const [videoStream, setVideoStream] = useState(null);
 
+  const location = useLocation();
+
+  const verifyTicket = import.meta.env.VITE_VERIFY_TOKEN
+  const deleteTickets = import.meta.env.VITE_DELETE_TICKET
+
   const verifyToken = async () => {
+
     if (!token) {
       setErrorMessage('Please enter a ticket code.');
       return null;
@@ -24,37 +34,47 @@ const VerifyTicket = () => {
     }
 
     try {
-      console.log('Verifying token:', token);
-      const response = await axios.post('https://tick-dzls.onrender.com/event/verifytoken', {
-        token,
-      });
-      console.log("data res", response.data)
+          console.log('Verifying token:', token);
+          const response = await axios.post(verifyTicket, { token });
+          console.log("data res", response.data);
 
-      if (response.data) {
-        setVerifyResponse({
-          message: response.data.message,
-          user: response.data.userProfile.name,
-          email: response.data.userProfile.email,
-          event: response.data.eventDetails.event_name,
-          location: response.data.eventDetails.event_address,
-          date: response.data.eventDetails.date,
-        });
-        setIsValid(true);
-        setErrorMessage('');
-        return true; 
-      }
+    // Check if the event brand name matches the current user's brand name (event owner) or if the user is an authorized official (Roman or Down)
+    const authorizedBrands = ['Roman', 'Down'];
+    const eventBrandName = response.data.eventDetails.brand_name;
+    const userBrandName = location.state.brandname;  // The brand name of the event owner
+
+    if (eventBrandName !== userBrandName && !authorizedBrands.includes(userBrandName)) {
+      setIsValid(false);
+      setErrorMessage('You are not the owner of this event, and you are not an authorized official!');
+      return false;  // Return false to stop further processing
+       }
+
+
+
+      // If the brand names match, continue with the response data
+      setVerifyResponse({
+        message: response.data.message,
+        user: response.data.userProfile.name,
+        email: response.data.userProfile.email,
+        event: response.data.eventDetails.event_name,
+        location: response.data.eventDetails.event_address,
+        date: response.data.eventDetails.date,
+      });
+      setIsValid(true);
+      setErrorMessage('');
+      return true;  // Successfully verified the ticket
     } catch (error) {
       console.error('Verification error:', error);
       setIsValid(false);
-      setErrorMessage('Error verifying ticket. Does not exist or has been used!');
+      setErrorMessage('Error verifying ticket. It may not exist or could have been used!');
     }
-    return false; 
+    return false;
   };
 
   const deleteTicket = async () => {
     try {
       console.log('Deleting token:', token);
-      const response = await axios.delete('https://tick-dzls.onrender.com/event/deleteTicket', {
+      const response = await axios.delete(deleteTickets, {
         data: { token },
       });
 
@@ -114,7 +134,9 @@ const VerifyTicket = () => {
   };
 
   return (
+    <div>
     <div className="container">
+    <BackButton />
       <div className="form-container">
         <h1 className="title">Ticket Validation</h1>
 
@@ -168,6 +190,8 @@ const VerifyTicket = () => {
           </div>
         )}
       </div>
+      </div>
+        <Footer />
     </div>
   );
 };

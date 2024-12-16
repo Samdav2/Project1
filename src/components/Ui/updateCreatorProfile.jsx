@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './updateCreatorProfile.css'
 import { useLocation } from "react-router-dom";
+import dotenv from "dotenv"
 
 const UpdateCreatorProfile = () => {
 
@@ -21,6 +22,8 @@ const UpdateCreatorProfile = () => {
         brandName:"",
         email: ""
     });
+
+    const updateCreator = import.meta.env.VITE_UPDATE_CREATOR_PROFILE
 
     const handleChange = (e) => {
         const {name, value} = e.target;
@@ -42,7 +45,7 @@ const UpdateCreatorProfile = () => {
         setIsSubmitting(true);
         console.log(user);
         try {
-            const response = await axios.put('https://tick-dzls.onrender.com/profile/updatecreator', creator,
+            const response = await axios.put(updateCreator, creator,
                 {
                     headers: {
                       'Content-Type': 'application/json',

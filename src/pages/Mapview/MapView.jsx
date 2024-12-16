@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './MapView.css'
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const MapView = () => {
   // Retrieve passed state using useLocation hook
@@ -14,6 +17,8 @@ const MapView = () => {
   // Debug: Check if eventId and eventAddress are passed correctly
   console.log('MapView received:', eventId, eventAddress);
 
+  const getEvent = import.meta.env.VITE_GET_EVENT_DETAILS
+
   // Fetch event details from the API
   const fetchData = async () => {
     if (!eventId) {
@@ -24,8 +29,8 @@ const MapView = () => {
 
     try {
       setLoading(true);
-      const response = await axios.get(`https://tick-dzls.onrender.com/event/getEvent?eventId=${eventId}`);
-      
+      const response = await axios.get(`${getEvent}${eventId}`);
+
       // Debug: Check the response data
       console.log('Fetched event data:', response.data);
 
@@ -76,6 +81,7 @@ const MapView = () => {
   // Render the event details
   return (
     <div className="map-view">
+    <BackButton />
       <h3>Event Location</h3>
 
       {/* Display Google Map with event address */}
@@ -104,9 +110,9 @@ const MapView = () => {
                   <h4 className="event-title">{event_name}</h4>
                   <p className="event-address">{event_address}</p>
                   <p className="event-summary">{summary}</p>
-                  <p>Regular Price: ${parseFloat(price).toFixed(2)}</p>
-                  <p>VIP Price: ${parseFloat(vip_price).toFixed(2)}</p>
-                  <p>VVIP Price: ${parseFloat(vvip_price).toFixed(2)}</p>
+                  <p>Regular Price: NGN{parseFloat(price).toFixed(2)}</p>
+                  <p>VIP Price: NGN{parseFloat(vip_price).toFixed(2)}</p>
+                  <p>VVIP Price: NGN{parseFloat(vvip_price).toFixed(2)}</p>
                   <p className="event-date-time">
                     <span className="event-date">{formattedDate}</span> |
                     <span className="event-time">{formattedTime}</span>
@@ -119,6 +125,7 @@ const MapView = () => {
       ) : (
         <div>No events available.</div>
       )}
+      <Footer />
     </div>
   );
 };

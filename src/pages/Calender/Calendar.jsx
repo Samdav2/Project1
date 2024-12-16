@@ -6,16 +6,22 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { deepPurple } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
-import PaidEvents from '../User/PaidEvents';
-import PastEvents from '../User/PastEvent';
 import { EventCard } from '../User/EventCard';
+import { toast } from 'react-toastify';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const Calender = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  
+
+  const { name, email, user_id } = location.state;
+
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    name:name
+  });
   const [events, setEvents] = useState([]);
   const [paidEvents, setPaidEvents] = useState([]);
   const [error, setError] = useState(null);
@@ -23,26 +29,53 @@ const Calender = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
+  const allEvent = import.meta.env.VITE_GET_ALL_EVENT
+  const userEvent = import.meta.env.VITE_GET_ATTENDED_EVENT
+  // Fetching all events
   const fetchAllEvents = async () => {
     try {
-      const response = await axios.get('https://tick-dzls.onrender.com/event/getAllEvent');
+      const response = await axios.get(allEvent);
       return response.data.event || [];
     } catch (err) {
       setError(err);
       return [];
     }
   };
-
-  const fetchPaidEvents = async () => {
-    if (user?.user_id) {
-      try {
-        const response = await axios.get(`https://tick-dzls.onrender.com/event/getAttendedEvents?userId=${user.user_id}`);
+const fetchPaidEvents = async () => {
+  if (user?.user_id) {
+    try {
+      const response = await axios.get(`${userEvent}${user.user_id}`);
+      console.log("Error Message", response.data.message);
+      
+      if (response.data.message === "User has not attended any event") {
+        console.log("Error Message", response.data.message)
+        toast.error("You have not paid for any event")
+        setPaidEvents([]); 
+        setError("You have no paid active event at the moment");
+        return([]);
+      } else if (response.status === 200 && response.data.length > 0) {
         setPaidEvents(response.data || []);
-      } catch (err) {
-        setError(err);
+        setError(""); 
+      } else {
+        setError(`Unexpected response: ${response.status}`);
+        return([]);
       }
+    } catch (err) {
+      setPaidEvents([]);  
+      setError("Failed to load paid events");  
+      console.error("Error loading paid events:", err);
     }
+  } else {
+    setError("User not found or user_id is missing.");
+  }
+};
+
+const getInitials = (name = '') => {
+    const nameParts = name.split(' ');
+    return `${nameParts[0]?.[0]?.toUpperCase() || ''}${nameParts[1]?.[0]?.toUpperCase() || ''}`;
   };
+
+  const initials = user ? getInitials(user.name) : '';
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -83,7 +116,8 @@ const Calender = () => {
     setSelectedDate(newDate);
   };
 
-  const handleEventClick = (eventId, isPaid, eventAddress) => {
+  // Handling event click
+  const handleEventClick = (eventId) => {
     const eventDetails = events.find(event => event.id === eventId);
     setSelectedEvent(eventDetails);
     setShowPopup(true);
@@ -95,7 +129,7 @@ const Calender = () => {
 
   const handleTicketPurchase = () => {
     if (selectedEvent) {
-      navigate('/get-ticket', { state: { eventId: selectedEvent.id, user_id: user.user_id } });
+      navigate(`/get-ticket/${selectedEvent.id}`, { state: { eventId: selectedEvent.id, user_id: user.user_id, name: user.name, email: user.email } });
     }
   };
 
@@ -110,37 +144,41 @@ const Calender = () => {
     return new Date(date).toLocaleDateString('en-US', options);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading) return <div style={{color:"black"}}>Loading...</div>;
+  if (error) return <div style={{color: 'black'}}> Network Error... Please Reload the Page </div>
+
+  // Add events to calendar tiles
+  const tileClassName = ({ date, view }) => {
+    const eventDate = date.toDateString();
+    const hasEvent = events.some(event => new Date(event.date).toDateString() === eventDate);
+    return hasEvent ? 'has-events' : null;
+  };
 
   return (
     <div className="dashboard">
-       <main className="content-board">
+      <main className="content-board">
+      <BackButton />
+      <Avatar sx={{ bgcolor: deepPurple[700] }}>{initials}</Avatar>
         <h1 className="main-header1">My Calendar</h1>
 
         {/* Calendar Section */}
         <section id="calendar">
-         
           <Calendar
             onChange={handleDateChange}
             value={selectedDate}
-            tileClassName={({ date, view }) => {
-              const eventDate = date.toDateString();
-              const hasEvent = events.some(event => new Date(event.date).toDateString() === eventDate);
-              return hasEvent ? 'has-events' : null;
-            }}
+            tileClassName={tileClassName}
             onClickDay={(date) => {
               const event = events.find(event => new Date(event.date).toDateString() === date.toDateString());
               if (event) {
-                handleEventClick(event.id, paidEvents.some(p => p.id === event.id), event.event_address);
+                handleEventClick(event.id);
               }
             }}
           />
         </section>
-       <h3>Upcoming Events</h3>
-        {/* Display Events */}
-        <section id="events">
 
+        {/* Display Upcoming Events */}
+        <h3>Upcoming Events</h3>
+        <section id="events">
           <div className="event-cards">
             {events.length === 0 ? (
               <p>No upcoming events found.</p>
@@ -149,14 +187,13 @@ const Calender = () => {
                 <EventCard
                   key={event.id}
                   event={event}
-                  onClick={() => handleEventClick(event.id, paidEvents.some(p => p.id === event.id), event.event_address)}
+                  onClick={() => handleEventClick(event.id)}
                 />
               ))
             )}
           </div>
         </section>
 
-        
       </main>
 
       {/* Popup Dialog for Event Details */}
@@ -164,8 +201,8 @@ const Calender = () => {
         <>
           <div className="backdrop" onClick={handleClosePopup}></div>
           <div className="event-popup">
-          {selectedEvent.picture && <img src={selectedEvent.picture} alt={selectedEvent.name} className="event-image" />}
-            <h3>{selectedEvent.name}</h3>
+            {selectedEvent.picture && <img src={`ttp://app.swiftjobs.com.ng/${selectedEvent.picture}`} alt={selectedEvent.event_name} className="event-image" />}
+            <h3>{selectedEvent.event_name}</h3>
             <p><strong>Date:</strong> {formatEventDate(selectedEvent.date)}</p>
             <p><strong>Location:</strong> {selectedEvent.event_address}</p>
             <p><strong>Description:</strong> {selectedEvent.summary}</p>
@@ -181,6 +218,7 @@ const Calender = () => {
           </div>
         </>
       )}
+      <Footer />
     </div>
   );
 };

@@ -121,7 +121,7 @@ body {
 /* Modal / Popup Styles */
 .event-popup {
   position: fixed;
-  top: 20%;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   background-color: #fff;
@@ -137,13 +137,13 @@ body {
 }
 
 .event-popup h3 {
-  font-size: 28px;
+  font-size: 25px;
   margin-bottom: 20px;
   color: #222;
 }
 
 .event-popup p {
-  font-size: 18px;
+  font-size: 12px;
   margin: 10px 0;
   color: #444;
 }
@@ -224,4 +224,27 @@ footer {
   height: auto;
   margin: 10px 0;
   border-radius: 8px;
+}
+@media screen and (max-width: 768px){
+  .event-popup img {
+   display: none;
+  }
+}
+
+@media screen and (max-width: 768px){
+  .event-popup p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .event-popup h3 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 320px){
+  .event-popup p {
+    font-size: 9px;
+  }
 }

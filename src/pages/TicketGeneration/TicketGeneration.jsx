@@ -4,6 +4,9 @@ import { PaystackButton } from 'react-paystack';
 import { useLocation } from 'react-router-dom';
 import { jsPDF } from "jspdf";
 import './TicketGeneration.css';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const TicketGenerator = () => {
   const [ticketToken, setTicketToken] = useState('');
@@ -17,7 +20,9 @@ const TicketGenerator = () => {
   const [amount, setAmount] = useState(0);
   const [subaccountCode, setSubaccountCode] = useState('');
   const [splitAccountId, setSplitAccountId] = useState(null);
-  const [publicKey] = useState('pk_live_9810a53b63cfa27714d35df2aa9049591825d065');
+  const pubkey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY
+  const [publicKey] = useState(pubkey);
+  
   
   // Use location to get parameters
   const location = useLocation();
@@ -25,8 +30,12 @@ const TicketGenerator = () => {
   const defaultQrCodeUrl = 'https://yourserver.com/default-qr-code.png';
   console.log(location.state)
 
-  const PAYSTACK_SECRET_KEY = 'sk_live_9c93d96ca28e52ab128970dfd783766a58d42461'; // Replace with your secret key
-  const PAYSTACK_PUBLIC_KEY_DEMO ='pk_test_30669aac0b13ceb49859a7d1163940ee50f58b43'
+  const PAYSTACK_SECRET_KEY = import.meta.env.VITE_PAYSTACK_SECRET_KEY // Replace with your secret key
+  const PAYSTACK_PUBLIC_KEY_DEMO = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY_DEMO
+
+ 
+
+  const attendEvent = import.meta.env.VITE_ATTEND_EVENT
 
   // Bank code mapping (same as in your code)
   const bankCodeMapping = {
@@ -386,7 +395,7 @@ const generateQRCode = async (ticketToken) => {
     console.log("Form Data to Send:", formData);
 
     // Step 5: Send the email with the ticket and QR code
-    await axios.post('https://tick-dzls.onrender.com/event/attendEvent', formData);
+    await axios.post(attendEvent, formData);
 
     // Success message after sending email
     setMessage('Ticket has been sent to your email!');
@@ -423,7 +432,9 @@ console.log(subaccountCode);
 
 
   return (
-    <div className="ticket-generator-container">
+    <div>
+      <div className="ticket-generator-container">
+       <BackButton />
       <h2>Generate Event Ticket</h2>
       {error && <div className="error-message">{error}</div>}
       {message && <div className="success-message">{message}</div>}
@@ -459,6 +470,8 @@ console.log(subaccountCode);
             )}
           </>
         )}
+      </div>
+      
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { EventCard } from './EventCard'; // Import the EventCard from the new file
 import './PastEvent.css'
+import dotenv from "dotenv"
 
 const PastEvents = ({ userId, allEvents }) => {
   const [activeTab, setActiveTab] = useState('all'); // Tab to show all or paid events
@@ -10,6 +11,8 @@ const PastEvents = ({ userId, allEvents }) => {
   const [error, setError] = useState(null);
 
   const currentDate = new Date();
+
+   const userEvent = import.meta.env.VITE_GET_ATTENDED_EVENT
 
   // Filter events into past and upcoming events based on current date
   const filterPastEvents = (events) => {
@@ -24,7 +27,7 @@ const PastEvents = ({ userId, allEvents }) => {
     if (!userId) return;
 
     try {
-      const response = await axios.get(`https://tick-dzls.onrender.com/event/getAttendedEvents?userId=${userId}`);
+      const response = await axios.get(`${userEvent}${userId}`);
       return response.data || [];
     } catch (err) {
       setError(err);

@@ -6,11 +6,12 @@ import { deepPurple } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
 import PaidEvents from './PaidEvents'; // Import PaidEvents component
 import PastEvents from './PastEvent'; // Import the PastEvents component
+import dotenv from "dotenv"
 
 // Reusable EventCard component (now in a separate file)
 export const EventCard = ({ event, onClick }) => (
   <div className="event-card" onClick={onClick}>
-    <img src={`https://tick-dzls.onrender.com/${event.picture || 'default.jpg'}`} alt={event.event_name} className="event-image" />
+    <img src={`http://app.swiftjobs.com.ng/${event.picture}`} alt={event.event_name} className="event-image" />
     <div className="event-info">
       <h4>{event.event_name}</h4>
       <p>{event.event_address}</p>
@@ -34,11 +35,12 @@ export const UserProfile = () => {
   const [error, setError] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false); // State for toggling menu visibility
 
+  const allEvent = import.meta.env.VITE_GET_ALL_EVENT
   // Fetch all events
   const fetchAllEvents = async () => {
     try {
-      console.log('Fetching all events...');
-      const response = await axios.get('https://tick-dzls.onrender.com/event/getAllEvent', { timeout: 5000 });
+      console.log("Fetching all events...");
+      const response = await axios.get(allEvent, { timeout: 5000 });
       return response.data.event || [];
     } catch (err) {
       setError(err);
@@ -89,7 +91,7 @@ export const UserProfile = () => {
   }, [user]); // Trigger fetchData when user is set or changed
 
   // Loading state check
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div style={{color:"black"}}>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
   // Function to get user initials
@@ -103,7 +105,7 @@ export const UserProfile = () => {
   // Handle event card click
   const handleEventClick = (eventId, price) => {
     if (!user?.user_id) navigate('/login');
-    else navigate('/get-ticket', { state: { eventId, user_id: user.user_id, name: user.name, email: user.email, price } });
+    else navigate(`/get-ticket/${eventId}`, { state: { eventId, user_id: user.user_id, name: user.name, email: user.email, price } });
   };
 
   // Handle user logout
@@ -114,6 +116,7 @@ export const UserProfile = () => {
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  console.log(user.name);
 
   return (
     <div className="dashboard">
@@ -125,8 +128,10 @@ export const UserProfile = () => {
           <p>{user?.email}</p>
           <ul>
             <li><a href="#events">My Events</a></li>
-            <li><a href="/calendar">Calendar</a></li>
-            <li><a href="#notifications">Messages</a></li>
+
+            <li><Link to="/calendar" state={{ user_id: user?.user_id, name: user?.name, email: user?.email }}>
+                Calendar</Link></li>
+            <li><a href="#notifications">Notifications</a></li>
             <li><a href="#help">Help</a></li>
             <li>
               <Link to="/update-user-profile" state={{ user_id: user?.user_id }}>

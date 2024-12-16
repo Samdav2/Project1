@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"
 import { useLocation } from "react-router-dom"
 import "./Overview.css";
+import dotenv from "dotenv"
 
 const Overview = ( {brandName }) => {
   const [overview, setOverview] = useState({
@@ -11,6 +12,8 @@ const Overview = ( {brandName }) => {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+   const brandEvent = import.meta.env.VITE_GET_BRAND_EVENTS
 
  
 
@@ -28,7 +31,7 @@ useEffect(() => {
     setLoading(true); // Start loading when the request is made
     
     try {
-      const response = await axios.get(`https://tick-dzls.onrender.com/event/getEventCreated?brand=${brand}`); 
+      const response = await axios.get(`${brandEvent}${brand}`); 
       
       if(response.data) {
         console.log(response.data.length)
