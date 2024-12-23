@@ -96,7 +96,7 @@ const login = import.meta.env.VITE_USER_LOGIN
     <div>
     <ToastContainer />
     <div className="login-page">
-    <BackButton />
+    
       <div className="login-form">
         <h1>Welcome Back</h1>
         <p className="subtitle">Enter your email and password to sign in</p>
@@ -127,7 +127,7 @@ const login = import.meta.env.VITE_USER_LOGIN
           Don't have an account? <a href='/sign-up'>Sign up</a>
         </p>
         <p className="signup-link">
-          Forgot Password? <a href='/reset-password'>Reset it</a>
+          Forgot Password? <a href='/reset-password'>Reset password</a>
         </p>
       </div>
 
@@ -138,7 +138,7 @@ const login = import.meta.env.VITE_USER_LOGIN
         <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
       </div>
-      <Footer />
+    
     </div>
   );
 };

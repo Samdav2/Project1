@@ -129,12 +129,13 @@ body, html {
 .login-form {
   display: flex;
   flex-direction: column;
-  max-width: 611.76px;
-  height: 762.8px;
+  width: 100px ;
+  max-width: 400px;
+  height: 70vh;
   background-color: #fff;
   border-radius: 8px;
   justify-content: center;
-  margin-left: 120px;
+  
 }
 
 /* Heading */
@@ -150,13 +151,16 @@ h1 {
   text-align: center;
   font-size: 14px;
   color: #a0aec0;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 
 /* Input Group */
 .input-groups {
-  margin-bottom: 30px;
+  margin-bottom: 5px;
+  width: 100%;
+  padding: 8px;
+  font-size: 12px;
 }
 
 .input-groups label {
@@ -179,8 +183,8 @@ h1 {
 .input-groups input {
   border: 1px solid #e2e8f0;
   font-size: 14px;
-  width: 611.76px;
-  height: 87.39px;
+  width: 400px;
+  height: 50px;
   padding: 0px 20px;
   border-radius: 15px;
   font-size: 14px;
@@ -191,13 +195,13 @@ h1 {
 .remember-me {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 
 .rememberMeBtn{
   display: flex;
-  width: 62.92px;
-  height: 32.34px;
+  width: 50px;
+  height: 24px;
   padding: 1.44px;
   gap: 9.34px;
   border-radius: 97.74px;
@@ -207,15 +211,6 @@ h1 {
   justify-content: flex-end;
 }
 
-.rememberToggle{
-  display: flex;
-  background-color: #fff;
-  width: 13.5px;
-  height: 13.5px;
-  border-radius: 50%;
-  margin-right: 2px;
-
-}
 
 .label{
   display: flex;
@@ -245,7 +240,7 @@ h1 {
 /* Signup Link */
 .signup-link {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 5px;
   font-size: 14px;
   color: #a0aec0;
 }
@@ -265,8 +260,8 @@ h1 {
   right: 0;
   display: flex;
   background-color: #000;
-  height: 500px;
-  max-width: 598px;
+  height: 100px;
+  max-width: 400px;
   height: 100vh;
   border-radius: 299px 0px 0px 145px;
 }
@@ -427,6 +422,7 @@ h1 {
   .login-form {
    /* Adjust form width to accommodate sidebar */
     padding: 30px; /* Reduce padding on tablet */
+  
   }
 
   .sidebar1 {
