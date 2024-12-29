@@ -19,9 +19,7 @@ body {
   align-items: center;
   background-color: #111;
   color: #fff;
-  padding: 20px;
   width: 100vw;
-  margin-top: 0;
 }
 
 .navigation{
@@ -36,15 +34,31 @@ body {
 
 .logo{
   justify-content: flex-start;
+  display: flex;
   width: 20%;
   align-items: center;
 }
 
-.header .logo h1 {
+.logo img{
+  display: block;
+  height: 8vh;
+  width: 100% ;
+  border-radius: 50%;
+  margin-left: 10px;
+  box-shadow: 0px 4px 8px rgba(235, 216, 13, 0.97); /* Optional shadow for a modern look */
+  transition: transform 0.3s ease; /* Adds hover effect */
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.logo-text h1 {
   font-size: 24px;
   font-weight: bold;
   color: gold;
   margin: 0;
+  margin-right: 10px;
 }
 
 .header .navigation ul {
@@ -75,11 +89,17 @@ body {
   background-color: #222;
   color: #fff;
   padding: 80px 20px;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .hero h2 {
   font-size: 36px;
   font-weight: bold;
+  color: #ffcc00;
 }
 
 .hero p {
@@ -90,16 +110,17 @@ body {
 .cta-button {
   background-color: gold;
   color: black;
-  padding: 10px 20px;
   border: none;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
+  text-decoration: none; /* Ensures no underline */
   transition: background-color 0.3s ease;
+  height: 7vh;
 }
 
-.cta-button:hover {
-  background-color: #ffcc00;
+a {
+  text-decoration: none; /* Removes underline from the anchor tag */
 }
 
 /* Services Section */
@@ -114,9 +135,10 @@ body {
 }
 
 .service-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+ display: flex;
+ padding: 10px 5px;
+ justify-content: center;
+ gap: 20px;
 }
 
 .service-card {
@@ -142,6 +164,31 @@ body {
   color: #777;
 }
 
+.search-section {
+  text-align: center;
+  margin: 20px 0;
+  display: flex;
+}
+
+.search-input {
+  display: flex;
+  width: 60%;
+  max-width: 300px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  margin-top: 2%;
+  margin-bottom: 1px;
+  margin-left: 60%;
+}
+
+.search-input:focus {
+  border-color: #000;
+}
+
 /* Upcoming Events Section */
 .events {
   padding: 60px 20px;
@@ -152,16 +199,16 @@ body {
 }
 
 .events h3 {
-  font-size: 32px;
   margin-bottom: 20px;
-  color: gold;
+  color: #333;
+  font-size: 45px;
 }
 
 .event-cards {
-  width: 90%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .event-card {
@@ -170,6 +217,7 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
+  width: 80%;
 }
 
 .event-card:hover {
@@ -219,58 +267,73 @@ body {
 }
 
 /* About Us Section */
-.about {
+.about-us {
   background-color: #222;
   color: #fff;
   padding: 60px 20px;
   text-align: center;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ab {
+  color: white;
 }
 
-.about h3 {
-  font-size: 32px;
-  margin-bottom: 20px;
+.owls {
+  font-size: 20px;
+  line-height: 2;
 }
 
-.about p {
-  font-size: 18px;
-  line-height: 1.6;
-  color: #bbb;
+/* Contact Us Section */
+.contact-us {
+  padding: 10px 20px;
+  background-color: #f4f4f4;
 }
 
-/* Contact Section */
-.contact {
-  padding: 60px 20px;
+.contact-us h3 {
   text-align: center;
-}
-
-.contact h3 {
-  font-size: 32px;
+  font-size: 2rem;
   margin-bottom: 20px;
 }
 
-.contact p {
-  font-size: 18px;
-  margin-bottom: 20px;
+.contact-us p {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: black;
 }
 
-.contact-form {
+.contact-us form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.contact-form input,
-.contact-form textarea {
-  width: 300px;
+.contact-us form input {
+  width: 30%;
   padding: 10px;
+  height: 5vh;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+.contact-us form textarea {
+   width: 30%;
+  padding: 10px;
+  height: 20vh;
   margin-bottom: 20px;
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
 }
 
-.contact-form button {
+.contact-us form button {
   background-color: gold;
+  width: 200px;
   color: black;
   padding: 10px 20px;
   border: none;
@@ -279,7 +342,7 @@ body {
   border-radius: 5px;
 }
 
-.contact-form button:hover {
+.contact-us form button:hover {
   background-color: #ffcc00;
 }
 
@@ -336,9 +399,14 @@ body {
     width: 100vw;
   }
 
-  .header .logo h1 {
+  .logo-text h1 {
     width: 20%;
     align-self: flex-start;
+  }
+
+  .logo img {
+    width: 30px;
+    height: 6vh;
   }
 
   .navigation{
@@ -369,8 +437,9 @@ body {
 /* Responsive Styles */
 @media (max-width: 1024px) {
 
-  .header .logo h1 {
+  .logo-text {
     font-size: 15px;
+    color: #ffcc00;
   }
 
   .navigation ul {
@@ -421,6 +490,15 @@ body {
     font-size: 1.5rem;
   }
 
+  .logo-text{
+    display: none;
+  }
+
+  .logo img{
+    width:30px;
+    height: 6vh;
+  }
+
   .cta-button {
     font-size: 0.8rem;
     padding: 8px 16px;
@@ -433,6 +511,12 @@ body {
   .service-card p {
     font-size: 0.9rem;
   }
+  .about-us {
+    height: 80vh;
+  }
+  .owls {
+    font-size: 17px;
+  }
 
   .event-title {
     font-size: 1.1rem;
@@ -441,16 +525,87 @@ body {
   .event-date-time {
     font-size: 0.9rem;
   }
+  .event-cards {
+    width: 90% ;
+    padding-right: 5px ;
+    
+  }
 
   .footer {
     font-size: 0.8rem;
   }
+  .contact-us{
+    width: 100%;
+    padding: 5px 5px;
+  }
+
 
   .footer .social-links a {
     font-size: 1rem;
   }
+  .inputs {
+    width: 100%;
+  }
+
+  .contact-us form input {
+  width: 90%;
+ 
+}
+.contact-us form textarea {
+   width: 90%;
+  
+  height: 20vh;
+ 
+}
 }
 
 .eventh3 {
   color: gold;
 }
+
+/* Small Screens (Mobile, up to 767px) */
+@media (max-width: 767px) {
+  .search-input {
+    width: 40%; /* Larger width on smaller screens */
+    max-width: 200px; /* Adjust max-width for small screens */
+    padding: 8px 12px; /* Reduce padding on small screens */
+    font-size: 14px; /* Smaller font size for mobile devices */
+    margin-top: 2%; /* Adjust margin for mobile view */
+    margin-right: 2%;
+  }
+}
+
+/* Medium Screens (Tablets, 768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .search-input {
+    width: 70%; /* Medium width for tablets */
+    max-width: 280px; /* Slightly larger max-width */
+    padding: 10px 14px; /* Medium padding for tablets */
+    font-size: 15px; /* Slightly smaller font size for tablets */
+    margin-top: 2%; /* Adjust margin for tablet view */
+  }
+}
+
+/* Large Screens (Desktops, 1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .search-input {
+    width: 60%; /* Default width for desktops */
+    max-width: 300px; /* Standard max-width */
+    padding: 10px 15px; /* Standard padding for desktop */
+    font-size: 16px; /* Standard font size */
+    margin-top: 2%; /* Standard margin for desktop */
+
+  }
+}
+
+/* Extra Large Screens (1280px and above) */
+@media (min-width: 1280px) {
+  .search-input {
+    width: 50%; /* Even narrower search input for large screens */
+    max-width: 350px; /* Larger max-width for wide screens */
+    padding: 12px 18px; /* Larger padding on larger screens */
+    font-size: 18px; /* Bigger font size for large screens */
+    margin-top: 2%; /* Keep margin consistent */
+  }
+};
+

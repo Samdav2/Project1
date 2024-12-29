@@ -118,10 +118,10 @@ body, html {
 /* Login Page Layout */
 .login-page {
   background: linear-gradient(rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%, );
-  width: 100%;
+  width: auto;
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: auto;
   justify-content: flex-start
 }
 
@@ -311,10 +311,8 @@ h1 {
   /* Adjust the layout for mobile */
 
   .login-form{
-    height: 550px;
-    position: absolute;
-    z-index: 99;
-    top: 20%;
+    height: auto;
+    width: auto;
   }
 
   .login-page{
@@ -366,7 +364,7 @@ h1 {
 
   .login-form{
     width: 92vw;
-    height: 550px;
+    height: auto;
     position: absolute;
     z-index: 99;
     top: 20%;

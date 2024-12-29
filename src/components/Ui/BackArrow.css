@@ -1,0 +1,36 @@
+
+.back-arrow1 {
+  position: fixed;       
+  top: 5px;             
+  left: 10px;            
+  display: flex;         
+  align-items: center;   
+  justify-content: center; 
+  width: 40px;        
+  border-radius: 50%;    
+  padding: 10px;
+  cursor: pointer;
+  gap: 50px;        
+    
+}
+
+.back-arrow1:hover {
+  position: fixed;       
+  top: 5px;             
+  left: 10px;            
+  display: flex;         
+  align-items: center;   
+  justify-content: center; 
+  width: 40px;        
+  border-radius: 50%;    
+  padding: 10px;
+  cursor: pointer;
+  gap: 50px;
+  background-color: grey;        
+    
+}
+
+.back-arrow1 img {
+  width: 30px;          
+  height: auto;          
+}
