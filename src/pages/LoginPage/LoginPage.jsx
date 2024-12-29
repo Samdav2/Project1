@@ -138,7 +138,6 @@ const login = import.meta.env.VITE_USER_LOGIN
         <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
       </div>
-      <Footer />
     </div>
   );
 };

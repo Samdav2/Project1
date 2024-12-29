@@ -25,6 +25,7 @@ import VerifyTicket from "./pages/VerifyTicket/VeryfyTicket";
 import ResetPassword from "./pages/ResetPassword";
 import Dashboard from "./components/Dashboard/Dashboard"
 import Terms from "/src/pages/Content/Terms"
+import AboutUs from "/src/pages/Content/About"
 
 import './App.css'
 
@@ -63,6 +64,7 @@ function App() {
          <Route path='map' element={<MapView />} />
          <Route path='calendar' element={<Calender />} />
          <Route path='terms' element={<Terms />} />
+         <Route path='about-us' element={<AboutUs />} />
 
       </Routes>
       </div>

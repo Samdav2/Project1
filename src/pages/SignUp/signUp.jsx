@@ -139,7 +139,6 @@ const SignUpPage = () => {
         <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
       </div>
-       <Footer />
     </div>
   );
 };
