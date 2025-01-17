@@ -3,7 +3,7 @@ import axios from "axios";
 import "./CreateEvent.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom"
-import EventTablesForm from './EventTablesForm';
+//import EventTablesForm from './EventTablesForm';
 
 export const CreateEvent = () => {
   const Location = useLocation();
