@@ -40,12 +40,12 @@ h1 {
   text-align: center;
   font-size: 14px;
   color: #a0aec0;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 /* Input Group */
 .input-groups {
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   width: 100%;
   padding: 8px;
   font-size: 12px;
@@ -90,6 +90,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 2px;
+  padding-bottom: 5px;
 }
 
 .remember-checkbox {
@@ -105,6 +106,7 @@ h1 {
   margin-left: -4px; /* Adjust as needed */
   margin: 0; /* Reset all margin values */
   padding: 0; /* Reset padding */
+  padding-bottom: 10px;
 }
 
 
@@ -112,6 +114,7 @@ h1 {
 .signin-button {
   width: 100%;
   padding: 15px;
+  margin-top: 10px;
   background-color: #f2ca46;
   border: none;
   border-radius: 8px;
@@ -162,187 +165,78 @@ h1 {
 
 @media screen and (max-width: 1350px) {
   .sidebar1 {
-    max-width: 498px;
+    width: 350px;
   }
 
   .login-form {
-    max-width: 511.76px;
-  }
-}
-
-@media screen and (max-width: 1150px) {
-  .sidebar1 {
-    max-width: 398px;
-  }
-
-  .login-form {
-    max-width: 481.76px;
+    max-width: 480px;
   }
 }
 
 @media screen and (max-width: 940px) {
   .input-groups input {
-    height: 47.39px;
+    height: 47px;
   }
 
   .login-form {
     margin-left: 40px;
   }
-
 }
 
 /* Responsive Design */
 @media (max-width: 780px) {
-  /* Adjust the layout for mobile */
-
-  .login-form{
-    height: 550px;
-    position: absolute;
+  .login-form {
+    width: 90%;
+    height: auto;
+    position: relative;
     z-index: 99;
     top: 20%;
   }
 
-  .login-page{
-    background: url('../../assets/owl-logo5.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    justify-items: flex-start;
-  }
-
-  h1 {
-    font-size: 28px; /* Smaller heading on mobile */
-  }
-
-  .input-group input {
-    font-size: 16px; /* Larger input text on mobile */
-  }
-
-  .signin-button {
-    font-size: 16px; /* Larger button text on mobile */
-  }
-
-  .subtitle {
-    font-size: 12px; /* Smaller subtitle on mobile */
-  }
-
   .login-page {
-    flex-direction: column; /* Stack the form and sidebar */
-    justify-content: center;
-    flex-direction: column-reverse;
+    background: url('../../assets/owl-logo5.png') center/cover no-repeat;
+    flex-direction: column;
   }
 
-  /* Make sidebar take full width on mobile */
   .sidebar1 {
     display: none;
   }
 
-  .sidebarMobile{
+  .sidebarMobile {
     display: flex;
+    justify-content: center;
   }
 
-  .sidebarMobile img{
-    height: 130%;
+  .sidebarMobile img {
+    max-height: 130%;
   }
 }
 
 @media (max-width: 480px) {
-  /* Adjust the layout for mobile */
-
-  .login-form{
-    width: 92vw;
-    height: 550px;
-    position: absolute;
-    z-index: 99;
-    top: 20%;
-    margin: 0;
-  }
-
-  .login-page{
-    background: linear-gradient(rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%), url('../../assets/owl-logo5.png');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    justify-items: flex-start;
-  }
-
-  h1 {
-    font-size: 28px; /* Smaller heading on mobile */
-  }
-
-  .input-group input {
-    font-size: 16px; /* Larger input text on mobile */
-  }
-
-  .signin-button {
-    font-size: 16px; /* Larger button text on mobile */
-  }
-
-  .subtitle {
-    font-size: 12px; /* Smaller subtitle on mobile */
+  .login-form {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
   }
 
   .login-page {
-    flex-direction: column; /* Stack the form and sidebar */
-    justify-content: center;
-    flex-direction: column-reverse;
-  }
-
-  /* Make sidebar take full width on mobile */
-  .sidebar1 {
-    display: none;
-  }
-
-  .sidebarMobile{
-    display: flex;
-  }
-
-  .sidebarMobile img{
-    height: 130%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('../../assets/owl-logo5.png') center/cover no-repeat;
   }
 }
+
+
 /* Tablet-Specific Styles */
 @media (max-width: 1024px) {
-  /* Adjust the layout for tablets */
   .login-page {
     justify-content: flex-start;
   }
 
-  /* Login Form */
   .login-form {
-   /* Adjust form width to accommodate sidebar */
-    padding: 30px; /* Reduce padding on tablet */
-  
+    padding: 20px;
   }
 
   .sidebar1 {
-    max-width: 358px;
-  }
-
-  .login-form {
-    max-width: 401.76px;
-  }
-
-
-
-  /* Heading */
-  h1 {
-    font-size: 28px; /* Slightly smaller heading */
-  }
-
-  /* Input Fields */
-  .input-group input {
-    font-size: 16px; /* Increase font size for readability */
-  }
-
-  /* Button */
-  .signin-button {
-    font-size: 16px; /* Larger button text */
-  }
-
-  /* Subtitle */
-  .subtitle {
-    text-wrap: nowrap;
-    font-size: 12px; /* Smaller subtitle text */
+    width: 300px;
   }
 }
