@@ -8,6 +8,8 @@ import Footer from "/src/components/Dashboard/Footer.jsx"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import dotenv from "dotenv"
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 
 const LoginPage = () => {
@@ -18,6 +20,17 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
+
+  const storedState = localStorage.getItem('rememberMe');
+  const [isChecked, setIsChecked] = useState(storedState === 'true');
+
+  // State to track the password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+ // Function to toggle password visibility
+ const togglePassword = () => {
+  setShowPassword(!showPassword);
+};
 
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -91,12 +104,18 @@ const login = import.meta.env.VITE_USER_LOGIN
   }
 };
 
+const handleToggle = () => {
+  const newState = !isChecked;
+  setIsChecked(newState);
+  localStorage.setItem('rememberMe', newState); // Save to localStorage
+};
+
 
   return (
     <div>
     <ToastContainer />
     <div className="login-page">
-    <BackButton />
+    
       <div className="login-form">
         <h1>Welcome Back</h1>
         <p className="subtitle">Enter your email and password to sign in</p>
@@ -106,17 +125,36 @@ const login = import.meta.env.VITE_USER_LOGIN
             <input type="email" placeholder="Your email address" name='email' value={user.email} onChange={handleChange} />
           </div>
 
-          <div className="input-groups">
-            <label>Password</label>
-            <input type="password" placeholder="Your password" name='password' value={user.password} onChange={handleChange} />
-          </div>
+         <div className="input-groups">
+              <label>Password</label>
+             <div className="password-input-wrapper">
+               <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Your password"
+                  name="password"
+                  value={user.password}
+                  onChange={handleChange}
+                 />
+                   <button
+                     type="button"
+                      className="password-toggle"
+                      onClick={togglePassword}
+                     >
+                      {showPassword ? <i className="fa fa-eye-slash"></i> : <i className="fa fa-eye"></i>}
+                    </button>
+              </div>
+         </div>
 
-          <div className="remember-me">
-            <span className="rememberMeBtn" id='rememberMeBtn'>
-              <span className="rememberToggle" id='rememberToggle'></span>
-            </span>
-            <label className='label'>Remember me?</label>
-          </div>
+         <div className="remember-me">
+            <input 
+              type="checkbox" 
+              id="rememberMe" 
+              checked={isChecked} 
+              onChange={handleToggle} 
+              className="remember-checkbox"
+           />
+             <label htmlFor="rememberMe" className="remember-label">Remember me</label>
+         </div>
 
           <button type="submit" disabled={isSubmitting} className="button">
             {isSubmitting ? "Signing in..." : "Sign in"}
@@ -127,7 +165,7 @@ const login = import.meta.env.VITE_USER_LOGIN
           Don't have an account? <a href='/sign-up'>Sign up</a>
         </p>
         <p className="signup-link">
-          Forgot Password? <a href='/reset-password'>Reset it</a>
+          Forgot Password? <a href='/reset-password'>Reset password</a>
         </p>
       </div>
 
@@ -138,8 +176,9 @@ const login = import.meta.env.VITE_USER_LOGIN
         <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
       </div>
-      <Footer />
+
     </div>
+    
   );
 };
 
