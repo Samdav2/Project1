@@ -13,7 +13,6 @@ export const LandingPage = () => {
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-
   const openNav = () => {
     setIsOpen(!isOpen);
   };
@@ -22,8 +21,6 @@ export const LandingPage = () => {
     setIsOpen(false);
   };
   
-
-
   const navigate = useNavigate();  // Initialize navigate hook for routing
   const location = useLocation();
   const getAllEvent = import.meta.env.VITE_GET_ALL_EVENT
