@@ -1,5 +1,7 @@
 import React from "react";
 import './ProfileSettings.css';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
 
  const ProfileSettings = () => {
   return (

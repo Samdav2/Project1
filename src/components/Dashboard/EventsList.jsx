@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios"
 import "./EventsList.css";
+import dotenv from "dotenv"
 
 const EventsList = ( {brandName } ) => {
   [
@@ -20,12 +21,14 @@ const EventsList = ( {brandName } ) => {
 
   const brand = brandName
 
+  const brandEvent = import.meta.env.VITE_GET_BRAND_EVENTS
+
   useEffect(() => {
     // Function to fetch events from the backend
     const fetchEvents = async () => {
       try {
         setLoading(true);
-      const response = await axios.get(`https://tick-dzls.onrender.com/event/getEventCreated?brand=${brand}`); 
+      const response = await axios.get(`${brandEvent}${brand}`); 
        if(response.data) {
         console.log(response.data)
          setEvents(response.data);

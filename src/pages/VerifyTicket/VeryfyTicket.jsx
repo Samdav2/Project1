@@ -2,26 +2,31 @@ import React, { useState, useRef } from 'react';
 import './VerifyTicket.css';
 import { BrowserMultiFormatReader } from '@zxing/library';
 import axios from 'axios';
+import { useLocation } from "react-router-dom";
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const VerifyTicket = () => {
   const [token, setToken] = useState('');
   const [isValid, setIsValid] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
   const [scanning, setScanning] = useState(false);
-  const [scannedText, setScannedText] = useState(''); // For displaying the scanned code live
+  const [scannedText, setScannedText] = useState('');
+  const [verifyResponse, setVerifyResponse] = useState(null);
   const videoRef = useRef(null);
   const [videoStream, setVideoStream] = useState(null);
 
-  // Function to handle ticket code input change
-  const handleTicketCodeChange = (e) => {
-    setToken(e.target.value);
-  };
+  const location = useLocation();
 
-  // Function to handle the submit event (manual input)
-  const handleSubmit = async () => {
+  const verifyTicket = import.meta.env.VITE_VERIFY_TOKEN
+  const deleteTickets = import.meta.env.VITE_DELETE_TICKET
+
+  const verifyToken = async () => {
+
     if (!token) {
       setErrorMessage('Please enter a ticket code.');
-      return;
+      return null;
     }
 
     const tokens = {
@@ -29,58 +34,97 @@ const VerifyTicket = () => {
     }
 
     try {
-      console.log(tokens);
-          const response = await axios.delete('https://tick-dzls.onrender.com/event/deleteTicket', {
-      data: tokens  
-    });
+          console.log('Verifying token:', token);
+          const response = await axios.post(verifyTicket, { token });
+          console.log("data res", response.data);
+
+    // Check if the event brand name matches the current user's brand name (event owner) or if the user is an authorized official (Roman or Down)
+    const authorizedBrands = ['Roman', 'Down'];
+    const eventBrandName = response.data.eventDetails.brand_name;
+    const userBrandName = location.state.brandname;  // The brand name of the event owner
+
+    if (eventBrandName !== userBrandName && !authorizedBrands.includes(userBrandName)) {
+      setIsValid(false);
+      setErrorMessage('You are not the owner of this event, and you are not an authorized official!');
+      return false;  // Return false to stop further processing
+       }
 
 
-      // Handle the response message from the backend (check the message)
+
+      // If the brand names match, continue with the response data
+      setVerifyResponse({
+        message: response.data.message,
+        user: response.data.userProfile.name,
+        email: response.data.userProfile.email,
+        event: response.data.eventDetails.event_name,
+        location: response.data.eventDetails.event_address,
+        date: response.data.eventDetails.date,
+      });
+      setIsValid(true);
+      setErrorMessage('');
+      return true;  // Successfully verified the ticket
+    } catch (error) {
+      console.error('Verification error:', error);
+      setIsValid(false);
+      setErrorMessage('Error verifying ticket. It may not exist or could have been used!');
+    }
+    return false;
+  };
+
+  const deleteTicket = async () => {
+    try {
+      console.log('Deleting token:', token);
+      const response = await axios.delete(deleteTickets, {
+        data: { token },
+      });
+
       if (response.data) {
+        console.log('Deletion response:', response.data);
         setIsValid(true);
-        console.log(response.data)
-        console.log(token)
-        setErrorMessage('');
+        setErrorMessage('Ticket successfully deleted.');
       } else {
-        // If the message does not match, set invalid status and show error
         setIsValid(false);
-        setErrorMessage('Invalid ticket code or ticket already deleted.');
+        setErrorMessage('Deletion failed. Ticket not found or already deleted.');
       }
     } catch (error) {
-      // Handle errors from the backend or network issues
+      console.error('Deletion error:', error);
       setIsValid(false);
-      setErrorMessage(error.response?.data?.message || 'Error connecting to the API');
+      setErrorMessage(error.response?.data?.message || 'Error deleting the ticket.');
     }
   };
 
-  // Handle the QR code scan result
+  const handleSubmit = async () => {
+    const isVerified = await verifyToken(); 
+    if (isVerified) {
+      await deleteTicket();
+    }
+  };
+
   const handleScan = (result) => {
-    if (result && !scannedText) { // Prevent setting multiple scans
+    if (result && !scannedText) {
       setScannedText(result.getText());
-      setToken(result.getText());  // Corrected to use setToken
+      setToken(result.getText());
     }
   };
 
-  // Start QR scanning
   const startScanning = () => {
     setScanning(true);
     const codeReader = new BrowserMultiFormatReader();
     codeReader
       .decodeFromVideoDevice(null, videoRef.current, (result, error) => {
         if (result) {
-          handleScan(result); // Handle scanned result
+          handleScan(result);
         }
         if (error && error instanceof Error) {
           console.error(error);
         }
       })
       .then((stream) => {
-        setVideoStream(stream); // Set the video stream
+        setVideoStream(stream);
       })
       .catch((err) => console.error('Error starting scanner:', err));
   };
 
-  // Stop QR scanning
   const stopScanning = () => {
     setScanning(false);
     if (videoStream) {
@@ -90,22 +134,22 @@ const VerifyTicket = () => {
   };
 
   return (
+    <div>
     <div className="container">
+    <BackButton />
       <div className="form-container">
         <h1 className="title">Ticket Validation</h1>
 
-        {/* Display the current ticket code */}
         <div className="input-container">
           <input
             type="text"
             placeholder="Enter ticket code"
             value={token}
-            onChange={handleTicketCodeChange}
+            onChange={(e) => setToken(e.target.value)}
             className="input-field"
           />
         </div>
 
-        {/* Display the live scanned ticket code */}
         {scanning && (
           <div className="scanned-text">
             <p>Scanning: {scannedText}</p>
@@ -113,7 +157,7 @@ const VerifyTicket = () => {
         )}
 
         <div className="button-container">
-          <button onClick={handleSubmit} className="submit-button">Validate Code</button>
+          <button onClick={handleSubmit} className="submit-button">Validate & Delete</button>
         </div>
 
         <div className="qr-container">
@@ -122,20 +166,32 @@ const VerifyTicket = () => {
           </button>
         </div>
 
-        {/* Display the video stream */}
         {scanning && (
           <div className="qr-reader">
             <video ref={videoRef} width="100%" height="auto" style={{ borderRadius: '10px' }} autoPlay />
           </div>
         )}
 
-        {/* Display the validation status */}
+        {verifyResponse && (
+          <div className="verification-card">
+            <h3>Verification Details</h3>
+            <p><strong>Status:</strong> {verifyResponse.message}</p>
+            <p><strong>Attendee:</strong> {verifyResponse.user}</p>
+            <p><strong>Email:</strong> {verifyResponse.email}</p>
+            <p><strong>Event:</strong> {verifyResponse.event}</p>
+            <p><strong>Location:</strong> {verifyResponse.location}</p>
+            <p><strong>Date:</strong> {new Date(verifyResponse.date).toLocaleDateString()}</p>
+          </div>
+        )}
+
         {isValid !== null && (
           <div className={`status ${isValid ? 'valid' : 'invalid'}`}>
-            {isValid ? 'Ticket Code is Valid!' : errorMessage}
+            {isValid ? 'Ticket Code Verified & Deleted Successfully!' : errorMessage}
           </div>
         )}
       </div>
+      </div>
+        <Footer />
     </div>
   );
 };

@@ -15,6 +15,8 @@ const EmailVerify = () => {
     const [message, setMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const verifyEmail = import.meta.env.VITE_VERIFY_CODE
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setUser((prevUser) => ({
@@ -31,7 +33,7 @@ const EmailVerify = () => {
 
         // Add logic to handle the form submission, such as validating the code
         try{
-            const response = await axios.post("https://tick-dzls.onrender.com/auth/verify", user);
+            const response = await axios.post(verifyEmail, user);
       console.log(response.data);
       if (response.data) {
         console.log("Verification succesful")

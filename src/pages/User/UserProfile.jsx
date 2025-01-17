@@ -1,195 +1,180 @@
 import React, { useState, useEffect } from 'react';
 import './UserProfile.css';
-import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Ensure axios is imported
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import axios from 'axios';
+import { deepPurple } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
+import PaidEvents from './PaidEvents'; // Import PaidEvents component
+import PastEvents from './PastEvent'; // Import the PastEvents component
+import dotenv from "dotenv"
+
+// Reusable EventCard component (now in a separate file)
+export const EventCard = ({ event, onClick }) => (
+  <div className="event-card" onClick={onClick}>
+    <img src={`http://app.swiftjobs.com.ng/${event.picture}`} alt={event.event_name} className="event-image" />
+    <div className="event-info">
+      <h4>{event.event_name}</h4>
+      <p>{event.event_address}</p>
+      <p>{event.summary}</p>
+      <p>Price: NGN{parseFloat(event.price).toFixed(2)}</p>
+      <p>
+        {new Date(event.date).toLocaleDateString()} |{' '}
+        {new Date(`1970-01-01T${event.time_in}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+      </p>
+    </div>
+  </div>
+);
 
 export const UserProfile = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [user, setUser] = useState(null);
-    const [events, setEvents] = useState([]);  // Initialize events state
-    const [error, setError] = useState(null);  // Error state for catching any errors during the fetch
+  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [events, setEvents] = useState([]); // Defaulting to empty array
+  const [error, setError] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false); // State for toggling menu visibility
 
-    // Default upcoming and past events (they might be placeholders)
-    const upcomingEvents = [
-        { id: 1, title: 'Music Concert', date: '2023-12-15', location: 'City Hall', image: '/images/concert.jpeg' },
-        { id: 2, title: 'Art Exhibition', date: '2023-11-20', location: 'Art Gallery', image: '/images/art.png' }
-    ];
-
-    const pastEvents = [
-        { id: 3, title: 'Tech Conference', date: '2023-10-10', location: 'Convention Center', image: '/images/tech.png' },
-        { id: 4, title: 'Food Festival', date: '2023-09-05', location: 'Downtown Park', image: '/images/food.png' }
-    ];
-
-    // Fetch events from the API
-    const fetchData = async (maxRetries = 5, retryDelay = 2000) => {
-        let attempt = 0;
-        const axiosConfig = { timeout: 5000 };
-
-        while (attempt < maxRetries) {
-            try {
-                console.log(`Attempt ${attempt + 1} to fetch data...`);
-                const response = await axios.get('https://tick-dzls.onrender.com/event/getAllEvent', axiosConfig);
-                console.log('Data fetched successfully:', response.data);
-                setEvents(response.data.event);  // Set events from the API response
-                setIsLoading(false);
-                return;
-            } catch (err) {
-                attempt += 1;
-                setError(err);
-                console.error(`Attempt ${attempt} failed:`, err.message);
-
-                if (err.code === 'ECONNABORTED' || err.message === 'Network Error') {
-                    console.log('Network issue detected. Retrying...');
-                } else if (err.response) {
-                    console.error('Server error or bad response:', err.response.status);
-                    setIsLoading(false);
-                    return;
-                } else {
-                    console.error('Unknown error:', err.message);
-                }
-
-                if (attempt >= maxRetries) {
-                    console.log('Max retries reached. Stopping attempts.');
-                    setIsLoading(false);
-                    return;
-                }
-
-                const delay = retryDelay * Math.pow(2, attempt);
-                console.log(`Retrying in ${delay}ms...`);
-                await new Promise((resolve) => setTimeout(resolve, delay));
-            }
-        }
-    };
-
-    // Fetch user data from location.state if it exists
-    useEffect(() => {
-        if (location.state) {
-            const { name, email, user_id } = location.state;
-            setUser({
-                user_id,
-                name: name || 'Unknown',
-                email: email || 'Not Provided',
-                profilePicture: 'https://via.placeholder.com/100'
-            });
-            setIsLoading(false);
-        }
-    }, [location.state]); // This will only run when location.state changes
-
-    // Use useEffect to fetch events once the component is mounted
-    useEffect(() => {
-        fetchData(); // Fetch data on component mount
-    }, []);
-
-    // If loading, show loading message
-    if (isLoading) {
-        return <div style={{ color: 'black' }}>Loading...</div>;
+  const allEvent = import.meta.env.VITE_GET_ALL_EVENT
+  // Fetch all events
+  const fetchAllEvents = async () => {
+    try {
+      console.log("Fetching all events...");
+      const response = await axios.get(allEvent, { timeout: 5000 });
+      return response.data.event || [];
+    } catch (err) {
+      setError(err);
+      return [];
     }
+  };
 
-    // If there's an error fetching, show the error message
-    if (error) {
-        return <div>Error: {error.message}</div>;
+  // Fetch events and update state
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const allEvents = await fetchAllEvents();
+      setEvents(allEvents);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false); // Once all events are fetched, set loading to false
     }
+  };
 
-    const displayEvents = events.length > 0 ? events : []; // Ensure this is correctly defined
+  // Handle user data setup and event fetching
+  useEffect(() => {
+    if (location.state) {
+      const { name, email, user_id } = location.state;
+      const userData = {
+        user_id,
+        name: name || 'Unknown',
+        email: email || 'Not Provided',
+        profilePicture: 'https://via.placeholder.com/100',
+      };
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
+    } else {
+      const savedUser = localStorage.getItem('user');
+      if (savedUser) {
+        setUser(JSON.parse(savedUser));
+      } else {
+        navigate('/login');
+      }
+    }
+  }, [location.state, navigate]);
 
-    const handleEventClick = (eventId, price) => {
-        console.log("Clicked eventId:", eventId);
-        console.log("Clicked price:", price);
+  // Fetch data when the user is set
+  useEffect(() => {
+    if (user?.user_id !== undefined) {
+      fetchData(); // Fetch all events
+    }
+  }, [user]); // Trigger fetchData when user is set or changed
 
-        if (user.user_id === null) {
-            navigate('/login');
-        } else {
-            navigate("/get-ticket", {
-                state: {
-                    eventId: eventId,
-                    user_id: user.user_id,
-                    name: user.name,
-                    email: user.email,
-                    phoneNo: user.phoneNo,
-                    price: price
-                }
-            });
-        }
-    };
+  // Loading state check
+  if (isLoading) return <div style={{color:"black"}}>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
-    return (
-        <>
-            <div className="dashboard">
-                {/* Sidebar */}
-                <aside className="menubar">
-                    <div className="profile-info">
-                        <img src={user.profilePicture} alt="Profile" className="profile-pic" />
-                        <h3>{user.name}</h3>
-                        <p>{user.email}</p>
-                    </div>
-                    <ul>
-                        <li><a href="#events">My Events</a></li>
-                        <li><a href="#calender">Calender</a></li>
-                        <li><a href="#notifications">Notifications</a></li>
-                        <li><a href="#help">Help</a></li>
-                        <li>
-                            <Link to="/update-user-profile" state={{ user_id: user.user_id }}>
-                                Settings
-                            </Link>
-                        </li>
-                        <li><button className="logout-btn">Logout</button></li>
-                    </ul>
-                </aside>
+  // Function to get user initials
+  const getInitials = (name = '') => {
+    const nameParts = name.split(' ');
+    return `${nameParts[0]?.[0]?.toUpperCase() || ''}${nameParts[1]?.[0]?.toUpperCase() || ''}`;
+  };
 
-                {/* Main Content */}
-                <main className="content-board">
-                    <h1 className='main-header'>My Profile</h1>
+  const initials = user ? getInitials(user.name) : '';
 
-                    {/* Events */}
-                    <section className="events">
-                        <h3><span className='eventh3'>Upcoming Events</span></h3>
-                        <div className="event-cards">
-                            {displayEvents.map((event, index) => {
-                                const { event_name, event_address, time_in, summary, picture, price, date, id } = event;
-                                const formattedDate = new Date(date).toLocaleDateString();
-                                const formattedTime = new Date(`1970-01-01T${time_in}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  // Handle event card click
+  const handleEventClick = (eventId, price) => {
+    if (!user?.user_id) navigate('/login');
+    else navigate(`/get-ticket/${eventId}`, { state: { eventId, user_id: user.user_id, name: user.name, email: user.email, price } });
+  };
 
-                                return (
-                                    <div
-                                        key={index}
-                                        className="event-card"
-                                        onClick={() => handleEventClick(id, price)}
-                                    >
-                                        <img src={`https://tick-dzls.onrender.com/${picture}`} alt={event_name} className="event-image" />
-                                        <div className="event-info">
-                                            <h4 className="event-title">{event_name}</h4>
-                                            <p className="event-address">{event_address}</p>
-                                            <p className="event-summary">{summary}</p>
-                                            <p className="event-price">Price: ${parseFloat(price).toFixed(2)}</p>
-                                            <p className="event-date-time">
-                                                <span className="event-date">{formattedDate}</span> |
-                                                <span className="event-time">{formattedTime}</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    </section>
-                </main>
-            </div>
+  // Handle user logout
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('paidEvents');
+    navigate('/login');
+  };
 
-            {/* Footer */}
-            <footer className="footer">
-                <p>&copy; 2024 TheOwl Initiators. All rights reserved.</p>
-                <ul>
-                    <li><a href="#privacy">Privacy Policy</a></li>
-                    <li><a href="#terms">Terms of Service</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </footer>
-        </>
-    );
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  console.log(user.name);
+
+  return (
+    <div className="dashboard">
+      <aside className={`menubar ${menuOpen ? 'open' : ''}`}>
+        <button className="menu-toggle close" onClick={toggleMenu}>✕</button>
+        <div className="profile-info1">
+          <Avatar sx={{ bgcolor: deepPurple[700] }}>{initials}</Avatar>
+          <h3>{user?.name}</h3>
+          <p>{user?.email}</p>
+          <ul>
+            <li><a href="#events">My Events</a></li>
+
+            <li><Link to="/calendar" state={{ user_id: user?.user_id, name: user?.name, email: user?.email }}>
+                Calendar</Link></li>
+            <li><a href="#notifications">Notifications</a></li>
+            <li><a href="#help">Help</a></li>
+            <li>
+              <Link to="/update-user-profile" state={{ user_id: user?.user_id }}>
+                Settings
+              </Link>
+            </li>
+            <li>
+              <button className="logout-btn" onClick={handleLogout}>Logout</button>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      {!menuOpen && ( // Conditionally render the open button
+        <button className="menu-toggle open" onClick={toggleMenu}>☰</button>
+      )}
+
+      <main className="content-board">
+        <h1 className="main-header">My Profile</h1>
+
+        {/* Display Upcoming Events */}
+        <section className="events">
+          <h3>Upcoming Events</h3>
+          <div className="event-cards">
+            {events.length === 0 ? (
+              <p>No upcoming events found.</p>
+            ) : (
+              events.map((event, index) => (
+                <EventCard key={index} event={event} onClick={() => handleEventClick(event.id, event.price)} />
+              ))
+            )}
+          </div>
+        </section>
+
+        {/* Display Paid Events */}
+        {user?.user_id && <PaidEvents userId={user.user_id} />}
+
+        {/* Display Past Events */}
+        <PastEvents userId={user?.user_id} allEvents={events} />
+      </main>
+
+    </div>
+  );
 };
 
 export default UserProfile;

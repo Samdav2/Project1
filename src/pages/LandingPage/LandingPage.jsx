@@ -3,6 +3,7 @@ import './LandingPage.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import dotenv from "dotenv"
 
 export const LandingPage = () => {
   const [events, setEvents] = useState([]);
@@ -20,21 +21,24 @@ export const LandingPage = () => {
     setIsOpen(false);
   };
   
-
-
   const navigate = useNavigate();  // Initialize navigate hook for routing
   const location = useLocation();
+  const getAllEvent = import.meta.env.VITE_GET_ALL_EVENT
 
-  const userId = location.state?.user_id || null; // If id is not in location.state, fallback to null
-  const userName = location.state?.name || '';  // Get user name if available
-  const userEmail = location.state?.email || '';
-  const phoneNo = location.state?.phoneNo || '';
+  const savedUsers = JSON.parse(localStorage.getItem('userData2'));
+
+  const userId = location.state?.user_id || savedUsers?.user_id; // If id is not in location.state, fallback to null
+  const userName = location.state?.name || savedUsers?.name;  // Get user name if available
+  const userEmail = location.state?.email || savedUsers?.email;
+  const phoneNo = location.state?.phoneNo || savedUsers?.phoneNo;
   const [user, setUser] = useState({
     user_id: userId,
     name: userName,
     email: userEmail,
     phoneNo: phoneNo,
   });
+    const userInfo = user;
+   localStorage.setItem('userData2', JSON.stringify(userInfo));
 
   // Fetch events from the API
   const fetchData = async (maxRetries = 5, retryDelay = 2000) => {
@@ -44,11 +48,12 @@ export const LandingPage = () => {
     while (attempt < maxRetries) {
       try {
         console.log(`Attempt ${attempt + 1} to fetch data...`);
-        const response = await axios.get('https://tick-dzls.onrender.com/event/getAllEvent', axiosConfig);
+        const response = await axios.get(getAllEvent, axiosConfig);
         console.log('Data fetched successfully:', response.data);
         console.log('Fetched Events:', response.data.event); // Log fetched events
         setEvents(response.data.event); // Set events from API response
         setFilteredEvents(response.data.event); // Initialize filtered events
+        setError(null);
         setLoading(false);
         return;
       } catch (err) {
@@ -88,7 +93,7 @@ export const LandingPage = () => {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div style={{color: 'black'}}> Network Error... Please Reload the Page </div>
   }
 
   const displayEvents = searchTerm ? filteredEvents : events;
@@ -114,9 +119,9 @@ export const LandingPage = () => {
     console.log("Clicked price:", price); // Log price for debugging
 
     if (user.user_id === null) {
-      navigate('/login');
+      navigate('/login', { state: {eventId: eventId}});
     } else {
-      navigate("/get-ticket", {
+      navigate(`/get-ticket/${eventId}`, {
         state: {
           eventId: eventId,
           user_id: user.user_id,
@@ -161,7 +166,8 @@ export const LandingPage = () => {
               </div>
             ) : (
               <>
-                <li><a href="#signUp">Sign Up</a></li>
+                <li><a href='/sign-up'>Sign Up</a></li>
+                <li><a href='/login'>Log in</a></li>
               </>
             )}
 
@@ -214,7 +220,7 @@ export const LandingPage = () => {
           value={searchTerm}
           onChange={handleSearchChange}
           className="search-input"
-        />
+        />s
       </section>
 
       {/* Upcoming Events Section */}
@@ -232,7 +238,7 @@ export const LandingPage = () => {
                 className="event-card"
                 onClick={() => handleEventClick(id, price)} // Pass both id and price to the handler
               >
-                <img src={`https://tick-dzls.onrender.com/${picture}`} alt={event_name} className="event-image" />
+                <img src={`http://app.swiftjobs.com.ng/${picture}`} alt={event_name} className="event-image" />
                 <div className="event-info">
                   <h4 className="event-title">{event_name}</h4>
                   <p className="event-address">{event_address}</p>
@@ -255,32 +261,7 @@ export const LandingPage = () => {
         <p className="owls"> TheOwl_Initiators is an Online Ticketing And Event Managing Platform leading In event management specializing in corporate events, weddings, concerts, and more. We pride ourselves on delivering exceptional and personalized services that cater to all types of events. Our experienced team ensures every detail is executed perfectly to create memorable experiences for our clients.</p>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="services">
-        <h3>Our Services</h3>
-        <div className="service-cards">
-          <div className="service-card">
-            <h4>Corporate Events</h4>
-            <p>Seamless planning for conferences, seminars, and team-building activities.</p>
-          </div>
-          <div className="service-card">
-            <h4>Birthday Parties</h4>
-            <p>Exciting themes and unique celebrations for all ages.</p>
-          </div>
-          <div className="service-card free-service">
-            <h4>Free Event Service</h4>
-            <p>Enjoy a complimentary event service for eligible community events.</p>
-          </div>
-          <div className="service-card">
-            <h4>Concerts and Shows</h4>
-            <p>Expert management for concerts, live shows, and theatrical events.</p>
-          </div>
-          <div className="service-card">
-            <h4>Event Staffing Services For Seamless Experience</h4>
-            <p> Simplify your event planning with our reliable and skilled staffing solutions.</p>
-          </div>
-        </div>
-      </section>
+      
 
        {/* Contact Us Section */}
       <section id="contact" className="contact-us">

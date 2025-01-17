@@ -4,6 +4,9 @@ import { PaystackButton } from 'react-paystack';
 import { useLocation } from 'react-router-dom';
 import { jsPDF } from "jspdf";
 import './TicketGeneration.css';
+import BackButton from "/src/components/Ui/BackArrow.jsx"
+import Footer from "/src/components/Dashboard/Footer.jsx"
+import dotenv from "dotenv"
 
 const TicketGenerator = () => {
   const [ticketToken, setTicketToken] = useState('');
@@ -17,7 +20,9 @@ const TicketGenerator = () => {
   const [amount, setAmount] = useState(0);
   const [subaccountCode, setSubaccountCode] = useState('');
   const [splitAccountId, setSplitAccountId] = useState(null);
-  const [publicKey] = useState('pk_live_9810a53b63cfa27714d35df2aa9049591825d065');
+  const pubkey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY
+  const [publicKey] = useState(pubkey);
+  
   
   // Use location to get parameters
   const location = useLocation();
@@ -25,8 +30,12 @@ const TicketGenerator = () => {
   const defaultQrCodeUrl = 'https://yourserver.com/default-qr-code.png';
   console.log(location.state)
 
-  const PAYSTACK_SECRET_KEY = 'sk_live_9c93d96ca28e52ab128970dfd783766a58d42461'; // Replace with your secret key
-  const PAYSTACK_PUBLIC_KEY_DEMO ='pk_test_30669aac0b13ceb49859a7d1163940ee50f58b43'
+  const PAYSTACK_SECRET_KEY = import.meta.env.VITE_PAYSTACK_SECRET_KEY // Replace with your secret key
+  const PAYSTACK_PUBLIC_KEY_DEMO = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY_DEMO
+
+ 
+
+  const attendEvent = import.meta.env.VITE_ATTEND_EVENT
 
   // Bank code mapping (same as in your code)
   const bankCodeMapping = {
@@ -129,7 +138,7 @@ const capitalizeBankName = (bankName) => {
 // Function to get the bank code by capitalizing the bank name
 const getBankCode = (bankName) => {
   const capitalizedBankName = capitalizeBankName(bankName); // Capitalize all letters in bank name
-  return bankCodeMapping[capitalizedBankName] || capitalizedBankName; // Return the bank code or the original name
+  return bankCodeMapping[capitalizedBankName] ; // Return the bank code or the original name
 };
 
 
@@ -215,7 +224,7 @@ const createSubaccount = async () => {
         business_name: location.state.accountName, // Assuming account name is correct
         settlement_bank: bankCode,
         account_number: location.state.accountNumber,  // Make sure this is the correct number
-        percentage_charge: 50, // Example percentage
+        percentage_charge: 20, // Example percentage
       }
     );
     setSubaccountCode(response.data.subaccount_code); // Save subaccount code
@@ -252,38 +261,76 @@ const generateTicketToken = () => {
 
     const brandPrefix = eventName ? eventName.substring(0, 5).toUpperCase() : 'EVNT';
     const randomNumbers = Math.floor(100 + Math.random() * 900); // Generates a 3-digit random number
+    setTicketToken(`${firstLetterFirstName}${firstLetterLastName}${brandPrefix}${randomNumbers}`);
     return `${firstLetterFirstName}${firstLetterLastName}${brandPrefix}${randomNumbers}`;
   };
 
-  // Generate QR Code
-  const generateQRCode = async (ticketToken) => {
-    if (!ticketToken) {
-      setError('Invalid ticket token for QR code generation');
-      return;
-    }
-
-    try {
-      const qrCodeApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketToken}`;
-      setQrCodeUrl(qrCodeApiUrl);
-    } catch (error) {
-      setError('Error generating QR code: ' + error.message);
-      setQrCodeUrl(defaultQrCodeUrl);
-    }
-  };
 
 
-  // Generate PDF
-  const createPDF = () => {
-    const doc = new jsPDF();
-    doc.text('Ticket Token: ' + ticketToken, 10, 20);
-    doc.text('Event: ' + eventName, 10, 30);
 
-    if (qrCodeUrl) {
-      doc.addImage(qrCodeUrl, 'PNG', 10, 40, 50, 50);
-    }
+  const createPDF = (ticketToken, code, eventName, qrCodeUrl, personName) => {
+  // Initialize jsPDF document
+  const doc = new jsPDF();
 
-    doc.save(`${ticketToken}-ticket.pdf`);
-  };
+  // Set font to bold and large for title
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(24);
+  doc.setTextColor(0, 128, 0); // Green color for title
+  doc.text('CONGRATULATIONS!', 10, 20); // Title at the top of the page
+
+  // Set a smaller font for the rest of the content
+  doc.setFontSize(14);
+  doc.setTextColor(0, 0, 0); // Black color for the main content
+
+  // Add the Event Name
+  doc.text('Event: ' + eventName, 10, 40);
+
+  // Add the Ticket Token
+  doc.text('Ticket Token: ' + ticketToken, 10, 50);
+
+  // Add the name of the ticket holder
+  doc.text('Ticket Holder: ' + personName, 10, 60);
+
+  // Add a congratulatory message in green
+  doc.setFontSize(12);
+  doc.setTextColor(0, 128, 0); // Green color for the message
+  doc.text('You are all set for an amazing experience at ' + eventName + '!', 10, 80);
+
+  // Add the QR Code (if provided)
+  if (qrCodeUrl) {
+    doc.text('Your QR Code:', 10, 100); // Label for QR Code
+    doc.addImage(qrCodeUrl, 'PNG', 10, 110, 50, 50); // Add image (QR code) to the PDF
+  }
+
+  // Add the QR Code value or link
+  doc.setTextColor(0, 0, 0); // Black color for text
+  doc.text('QR Code Link: ' + code, 10, 170);
+
+  // Add website and owner name at the bottom
+  doc.setFontSize(10);
+  doc.setTextColor(128, 128, 128); // Gray color for footer text
+  doc.text('Powered by: TheOwl_initiators', 10, 190);
+  doc.text('Website: https://theowinitiators.com.ng', 10, 200);
+
+  // Add closing remarks in black
+  doc.setTextColor(0, 0, 0); // Black color for text
+  doc.text('Enjoy your event and thank you for using our ticketing service!', 10, 220);
+
+  // Save the PDF with the ticket token as the filename
+  doc.save(`${ticketToken}-ticket.pdf`);
+};
+
+
+
+
+// QR code generation function
+const generateQRCode = async (ticketToken) => {
+    const qrCodeApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${ticketToken}`;
+    console.log("QR Code API URL:", qrCodeApiUrl);
+    // Update state with the generated QR code URL
+    setQrCodeUrl(qrCodeApiUrl);
+    return qrCodeApiUrl;
+  }
 
 
   // Initialize the Payment Transaction
@@ -313,42 +360,45 @@ const generateTicketToken = () => {
     }
   };
 
-  // Handle successful payment
   const handleSuccessfulPayment = async (reference) => {
   try {
     setLoading(true);
-
-    // Directly proceed with the payment process without verification
+    
+    // Step 1: Generate the ticket token
     const generatedToken = generateTicketToken();
-
+    
     if (!generatedToken) {
-      setError('Invalid ticket token');
+      setError('Failed to generate ticket token');
       setLoading(false);
       return;
     }
 
-    setTicketToken(generatedToken);
+    // Store the generated token
+    setTicketToken(generatedToken); 
 
-    // Generate QR Code after the token
-    await generateQRCode(generatedToken);
-    setQrCodeUrl(generateQRCode);
+    // Step 2: Generate QR code
+  const qrcode1 =  await generateQRCode(generatedToken);
 
-    // Send ticket details to the server
+    // Step 3: Create PDF with ticket details (including QR code)
+    await createPDF(generatedToken, qrcode1, eventName, qrcode1, name);
+
+    // Step 4: Prepare the data to send in the email (this includes the token and the QR code URL)
     const formData = {
       userId: location.state.user_id,
       eventId: location.state.eventId,
       email: location.state.email,
-      qrcodeURL: qrCodeUrl,
-      token: generatedToken,
-      ticketType: location.state.ticketType
+      qrcodeURL: qrcode1, // Ensure the correct QR code URL is passed
+      token: generatedToken, // Ensure the correct token is passed
+      ticketType: location.state.ticketType,
     };
 
-    console.log("Data To Send", formData)
+    console.log("Form Data to Send:", formData);
 
-    await axios.post('https://tick-dzls.onrender.com/event/attendEvent', formData);
+    // Step 5: Send the email with the ticket and QR code
+    await axios.post(attendEvent, formData);
 
+    // Success message after sending email
     setMessage('Ticket has been sent to your email!');
-    createPDF(); // Generate the PDF
   } catch (error) {
     console.error('Error:', error.message);
     setError('Error processing payment: ' + error.message);
@@ -356,6 +406,13 @@ const generateTicketToken = () => {
     setLoading(false);
   }
 };
+
+
+
+
+
+
+
 
 console.log('Split Account Id', splitAccountId);
 console.log('account id', subaccountCode);
@@ -375,24 +432,49 @@ console.log(subaccountCode);
 
 
   return (
-  <div className="ticket-generator-container">
-    <h2>Generate Event Ticket</h2>
-    {error && <div className="error-message">{error}</div>}
-    {message && <div className="success-message">{message}</div>}
     <div>
-      {loading ? (
-        <p>Processing...</p>
-      ) : (
-        <>
-          <PaystackButton {...componentProps} />
-          {ticketToken && <p>Generated Ticket Token: {ticketToken}</p>}
-          {qrCodeUrl && <img src={qrCodeUrl} alt="QR Code" style={{ width: '250px', height: '250px', marginTop:'10px'}} />}
-        </>
-      )}
+      <div className="ticket-generator-container">
+       <BackButton />
+      <h2>Generate Event Ticket</h2>
+      {error && <div className="error-message">{error}</div>}
+      {message && <div className="success-message">{message}</div>}
+      <div>
+        {loading ? (
+          <p>Processing...</p>
+        ) : (
+          <>
+            {amount === 0 ? (
+              <button
+                onClick={() => handleSuccessfulPayment(null)}
+                style={{
+                  padding: '10px 20px',
+                  backgroundColor: '#4caf50',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: '5px',
+                  cursor: 'pointer',
+                }}
+              >
+                Generate Ticket
+              </button>
+            ) : (
+              <PaystackButton {...componentProps} />
+            )}
+            {ticketToken && <p>Generated Ticket Token: {ticketToken}</p>}
+            {qrCodeUrl && (
+              <img
+                src={qrCodeUrl}
+                alt="QR Code"
+                style={{ width: '250px', height: '250px', marginTop: '10px' }}
+              />
+            )}
+          </>
+        )}
+      </div>
+      
+      </div>
     </div>
-  </div>
-);
-
-}
+  );
+};
 
 export default TicketGenerator;
