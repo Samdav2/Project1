@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios"
 import "./EventsList.css";
 import dotenv from "dotenv"
+import deleteicon from "/src/assets/delete.png";
 
 const EventsList = ( {brandName } ) => {
   [
@@ -19,6 +20,27 @@ const EventsList = ( {brandName } ) => {
 
   console.log(datatoSend)
 
+  const deleteEvent= import.meta.env.VITE_DELETE_EVENT
+
+  const handleDeleteBuutton = async (eventId) => {
+    try {
+      console.log('Deleting Event With Id:', eventId)
+      const response = await axios.delete(deleteEvent, {
+        data: { eventId },
+      });
+
+      if (response.data) {
+        console.log('Deletion Response:', response.data);
+      } else {
+        setError('Deletion Failed. Event does not exist or insufficient permission')
+      }
+    } catch (error) {
+      console.error('Deletion error:', error);
+      setError(error.response?.data?.message || 'Error Deleting Event');
+    }
+
+  }
+
   const brand = brandName
 
   const brandEvent = import.meta.env.VITE_GET_BRAND_EVENTS
@@ -28,12 +50,12 @@ const EventsList = ( {brandName } ) => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-      const response = await axios.get(`${brandEvent}${brand}`); 
+      const response = await axios.get(`${brandEvent}${brand}`);
        if(response.data) {
         console.log(response.data)
          setEvents(response.data);
         }
-        
+
       } catch (error) {
         setError("No data found");
       } finally {
@@ -59,7 +81,7 @@ const EventsList = ( {brandName } ) => {
           });
           return (
             <li key={event.id}>
-              {event.event_name} - {formattedDate}
+              {event.event_name} - {formattedDate} <div className="listDiv" onClick={() => handleDeleteBuutton (event.id)}> <img src={deleteicon} /> </div>
             </li>
           );
         })}

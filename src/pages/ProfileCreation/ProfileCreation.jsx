@@ -88,9 +88,9 @@ const ProfileCreation = () => {
     dispatch({ type: ACTIONS.SET_SUBMITTING, payload: true });
 
     const formData = state[state.selectedForm];
-    
+
     // Conditionally set the API URL based on the selected form
-    const url = state.selectedForm === 'user' 
+    const url = state.selectedForm === 'user'
       ? userProfile  // User API endpoint
       : creatorProfile; // Creator API endpoint
 
@@ -116,7 +116,7 @@ const ProfileCreation = () => {
 
   // Dynamically generate the form for either user or creator
   const renderForm = () => {
-    const formFields = state.selectedForm === 'user' 
+    const formFields = state.selectedForm === 'user'
       ? ['name', 'phoneNo', 'address', 'email']
       : ['name', 'phoneNo', 'address', 'email', 'brandName'];
 
@@ -163,7 +163,6 @@ const ProfileCreation = () => {
       <div className="form-display">
         {state.selectedForm && renderForm()}
       </div>
-      <Footer />
     </div>
   );
 };
