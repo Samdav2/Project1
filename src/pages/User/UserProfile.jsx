@@ -119,14 +119,13 @@ export const UserProfile = () => {
   console.log(user.name);
 
   return (
-    <>
-      <div className="dashboard">
-        <aside className={`menubar ${menuOpen ? 'open' : ''}`}>
-          <button className="menu-toggle close" onClick={toggleMenu}>✕</button>
-          <div className="profile-info1">
-            <Avatar sx={{ bgcolor: deepPurple[700] }}>{initials}</Avatar>
-            <h3>{user?.name}</h3>
-            <p>{user?.email}</p>
+    <div className="dashboard">
+      <aside className={`menubar ${menuOpen ? 'open' : ''}`}>
+        <button className="menu-toggle close" onClick={toggleMenu}>✕</button>
+        <div className="profile-info1">
+          <Avatar sx={{ bgcolor: deepPurple[700] }}>{initials}</Avatar>
+          <h3>{user?.name}</h3>
+          <p>{user?.email}</p>
           <ul>
             <li><a href="#events">My Events</a></li>
 
@@ -143,38 +142,38 @@ export const UserProfile = () => {
               <button className="logout-btn" onClick={handleLogout}>Logout</button>
             </li>
           </ul>
+        </div>
+      </aside>
+
+      {!menuOpen && ( // Conditionally render the open button
+        <button className="menu-toggle open" onClick={toggleMenu}>☰</button>
+      )}
+
+      <main className="content-board">
+        <h1 className="main-header">My Profile</h1>
+
+        {/* Display Upcoming Events */}
+        <section className="events">
+          <h3>Upcoming Events</h3>
+          <div className="event-cards">
+            {events.length === 0 ? (
+              <p>No upcoming events found.</p>
+            ) : (
+              events.map((event, index) => (
+                <EventCard key={index} event={event} onClick={() => handleEventClick(event.id, event.price)} />
+              ))
+            )}
           </div>
-        </aside>
+        </section>
 
-        {!menuOpen && ( // Conditionally render the open button
-          <button className="menu-toggle open" onClick={toggleMenu}>☰</button>
-        )}
+        {/* Display Paid Events */}
+        {user?.user_id && <PaidEvents userId={user.user_id} />}
 
-        <main className="content-board">
-          <h1 className="main-header">My Profile</h1>
+        {/* Display Past Events */}
+        <PastEvents userId={user?.user_id} allEvents={events} />
+      </main>
 
-          {/* Display Upcoming Events */}
-          <section className="events">
-            <h3>Upcoming Events</h3>
-            <div className="event-cards">
-              {events.length === 0 ? (
-                <p>No upcoming events found.</p>
-              ) : (
-                events.map((event, index) => (
-                  <EventCard key={index} event={event} onClick={() => handleEventClick(event.id, event.price)} />
-                ))
-              )}
-            </div>
-          </section>
-
-          {/* Display Paid Events */}
-          {user?.user_id && <PaidEvents userId={user.user_id} />}
-
-          {/* Display Past Events */}
-          <PastEvents userId={user?.user_id} allEvents={events} />
-        </main>
-      </div>
-    </>
+    </div>
   );
 };
 
