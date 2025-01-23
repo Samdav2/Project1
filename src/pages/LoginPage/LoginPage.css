@@ -19,12 +19,12 @@ body, html {
 .login-form {
   display: flex;
   flex-direction: column;
-  width: 100px ;
+  width: 100% ;
   max-width: 400px;
   height: auto;
   background-color: #fff;
   border-radius: 8px;
-  justify-content: center;  
+  justify-content: center;
 }
 
 /* Heading */
@@ -310,7 +310,7 @@ h1 {
   .login-form {
    /* Adjust form width to accommodate sidebar */
     padding: 30px; /* Reduce padding on tablet */
-  
+
   }
 
   .sidebar1 {

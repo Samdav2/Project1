@@ -15,6 +15,9 @@ export const TicketingForm = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [showLoginModal, setShowLoginModal] = useState(false)
+    const [regularPrice, setRegularPrice] = useState(false)
+    const [vipPrice, setVipPrice] = useState(false)
+    const [vvipPrice, setVvipPrice] = useState(false)
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -34,10 +37,10 @@ export const TicketingForm = () => {
         firstName: location.state?.name || savedUsers?.firstName,
         email: location.state?.email || savedUsers?.email,
         user_id: location.state?.user_id || savedUsers?.user_id,
-        ticketType: "", 
+        ticketType: "",
     });
 
-   
+
     console.log("UserData", userData);
 
     localStorage.setItem('userData1', JSON.stringify(userData));
@@ -73,10 +76,25 @@ export const TicketingForm = () => {
                 }
             }
         }
+
+
     };
 
+    const handleregularprice = () => {
+    if (events.price === 0 )
+    {
+        console.log("price 2", events.price)
+        setRegularPrice(true);
+    }
+    else{
+        console.log("price1", events.price)
+        setRegularPrice(false);
+    }
+}
+
     useEffect(() => {
-        fetchData(); // Fetch data when component mounts
+        fetchData();
+        handleregularprice(); // Fetch data when component mounts
     }, []);
 
     if (loading) {
@@ -84,6 +102,7 @@ export const TicketingForm = () => {
     }
 
     if (error) {
+        console.log(error)
         return <div style={{color: 'black'}}> Network Error... Please Reload the Page </div>
     }
 
@@ -123,6 +142,9 @@ export const TicketingForm = () => {
 };
 
 
+
+
+
     // Handle input changes in the form
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -142,15 +164,19 @@ export const TicketingForm = () => {
         let ticketPrice = "";
 
         if (ticketType === "Regular") {
-            ticketPrice = displayEvents[0]?.price;
-        } else if (ticketType === "VIP") {
-            ticketPrice = displayEvents[0]?.vip_price;
-        } else if (ticketType === "VVIP") {
-            ticketPrice = displayEvents[0]?.vvip_price;
-        }
+    ticketPrice = displayEvents[0]?.price;
+  } else if (ticketType === "VIP") {
+    ticketPrice = displayEvents[0]?.vip_price;
+  } else if (ticketType === "VVIP") {
+    ticketPrice = displayEvents[0]?.vvip_price;
+  } else if (ticketType === "Regular-Free") {
+    ticketPrice = "0";  // Set "Free" for Regular if all prices are <= 0
+  }
 
-        setSelectedTicket({ type: ticketType, price: ticketPrice });
-    };
+  setSelectedTicket({ type: ticketType, price: ticketPrice });
+};
+
+
 
     return (
         <div className="body">
@@ -236,10 +262,26 @@ export const TicketingForm = () => {
                             onChange={handleTicketChange}
                             required
                         >
-                            <option value="">Select Type</option>
-                            <option value="Regular">Regular</option>
-                            <option value="VIP">VIP</option>
-                            <option value="VVIP">VVIP</option>
+                            {/* Check if all prices are less than or equal to 0, then show "Free" */}
+{displayEvents[0]?.price > 0 && (
+    <option value="Regular">Regular</option>
+)}
+{displayEvents[0]?.vip_price > 0 && (
+    <option value="VIP">VIP</option>
+)}
+{displayEvents[0]?.vvip_price > 0 && (
+    <option value="VVIP">VVIP</option>
+)}
+
+{/* If all prices are <= 0, display Regular as Free */}
+  {(displayEvents[0]?.price <= 0 && displayEvents[0]?.vip_price <= 0 && displayEvents[0]?.vvip_price <= 0) && (
+    <>
+    <option value="Regular-Free" >Choose Any One Below</option>
+    <option value="Regular-Free">Regular (Free)</option>
+    <option value="VIP">VIP (Free) </option>
+    <option value="VVIP">VVIP (Free)</option>
+    </>
+  )}
                         </select>
                     </div>
 

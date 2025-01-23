@@ -94,7 +94,7 @@ const VerifyTicket = () => {
   };
 
   const handleSubmit = async () => {
-    const isVerified = await verifyToken(); 
+    const isVerified = await verifyToken();
     if (isVerified) {
       await deleteTicket();
     }
@@ -191,7 +191,6 @@ const VerifyTicket = () => {
         )}
       </div>
       </div>
-        <Footer />
     </div>
   );
 };
