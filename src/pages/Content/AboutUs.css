@@ -1,0 +1,222 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #2980b9;
+}
+
+ul {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+li {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+li strong {
+  color: #2c3e50;
+}
+
+/* Section Styles */
+section {
+  margin-bottom: 40px;
+}
+
+/* Container for content */
+.event-staffing-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #1a202c;
+}
+
+/* Header and section backgrounds */
+.terms-agreement,
+.owl-initiators,
+.pricing-services,
+.executive-summary,
+.founders,
+.company-history,
+.mission-statement,
+.our-team,
+.values,
+.contact-info,
+.social-media,
+.why-choose-us {
+  padding: 20px;
+  background-color: #ecf0f1;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.terms-agreement h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  color: #27ae60;
+}
+
+/* Owl Initiators Section */
+.owl-initiators p {
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+
+.owl-initiators strong {
+  font-size: 1.2rem;
+  color: #27ae60;
+}
+
+/* Founder List */
+.founders ul {
+  padding-left: 20px;
+}
+
+.founders li {
+  font-size: 1.1rem;
+}
+
+/* Social Media Links */
+.social-media ul {
+  display: flex;
+  gap: 20px;
+  padding-left: 0;
+}
+
+.social-media li {
+  font-size: 1rem;
+}
+
+.social-media a {
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 2px solid transparent;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.social-media a:hover {
+  background-color: #3498db;
+  color: #fff;
+  border-color: #3498db;
+}
+
+/* Contact Info Styling */
+.contact-info p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.contact-info a {
+  font-weight: 600;
+}
+
+/* Value List */
+.values ul {
+  padding-left: 20px;
+}
+
+.values li {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.values li strong {
+  color: #27ae60;
+}
+
+/* Why Choose Us Section */
+.why-choose-us ul {
+  padding-left: 20px;
+}
+
+.why-choose-us li {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+}
+
+.why-choose-us li strong {
+  color: #2c3e50;
+}
+
+@media screen and (max-width: 768px) {
+  .event-staffing-page {
+    padding: 20px;
+  }
+
+  section h2 {
+    font-size: 1.8rem;
+  }
+
+  .terms-agreement h2,
+  .owl-initiators h2,
+  .pricing-services h2,
+  .executive-summary h2,
+  .founders h2,
+  .company-history h2,
+  .mission-statement h2,
+  .our-team h2,
+  .values h2,
+  .contact-info h2,
+  .social-media h2,
+  .why-choose-us h2 {
+    font-size: 2rem;
+  }
+
+  .social-media ul {
+    flex-direction: column;
+  }
+
+  .social-media li {
+    margin-bottom: 10px;
+  }
+
+  .social-media a {
+    width: 100%;
+    text-align: center;
+  }
+}

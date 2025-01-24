@@ -18,19 +18,20 @@ export const CreateEvent = () => {
     eventAddress: "",
     summary: "",
     picture: "",
-    vip: "",
-    vvip: "",
-    price: "",
+    vip: "0",
+    vvip: "0",
+    price: "0",
     category: "",
     account_name: "",
     account_number: "",
-    bank: "", // Bank name will now come from the select dropdown
+    bank: "",
   });
 
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [tables, setTables] = useState([]);
+  const [free, setFree] = useState(true);
 
   const addEvent = import.meta.env.VITE_CREATE_EVENT
 
@@ -151,6 +152,10 @@ export const CreateEvent = () => {
       });
     }
   };
+
+  const handleFreeEvent = () => {
+    setFree(!free)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -273,41 +278,50 @@ export const CreateEvent = () => {
           </select>
         </label>
 
-        {/* Pricing Section */}
         <label>
+          Tick To Make This Event Free
+          <input
+          type="checkbox"
+          value={free}
+          required
+          onChange={handleFreeEvent}
+          />
+        </label>
+        <div>{`Selected: ${free ? 'True' : 'False'}`}</div>
+
+        {/* Pricing Section */}
+        <label style={{ display: free ? 'block' : 'none'}}>
           VIP Ticket Price
           <input
             type="number"
             name="vip"
             value={eventDetails.vip}
             onChange={handleChange}
-            required
             min="0"
             step="0.01"
           />
         </label>
 
-        <label>
+
+        <label style={{ display: free ? 'block' : 'none'}}>
           VVIP Ticket Price
           <input
             type="number"
             name="vvip"
             value={eventDetails.vvip}
             onChange={handleChange}
-            required
             min="0"
             step="0.01"
           />
         </label>
 
-        <label>
+        <label style={{ display: free ? 'block' : 'none'}}>
           Regular Ticket Price
           <input
             type="number"
             name="price"
             value={eventDetails.price}
             onChange={handleChange}
-            required
             min="0"
             step="0.01"
           />

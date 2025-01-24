@@ -569,6 +569,11 @@ ul li a:hover{
   .event-date-time {
     font-size: 0.9rem;
   }
+  .event-cards {
+    width: 90% ;
+    padding-right: 5px ;
+    
+  }
 
   .event-cards {
     width: 100% ;

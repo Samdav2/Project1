@@ -8,10 +8,10 @@ body, html {
 /* Login Page Layout */
 .login-page {
   background: linear-gradient(rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%, );
-  width: 100%;
+  width: auto;
   display: flex;
   align-items: center;
-  height: 100vh;
+  height: auto;
   justify-content: flex-start
 }
 
@@ -185,12 +185,11 @@ h1 {
 
 /* Responsive Design */
 @media (max-width: 780px) {
-  .login-form {
-    width: 90%;
+  /* Adjust the layout for mobile */
+
+  .login-form{
     height: auto;
-    position: relative;
-    z-index: 99;
-    top: 20%;
+    width: auto;
   }
 
   .login-page {
@@ -213,10 +212,39 @@ h1 {
 }
 
 @media (max-width: 480px) {
-  .login-form {
-    width: 90%;
+  /* Adjust the layout for mobile */
+
+  .login-form{
+    width: 92vw;
     height: auto;
-    margin: 0 auto;
+    position: absolute;
+    z-index: 99;
+    top: 20%;
+    margin: 0;
+  }
+
+  .login-page{
+    background: linear-gradient(rgba(0, 0, 0, 0.5)50%, rgba(0, 0, 0, 0.5)50%), url('../../assets/owl-logo5.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-items: flex-start;
+  }
+
+  h1 {
+    font-size: 28px; /* Smaller heading on mobile */
+  }
+
+  .input-group input {
+    font-size: 16px; /* Larger input text on mobile */
+  }
+
+  .signin-button {
+    font-size: 16px; /* Larger button text on mobile */
+  }
+
+  .subtitle {
+    font-size: 12px; /* Smaller subtitle on mobile */
   }
 
   .login-page {
@@ -233,7 +261,9 @@ h1 {
   }
 
   .login-form {
-    padding: 20px;
+   /* Adjust form width to accommodate sidebar */
+    padding: 30px; /* Reduce padding on tablet */
+
   }
 
   .sidebar1 {

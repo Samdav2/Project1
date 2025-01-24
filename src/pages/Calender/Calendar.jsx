@@ -201,7 +201,7 @@ const getInitials = (name = '') => {
         <>
           <div className="backdrop" onClick={handleClosePopup}></div>
           <div className="event-popup">
-            {selectedEvent.picture && <img src={`ttp://app.swiftjobs.com.ng/${selectedEvent.picture}`} alt={selectedEvent.event_name} className="event-image" />}
+            {selectedEvent.picture && <img src={`http://app.swiftjobs.com.ng/${selectedEvent.picture}`} alt={selectedEvent.event_name} className="event-image" />}
             <h3>{selectedEvent.event_name}</h3>
             <p><strong>Date:</strong> {formatEventDate(selectedEvent.date)}</p>
             <p><strong>Location:</strong> {selectedEvent.event_address}</p>

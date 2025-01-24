@@ -68,22 +68,17 @@ const LoginPage = () => {
 
   return (
     <div>
-      <ToastContainer />
-      <div className="login-page">
-        <div className="login-form">
-          <h1>Welcome Back</h1>
-          <p className="subtitle">Enter your email and password to sign in</p>
-          <form onSubmit={handleLogin}>
-            <div className="input-groups">
-              <label>Email</label>
-              <input
-                type="email"
-                placeholder="Your email address"
-                name="email"
-                value={user.email}
-                onChange={handleChange}
-              />
-            </div>
+    <ToastContainer />
+    <div className="login-page">
+
+      <div className="login-form">
+        <h1>Welcome Back</h1>
+        <p className="subtitle">Enter your email and password to sign in</p>
+        <form onSubmit={handleLogin}>
+          <div className="input-groups">
+            <label>Email</label>
+            <input type="email" placeholder="Your email address" name='email' value={user.email} onChange={handleChange} />
+          </div>
 
             <div className="input-groups">
               <label>Password</label>
@@ -106,18 +101,16 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <div className="remember-me">
-              <input
-                type="checkbox"
-                id="rememberMe"
-                checked={isChecked}
-                onChange={handleToggle}
-                className="remember-checkbox"
-              />
-              <label htmlFor="rememberMe" className="remember-label">
-                Remember me
-              </label>
-            </div>
+         <div className="remember-me">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              checked={isChecked}
+              onChange={handleToggle}
+              className="remember-checkbox"
+           />
+             <label htmlFor="rememberMe" className="remember-label">Remember me</label>
+         </div>
 
             <button type="submit" disabled={isSubmitting} className="button">
               {isSubmitting ? "Signing in..." : "Sign in"}
@@ -137,7 +130,16 @@ const LoginPage = () => {
         </div>
       
       </div>
+
+      <div className="sidebar1">
+        <img src='/assets/owl-logo.svg' alt="Owl" />
+      </div>
+      <div className="sidebarMobile">
+        <img src='/assets/owl-logo.svg' alt="Owl" />
+      </div>
+      </div>
     </div>
+
   );
 };
 
