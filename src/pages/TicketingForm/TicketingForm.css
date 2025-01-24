@@ -47,61 +47,6 @@ body {
     font-size: 18px;
 }
 
-.ticket-container{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.ticket-row{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 5px;
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba (0, 0, 0, 0.05);
-}
-
-.ticket-type{
-    text-align: center;
-    font-weight: bold;
-    font-size: 16px;
-    color: black;
-}
-
-.ticket-control {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    padding: 1px;
-}
-
-input[type="number"] {
-    width: 20px;
-    height: 20px;
-    text-align: center;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 2px;
-    justify-content: center;
-}
-/*Button*/
-.ticket-control button{
-    width: 20px;
-    height: 20px;
-    background-color: #f2ca46;
-    font-size: 16px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-
-}
 
 .submit-button {
     display: block;

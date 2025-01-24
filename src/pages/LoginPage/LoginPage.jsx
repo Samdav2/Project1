@@ -137,9 +137,8 @@ const LoginPage = () => {
       <div className="sidebarMobile">
         <img src='/assets/owl-logo.svg' alt="Owl" />
       </div>
-      </div>
     </div>
-
+    
   );
 };
 

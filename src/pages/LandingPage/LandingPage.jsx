@@ -280,6 +280,15 @@ export const LandingPage = () => {
         <p>Your trusted partner in innovation and event management</p>
         <a href='/sign-up'> <button className="cta-button">Get Started</button> </a>
       </section>
+       
+       <nav>
+         <ul class="nav-list">
+            <li><a href="">All</a></li>
+            <li><a href="">Education</a></li>
+            <li><a href="">Tech</a></li>
+            <li><a href="">Party</a></li>
+        </ul>
+       </nav>
 
        {/* Search for Upcoming Events */}
       <section className="search-section">

@@ -179,6 +179,7 @@ export const TicketingForm = () => {
                             onChange={handleTicketChange}
                             required
                         >
+                            {/*when it is a free event*/}
                             {displayEvents[0]?.price > 0 && <option value="Regular">Regular</option>}
                             {displayEvents[0]?.vip_price > 0 && <option value="VIP">VIP</option>}
                             {displayEvents[0]?.vvip_price > 0 && <option value="VVIP">VVIP</option>}
