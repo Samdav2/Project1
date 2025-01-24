@@ -229,21 +229,12 @@ export const TicketingForm = () => {
                     </div>
 
                     <div className="form-group">
-                        <label>Ticket Type</label>
-                        <select
-                            name="ticketType"
-                            value={selectedTicket.type}
-                            onChange={handleTicketChange}
-                            required
-                        >
-                            <option value="">Select Type</option>
-                            <option value="Regular">Regular</option>
-                            <option value="VIP">VIP</option>
-                            <option value="VVIP">VVIP</option>
-                        </select>
-                    </div>
+                        <label>Select tickets</label>
 
-                    <button type="submit" className="submit-button">Submit</button>
+
+                
+                </div> 
+                   <button type="submit" className="submit-button">Submit</button>
                 </div>
             </form>
             <Footer />

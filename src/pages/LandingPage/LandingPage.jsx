@@ -212,6 +212,18 @@ export const LandingPage = () => {
        <a href='/sign-up'> <button className="cta-button">Get Started</button> </a>
       </section>
 
+      {/*Category section*/}
+        <div className="category">
+            <ul>
+              <li><a  href="#">All</a></li>
+              <li><a  href="#">Party</a></li>
+              <li><a  href="#">Tech</a></li>
+              <li><a  href="#">Educational</a></li>
+              <li><a  href="#">others</a></li>
+           </ul>
+        </div>
+
+
        {/* Search Bar Section */}
        <section className="search-section">
         <input
