@@ -84,3 +84,7 @@
 .listDiv img {
   width: 30px;
 }
+
+.listDiv :hover {
+  width: 20px;
+}

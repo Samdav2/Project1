@@ -169,7 +169,13 @@ export const TicketingForm = () => {
     ticketPrice = displayEvents[0]?.vip_price;
   } else if (ticketType === "VVIP") {
     ticketPrice = displayEvents[0]?.vvip_price;
-  } else if (ticketType === "Regular-Free") {
+  } else if (ticketType === "VVVIP") {
+    ticketPrice = displayEvents[0]?.vvvip_price;
+  }
+  else if (ticketType === "Table") {
+    ticketPrice = displayEvents[0]?.table_price;
+  }
+  else if (ticketType === "Regular-Free") {
     ticketPrice = "0";  // Set "Free" for Regular if all prices are <= 0
   }
 
@@ -184,7 +190,7 @@ export const TicketingForm = () => {
             {/* Event Display Section */}
             <div>
                 {displayEvents.map((event, index) => {
-                    const { event_name, event_address, time_in, summary, picture, date, price, vip_price, vvip_price } = event;
+                    const { event_name, event_address, time_in, summary, picture, date, price, vip_price, vvip_price, vvvip_price, table_price, brand_name } = event;
                     const formattedDate = new Date(date).toLocaleDateString();
                     const formattedTime = new Date(`1970-01-01T${time_in}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                     return (
@@ -262,26 +268,72 @@ export const TicketingForm = () => {
                             onChange={handleTicketChange}
                             required
                         >
-                            {/* Check if all prices are less than or equal to 0, then show "Free" */}
-{displayEvents[0]?.price > 0 && (
-    <option value="Regular">Regular</option>
-)}
-{displayEvents[0]?.vip_price > 0 && (
-    <option value="VIP">VIP</option>
-)}
-{displayEvents[0]?.vvip_price > 0 && (
-    <option value="VVIP">VVIP</option>
+            {displayEvents[0]?.brand_name === 'LASU Insider ' ? (
+                  <>
+                    {displayEvents[0]?.price > 0 && (
+                        <>
+                             <option value="Regular-Free">Select a Ticket To Purchase</option>
+                             <option value="Regular">Single Pringle Pass</option>
+                        </>
+                    )}
+
+                    {displayEvents[0]?.vip_price > 0 && (
+                            <option value="VIP">Couple Pass Price</option>
+                    )}
+
+                    {displayEvents[0]?.vvip_price > 0 && (
+                            <option value="VVIP">Friends Pack Price</option>
+                    )}
+
+                    {displayEvents[0]?.vvvip_price > 0 && (
+                            <option value="VVVIP">Vip Experience Price</option>
+                    )}
+
+                    {displayEvents[0]?.table_price > 0 && (
+                            <option value="Table">Table</option>
+                     )}
+                </>
+            ) : (
+        <>
+            {displayEvents[0]?.price > 0 && (
+                <>
+                     <option value="Regular-Free">Select a Ticket To Purchase</option>
+                     <option value="Regular">Regular</option>
+                </>
+            )}
+
+            {displayEvents[0]?.vip_price > 0 && (
+                    <option value="VIP">VIP</option>
+            )}
+
+            {displayEvents[0]?.vvip_price > 0 && (
+                    <option value="VVIP">VVIP</option>
+            )}
+
+            {displayEvents[0]?.vvvip_price > 0 && (
+                    <option value="VVVIP">VVVIP</option>
+            )}
+
+            {displayEvents[0]?.table_price > 0 && (
+                    <option value="Table">Table</option>
+            )}
+
+        {/* If all prices are <= 0, display Regular as Free */}
+            {(displayEvents[0]?.price <= 0 &&
+            displayEvents[0]?.vip_price <= 0 &&
+            displayEvents[0]?.vvip_price <= 0 &&
+            displayEvents[0]?.vvvip_price <= 0 &&
+            displayEvents[0]?.table_price <= 0) && (
+        <>
+            <option value="Regular-Free">Choose Any One Below</option>
+            <option value="Regular-Free">Regular (Free)</option>
+            <option value="VIP">VIP (Free)</option>
+            <option value="VVIP">VVIP (Free)</option>
+        </>
+    )}
+  </>
 )}
 
-{/* If all prices are <= 0, display Regular as Free */}
-  {(displayEvents[0]?.price <= 0 && displayEvents[0]?.vip_price <= 0 && displayEvents[0]?.vvip_price <= 0) && (
-    <>
-    <option value="Regular-Free" >Choose Any One Below</option>
-    <option value="Regular-Free">Regular (Free)</option>
-    <option value="VIP">VIP (Free) </option>
-    <option value="VVIP">VVIP (Free)</option>
-    </>
-  )}
                         </select>
                     </div>
 

@@ -25,6 +25,8 @@ export const CreateEvent = () => {
     account_name: "",
     account_number: "",
     bank: "",
+    vvvip_price: "0",
+    table_price: "0"
   });
 
   const navigate = useNavigate();
@@ -283,7 +285,6 @@ export const CreateEvent = () => {
           <input
           type="checkbox"
           value={free}
-          required
           onChange={handleFreeEvent}
           />
         </label>
@@ -291,7 +292,7 @@ export const CreateEvent = () => {
 
         {/* Pricing Section */}
         <label style={{ display: free ? 'block' : 'none'}}>
-          VIP Ticket Price
+          Couple Pass Price
           <input
             type="number"
             name="vip"
@@ -304,7 +305,7 @@ export const CreateEvent = () => {
 
 
         <label style={{ display: free ? 'block' : 'none'}}>
-          VVIP Ticket Price
+          Friends Pack Price
           <input
             type="number"
             name="vvip"
@@ -316,7 +317,31 @@ export const CreateEvent = () => {
         </label>
 
         <label style={{ display: free ? 'block' : 'none'}}>
-          Regular Ticket Price
+          Vip Experience Price
+          <input
+            type="number"
+            name="vvvip_price"
+            value={eventDetails.vvvip_price}
+            onChange={handleChange}
+            min="0"
+            step="0.01"
+          />
+        </label>
+
+        <label style={{ display: free ? 'block' : 'none'}}>
+          Table Price
+          <input
+            type="number"
+            name="table_price"
+            value={eventDetails.table_price}
+            onChange={handleChange}
+            min="0"
+            step="0.01"
+          />
+        </label>
+
+        <label style={{ display: free ? 'block' : 'none'}}>
+          Single Pringle Pass
           <input
             type="number"
             name="price"

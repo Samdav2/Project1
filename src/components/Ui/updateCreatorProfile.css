@@ -5,6 +5,7 @@ body {
     padding: 0;
     background-color: #f9f9fb;
     color: #333;
+    justify-content: center;
   }
 
   /* Main container */
@@ -36,7 +37,7 @@ body {
   /* Heading */
   .dynamic-forms h1 {
     font-size: 24px;
-    color: #333;
+    color: white;
     margin-bottom: 20px;
   }
 

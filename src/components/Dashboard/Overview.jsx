@@ -15,7 +15,7 @@ const Overview = ( {brandName }) => {
 
    const brandEvent = import.meta.env.VITE_GET_BRAND_EVENTS
 
- 
+
 
   const datatoSend = {
     brand : brandName
@@ -24,15 +24,15 @@ const Overview = ( {brandName }) => {
   console.log(datatoSend)
 
   const brand = brandName
-
+  const brand_coded = encodeURIComponent(brand)
 
 useEffect(() => {
   const fetchOverview = async () => {
     setLoading(true); // Start loading when the request is made
-    
+
     try {
-      const response = await axios.get(`${brandEvent}${brand}`); 
-      
+      const response = await axios.get(`${brandEvent}${brand_coded}`);
+
       if(response.data) {
         console.log(response.data.length)
         overview.totalEvents = response.data.length;
@@ -46,7 +46,7 @@ useEffect(() => {
 
           overview.upcomingEvents = futureEventCount
 
-      }  
+      }
 
     } catch (err) {
       setError("User has not created any event"); // Handle error if there is one

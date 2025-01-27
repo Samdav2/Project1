@@ -27,7 +27,7 @@ const UpdateCreatorProfile = () => {
 
     const handleChange = (e) => {
         const {name, value} = e.target;
-        setUser((prevUser) => ({
+        setCreator((prevUser) => ({
             ...prevUser,
             [name]: value
         }));

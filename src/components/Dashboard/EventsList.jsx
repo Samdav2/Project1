@@ -42,6 +42,9 @@ const EventsList = ( {brandName } ) => {
   }
 
   const brand = brandName
+  console.log("Not Coed", brand,"...")
+  const brand_coded = encodeURIComponent(brand)
+  console.log("Coded", brand_coded,"...")
 
   const brandEvent = import.meta.env.VITE_GET_BRAND_EVENTS
 
@@ -50,7 +53,7 @@ const EventsList = ( {brandName } ) => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-      const response = await axios.get(`${brandEvent}${brand}`);
+      const response = await axios.get(`${brandEvent}${brand_coded}`);
        if(response.data) {
         console.log(response.data)
          setEvents(response.data);

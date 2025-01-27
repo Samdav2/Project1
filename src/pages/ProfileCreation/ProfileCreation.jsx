@@ -102,7 +102,7 @@ const ProfileCreation = () => {
       if (response.data) {
         console.log(`${state.selectedForm.charAt(0).toUpperCase() + state.selectedForm.slice(1)} Profile Created Successfully`);
         navigate(`/${state.selectedForm}-dashboard`, {
-          state: { email: formData.email, name: formData.name, id: formData.user_id },
+          state: { email: formData.email, name: formData.name, id: formData.user_id, brandName: formData.brandName },
         });
       } else {
         console.log('Error Creating Profile');

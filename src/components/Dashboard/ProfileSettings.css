@@ -7,7 +7,7 @@
     max-width: 600px;
     margin: 20px auto;
   }
-  
+
   /* Heading Style */
   .profile-settings h3 {
     font-size: 2rem;
@@ -16,21 +16,21 @@
     font-weight: bold;
     text-align: center;
   }
-  
+
   /* Form Styling */
   .profile-settings form {
     display: flex;
     flex-direction: column;
     gap: 15px;
   }
-  
+
   /* Label Styling */
   .profile-settings label {
     font-size: 1.1rem;
     color: #555;
     margin-bottom: 5px;
   }
-  
+
   /* Input Fields Styling */
   .profile-settings input {
     padding: 10px;
@@ -40,7 +40,7 @@
     width: 100%;
     box-sizing: border-box;
   }
-  
+
   /* Button Styling */
   .profile-settings button {
     padding: 12px;
@@ -53,31 +53,31 @@
     transition: background-color 0.3s ease;
     width: 100%;
   }
-  
+
   .profile-settings button:hover {
     background-color: #ffcc00;
+    color: white;
   }
-  
+
   /* Mobile Responsiveness */
   @media (max-width: 768px) {
     .profile-settings {
       padding: 20px;
     }
-  
+
     .profile-settings h3 {
       font-size: 1.8rem;
     }
-  
+
     .profile-settings label {
       font-size: 1rem;
     }
-  
+
     .profile-settings input {
       font-size: 0.95rem;
     }
-  
+
     .profile-settings button {
       font-size: 1rem;
     }
   }
-  
