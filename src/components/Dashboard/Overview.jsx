@@ -1,63 +1,103 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios"
-import { useLocation } from "react-router-dom"
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 import "./Overview.css";
-import dotenv from "dotenv"
 
-const Overview = ( {brandName }) => {
+const Overview = ({ brandName }) => {
   const [overview, setOverview] = useState({
     totalEvents: 0,
     upcomingEvents: 0,
     totalAttendees: 0,
+    eventId: 0,
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [eventId, setEventId] = useState('')
 
-   const brandEvent = import.meta.env.VITE_GET_BRAND_EVENTS
+  const brandEvent = import.meta.env.VITE_GET_BRAND_EVENTS;
+  const getEventAttendee = import.meta.env.VITE_ATTENDEE_EVENT;
 
+  const brand_coded = encodeURIComponent(brandName);
 
-
-  const datatoSend = {
-    brand : brandName
-  }
-
-  console.log(datatoSend)
-
-  const brand = brandName
-  const brand_coded = encodeURIComponent(brand)
-
-useEffect(() => {
+  // Fetch the event overview data
   const fetchOverview = async () => {
-    setLoading(true); // Start loading when the request is made
+    setLoading(true); // Start loading
 
     try {
       const response = await axios.get(`${brandEvent}${brand_coded}`);
 
-      if(response.data) {
-        console.log(response.data.length)
-        overview.totalEvents = response.data.length;
-          const currentDate = new Date();
+      if (response.data && response.data.length > 0) {
+        const currentDate = new Date();
 
-          // Filter events that are in the future
-          const futureEventCount = response.data.filter(event => {
-            const eventDate = new Date(event.date);
-            return eventDate > currentDate;  // Check if the event is in the future
-          }).length;
+        const totalEvents = response.data.length;
+        const futureEventCount = response.data.filter((event) => {
+          const eventDate = new Date(event.date);
+          return eventDate > currentDate; // Future events
+        }).length;
 
-          overview.upcomingEvents = futureEventCount
-
+        setOverview({
+          totalEvents,
+          upcomingEvents: futureEventCount,
+          totalAttendees: 0, // Placeholder for attendee count
+          eventId: response.data[0].id, // Assuming the first event is the correct one
+        });
+      } else {
+        setError("No events found for this brand.");
       }
-
     } catch (err) {
-      setError("User has not created any event"); // Handle error if there is one
+      setError("Error fetching event data.");
+      console.error(err);
     } finally {
-      setLoading(false); // Always stop loading after the request completes (whether successful or not)
+      setLoading(false);
     }
   };
 
-  fetchOverview();
-}, [brand]); // Ensure the effect is triggered when 'brand' changes
+  // Fetch the event attendee data after the eventId is set
+  const fetchEventAttendee = async () => {
+    if (!overview.eventId) return; // Prevent fetching if eventId is not yet available
 
+          
+          const eventIds = {
+            eventId: overview.eventId
+          }
+
+          console.log("Event Id 2", eventId)
+
+    try {
+      console.log ("event id" , overview.eventId)
+      const response = await axios.get(getEventAttendee,
+       { eventId }, // Send eventId as a URL parameter
+      );
+
+      if (response.data) {
+        console.log("Attendee Events:", response.data);
+        setOverview((prevState) => ({
+          ...prevState,
+          totalAttendees: response.data.length, // Assuming response has length for attendees
+        }));
+      } else {
+        setOverview((prevState) => ({
+          ...prevState,
+          totalAttendees: 0,
+        }));
+      }
+    } catch (err) {
+      console.error("Error fetching event attendees", err);
+      setError("Error fetching event attendees.");
+    }
+  };
+
+  // Fetch the overview once the brandName changes
+  useEffect(() => {
+    fetchOverview();
+  }, [brandName]); // Runs only when brandName changes
+
+  // Fetch event attendees when eventId changes
+  useEffect(() => {
+    if (overview.eventId) {
+      fetchEventAttendee();
+    }
+  }, [overview.eventId]); // Runs when eventId is updated
 
   return (
     <div className="overview">
