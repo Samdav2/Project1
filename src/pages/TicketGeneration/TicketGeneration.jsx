@@ -22,8 +22,8 @@ const TicketGenerator = () => {
   const [splitAccountId, setSplitAccountId] = useState(null);
   const pubkey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY
   const [publicKey] = useState(pubkey);
-  
-  
+
+
   // Use location to get parameters
   const location = useLocation();
   const { name: locationName, email: locationEmail, user_id, eventName, phoneNo: locationPhoneNo, eventId, price, bank: bank, account_number: accountNumber, account_name: accountName  } = location.state || {};
@@ -33,7 +33,7 @@ const TicketGenerator = () => {
   const PAYSTACK_SECRET_KEY = import.meta.env.VITE_PAYSTACK_SECRET_KEY // Replace with your secret key
   const PAYSTACK_PUBLIC_KEY_DEMO = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY_DEMO
 
- 
+
 
   const attendEvent = import.meta.env.VITE_ATTEND_EVENT
 
@@ -142,28 +142,6 @@ const getBankCode = (bankName) => {
 };
 
 
-  useEffect(() => {
-    if (!locationEmail || !locationName) {
-      setError('Email and name are required');
-      return;
-    }
-
-    setEmail(locationEmail);
-    setName(locationName);
-    setPhoneNo(locationPhoneNo);
-
-    if (price) {
-      const convertedAmount = Math.round(parseFloat(price) * 100); // Convert to Kobo
-      if (isNaN(convertedAmount)) {
-        setError('Invalid price format');
-        return;
-      }
-      setAmount(convertedAmount);
-    }
-
-    // Start subaccount fetching and creation
-    handleSubaccountSetup();
-  }, [locationEmail, locationName, locationPhoneNo, price]);
 
   // Fetch Subaccounts from Paystack
 const fetchSubaccounts = async () => {
@@ -173,7 +151,7 @@ const fetchSubaccounts = async () => {
         Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
       },
     });
-    
+
     const { data } = response.data;
     console.log('Fetched subaccounts:', data);
 
@@ -209,7 +187,7 @@ const createSubaccount = async () => {
     // Ensure bank code and account number are correctly retrieved
     const bankCode = getBankCode(location.state.bank);
     const accountNumber = location.state.accountNumber;
-    
+
 
     // Log the values to ensure correct data
     console.log('Creating subaccount with the following details:');
@@ -237,7 +215,6 @@ const createSubaccount = async () => {
   }
 };
 
-// Handle Subaccount Setup (Fetching and Creating)
 const handleSubaccountSetup = async () => {
   const accountMatched = await fetchSubaccounts(); // Check for existing subaccount
   if (!accountMatched) {
@@ -247,6 +224,29 @@ const handleSubaccountSetup = async () => {
     console.log('Subaccount already exists, no need to create a new one.');
   }
 };
+
+useEffect(() => {
+  if (!locationEmail || !locationName) {
+    setError('Email and name are required');
+    return;
+  }
+
+  setEmail(locationEmail);
+  setName(locationName);
+  setPhoneNo(locationPhoneNo);
+
+  if (price) {
+    const convertedAmount = Math.round(parseFloat(price) * 100); // Convert to Kobo
+    if (isNaN(convertedAmount)) {
+      setError('Invalid price format');
+      return;
+    }
+    setAmount(convertedAmount);
+  }
+
+  // Start subaccount fetching and creation
+  handleSubaccountSetup();
+}, [locationEmail, locationName, locationPhoneNo, price]);
 
 
 const generateTicketToken = () => {
@@ -363,10 +363,10 @@ const generateQRCode = async (ticketToken) => {
   const handleSuccessfulPayment = async (reference) => {
   try {
     setLoading(true);
-    
+
     // Step 1: Generate the ticket token
     const generatedToken = generateTicketToken();
-    
+
     if (!generatedToken) {
       setError('Failed to generate ticket token');
       setLoading(false);
@@ -374,7 +374,7 @@ const generateQRCode = async (ticketToken) => {
     }
 
     // Store the generated token
-    setTicketToken(generatedToken); 
+    setTicketToken(generatedToken);
 
     // Step 2: Generate QR code
   const qrcode1 =  await generateQRCode(generatedToken);
@@ -390,6 +390,8 @@ const generateQRCode = async (ticketToken) => {
       qrcodeURL: qrcode1, // Ensure the correct QR code URL is passed
       token: generatedToken, // Ensure the correct token is passed
       ticketType: location.state.ticketType,
+      userName: location.state.name,
+      eventName: location.state.eventName
     };
 
     console.log("Form Data to Send:", formData);
@@ -471,7 +473,7 @@ console.log(subaccountCode);
           </>
         )}
       </div>
-      
+
       </div>
     </div>
   );
