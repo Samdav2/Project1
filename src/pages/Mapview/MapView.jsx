@@ -102,7 +102,7 @@ const MapView = () => {
             <div className="event-section" key={index}>
               <div className="event-card">
                 <img
-                  src={`https://app.swiftjobs.com.ng/${picture}`}
+                  src={`https://app.samdavweb.org.ng/${picture}`}
                   alt={event_name}
                   className="event-image"
                 />

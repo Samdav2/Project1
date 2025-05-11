@@ -114,12 +114,12 @@ export const TicketingForm = () => {
 
     const { firstName, email, user_id } = userData;
 
-    if (!userData.user_id) {
-        // Show error toast if user_id is null or undefined
-        toast.error("You must be login to buy ticket");
-        setShowLoginModal(true);
-        return;  // Stop further execution
-    }
+    // if (!userData.user_id) {
+    //     // Show error toast if user_id is null or undefined
+    //     toast.error("You must be login to buy ticket");
+    //     setShowLoginModal(true);
+    //     return;  // Stop further execution
+    // }
 
     if (firstName && email && selectedTicket.type) {
         navigate('/ticket', {
@@ -129,7 +129,7 @@ export const TicketingForm = () => {
                 accountName: displayEvents[0]?.account_name,
                 accountNumber: displayEvents[0]?.account_number,
                 bank: displayEvents[0]?.bank,
-                name: firstName,
+                name: firstName ,
                 email,
                 user_id,
                 ticketType: selectedTicket.type,
@@ -182,6 +182,13 @@ export const TicketingForm = () => {
   setSelectedTicket({ type: ticketType, price: ticketPrice });
 };
 
+    const InputComponent = () => {
+        const [inputValue, setInputValue] = useState('');
+
+     const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+        }
+    }
 
 
     return (
@@ -196,7 +203,7 @@ export const TicketingForm = () => {
                     return (
                         <div className="event-section" key={index}>
                             <div className="event-card">
-                                <img src={`http://app.swiftjobs.com.ng/${picture}`} alt={event_name} className="event-image" />
+                                <img src={`https://app.samdavweb.org.ng/${picture}`} alt={event_name} className="event-image" />
                                 <div className="event-info">
                                     <h4 className="event-title">{event_name}</h4>
                                     <p className="event-address">{event_address}</p>
@@ -273,20 +280,20 @@ export const TicketingForm = () => {
                     {displayEvents[0]?.price > 0 && (
                         <>
                              <option value="Regular-Free">Select a Ticket To Purchase</option>
-                             <option value="Regular">Single Pringle Pass</option>
+                             <option value="Regular">Regular Pass</option>
                         </>
                     )}
 
                     {displayEvents[0]?.vip_price > 0 && (
-                            <option value="VIP">Couple Pass Price</option>
+                            <option value="VIP">VIP Price</option>
                     )}
 
                     {displayEvents[0]?.vvip_price > 0 && (
-                            <option value="VVIP">Friends Pack Price</option>
+                            <option value="VVIP">VVIP Price</option>
                     )}
 
                     {displayEvents[0]?.vvvip_price > 0 && (
-                            <option value="VVVIP">Vip Experience Price</option>
+                            <option value="VVVIP">VVIP Price</option>
                     )}
 
                     {displayEvents[0]?.table_price > 0 && (

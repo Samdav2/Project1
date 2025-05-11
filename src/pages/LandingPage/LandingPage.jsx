@@ -15,7 +15,7 @@ export const LandingPage = () => {
   const [currentPageUpcoming, setCurrentPageUpcoming] = useState(1);
   const [currentPagePast, setCurrentPagePast] = useState(1);
   const [upcomingSearchTerm, setUpcomingSearchTerm] = useState(""); // Search term for upcoming events
-  const [pastSearchTerm, setPastSearchTerm] = useState(""); 
+  const [pastSearchTerm, setPastSearchTerm] = useState("");
   const eventsPerPage = 8;
 
 
@@ -154,7 +154,7 @@ export const LandingPage = () => {
     const indexOfFirstEvent = indexOfLastEvent - eventsPerPage;
     return eventsList.slice(indexOfFirstEvent, indexOfLastEvent);
   };
-  
+
 
   // Handle event card click
   const handleEventClick = (eventId, price) => {
@@ -200,7 +200,7 @@ export const LandingPage = () => {
   };
 
   // Filtered events based on search term
-  
+
   const displayUpcomingEvents = upcomingSearchTerm ? filteredUpcomingEvents : getUpcomingEvents();
   const displayPastEvents = pastSearchTerm ? filteredPastEvents : getPastEvents();
 
@@ -285,7 +285,7 @@ export const LandingPage = () => {
 
        {/* Search for Upcoming Events */}
       <section className="search-section">
-        <input 
+        <input
           type="text"
           placeholder="Search Upcoming Events..."
           value={upcomingSearchTerm}
@@ -305,7 +305,7 @@ export const LandingPage = () => {
 
             return (
               <div key={index} className="event-card" onClick={() => handleEventClick(id, price)}>
-                <img src={`http://app.swiftjobs.com.ng/${picture}`} alt={event_name} className="event-image" />
+                <img src={`https://app.samdavweb.org.ng/${picture}`} alt={event_name} className="event-image" />
                 <div className="event-info">
                   <h4 className="event-title">{event_name}</h4>
                   <p className="event-address">{event_address}</p>
@@ -326,7 +326,7 @@ export const LandingPage = () => {
 
       {/* Search for Past Events */}
       <section className="search-section">
-        <input 
+        <input
           type="text"
           placeholder="Search Past Events..."
           value={pastSearchTerm}
@@ -346,7 +346,7 @@ export const LandingPage = () => {
 
             return (
               <div key={index} className="event-card" onClick={() => handleEventClick(id, price)}>
-                <img src={`http://app.swiftjobs.com.ng/${picture}`} alt={event_name} className="event-image" />
+                <img src={`http://app.samdavweb.org.ng/${picture}`} alt={event_name} className="event-image" />
                 <div className="event-info">
                   <h4 className="event-title">{event_name}</h4>
                   <p className="event-address">{event_address}</p>
@@ -364,7 +364,7 @@ export const LandingPage = () => {
         {renderPagination(currentPagePast, setCurrentPagePast, filteredPastEvents.length)}
       </section>
 
-      
+
 
       {/* Contact Us Section */}
       <section id="contact" className="contact-us">

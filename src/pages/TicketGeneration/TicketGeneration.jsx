@@ -7,6 +7,7 @@ import './TicketGeneration.css';
 import BackButton from "/src/components/Ui/BackArrow.jsx"
 import Footer from "/src/components/Dashboard/Footer.jsx"
 import dotenv from "dotenv"
+import Chance from "chance"
 
 const TicketGenerator = () => {
   const [ticketToken, setTicketToken] = useState('');
@@ -141,6 +142,14 @@ const getBankCode = (bankName) => {
   return bankCodeMapping[capitalizedBankName] ; // Return the bank code or the original name
 };
 
+function getRandomInt() {
+  const min = Math.ceil(110);
+  const max = Math.floor(100000);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const random_number = getRandomInt()
+console.log("Random Number", random_number)
 
 
   // Fetch Subaccounts from Paystack
@@ -384,7 +393,7 @@ const generateQRCode = async (ticketToken) => {
 
     // Step 4: Prepare the data to send in the email (this includes the token and the QR code URL)
     const formData = {
-      userId: location.state.user_id,
+      userId: random_number,
       eventId: location.state.eventId,
       email: location.state.email,
       qrcodeURL: qrcode1, // Ensure the correct QR code URL is passed
@@ -431,6 +440,7 @@ console.log('account id', subaccountCode);
 };
 
 console.log(subaccountCode);
+
 
 
   return (

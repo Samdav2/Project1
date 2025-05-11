@@ -46,23 +46,23 @@ const fetchPaidEvents = async () => {
     try {
       const response = await axios.get(`${userEvent}${user.user_id}`);
       console.log("Error Message", response.data.message);
-      
+
       if (response.data.message === "User has not attended any event") {
         console.log("Error Message", response.data.message)
         toast.error("You have not paid for any event")
-        setPaidEvents([]); 
+        setPaidEvents([]);
         setError("You have no paid active event at the moment");
         return([]);
       } else if (response.status === 200 && response.data.length > 0) {
         setPaidEvents(response.data || []);
-        setError(""); 
+        setError("");
       } else {
         setError(`Unexpected response: ${response.status}`);
         return([]);
       }
     } catch (err) {
-      setPaidEvents([]);  
-      setError("Failed to load paid events");  
+      setPaidEvents([]);
+      setError("Failed to load paid events");
       console.error("Error loading paid events:", err);
     }
   } else {
@@ -201,7 +201,7 @@ const getInitials = (name = '') => {
         <>
           <div className="backdrop" onClick={handleClosePopup}></div>
           <div className="event-popup">
-            {selectedEvent.picture && <img src={`http://app.swiftjobs.com.ng/${selectedEvent.picture}`} alt={selectedEvent.event_name} className="event-image" />}
+            {selectedEvent.picture && <img src={`https://app.samdavweb.org.ng/${selectedEvent.picture}`} alt={selectedEvent.event_name} className="event-image" />}
             <h3>{selectedEvent.event_name}</h3>
             <p><strong>Date:</strong> {formatEventDate(selectedEvent.date)}</p>
             <p><strong>Location:</strong> {selectedEvent.event_address}</p>

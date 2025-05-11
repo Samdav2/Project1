@@ -292,7 +292,7 @@ export const CreateEvent = () => {
 
         {/* Pricing Section */}
         <label style={{ display: free ? 'block' : 'none'}}>
-          Couple Pass Price
+          VIP
           <input
             type="number"
             name="vip"
@@ -305,7 +305,7 @@ export const CreateEvent = () => {
 
 
         <label style={{ display: free ? 'block' : 'none'}}>
-          Friends Pack Price
+          VVIP
           <input
             type="number"
             name="vvip"
@@ -317,7 +317,7 @@ export const CreateEvent = () => {
         </label>
 
         <label style={{ display: free ? 'block' : 'none'}}>
-          Vip Experience Price
+          VVVIP
           <input
             type="number"
             name="vvvip_price"
@@ -341,7 +341,7 @@ export const CreateEvent = () => {
         </label>
 
         <label style={{ display: free ? 'block' : 'none'}}>
-          Single Pringle Pass
+          Regular
           <input
             type="number"
             name="price"
