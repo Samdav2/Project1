@@ -54,8 +54,8 @@ const VerifyTicket = () => {
       // If the brand names match, continue with the response data
       setVerifyResponse({
         message: response.data.message,
-        user: response.data.userProfile.name,
-        email: response.data.userProfile.email,
+        //user: response.data.userProfile.name,
+        //email: response.data.userProfile.email,
         event: response.data.eventDetails.event_name,
         location: response.data.eventDetails.event_address,
         date: response.data.eventDetails.date,
@@ -70,6 +70,7 @@ const VerifyTicket = () => {
     }
     return false;
   };
+
 
   const deleteTicket = async () => {
     try {
@@ -176,8 +177,8 @@ const VerifyTicket = () => {
           <div className="verification-card">
             <h3>Verification Details</h3>
             <p><strong>Status:</strong> {verifyResponse.message}</p>
-            <p><strong>Attendee:</strong> {verifyResponse.user}</p>
-            <p><strong>Email:</strong> {verifyResponse.email}</p>
+            {/* <p><strong>Attendee:</strong> {verifyResponse.user}</p>
+            <p><strong>Email:</strong> {verifyResponse.email}</p> */}
             <p><strong>Event:</strong> {verifyResponse.event}</p>
             <p><strong>Location:</strong> {verifyResponse.location}</p>
             <p><strong>Date:</strong> {new Date(verifyResponse.date).toLocaleDateString()}</p>
